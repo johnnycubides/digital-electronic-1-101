@@ -1,5 +1,5 @@
 PRJ?=
-TESTBENCH?=
+TESTBENCH?=$(PRJ)_tb.v
 RTL_COMMAND?='read_verilog $(PRJ).v $(MODULES);\
 						 hierarchy -check;\
 						 show $(PRJ)'
@@ -30,7 +30,7 @@ synth.v:
 	yosys -p $(SYNTH_COMMAND)
 
 init:
-	touch $(PRJ).v $(PRJ)_tb.v $(MODULES)
+	touch $(PRJ).v $(TESTBENCH) $(MODULES)
 
 # iverilog compiler
 # vpp: simulation runtime engine
