@@ -1,6 +1,4 @@
-NAME?= half_adder
-SRC?= half_adder.v\
-		 half_adder_tb.v
+PRJ?= half_adder
 
 PATH_TOOLS=../../tools
-include $(PATH_TOOLS)/verilog-sim.mk
+include $(PATH_TOOLS)/verilog.mk
