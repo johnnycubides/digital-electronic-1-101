@@ -1,6 +1,2 @@
-# Instalación de herramientas de simulación
+# Electrónica Digital I
 
-```bash
- conda install -c conda-forge gtkwave 
- conda install -c conda-forge graphviz
-```

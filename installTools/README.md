@@ -25,5 +25,18 @@ Digital permite importar descripciones VHDL o Verilog a su área de trabajo para
 se requiere la instalación de un simulador según el lenguaje que se quiera importar.
 
 * Para Verilog -> Icarus Verilog, [docs](https://steveicarus.github.io/iverilog/usage/installation.html), [Windows bin](https://bleyer.org/icarus/)
-* Para VHDL -> GHDL, [Docs](http://ghdl.free.fr/site/pmwiki.php?n=Main.HomePage), [Binarios](https://github.com/ghdl/ghdl/releases)
+* Para VHDL -> GHDL, [Docs](http://ghdl.free.fr/site/pmwiki.php?n=Main.HomePage), [Binarios](https://github.com/ghdl/ghdl/releases), [Wiki](https://github.com/ghdl/ghdl/wiki)
 
+## Iverilog y Yosys en conda
+
+Se propone para este caso la instalación de Conda o miniconda y generar un espacio de trabajo con las
+herramientas necesarias.
+
+**Instalación de herramientas desde conda**
+
+```bash
+conda install -c conda-forge gtkwave 
+conda install -c conda-forge graphviz
+conda install -c "litex-hub/label/ci-HEAD-5024163189" yosys
+conda install -c "litex-hub/label/ci-HEAD-5024163189" iverilog
+```
