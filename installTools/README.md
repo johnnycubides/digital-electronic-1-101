@@ -37,6 +37,6 @@ herramientas necesarias.
 ```bash
 conda install -c conda-forge gtkwave 
 conda install -c conda-forge graphviz
-conda install -c "litex-hub/label/ci-HEAD-5024163189" yosys
-conda install -c "litex-hub/label/ci-HEAD-5024163189" iverilog
+conda install -c "litex-hub" yosys
+conda install -c "litex-hub" iverilog
 ```
