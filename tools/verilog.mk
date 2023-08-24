@@ -1,8 +1,11 @@
 PRJ?=
 TESTBENCH?=$(PRJ)_tb.v
+# RTL_COMMAND?='read_verilog $(PRJ).v $(MODULES);\
+# 						 hierarchy -check;\
+# 						 show $(PRJ)'
 RTL_COMMAND?='read_verilog $(PRJ).v $(MODULES);\
 						 hierarchy -check;\
-						 show $(PRJ)'
+						 write_json $(PRJ).json'
 SYNTH_COMMAND?='read_verilog $(PRJ).v $(MODULES);\
 		 hierarchy -check;\
 		 write_verilog synth.v;'
@@ -25,6 +28,9 @@ clean:
 
 rtl:
 	yosys -p $(RTL_COMMAND)
+
+svg:
+	netlistsvg $(PRJ).json -o $(PRJ).svg
 
 synth.v:
 	yosys -p $(SYNTH_COMMAND)
