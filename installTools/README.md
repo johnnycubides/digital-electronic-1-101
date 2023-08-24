@@ -47,6 +47,7 @@ $ bash Miniconda3-latest-Linux-x86_64.sh # Seguir las instrucciones y reiniciar 
 ```bash
 (digital) $ conda install -c conda-forge gtkwave 
 (digital) $ conda install -c conda-forge graphviz
+(digital) $ conda install -c symbiflow netlistsvg
 (digital) $ conda install -c "litex-hub" yosys
 (digital) $ conda install -c "litex-hub" iverilog
 ```
