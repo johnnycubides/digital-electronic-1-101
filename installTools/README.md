@@ -53,6 +53,7 @@ $ bash Miniconda3-latest-Linux-x86_64.sh # Seguir las instrucciones y reiniciar 
 ```
 
 > Para comprobar que se han instalado las herramientas requeridas podrá listar y ubicarlas con el comando `$ conda list`
+> Para remover un paquete instalado puede ejecutar como sigue: `conda remove name-package`
 
 ## Digital
 
