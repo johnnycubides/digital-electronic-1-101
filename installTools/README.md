@@ -15,6 +15,10 @@
 A continuación se propone la instalación de diferentes herramientas para el diseño, simulación, síntesis, ruteo y configuarción
 de circuitos digitales en tecnologías como FPGAs.
 
+> **¡Tenga en cuenta!** Las instrucciones que van delante del símbolo ` $ ` son aquellas a realizar en el prompt de la consola; deberá copiarlas y
+> pegarlas en la consola para luego ejecutarlas. Las demás líneas o campos son salidas o resultados de una operación que podrá usar como
+> comparación.
+
 ## Iverilog y Yosys en miniconda
 
 Se propone para este caso la instalación de Conda o miniconda y generar un espacio de trabajo con las
@@ -34,7 +38,8 @@ $ bash Miniconda3-latest-Linux-x86_64.sh # Seguir las instrucciones y reiniciar 
 (base) $ conda activate digital  # Activar la variable de entorno de conda denominada digital
 (digital) $ python --version # Debe presentarse la version 3.10 para poder continuar
 ```
-> Para desactivar la variable de entorno digital en conda ejecutar `conda deactivate`
+> Recuerde que para activar el entorno **digital** deberá hacer uso del comando `$ conda activate digital`.
+> Para desactivar la variable de entorno **digital** en conda ejecutar `$ conda deactivate`
 
 
 ### Instalación de herramientas desde miniconda
@@ -45,6 +50,8 @@ $ bash Miniconda3-latest-Linux-x86_64.sh # Seguir las instrucciones y reiniciar 
 (digital) $ conda install -c "litex-hub" yosys
 (digital) $ conda install -c "litex-hub" iverilog
 ```
+
+> Para comprobar que se han instalado las herramientas requeridas podrá listar y ubicarlas con el comando `$ conda list`
 
 ## Digital
 
@@ -60,6 +67,14 @@ realiza diferentes análisis, test de comportamiento, como también exporta los 
 
 > Digital requiere la máquina virtual de java, puede comprobar que tenga instalada usando el comando`java --version`.
 > en el caso de no tener instalada la máquina virtual podría revisar el siguiente enlace: [JVM](https://adoptium.net/).
+
+> En el caso de no tener instalado el JDK o alguna librería requerida en Linux podrá realizar la instalación del JDK desde un gestor de paquetes, ejemplo:
+```bash
+$ sudo apt install openjdk-11-jdk # > Si es una distribución basada en debian
+$ pamac install jdk-openjdk # > Si es una distribución basada en arch
+```
+
+Para realizar la instalación de Digital en su sistema podrá seguir estos 3 pasos:
 
 1. Descargar [Digital.zip](https://github.com/hneemann/Digital/releases/latest/download/Digital.zip): este archivo contiene la aplicación y los scripts necesarios.
 2. Ejecutar la aplicación: Se descomprime el archivo .zip y en la carpeta generada basta con lanzar el ejecutable con extensión .exe para Windows o `java -jar Digital.jar` en una terminal para Linux.
