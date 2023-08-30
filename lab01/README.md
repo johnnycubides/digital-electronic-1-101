@@ -3,7 +3,7 @@
 1. Hacer una revisión de la documentación de Digital que e identificar en esta revisión
 las capacidades de ésta aplicación, limitaciones, herramientas y ejemplos de uso.
 
-2. Realizar la simulación de un circuito digital y de allí obserbar:
+2. Realizar la simulación de un circuito digital y de allí observar:
     * Tabla de verdad
     * Expresión algebraica asociada al circuito
     * Mapa de Karnaugh
