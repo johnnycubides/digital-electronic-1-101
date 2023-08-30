@@ -32,7 +32,7 @@ las capacidades de ésta aplicación, limitaciones, herramientas y ejemplos de u
 
 ### Simular
 
-* `vVp file.out`
+* `vvp file.out`
 
 ### Observar las formas de ondas con gtkwave
 
