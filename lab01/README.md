@@ -26,15 +26,18 @@ las capacidades de ésta aplicación, limitaciones, herramientas y ejemplos de u
 
 ## Flujo de simulación con iverilog y gtkwave
 
-### Compilar
+![Flujo de simulación](img/simulation-process.drawio.png)
+
+
+### 1. Compilar
 
 * `iverilog -o file.out file_tb.v file.v ... others_modules.v` # Compila un archivo de simulación
 
-### Simular
+### 2. Simular
 
 * `vvp file.out`
 
-### Observar las formas de ondas con gtkwave
+### 3. Observar las formas de ondas con gtkwave
 
 * `gtkwave nombre_archivo.vcd` permite ver el resultado de una simulación en gtkwave
 
