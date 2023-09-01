@@ -15,7 +15,7 @@
 A continuación se propone la instalación de diferentes herramientas para el diseño, simulación, síntesis, ruteo y configuarción
 de circuitos digitales en tecnologías como FPGAs.
 
-> **¡Tenga en cuenta!** Las instrucciones que van delante del símbolo ` $ ` son aquellas a realizar en el prompt de la consola; deberá copiarlas y
+> **¡Tenga en cuenta!** Las instrucciones que van delante del símbolo ` $ ` son aquellas a realizar en el prompt de la consola/terminal; deberá copiarlas y
 > pegarlas en la consola para luego ejecutarlas. Las demás líneas o campos son salidas o resultados de una operación que podrá usar como
 > comparación.
 
@@ -54,6 +54,15 @@ $ bash Miniconda3-latest-Linux-x86_64.sh # Seguir las instrucciones y reiniciar 
 
 > Para comprobar que se han instalado las herramientas requeridas podrá listar y ubicarlas con el comando `$ conda list`
 > Para remover un paquete instalado puede ejecutar como sigue: `conda remove name-package`
+
+
+También puede comprobar las versiones instaladas como sigue:
+
+```
+(digital) $ gtkwave --version # versión instalada v3.3.117
+(digital) $ yosys --version) # versión instalada Yosys 0.32+74
+(digital) $ iverilog -v # versión instalada 13.0
+```
 
 ## Digital
 
