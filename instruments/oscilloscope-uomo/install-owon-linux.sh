@@ -12,4 +12,4 @@ VERSION=1.1.5-cf19
 
 wget -O "$APP-$VERSION.tar.gz" https://github.com/florentbr/OWON-VDS1022/archive/refs/tags/$VERSION.tar.gz
 tar xvf $APP-$VERSION.tar.gz
-cd $APP-$VERSION/ && sudo sh install-linux.sh
+cd $APP-$VERSION/ && sudo bash install-linux.sh
