@@ -13,7 +13,7 @@ curl https://raw.githubusercontent.com/johnnycubides/digital-electronic-1-101/ma
 ## Lanzar aplición
 
 ```bash
-$ owon-vds-tiny
+owon-vds-tiny
 ```
 
 ## Referencias
