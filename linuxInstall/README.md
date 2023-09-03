@@ -109,7 +109,7 @@ Para el caso de Debian y la mayoría de sus derivados se hace uso de algunos ges
 A continuación se explica el proceso de uso **apt**:
 
 |Comando| Observación |
-|:-------------:|:-------------:|
+|:-------------|:-------------|
 | `apt update` | Actualiza los apuntadores de los sources list para que pueda encontrar los servidores donde están los paquetes de los programas |
 | `apt install paquete` | Permite instalar una aplicación con la opción de aceptar algunas condiciones como por ejemplo instalación de dependencias |
 | `apt install -f` | Tratará de reparar el funcionamiento de una aplicación a través de por ejemplo la instalación de dependencias rotas, sino lo logra, es posible que desinstale la aplicación y se requiera un procedimiento manual |
