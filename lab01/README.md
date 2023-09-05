@@ -31,11 +31,11 @@ las capacidades de ésta aplicación, limitaciones, herramientas y ejemplos de u
 
 ### 1. Compilar
 
-* `iverilog -o file.out file_tb.v file.v ... others_modules.v` # Compila un archivo de simulación
+* `iverilog -o file.vvp file_tb.v file.v ... others_modules.v` # Compila un archivo de simulación
 
 ### 2. Simular
 
-* `vvp file.out`
+* `vvp file.vvp`
 
 ### 3. Observar las formas de ondas con gtkwave
 
