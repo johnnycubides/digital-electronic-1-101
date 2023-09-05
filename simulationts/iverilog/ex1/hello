@@ -1,0 +1,22 @@
+#! /home/johnny/miniconda3/envs/fpga/bin/vvp
+:ivl_version "11.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "/home/johnny/miniconda3/envs/fpga/lib/ivl/system.vpi";
+:vpi_module "/home/johnny/miniconda3/envs/fpga/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/home/johnny/miniconda3/envs/fpga/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/home/johnny/miniconda3/envs/fpga/lib/ivl/v2005_math.vpi";
+:vpi_module "/home/johnny/miniconda3/envs/fpga/lib/ivl/va_math.vpi";
+S_0x55655cff2b70 .scope module, "hello" "hello" 2 1;
+ .timescale 0 0;
+    .scope S_0x55655cff2b70;
+T_0 ;
+    %vpi_call 2 4 "$display", "Hello, World" {0 0 0};
+    %vpi_call 2 5 "$finish" {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "hello.v";
