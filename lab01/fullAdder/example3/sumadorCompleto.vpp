@@ -1,0 +1,145 @@
+#! /home/johnny/miniconda3/envs/fpga/bin/vvp
+:ivl_version "11.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "/home/johnny/miniconda3/envs/fpga/lib/ivl/system.vpi";
+:vpi_module "/home/johnny/miniconda3/envs/fpga/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/home/johnny/miniconda3/envs/fpga/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/home/johnny/miniconda3/envs/fpga/lib/ivl/v2005_math.vpi";
+:vpi_module "/home/johnny/miniconda3/envs/fpga/lib/ivl/va_math.vpi";
+S_0x5589dc671b40 .scope module, "mihermosaprueba" "mihermosaprueba" 2 1;
+ .timescale 0 0;
+v0x5589dc6c6f70_0 .var "a", 0 0;
+v0x5589dc6c7060_0 .var "b", 0 0;
+v0x5589dc6c7170_0 .var "ci", 0 0;
+v0x5589dc6c7260_0 .net "cout", 0 0, L_0x5589dc6c7740;  1 drivers
+v0x5589dc6c7350_0 .net "s", 0 0, L_0x5589dc6c7860;  1 drivers
+S_0x5589dc672690 .scope module, "dut" "sumadorCompleto" 2 24, 3 16 0, S_0x5589dc671b40;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "cin";
+    .port_info 1 /INPUT 1 "b";
+    .port_info 2 /INPUT 1 "a";
+    .port_info 3 /OUTPUT 1 "s";
+    .port_info 4 /OUTPUT 1 "co";
+L_0x5589dc6c7860 .functor OR 1, L_0x5589dc6c7440, L_0x5589dc6c7600, C4<0>, C4<0>;
+v0x5589dc6c68c0_0 .net "a", 0 0, v0x5589dc6c6f70_0;  1 drivers
+v0x5589dc6c6980_0 .net "b", 0 0, v0x5589dc6c7060_0;  1 drivers
+v0x5589dc6c6a50_0 .net "cin", 0 0, v0x5589dc6c7170_0;  1 drivers
+v0x5589dc6c6b50_0 .net "co", 0 0, L_0x5589dc6c7860;  alias, 1 drivers
+v0x5589dc6c6bf0_0 .net "s", 0 0, L_0x5589dc6c7740;  alias, 1 drivers
+v0x5589dc6c6ce0_0 .net "s0", 0 0, L_0x5589dc6c7440;  1 drivers
+v0x5589dc6c6db0_0 .net "s1", 0 0, L_0x5589dc6c7500;  1 drivers
+v0x5589dc6c6ea0_0 .net "s2", 0 0, L_0x5589dc6c7600;  1 drivers
+S_0x5589dc672db0 .scope module, "semiSumador_i0" "semiSumador" 3 26, 3 6 0, S_0x5589dc672690;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "a";
+    .port_info 1 /INPUT 1 "b";
+    .port_info 2 /OUTPUT 1 "co";
+    .port_info 3 /OUTPUT 1 "s";
+L_0x5589dc6c7440 .functor AND 1, v0x5589dc6c6f70_0, v0x5589dc6c7060_0, C4<1>, C4<1>;
+L_0x5589dc6c7500 .functor XOR 1, v0x5589dc6c7060_0, v0x5589dc6c6f70_0, C4<0>, C4<0>;
+v0x5589dc670cf0_0 .net "a", 0 0, v0x5589dc6c6f70_0;  alias, 1 drivers
+v0x5589dc6c6090_0 .net "b", 0 0, v0x5589dc6c7060_0;  alias, 1 drivers
+v0x5589dc6c6150_0 .net "co", 0 0, L_0x5589dc6c7440;  alias, 1 drivers
+v0x5589dc6c61f0_0 .net "s", 0 0, L_0x5589dc6c7500;  alias, 1 drivers
+S_0x5589dc6c6330 .scope module, "semiSumador_i1" "semiSumador" 3 32, 3 6 0, S_0x5589dc672690;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "a";
+    .port_info 1 /INPUT 1 "b";
+    .port_info 2 /OUTPUT 1 "co";
+    .port_info 3 /OUTPUT 1 "s";
+L_0x5589dc6c7600 .functor AND 1, L_0x5589dc6c7500, v0x5589dc6c7170_0, C4<1>, C4<1>;
+L_0x5589dc6c7740 .functor XOR 1, v0x5589dc6c7170_0, L_0x5589dc6c7500, C4<0>, C4<0>;
+v0x5589dc6c65a0_0 .net "a", 0 0, L_0x5589dc6c7500;  alias, 1 drivers
+v0x5589dc6c6640_0 .net "b", 0 0, v0x5589dc6c7170_0;  alias, 1 drivers
+v0x5589dc6c66e0_0 .net "co", 0 0, L_0x5589dc6c7600;  alias, 1 drivers
+v0x5589dc6c6780_0 .net "s", 0 0, L_0x5589dc6c7740;  alias, 1 drivers
+    .scope S_0x5589dc671b40;
+T_0 ;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5589dc6c6f70_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5589dc6c7060_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5589dc6c7170_0, 0, 1;
+    %end;
+    .thread T_0;
+    .scope S_0x5589dc671b40;
+T_1 ;
+    %delay 1, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5589dc6c7170_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5589dc6c7060_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5589dc6c6f70_0, 0, 1;
+    %delay 1, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5589dc6c7170_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5589dc6c7060_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x5589dc6c6f70_0, 0, 1;
+    %delay 1, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5589dc6c7170_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x5589dc6c7060_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5589dc6c6f70_0, 0, 1;
+    %delay 1, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5589dc6c7170_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x5589dc6c7060_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x5589dc6c6f70_0, 0, 1;
+    %delay 1, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x5589dc6c7170_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5589dc6c7060_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5589dc6c6f70_0, 0, 1;
+    %delay 1, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x5589dc6c7170_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5589dc6c7060_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x5589dc6c6f70_0, 0, 1;
+    %delay 1, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x5589dc6c7170_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x5589dc6c7060_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5589dc6c6f70_0, 0, 1;
+    %delay 1, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x5589dc6c7170_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x5589dc6c7060_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x5589dc6c6f70_0, 0, 1;
+    %delay 1, 0;
+    %vpi_call 2 18 "$finish" {0 0 0};
+    %end;
+    .thread T_1;
+    .scope S_0x5589dc671b40;
+T_2 ;
+    %vpi_call 2 28 "$monitor", "Time: %t, cin = %d, b = %d, a = %d => cout = %d, s = %d", $time, v0x5589dc6c7170_0, v0x5589dc6c7060_0, v0x5589dc6c6f70_0, v0x5589dc6c7260_0, v0x5589dc6c7350_0 {0 0 0};
+    %end;
+    .thread T_2;
+    .scope S_0x5589dc671b40;
+T_3 ;
+    %vpi_call 2 32 "$dumpfile", "my_design.vcd" {0 0 0};
+    %vpi_call 2 33 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x5589dc671b40 {0 0 0};
+    %end;
+    .thread T_3;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "sumadorCompleto_tb.v";
+    "sumadorCompleto.v";

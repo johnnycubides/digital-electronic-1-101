@@ -1,0 +1,101 @@
+#! /home/johnny/miniconda3/envs/fpga/bin/vvp
+:ivl_version "11.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "/home/johnny/miniconda3/envs/fpga/lib/ivl/system.vpi";
+:vpi_module "/home/johnny/miniconda3/envs/fpga/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/home/johnny/miniconda3/envs/fpga/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/home/johnny/miniconda3/envs/fpga/lib/ivl/v2005_math.vpi";
+:vpi_module "/home/johnny/miniconda3/envs/fpga/lib/ivl/va_math.vpi";
+S_0x563127180b40 .scope module, "mesa_de_prueba" "mesa_de_prueba" 2 1;
+ .timescale 0 0;
+v0x5631271d0b40_0 .net "cable_x", 0 0, L_0x5631271d1520;  1 drivers
+v0x5631271d0c00_0 .var "reg_a", 0 0;
+v0x5631271d0ca0_0 .var "reg_b", 0 0;
+v0x5631271d0da0_0 .var "reg_c", 0 0;
+v0x5631271d0e70_0 .var "reg_d", 0 0;
+S_0x563127181690 .scope module, "dut" "puntoC" 2 24, 3 6 0, S_0x563127180b40;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "a";
+    .port_info 1 /INPUT 1 "b";
+    .port_info 2 /INPUT 1 "c";
+    .port_info 3 /INPUT 1 "d";
+    .port_info 4 /OUTPUT 1 "x";
+L_0x5631271a90e0 .functor NOT 1, v0x5631271d0c00_0, C4<0>, C4<0>, C4<0>;
+L_0x5631271d0f90 .functor OR 1, L_0x5631271a90e0, v0x5631271d0ca0_0, C4<0>, C4<0>;
+L_0x5631271d10a0 .functor NOT 1, L_0x5631271d0f90, C4<0>, C4<0>, C4<0>;
+L_0x5631271d1160 .functor AND 1, v0x5631271d0ca0_0, v0x5631271d0da0_0, C4<1>, C4<1>;
+L_0x5631271d1250 .functor NOT 1, L_0x5631271d1160, C4<0>, C4<0>, C4<0>;
+L_0x5631271d1310 .functor AND 1, L_0x5631271d10a0, L_0x5631271d1250, C4<1>, C4<1>;
+L_0x5631271d1460 .functor NOT 1, L_0x5631271d1310, C4<0>, C4<0>, C4<0>;
+L_0x5631271d1520 .functor OR 1, L_0x5631271d1460, v0x5631271d0e70_0, C4<0>, C4<0>;
+v0x5631271bc5e0_0 .net *"_ivl_0", 0 0, L_0x5631271a90e0;  1 drivers
+v0x5631271d0170_0 .net *"_ivl_10", 0 0, L_0x5631271d1310;  1 drivers
+v0x5631271d0250_0 .net *"_ivl_12", 0 0, L_0x5631271d1460;  1 drivers
+v0x5631271d0310_0 .net *"_ivl_2", 0 0, L_0x5631271d0f90;  1 drivers
+v0x5631271d03f0_0 .net *"_ivl_4", 0 0, L_0x5631271d10a0;  1 drivers
+v0x5631271d0520_0 .net *"_ivl_6", 0 0, L_0x5631271d1160;  1 drivers
+v0x5631271d0600_0 .net *"_ivl_8", 0 0, L_0x5631271d1250;  1 drivers
+v0x5631271d06e0_0 .net "a", 0 0, v0x5631271d0c00_0;  1 drivers
+v0x5631271d07a0_0 .net "b", 0 0, v0x5631271d0ca0_0;  1 drivers
+v0x5631271d0860_0 .net "c", 0 0, v0x5631271d0da0_0;  1 drivers
+v0x5631271d0920_0 .net "d", 0 0, v0x5631271d0e70_0;  1 drivers
+v0x5631271d09e0_0 .net "x", 0 0, L_0x5631271d1520;  alias, 1 drivers
+    .scope S_0x563127180b40;
+T_0 ;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5631271d0c00_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5631271d0ca0_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5631271d0da0_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5631271d0e70_0, 0, 1;
+    %delay 1, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5631271d0c00_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5631271d0ca0_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5631271d0da0_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5631271d0e70_0, 0, 1;
+    %delay 1, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5631271d0c00_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5631271d0ca0_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5631271d0da0_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x5631271d0e70_0, 0, 1;
+    %delay 1, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5631271d0c00_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5631271d0ca0_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x5631271d0da0_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5631271d0e70_0, 0, 1;
+    %delay 1, 0;
+    %vpi_call 2 19 "$finish" {0 0 0};
+    %end;
+    .thread T_0;
+    .scope S_0x563127180b40;
+T_1 ;
+    %vpi_call 2 28 "$monitor", "Time: %t, a = %d, b = %d, c = %d, d = %d => x = %d", $time, v0x5631271d0c00_0, v0x5631271d0ca0_0, v0x5631271d0da0_0, v0x5631271d0e70_0, v0x5631271d0b40_0 {0 0 0};
+    %end;
+    .thread T_1;
+    .scope S_0x563127180b40;
+T_2 ;
+    %vpi_call 2 32 "$dumpfile", "my_design.vcd" {0 0 0};
+    %vpi_call 2 33 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x563127180b40 {0 0 0};
+    %end;
+    .thread T_2;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "mesa_de_pruebas.v";
+    "puntoC.v";
