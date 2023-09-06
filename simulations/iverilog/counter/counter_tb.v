@@ -30,7 +30,7 @@ module test;
   // SAVES FORM
   initial
   begin
-    $dumpfile("my_design.vcd");
+    $dumpfile("top.vcd");
     $dumpvars(0, test);
   end
 

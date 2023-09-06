@@ -1,3 +1,6 @@
+![RTL del contador](./counter.svg)
+
+
 ```bash
 iverilog -o my_design  counter_tb.v counter.v
 ```
