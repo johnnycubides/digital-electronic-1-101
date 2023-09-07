@@ -13,7 +13,11 @@ Configurar pines a usar en archivo top.qsf
 
 ```bash
 ## ASIGNACIÓN DE PINES
-set_location_assignment PIN_87 -to a
-set_location_assignment PIN_86 -to b
-set_location_assignment PIN_72 -to c
+# INPUTS
+set_location_assignment PIN_58 -to b
+set_location_assignment PIN_59 -to a
+set_location_assignment PIN_60 -to cin
+# OUTPUTS
+set_location_assignment PIN_72 -to cout
+set_location_assignment PIN_73 -to s
 ```
