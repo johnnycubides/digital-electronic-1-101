@@ -41,7 +41,7 @@ wave:
 
 json-yosys:
 	mkdir -p $S
-	yosys -p 'read_verilog $(TOP).v $(MODULES); hierarchy -check; write_json $S/$(TOP).json'
+	yosys -p 'read_verilog $(TOP).v $(MODULES); hierarchy -check; proc; write_json $S/$(TOP).json'
 
 rtl-from-json: json-yosys
 	netlistsvg $S/$(TOP).json -o $S/$(TOP).svg
@@ -100,6 +100,14 @@ fpga-detect-quartus:
 # Ayuda sobre comandos de ejemplo
 syn-quartus-help:
 	$(CC) --help=flow
+
+init-qsf:
+	@echo "build/\nsim/\ndb/\nincremental_db/\n" > .gitignore
+	@echo "set_global_assignment -name FAMILY \"Cyclone IV E\""
+	@echo "set_global_assignment -name DEVICE EP4CE10E22C8"
+	@echo "set_global_assignment -name TOP_LEVEL_ENTITY top"
+	@echo "set_global_assignment -name PROJECT_OUTPUT_DIRECTORY build"
+
 
 RM=rm -rf
 clean-syn-quartus:
