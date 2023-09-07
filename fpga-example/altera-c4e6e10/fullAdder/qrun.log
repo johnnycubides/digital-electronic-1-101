@@ -1,0 +1,8 @@
+Questa Intel FPGA Edition-64 qrun 2021.2 Utility 2021.04 Apr 14 2021
+Start time: 10:24:30 on Sep 07,2023
+qrun --flow compile top 
+** Error (suppressible): (qrun-13356) Option "--flow" is not a valid option for qrun tool.
+End time: 10:24:30 on Sep 07,2023, Elapsed time: 0:00:00
+*** Summary *********************************************
+    qrun: Errors:   1, Warnings:   0
+  Totals: Errors:   1, Warnings:   0
