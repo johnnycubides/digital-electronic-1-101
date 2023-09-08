@@ -1,4 +1,7 @@
-include ../../../makefile/altera-c4e6e10.mk
+MK_MENU=../../../makefile/altera-c4e6e10.mk
+MK_SYN=../../../makefile/altera-c4e6e10-syn.mk
+MK_SIM=../../../makefile/sim.mk
+include $(MK_MENU) $(MK_SYN) $(MK_SIM)
 
 TOP=top
 #test bench del proyecto para la simulación
