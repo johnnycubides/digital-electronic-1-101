@@ -60,8 +60,6 @@ RTL_COMMAND?='read_verilog $(TOP).v $(MODULES);\
 						 hierarchy -check;\
 						 show $(TOP)'
 
-# .PHONY: json-yosys 
-
 # Aplicación de síntesis
 CC=$(PATH_QUARTUS)/quartus_sh
 
