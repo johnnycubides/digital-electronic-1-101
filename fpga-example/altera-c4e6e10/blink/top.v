@@ -16,15 +16,16 @@ module top (
     // 25MHz clock input
     input  clk,
     // Led outputs
-    output [3:0] led
+    /* output [3:0] led */
+    output led
   );
 
   // turn other leds off (active low)
-  assign led[2:0] = 3'b111;
+  /* assign led[2:0] = 3'b111; */
 
   blink my_blink (
     .clk   (clk),
-    .led (led[3])
+    .led (led)
   );
 
 endmodule

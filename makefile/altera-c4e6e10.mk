@@ -17,6 +17,8 @@ help:
 	@echo "simulate \t-> Simular diseño"
 	@echo "sintetizar \t-> Sintetizar diseño"
 
+init: init-qsf syn-quartus
+
 rtl: rtl-from-json view-svg
 
 sim: iverilog-compile vpp-simulate wave
@@ -100,11 +102,13 @@ syn-quartus-help:
 	$(CC) --help=flow
 
 init-qsf:
-	@echo "build/\nsim/\ndb/\nincremental_db/\n" > .gitignore
+	@echo "build/\nsim/\ndb/\nincremental_db/\n*.log\n" > .gitignore
+	@echo "\n### ¡ATENCIÓN! ###"
+	@echo "\nMODIFIQUE EL ARCHIVO top.qsf CON LA SIGUIENTE INFORMACIÓN:"
 	@echo "set_global_assignment -name FAMILY \"Cyclone IV E\""
 	@echo "set_global_assignment -name DEVICE EP4CE10E22C8"
 	@echo "set_global_assignment -name TOP_LEVEL_ENTITY top"
-	@echo "set_global_assignment -name PROJECT_OUTPUT_DIRECTORY build"
+	@echo "set_global_assignment -name PROJECT_OUTPUT_DIRECTORY build\n"
 
 
 RM=rm -rf
