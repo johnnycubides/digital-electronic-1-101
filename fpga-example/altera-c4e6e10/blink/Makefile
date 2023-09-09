@@ -1,8 +1,12 @@
 help: help-sim help-quartus
+clean: clean-zip clean-syn-quartus clean-sim
 
 MK_SYN=../../../makefile/altera-c4e6e10-syn.mk
 MK_SIM=../../../makefile/sim.mk
 include $(MK_SYN) $(MK_SIM)
+
+
+
 
 TOP=top
 #test bench del proyecto para la simulación

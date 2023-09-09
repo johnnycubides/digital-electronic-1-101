@@ -66,7 +66,8 @@ Z=prj
 zip-src:
 	$(RM) $Z $Z.zip
 	mkdir -p $Z
-	sed -n '7,$$p' ./Makefile > $Z/Makefile
+	sed -n '1,2p' ./Makefile > $Z/Makefile
+	sed -n '11,$$p' ./Makefile >> $Z/Makefile
 	cat $(MK_SYN) >> $Z/Makefile
 	cat $(MK_SIM) >> $Z/Makefile
 	cp -var *.v *.md *.txt *.qsf *.qpf .gitignore $Z
@@ -81,4 +82,7 @@ init-qsf:
 
 RM=rm -rf
 clean-syn-quartus:
-	$(RM) db incremental_db $B
+	$(RM) db incremental_db $B $Z $Z.zip
+
+clean-zip:
+	$(RM) $Z $Z.zip
