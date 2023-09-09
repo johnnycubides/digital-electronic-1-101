@@ -25,6 +25,10 @@ set_location_assignment PIN_74 -to led
 
 ## ¿Cómo ejecutar el ejemplo?
 
+0. Deberá tener las herramientas de desarrollo instaladas en su equipo.
+    * ¿Cómo instalar Quartus?
+    * Herramientas de simulación y síntesis con *Conda*
+
 1. Descargue el proyecto [prj.zip](./prj.zip) y descomprima en un directorio de trabajo.
 
 2. Verifique el archivo de configuración denominado `top.qsf` con la configuración propuesta
@@ -49,7 +53,7 @@ make sim
 ```bash
 make syn
 ```
-> **Atención**: si el comando `make syn` falla, deberá verificar de nuevo el paso **2** y el paso **3.**
+> **Atención**: si el comando `make syn` falla deberá verificar de nuevo el paso **2** y el paso **3.**
 
 6. Para configurar la FPGA (con la FPGA conectada al programador) ejecute:
 
@@ -57,14 +61,15 @@ make syn
 make config
 ```
 
-7. Si quiere obtener el RTL del proyecto y verlo en una imagen ejecute el siguiente comando:
+7. Si quiere obtener el RTL del proyecto y verlo en una imagen SVG ejecute el siguiente comando:
 
 ```bash
 make rtl
 ```
 
-> Para observar comando de ayuda escriba en la consola: `make help`
+> Para obtener los comandos de ayuda escriba en la consola: `make help`
 
 ## Referencias
 
 * [Ejemplo de divisor de frecuencia](https://www.fpga4student.com/2017/08/verilog-code-for-clock-divider-on-fpga.html)
+* [Manejo en el timescale-verilog](https://www.chipverify.com/verilog/verilog-timescale)
