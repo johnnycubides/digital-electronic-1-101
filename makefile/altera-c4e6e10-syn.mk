@@ -67,7 +67,7 @@ zip:
 	$(RM) $Z $Z.zip
 	mkdir -p $Z
 	head -n -3 Makefile > $Z/Makefile
-	sed -n '11,$$p' $(MK_SYN) >> $Z/Makefile
+	sed -n '8,$$p' $(MK_SYN) >> $Z/Makefile
 	sed -n '7,$$p' $(MK_SIM) >> $Z/Makefile
 	cp -var *.v *.md *.txt *.qsf *.qpf .gitignore $Z
 	zip -r $Z.zip $Z

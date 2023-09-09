@@ -7,7 +7,7 @@ tb=$(TOP)_tb.v
 # Módules .v que hacen parte del proyecto
 MODULES=./blink.v
 # # Ruta donde está quartus instalado
-# PATH_QUARTUS=/home/johnny/gitPackages/quartus/quartus/bin
+PATH_QUARTUS=~/gitPackages/quartus/quartus/bin
 # # Cable programador
 # CABLE=USB-Blaster
 
