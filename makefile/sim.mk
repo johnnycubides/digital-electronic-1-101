@@ -8,9 +8,9 @@ MODULES?=
 S=sim
 
 help-sim:
-	@echo "rtl \t \t -> Crear RTL"
-	@echo "simulate \t-> Simular diseño"
-	@echo "sintetizar \t-> Sintetizar diseño"
+	@echo "make rtl \t-> Crear RTL"
+	@echo "make sim \t-> Simular diseño"
+	@echo "make wave \t-> Ver simulación en gtkwave"
 
 rtl: rtl-from-json view-svg
 

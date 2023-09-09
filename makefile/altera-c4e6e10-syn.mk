@@ -9,8 +9,8 @@ CABLE?=USB-Blaster
 B=build
 
 help-quartus:
-	@echo "make rtl\t\t-> Crear RTL"
-	@echo "make sim\t-> Simular diseño"
+	@echo "make syn\t-> Sintetizar diseño"
+	@echo "make config\t-> Configurar fpga"
 
 init: init-qsf syn-quartus
 
@@ -61,15 +61,23 @@ fpga-detect-quartus:
 syn-quartus-help:
 	$(CC) --help=flow
 
+# EMPAQUETAR PROYECTO EN .ZIP
+Z=prj
+zip-src:
+	$(RM) $Z $Z.zip
+	mkdir -p $Z
+	sed -n '7,$$p' ./Makefile > $Z/Makefile
+	cat $(MK_SYN) >> $Z/Makefile
+	cat $(MK_SIM) >> $Z/Makefile
+	cp -var *.v *.md *.txt *.qsf *.qpf .gitignore $Z
+	zip -r $Z.zip $Z
+
 init-qsf:
-	@echo "build/\nsim/\ndb/\nincremental_db/\n*.log\n" > .gitignore
+	@echo "build/\nsim/\ndb/\nincremental_db/\n*.log\n$Z/\n" > .gitignore
 	@echo "\n### ¡ATENCIÓN! ###"
 	@echo "\nMODIFIQUE EL ARCHIVO top.qsf CON LA SIGUIENTE INFORMACIÓN:"
-	@echo "set_global_assignment -name FAMILY \"Cyclone IV E\""
-	@echo "set_global_assignment -name DEVICE EP4CE10E22C8"
-	@echo "set_global_assignment -name TOP_LEVEL_ENTITY top"
-	@echo "set_global_assignment -name PROJECT_OUTPUT_DIRECTORY build\n"
-
+	@cat ./config.txt
+	@echo "## END\n"
 
 RM=rm -rf
 clean-syn-quartus:
