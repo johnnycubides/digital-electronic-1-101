@@ -55,7 +55,7 @@ zip-sim:
 	zip -r $Z.zip $Z
 
 clean-sim:
-	rm -rf $S
+	rm -rf $S $Z
 
 ## YOSYS ARGUMENTS
 RTL_COMMAND?='read_verilog $(TOP).v $(MODULES);\
