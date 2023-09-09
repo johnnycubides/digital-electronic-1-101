@@ -82,7 +82,7 @@ init-qsf:
 
 RM=rm -rf
 clean-syn-quartus:
-	$(RM) db incremental_db $B $Z $Z.zip
+	$(RM) db incremental_db $B
 
 clean-zip:
-	$(RM) $Z $Z.zip
+	$(RM) $Z
