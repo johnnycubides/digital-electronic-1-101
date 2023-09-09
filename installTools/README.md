@@ -4,6 +4,7 @@
     * [Iverilog y Yosys en miniconda](#iverilog-y-yosys-en-miniconda)
         * [Instalación de miniconda](#instalación-de-miniconda)
         * [Instalación de herramientas desde miniconda](#instalación-de-herramientas-desde-miniconda)
+            * [Instalación de herramientas de desarrollo con un solo comando](#instalación-de-herramientas-de-desarrollo-con-un-solo-comando)
     * [Digital](#digital)
         * [Instalación de Digital](#instalación-de-digital)
         * [Complementos para digital](#complementos-para-digital)
@@ -32,6 +33,14 @@ $ wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 $ bash Miniconda3-latest-Linux-x86_64.sh # Seguir las instrucciones y reiniciar la terminal
 ```
 
+### Instalación de herramientas desde miniconda
+
+#### Instalación de herramientas de desarrollo con un solo comando
+
+```bash
+curl https://raw.githubusercontent.com/johnnycubides/digital-electronic-1-101/main/installTools/spec-file.txt > ./spec-file.txt && conda create -n digital --file ./spec-file.txt
+```
+
 ```bash
 (base) $ conda update conda # Actualizar conda
 (base) $ conda create -n digital python=3.10 # Configurar digital como variable de entorno y python3.10
@@ -41,8 +50,6 @@ $ bash Miniconda3-latest-Linux-x86_64.sh # Seguir las instrucciones y reiniciar 
 > Recuerde que para activar el entorno **digital** deberá hacer uso del comando `$ conda activate digital`.
 > Para desactivar la variable de entorno **digital** en conda ejecutar `$ conda deactivate`
 
-
-### Instalación de herramientas desde miniconda
 
 ```bash
 (digital) $ conda install -c litex-hub nextpnr-ice40
