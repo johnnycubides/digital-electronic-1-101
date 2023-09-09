@@ -39,6 +39,21 @@ view-svg:
 rtl-xdot:
 	yosys -p $(RTL_COMMAND)
 
+init-sim:	
+	@echo "sim/\nprj/\n" > .gitignore
+	touch README.md
+
+RM=rm -rf
+# EMPAQUETAR SIMULACIÓN EN .ZIP
+Z=prj
+zip-sim:
+	$(RM) $Z $Z.zip
+	mkdir -p $Z
+	head -n -2 Makefile > $Z/Makefile
+	sed -n '7,$$p' $(MK_SIM) >> $Z/Makefile
+	cp -var *.v *.md .gitignore $Z
+	zip -r $Z.zip $Z
+
 clean-sim:
 	rm -rf $S
 
