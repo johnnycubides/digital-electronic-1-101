@@ -45,11 +45,14 @@ $ bash Miniconda3-latest-Linux-x86_64.sh # Seguir las instrucciones y reiniciar 
 ### Instalación de herramientas desde miniconda
 
 ```bash
-(digital) $ conda install -c conda-forge gtkwave 
-(digital) $ conda install -c conda-forge graphviz
+(digital) $ conda install -c litex-hub nextpnr-ice40
+(digital) $ conda install -c litex-hub nextpnr-ecp5
+(digital) $ conda install -c litex-hub iceprog
+(digital) $ conda install -c litex-hub yosys
+(digital) $ conda install -c litex-hub iverilog
 (digital) $ conda install -c symbiflow netlistsvg
-(digital) $ conda install -c "litex-hub" yosys
-(digital) $ conda install -c "litex-hub" iverilog
+(digital) $ conda install -c conda-forge graphviz
+(digital) $ conda install -c conda-forge gtkwave 
 ```
 
 > Para comprobar que se han instalado las herramientas requeridas podrá listar y ubicarlas con el comando `$ conda list`
