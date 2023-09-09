@@ -5,6 +5,7 @@
         * [Instalación de miniconda](#instalación-de-miniconda)
         * [Instalación de herramientas desde miniconda](#instalación-de-herramientas-desde-miniconda)
             * [Instalación de herramientas de desarrollo con un solo comando](#instalación-de-herramientas-de-desarrollo-con-un-solo-comando)
+            * [Instalación de herramientas de desarrollo paso a paso](#instalación-de-herramientas-de-desarrollo-paso-a-paso)
     * [Digital](#digital)
         * [Instalación de Digital](#instalación-de-digital)
         * [Complementos para digital](#complementos-para-digital)
@@ -40,6 +41,8 @@ $ bash Miniconda3-latest-Linux-x86_64.sh # Seguir las instrucciones y reiniciar 
 ```bash
 curl https://raw.githubusercontent.com/johnnycubides/digital-electronic-1-101/main/installTools/spec-file.txt > ./spec-file.txt && conda create -n digital --file ./spec-file.txt
 ```
+
+#### Instalación de herramientas de desarrollo paso a paso
 
 ```bash
 (base) $ conda update conda # Actualizar conda
