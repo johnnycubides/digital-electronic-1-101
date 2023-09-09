@@ -5,7 +5,7 @@ TOP=top
 #test bench del proyecto para la simulación
 tb=$(TOP)_tb.v
 # Módules .v que hacen parte del proyecto
-MODULES=./blink.v
+MODULES=./clock_divider.v
 # # Ruta donde está quartus instalado
 PATH_QUARTUS=~/gitPackages/quartus/quartus/bin
 # # Cable programador

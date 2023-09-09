@@ -23,9 +23,9 @@ module top (
   // turn other leds off (active low)
   /* assign led[2:0] = 3'b111; */
 
-  blink my_blink (
-    .clk   (clk),
-    .led (led)
+  clock_divider div (
+    .clk_in(clk),
+    .clk_out (led)
   );
 
 endmodule

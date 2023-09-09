@@ -14,7 +14,7 @@ help-sim:
 
 rtl: rtl-from-json view-svg
 
-sim: iverilog-compile vpp-simulate wave
+sim: clean-sim iverilog-compile vpp-simulate wave
 
 iverilog-compile:
 	mkdir -p $S
@@ -24,7 +24,7 @@ vpp-simulate:
 	cd $S && vvp $(TOP).vvp -vcd
 
 wave:
-	gtkwave $S/top.vcd
+	@gtkwave $S/top.vcd	|| (echo "No hay un forma de onda que motrar en gtkwave, posiblemente no fue solicitada en la simulación")
 
 json-yosys:
 	mkdir -p $S
@@ -39,9 +39,12 @@ view-svg:
 rtl-xdot:
 	yosys -p $(RTL_COMMAND)
 
+rtl2png:
+	convert -density 1200 $S/$(TOP).svg $(TOP).png
+
 init-sim:	
 	@echo "sim/\nprj/\n" > .gitignore
-	touch README.md
+	touch README.md top.png
 
 RM=rm -rf
 # EMPAQUETAR SIMULACIÓN EN .ZIP
@@ -51,7 +54,7 @@ zip-sim:
 	mkdir -p $Z
 	head -n -2 Makefile > $Z/Makefile
 	sed -n '7,$$p' $(MK_SIM) >> $Z/Makefile
-	cp -var *.v *.md .gitignore $Z
+	cp -var *.v *.md .gitignore *.png $Z
 	zip -r $Z.zip $Z
 
 clean-sim:
