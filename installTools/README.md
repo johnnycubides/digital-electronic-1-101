@@ -9,6 +9,7 @@
     * [Digital](#digital)
         * [Instalación de Digital](#instalación-de-digital)
         * [Complementos para digital](#complementos-para-digital)
+    * [Referencias](#referencias)
 
 <!-- vim-markdown-toc -->
 
@@ -111,3 +112,9 @@ se requiere la instalación de un simulador según el lenguaje que se quiera imp
 
 * Para Verilog -> Icarus Verilog (el cual ya fue instalado con conda), [docs](https://steveicarus.github.io/iverilog/usage/installation.html), [Windows bin](https://bleyer.org/icarus/)
 * Para VHDL -> GHDL (si quiere simulador con VHDL), [Docs](http://ghdl.free.fr/site/pmwiki.php?n=Main.HomePage), [Binarios](https://github.com/ghdl/ghdl/releases), [Wiki](https://github.com/ghdl/ghdl/wiki)
+
+## Referencias
+
+* [Conda  config spec-file](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#activating-an-environment)
+* [Nextpnr](https://github.com/YosysHQ/nextpnr)
+* [Yosys](https://github.com/YosysHQ/yosys)
