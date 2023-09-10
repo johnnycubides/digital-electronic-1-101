@@ -1,11 +1,11 @@
 TOP?=top
 MODULES?=
 DIR_BUILD?=build
+DEVSERIAL?=/dev/ttyACM0
 PCF?=$(TOP).pcf
 JSON?=$(DIR_BUILD)/$(TOP).json
 ASC?=$(DIR_BUILD)/$(TOP).asc
 BISTREAM?=$(DIR_BUILD)/$(TOP).bin
-DEVSERIAL?=/dev/ttyACM0
 
 help-syn:
 	@echo "make syn\t-> Sintetizar diseño"
@@ -38,7 +38,7 @@ zip:
 	$(RM) $Z $Z.zip
 	mkdir -p $Z
 	head -n -3 Makefile > $Z/Makefile
-	sed -n '9,$$p' $(MK_SYN) >> $Z/Makefile
+	sed -n '5,$$p' $(MK_SYN) >> $Z/Makefile
 	sed -n '7,$$p' $(MK_SIM) >> $Z/Makefile
 	cp -var *.v *.md *.png *.pcf .gitignore $Z
 	zip -r $Z.zip $Z
