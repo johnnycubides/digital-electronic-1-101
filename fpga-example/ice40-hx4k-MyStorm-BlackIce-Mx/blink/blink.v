@@ -15,7 +15,7 @@
 
 module blink(input clk, output led);
 
-	reg [24:0] count;
+	reg [24:0] count = 24'd0;
 
 	assign led = count[24];
 

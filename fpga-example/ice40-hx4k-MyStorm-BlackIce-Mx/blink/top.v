@@ -12,7 +12,7 @@
 * permissions and limitations under the License.                              *
 *                                                                             *
 ******************************************************************************/
-module chip (
+module top (
     // 25MHz clock input
     input  clk,
     // Led outputs
