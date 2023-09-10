@@ -1,5 +1,9 @@
 # GEANY
 
+Vídeo instalación de Geany:
+
+[![Geany instalación y configuración](https://img.youtube.com/vi/1i6v0cj5fdY/0.jpg)](https://www.youtube.com/watch?v=1i6v0cj5fdY "Geany instalación y configuración")
+
 * Editor de texto liviano
 * Integra terminal de comandos
 * Compatible con Makefile
@@ -84,3 +88,7 @@ FT_02_WD=
 Visita el sitio [temas geany](https://www.geany.org/download/themes/), seleccione
 el tema e instalar en `~/.config/geany/colorschemes/`, reinicie Geany y en **View -> Change Color Scheme**
 seleccione el tema deseado
+
+## Referencias
+
+* [Markdown plugin](https://plugins.geany.org/markdown.html)
