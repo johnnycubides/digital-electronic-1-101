@@ -10,15 +10,15 @@
 
 ## Simulación manual
 
-0. Descargar el archivo [prj.zip](./prj.zip) que contiene el proyecto y descomprimir en el área de trabajo.
+1. Descargar el archivo [prj.zip](./prj.zip) que contiene el proyecto y descomprimir en el área de trabajo.
 
-1. Crear el ejecutable *top.vvp* con iverilog:
+2. Crear el ejecutable *top.vvp* con iverilog:
 
 ```bash
 iverilog -o top.vvp fulladder_tb.v fulladder.v halfadder.v
 ```
 
-2. Iniciar la simulación generar resultados
+3. Iniciar la simulación generar resultados
 
 ```bash
 vvp top.vvp

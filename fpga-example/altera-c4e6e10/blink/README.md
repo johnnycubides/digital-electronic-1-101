@@ -25,16 +25,16 @@ set_location_assignment PIN_74 -to led
 
 ## ¿Cómo ejecutar el ejemplo?
 
-0. Deberá tener las herramientas de desarrollo instaladas en su equipo.
+1. Deberá tener las herramientas de desarrollo instaladas en su equipo.
     * ¿Cómo instalar Quartus?
     * Herramientas de simulación y síntesis con *Conda*
 
-1. Descargue el proyecto [prj.zip](./prj.zip) y descomprima en un directorio de trabajo.
+2. Descargue el proyecto [prj.zip](./prj.zip) y descomprima en un directorio de trabajo.
 
-2. Verifique el archivo de configuración denominado `top.qsf` con la configuración propuesta
+3. Verifique el archivo de configuración denominado `top.qsf` con la configuración propuesta
 en la descripción mencionada arriba o aquella que encuentra en el archivo `./config.txt`.
 
-3. Es importante que en el archivo `Makefile` dentro de prj configure la ruta de la herramienta
+4. Es importante que en el archivo `Makefile` dentro de prj configure la ruta de la herramienta
 QUARTUS, esta ruta deberá coincidir con la ruta donde haya instalado QUARTUS, ejemplo:
 
 ```bash
@@ -42,26 +42,26 @@ QUARTUS, esta ruta deberá coincidir con la ruta donde haya instalado QUARTUS, e
 PATH_QUARTUS=~/gitPackages/quartus/quartus/bin
 ```
 
-4. Para simular y ver los resultados ejecute,
+5. Para simular y ver los resultados ejecute,
 
 ```bash
 make sim
 ```
 
-5. Para sintetizar el proyecto ejecute el siguiente comando:
+6. Para sintetizar el proyecto ejecute el siguiente comando:
 
 ```bash
 make syn
 ```
-> **Atención**: si el comando `make syn` falla deberá verificar de nuevo el paso **2** y el paso **3.**
+> **Atención**: si el comando `make syn` falla deberá verificar de nuevo el paso **3** y el paso **4.**
 
-6. Para configurar la FPGA (con la FPGA conectada al programador) ejecute:
+7. Para configurar la FPGA (con la FPGA conectada al programador) ejecute:
 
 ```bash
 make config
 ```
 
-7. Si quiere obtener el RTL del proyecto y verlo en una imagen SVG ejecute el siguiente comando:
+8. Si quiere obtener el RTL del proyecto y verlo en una imagen SVG ejecute el siguiente comando:
 
 ```bash
 make rtl
