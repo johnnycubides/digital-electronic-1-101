@@ -40,7 +40,13 @@ zip:
 	head -n -3 Makefile > $Z/Makefile
 	sed -n '5,$$p' $(MK_SYN) >> $Z/Makefile
 	sed -n '7,$$p' $(MK_SIM) >> $Z/Makefile
-	cp -var *.v *.md *.png *.pcf .gitignore *.txt $Z
+	cp -var *.v *.md *.pcf .gitignore $Z
+ifneq ($(wildcard *.png),) # Si existe un archivo .png
+	cp -var *.png $Z
+endif
+ifneq ($(wildcard *.txt),) # Si existe un archivo .txt
+	cp -var *.txt $Z
+endif
 	zip -r $Z.zip $Z
 
 init:

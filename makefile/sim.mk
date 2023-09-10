@@ -54,7 +54,13 @@ zip-sim:
 	mkdir -p $Z
 	head -n -2 Makefile > $Z/Makefile
 	sed -n '7,$$p' $(MK_SIM) >> $Z/Makefile
-	cp -var *.v *.md .gitignore *.png *.txt $Z
+	cp -var *.v *.md .gitignore $Z
+ifneq ($(wildcard *.png),) # Si existe un archivo .png
+	cp -var *.png $Z
+endif
+ifneq ($(wildcard *.txt),) # Si existe un archivo .txt
+	cp -var *.txt $Z
+endif
 	zip -r $Z.zip $Z
 
 clean-sim:
