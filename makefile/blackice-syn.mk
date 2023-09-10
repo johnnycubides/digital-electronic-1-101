@@ -40,7 +40,7 @@ zip:
 	head -n -3 Makefile > $Z/Makefile
 	sed -n '5,$$p' $(MK_SYN) >> $Z/Makefile
 	sed -n '7,$$p' $(MK_SIM) >> $Z/Makefile
-	cp -var *.v *.md *.png *.pcf .gitignore $Z
+	cp -var *.v *.md *.png *.pcf .gitignore *.txt $Z
 	zip -r $Z.zip $Z
 
 init:

@@ -54,7 +54,7 @@ zip-sim:
 	mkdir -p $Z
 	head -n -2 Makefile > $Z/Makefile
 	sed -n '7,$$p' $(MK_SIM) >> $Z/Makefile
-	cp -var *.v *.md .gitignore *.png $Z
+	cp -var *.v *.md .gitignore *.png *.txt $Z
 	zip -r $Z.zip $Z
 
 clean-sim:
