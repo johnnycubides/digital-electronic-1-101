@@ -1,5 +1,9 @@
 # Simulación de un sumador completo
 
+Vídeo sobre la simulación aquí planteada:
+
+[![Simulación de un circuito digital con herramientas opensource](https://img.youtube.com/vi/N9OJL0nyhSQ/0.jpg)](https://www.youtube.com/watch?v=N9OJL0nyhSQ "Simulación de un circuito digital con herramientas opensource")
+
 * RTL del sumador completo
 
 ![RTL del sumador completo](./fulladder.png)
