@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<circuit>
+  <version>2</version>
+  <attributes/>
+  <visualElements>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>s</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1240" y="580"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>co</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1240" y="520"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>a</string>
+        </entry>
+      </elementAttributes>
+      <pos x="800" y="580"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>b</string>
+        </entry>
+      </elementAttributes>
+      <pos x="800" y="520"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>cin</string>
+        </entry>
+      </elementAttributes>
+      <pos x="800" y="640"/>
+    </visualElement>
+    <visualElement>
+      <elementName>External</elementName>
+      <elementAttributes>
+        <entry>
+          <string>applicationType</string>
+          <appType>IVERILOG</appType>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>fulladder</string>
+        </entry>
+        <entry>
+          <string>externalInputs</string>
+          <string>in_b,in_a,in_ci</string>
+        </entry>
+        <entry>
+          <string>Code</string>
+          <string>/* `include &quot;./halfadder.v&quot; */
+module fulladder (
+  // Inputs and output ports; 3 in, 2 out
+  input in_b, in_a, in_ci,
+  output out_co, out_s
+);
+
+
+// Declaración de señales
+wire s_s1_to_b_s2; // Un cable del s del sumador 1 al a del sumador2
+wire co_s1_to_or; // Un cable desde co del sumador 1 a la compuerta or
+wire co_s2_to_or; // Un cable desde co del sumador 2 a la compuerta or
+
+// Declaración de submodules
+// halfadder(b,a,co,s)
+halfadder halfadder1(in_b, in_a, co_s1_to_or, s_s1_to_b_s2);
+halfadder halfadder2(s_s1_to_b_s2, in_ci, co_s2_to_or, out_s);
+
+// Descripción del comportamiento
+assign out_co = co_s1_to_or | co_s2_to_or; // co_s1 or co_s2
+endmodule
+
+// Declaración del módulo
+module halfadder (
+  input b, a,
+  output co, s
+);
+
+// Declaración de señales
+// ...
+
+// Descripción del comportamiento
+assign s = a ^ b; // s = a xor b
+assign co = a &amp; b; // a and b
+
+endmodule</string>
+        </entry>
+        <entry>
+          <string>externalOutputs</string>
+          <string>out_co,out_s</string>
+        </entry>
+        <entry>
+          <string>Width</string>
+          <int>6</int>
+        </entry>
+      </elementAttributes>
+      <pos x="940" y="520"/>
+    </visualElement>
+  </visualElements>
+  <wires>
+    <wire>
+      <p1 x="800" y="640"/>
+      <p2 x="880" y="640"/>
+    </wire>
+    <wire>
+      <p1 x="880" y="560"/>
+      <p2 x="940" y="560"/>
+    </wire>
+    <wire>
+      <p1 x="1200" y="580"/>
+      <p2 x="1240" y="580"/>
+    </wire>
+    <wire>
+      <p1 x="800" y="580"/>
+      <p2 x="840" y="580"/>
+    </wire>
+    <wire>
+      <p1 x="1060" y="520"/>
+      <p2 x="1240" y="520"/>
+    </wire>
+    <wire>
+      <p1 x="800" y="520"/>
+      <p2 x="940" y="520"/>
+    </wire>
+    <wire>
+      <p1 x="1060" y="540"/>
+      <p2 x="1200" y="540"/>
+    </wire>
+    <wire>
+      <p1 x="840" y="540"/>
+      <p2 x="940" y="540"/>
+    </wire>
+    <wire>
+      <p1 x="1200" y="540"/>
+      <p2 x="1200" y="580"/>
+    </wire>
+    <wire>
+      <p1 x="880" y="560"/>
+      <p2 x="880" y="640"/>
+    </wire>
+    <wire>
+      <p1 x="840" y="540"/>
+      <p2 x="840" y="580"/>
+    </wire>
+  </wires>
+  <measurementOrdering/>
+</circuit>

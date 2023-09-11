@@ -9,7 +9,7 @@
 
 2. Descargue el proyecto [prj.zip](./prj.zip) y descomprima en un directorio de trabajo.
 
-3. Para simular y ver los resultados ejecute,
+3. Para simular y ver los resultados ejecute:
 ```bash
 make sim
 ```

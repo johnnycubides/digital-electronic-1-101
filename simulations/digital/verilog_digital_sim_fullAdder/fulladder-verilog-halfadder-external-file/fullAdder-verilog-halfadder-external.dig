@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<circuit>
+  <version>2</version>
+  <attributes/>
+  <visualElements>
+    <visualElement>
+      <elementName>halfadder.dig</elementName>
+      <elementAttributes/>
+      <pos x="860" y="560"/>
+    </visualElement>
+    <visualElement>
+      <elementName>halfadder.dig</elementName>
+      <elementAttributes/>
+      <pos x="980" y="560"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>s</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1240" y="580"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>co</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1240" y="520"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Or</elementName>
+      <elementAttributes>
+        <entry>
+          <string>wideShape</string>
+          <boolean>true</boolean>
+        </entry>
+      </elementAttributes>
+      <pos x="1100" y="460"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>a</string>
+        </entry>
+      </elementAttributes>
+      <pos x="800" y="580"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>b</string>
+        </entry>
+      </elementAttributes>
+      <pos x="800" y="520"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>cin</string>
+        </entry>
+      </elementAttributes>
+      <pos x="800" y="460"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>NetName</string>
+          <string>wire b</string>
+        </entry>
+      </elementAttributes>
+      <pos x="960" y="500"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>NetName</string>
+          <string>wire b</string>
+        </entry>
+      </elementAttributes>
+      <pos x="860" y="460"/>
+    </visualElement>
+  </visualElements>
+  <wires>
+    <wire>
+      <p1 x="1180" y="480"/>
+      <p2 x="1200" y="480"/>
+    </wire>
+    <wire>
+      <p1 x="1040" y="560"/>
+      <p2 x="1080" y="560"/>
+    </wire>
+    <wire>
+      <p1 x="920" y="560"/>
+      <p2 x="940" y="560"/>
+    </wire>
+    <wire>
+      <p1 x="820" y="560"/>
+      <p2 x="860" y="560"/>
+    </wire>
+    <wire>
+      <p1 x="960" y="560"/>
+      <p2 x="980" y="560"/>
+    </wire>
+    <wire>
+      <p1 x="1040" y="580"/>
+      <p2 x="1240" y="580"/>
+    </wire>
+    <wire>
+      <p1 x="920" y="580"/>
+      <p2 x="980" y="580"/>
+    </wire>
+    <wire>
+      <p1 x="800" y="580"/>
+      <p2 x="860" y="580"/>
+    </wire>
+    <wire>
+      <p1 x="1080" y="500"/>
+      <p2 x="1100" y="500"/>
+    </wire>
+    <wire>
+      <p1 x="1200" y="520"/>
+      <p2 x="1240" y="520"/>
+    </wire>
+    <wire>
+      <p1 x="800" y="520"/>
+      <p2 x="820" y="520"/>
+    </wire>
+    <wire>
+      <p1 x="940" y="460"/>
+      <p2 x="1100" y="460"/>
+    </wire>
+    <wire>
+      <p1 x="800" y="460"/>
+      <p2 x="860" y="460"/>
+    </wire>
+    <wire>
+      <p1 x="1200" y="480"/>
+      <p2 x="1200" y="520"/>
+    </wire>
+    <wire>
+      <p1 x="960" y="500"/>
+      <p2 x="960" y="560"/>
+    </wire>
+    <wire>
+      <p1 x="820" y="520"/>
+      <p2 x="820" y="560"/>
+    </wire>
+    <wire>
+      <p1 x="1080" y="500"/>
+      <p2 x="1080" y="560"/>
+    </wire>
+    <wire>
+      <p1 x="940" y="460"/>
+      <p2 x="940" y="560"/>
+    </wire>
+  </wires>
+  <measurementOrdering/>
+</circuit>
