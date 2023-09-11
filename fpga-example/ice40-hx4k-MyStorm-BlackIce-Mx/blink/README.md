@@ -10,24 +10,21 @@
 2. Descargue el proyecto [prj.zip](./prj.zip) y descomprima en un directorio de trabajo.
 
 3. Para simular y ver los resultados ejecute,
-
 ```bash
 make sim
 ```
 
 4. Para sintetizar el proyecto ejecute el siguiente comando:
-
 ```bash
 make syn
 ```
-5. Para configurar la FPGA (con la FPGA conectada al programador) ejecute:
 
+5. Para configurar la FPGA (con la FPGA conectada al programador) ejecute:
 ```bash
 make config
 ```
 
 6. Si quiere obtener el RTL del proyecto y verlo en una imagen SVG ejecute el siguiente comando:
-
 ```bash
 make rtl
 ```
