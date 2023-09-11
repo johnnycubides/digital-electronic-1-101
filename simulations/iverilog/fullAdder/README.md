@@ -17,17 +17,20 @@ Vídeo sobre la simulación aquí planteada:
 1. Descargar el archivo [prj.zip](./prj.zip) que contiene el proyecto y descomprimir en el área de trabajo.
 
 2. Crear el ejecutable *top.vvp* con iverilog:
-
 ```bash
 iverilog -o top.vvp fulladder_tb.v fulladder.v halfadder.v
 ```
 
 3. Iniciar la simulación generar resultados
-
 ```bash
 vvp top.vvp
 ```
 > Para finalizar simulación: `> finsih`
+
+4. Ver las formas de onda en gtkwave:
+```bash
+gtkwave top.vcd
+```
 
 * Podría también realizar la simulación creando un archivo
 `./file_list.txt` que contiene los módulos que intervienen en la simulación:
