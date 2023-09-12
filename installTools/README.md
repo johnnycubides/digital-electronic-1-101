@@ -22,6 +22,13 @@ de circuitos digitales en tecnologías como FPGAs.
 > pegarlas en la consola para luego ejecutarlas. Las demás líneas o campos son salidas o resultados de una operación que podrá usar como
 > comparación.
 
+Algunos comandos de Makefile van a requerir algunas aplicaciones, para instalar estas
+herramientas puede ejecutar el siguiente comando:
+
+```bash
+sudo apt install eog imagemagick
+```
+
 ## Iverilog y Yosys en miniconda
 
 Se propone para este caso la instalación de Conda o miniconda y generar un espacio de trabajo con las
