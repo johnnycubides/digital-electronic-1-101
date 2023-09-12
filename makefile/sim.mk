@@ -11,6 +11,13 @@ help-sim:
 	@echo "make rtl \t-> Crear RTL"
 	@echo "make sim \t-> Simular diseño"
 	@echo "make wave \t-> Ver simulación en gtkwave"
+	@echo "\nEjemplos de simulaciones con más argumentos:"
+	@echo "\tmake sim VVP_ARG=+inputs=5\t\t:Agregar un argumento a la simulación"
+	@echo "\tmake sim VVP_ARG=+a=5\ +b=6\t\t:Agregar varios argumentos a la simulación"
+	@echo "\tmake sim VVP_ARG+=+a=5 VVP_ARG+=+b=6\t:Agregar varios argumentos a la simulación"
+	@echo "\tmake rtl rtl2png\t\t\t:Convertir el RTL del formato svg a png"
+	@echo "\tmake rtl rtl2png TOP=modulo1 MODULES=modulo2.v\ modulo3.v\t:Además de convertir, obtiene el RTL de otros modulos (submodulos)"
+	@echo "\tmake rtl rtl2png TOP=modulo1 MODULES=\t:Además de lo anterior se puede obtener el RTL de un módulo que no contiene submodulos"
 
 rtl: rtl-from-json view-svg
 
@@ -20,8 +27,10 @@ iverilog-compile:
 	mkdir -p $S
 	iverilog -o $S/$(TOP).vvp $(tb) $(TOP).v $(MODULES)
 
+# VVP_ARG permite agregar argumentos en la simulación con vvp
+VVP_ARG=
 vpp-simulate:
-	cd $S && vvp $(TOP).vvp -vcd
+	cd $S && vvp $(TOP).vvp -vcd $(VVP_ARG)
 
 wave:
 	@gtkwave $S/top.vcd	|| (echo "No hay un forma de onda que motrar en gtkwave, posiblemente no fue solicitada en la simulación")
