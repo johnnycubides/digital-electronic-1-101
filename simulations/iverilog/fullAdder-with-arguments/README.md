@@ -17,14 +17,13 @@
 iverilog -o top.vvp fulladder_tb.v fulladder.v halfadder.v
 ```
 
-3. Iniciar la simulación generar resultados, las entradas están en formato binario (101, etc)
+3. Iniciar la simulación y generar resultados, las entradas están en formato binario (101, etc)
 ```bash
-vvp top.vvp +input=001 # Entrada con valor 1
-vvp top.vvp +input=010 # Entrada con valor 2
-vvp top.vvp +input=010 # Entrada con valor 3
+vvp top.vvp +inputs=001 # Entrada con valor 1
+vvp top.vvp +inputs=011 # Entrada con valor 2
+vvp top.vvp +inputs=111 # Entrada con valor 3
 ```
 El resultado será visto en la terminal.
-
 > Para finalizar simulación: `> finsih`
 
 4. Ver las formas de onda en gtkwave:
@@ -54,9 +53,9 @@ Para agregar la sumulación haciendo uso de *make* podrá agregar los
 argumentos con `VVP_ARG=`, ejemplo:
 
 ```bash
-make sim VVP_ARG=+input=001 # La salida debe ser 1
-make sim VVP_ARG=+input=011 # La salida debe ser 2
-make sim VVP_ARG=+input=111 # La salida debe ser 3
+make sim VVP_ARG=+inputs=001 # La salida debe ser 1
+make sim VVP_ARG=+inputs=011 # La salida debe ser 2
+make sim VVP_ARG=+inputs=111 # La salida debe ser 3
 ```
 
 ## Obtener los RTL
