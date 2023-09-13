@@ -7,5 +7,5 @@ tb?=$(TOP)_tb.v
 # Módules .v que hacen parte del proyecto
 MODULES?=
 
-MK_SIM=../../../makefile/sim.mk
+MK_SIM=../../../makefiles/sim.mk
 include $(MK_SIM)
