@@ -7,6 +7,6 @@ MODULES=blink.v
 DIR_BUILD=build
 DEVSERIAL=/dev/ttyACM0
 
-MK_SYN=../../../makefile/blackice-syn.mk
-MK_SIM=../../../makefile/sim.mk
+MK_SYN=../../../makefiles/blackice-syn.mk
+MK_SIM=../../../makefiles/sim.mk
 include $(MK_SYN) $(MK_SIM)

@@ -37,7 +37,7 @@ wave:
 
 json-yosys:
 	mkdir -p $S
-	yosys -p 'read_verilog $(TOP).v $(MODULES); hierarchy -check; proc; write_json $S/$(TOP).json'
+	yosys -p 'read_verilog $(TOP).v $(MODULES); prep -top $(TOP); hierarchy -check; proc; write_json $S/$(TOP).json'
 
 rtl-from-json: json-yosys
 	netlistsvg $S/$(TOP).json -o $S/$(TOP).svg
