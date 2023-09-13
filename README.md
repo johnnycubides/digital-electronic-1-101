@@ -23,7 +23,7 @@
     * [Hola mundo en FPGA Cyclon IV](./fpga-example/altera-c4e6e10/fullAdder/)
 * Recursos para FPGA:
     * [BlackIce](./fpga-example/ice40-hx4k-MyStorm-BlackIce-Mx/resources)
-    * [Cyclon IV](./fpga-example/altera-c4e6e10/resources)
+    * [Cyclone IV](./fpga-example/altera-c4e6e10/resources)
 
 Regards,
 
