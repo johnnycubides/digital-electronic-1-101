@@ -1,18 +1,16 @@
 # Electrónica Digital I
 
-* [Instalación de GNU/Linux](./linuxInstall/)
-* [Instalación de herramientas opensource de simulación, síntesis y configuración de sistemas digitales](./installTools/)
-* Instalación de instrumentos:
-    * [Instalación de osciloscopio owon en Linux](./instruments/oscilloscope-owon/)
-* Otras herramientas:
-    * Geany editor de texto:
-        * [Instalación y configuración de Geany](./installTools/geany.md)
-    * QUCS
-        * [Instalación de qucs en GNU/Linux](https://github.com/johnnycubides/qucs-tutorial-examples/tree/main/install/linux)
-        * [Ejemplos de simulación con QUCS](https://github.com/johnnycubides/qucs-tutorial-examples/tree/main/examples)
+* Instalación de herramientas:
+    * [Instalación de GNU/Linux](./installTools/how-install-linux.md)
+    * [Instalación de herramientas opensource de simulación, síntesis y configuración de sistemas digitales](./installTools/conda-and-tools.md)
+    * Instalación de instrumentos:
+        * [Instalación de osciloscopio owon en Linux](./installTools/instruments/oscilloscope-owon/)
+    * Otras herramientas:
+        * Geany editor de texto: [Instalación y configuración de Geany](./installTools/geany.md)
+        * QUCS: [Instalación de qucs en GNU/Linux](https://github.com/johnnycubides/qucs-tutorial-examples/tree/main/install/linux) y [Ejemplos de simulación con QUCS](https://github.com/johnnycubides/qucs-tutorial-examples/tree/main/examples)
 * Laboratorios:
-    * [Laboratorio de comparación de tecnologías CMOS vs TTL](./lab-tec/)
-    * [Laboratorio de simulación de sistemas digitales con herramientas opensource](./lab01/)
+    * [Laboratorio de comparación de tecnologías CMOS vs TTL](./labs/lab-tec/)
+    * [Laboratorio de simulación de sistemas digitales con herramientas opensource](./labs/lab01/)
 * Simulación de sistemas digitales:
     * Digital:
         * [Simulación de un sumador completo](./simulations/digital/digital_sim_fullAdder/)
@@ -24,6 +22,11 @@
 * Recursos para FPGA:
     * [BlackIce](./fpga-example/ice40-hx4k-MyStorm-BlackIce-Mx/resources)
     * [Cyclone IV](./fpga-example/altera-c4e6e10/resources)
+
+El diseño de sistemas digitales contiene diferentes fases como se describe aquí: (diagrama de diseño de flujo digital)
+
+![Metodología de diseño de sistemas digitales](img/metodoliga-de-diseno-sistemas-digitales.png)
+
 
 Regards,
 

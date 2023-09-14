@@ -39,3 +39,8 @@ Los parámetros de cada tecnología para observar el comportamiento del mismo.
 * Comparar los resultados de los tiempo medidos en el laboratorio con los obtenidos en la simulación.
 * Obtener la característica de $V_{in}$ vs $V_{out}$.
 * Comparar las mediciones
+
+## Entrega
+
+Se requiere la entrega de un informe donde responda cada uno de los apartados teniendo en cuenta simulaciones,
+especificaciones técnicas de las tecnologías, mediciones obtenidas en el laboratorio de manera sustentada.

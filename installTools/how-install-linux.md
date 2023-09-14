@@ -1,9 +1,5 @@
 # GNU/Linux en electrónica digital
 
-El diseño de sistemas digitales contiene diferentes fases como se describe aquí: (diagrama de diseño de flujo digital)
-
-![Metodología de diseño de sistemas digitales](img/metodoliga-de-diseno-sistemas-digitales.png)
-
 Para realizar el diseño de un sistema digital, en cada fase se requiere diferentes herramientas que permiten realzar diferentes
 análisis, simulaciones, entre otros. A continuación se listan algunas de ellas:
 
