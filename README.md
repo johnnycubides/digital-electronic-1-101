@@ -3,6 +3,7 @@
 * Instalación de herramientas:
     * [Instalación de GNU/Linux](./installTools/how-install-linux.md)
     * [Instalación de herramientas opensource de simulación, síntesis y configuración de sistemas digitales](./installTools/conda-and-tools.md)
+    * [Instalación de Quartus (Solo para síntesis en FPGA Cyclone IV)](./installTools/quartus.md)
     * Instalación de instrumentos:
         * [Instalación de osciloscopio owon en Linux](./installTools/instruments/oscilloscope-owon/)
     * Otras herramientas:
