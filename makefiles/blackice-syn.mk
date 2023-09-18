@@ -56,4 +56,5 @@ init:
 clean-syn:
 	$(RM) -f $(JSON) $(ASC) $(BISTREAM)
 
+.PHONY: clean
 # .PHONY: upload clean $(TOP).json $(TOP).bin $(TOP).asc init_dir_build

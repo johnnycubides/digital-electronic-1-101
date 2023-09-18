@@ -1,0 +1,4 @@
+# set_io clk 60
+set_io -pullup yes a 49 # Switch S2
+set_io -pullup yes b 52 # Switch S1
+set_io c 56 # Yellow LED

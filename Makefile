@@ -1,4 +1,5 @@
-DIRS_BLACKICE := ./fpga-example/ice40-hx4k-MyStorm-BlackIce-Mx/blink/
+DIRS_BLACKICE := ./fpga-example/ice40-hx4k-MyStorm-BlackIce-Mx/blink/\
+								./fpga-example/ice40-hx4k-MyStorm-BlackIce-Mx/gate_or/
 								# ./fpga-example/ice40-hx4k-MyStorm-BlackIce-Mx/blink/
 
 DIRS_CYCLONE := ./fpga-example/altera-c4e6e10/blink/\
@@ -7,7 +8,8 @@ DIRS_CYCLONE := ./fpga-example/altera-c4e6e10/blink/\
 
 DIRS_SIM := ./simulations/iverilog/counter/\
 						./simulations/iverilog/fullAdder/\
-						./simulations/iverilog/fullAdder-with-arguments/
+						./simulations/iverilog/fullAdder-with-arguments/\
+						./simulations/iverilog/template/
 						# ./simulations/iverilog/
 
 DIRS := $(DIRS_BLACKICE) $(DIRS_CYCLONE)
@@ -20,7 +22,7 @@ zip-syn:
 	done
 
 zip-sim:
-	@for n in $(DIRS); do \
-		cd $(PWD)/$$n && make zip; \
+	@for n in $(DIRS_SIM); do \
+		cd $(PWD)/$$n && make zip-sim; \
 	done
 
