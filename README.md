@@ -19,7 +19,7 @@
         * [Simulación de un sumador completo](./simulations/iverilog/fullAdder/)
 * Implementación sistema digitale en FPGA:
     * [Hola mundo en FPGA ice40-hx4k-MyStorm-BlackIce-Mx](./fpga-example/ice40-hx4k-MyStorm-BlackIce-Mx/blink/)
-    * [Hola mundo en FPGA Cyclon IV](./fpga-example/altera-c4e6e10/fullAdder/)
+    * [Hola mundo en FPGA Cyclone IV](./fpga-example/altera-c4e6e10/fullAdder/)
 * Recursos para FPGA:
     * [BlackIce](./fpga-example/ice40-hx4k-MyStorm-BlackIce-Mx/resources)
     * [Cyclone IV](./fpga-example/altera-c4e6e10/resources)
