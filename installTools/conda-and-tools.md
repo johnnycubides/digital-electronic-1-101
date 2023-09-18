@@ -26,7 +26,7 @@ Algunos comandos de Makefile van a requerir algunas aplicaciones, para instalar 
 herramientas puede ejecutar el siguiente comando:
 
 ```bash
-sudo apt install eog imagemagick
+sudo apt install eog imagemagick curl
 ```
 
 ## Iverilog y Yosys en miniconda
@@ -54,9 +54,9 @@ curl https://raw.githubusercontent.com/johnnycubides/digital-electronic-1-101/ma
 
 ```bash
 (base) $ conda update conda # Actualizar conda
-(base) $ conda create -n digital python=3.10 # Configurar digital como variable de entorno y python3.10
+(base) $ conda create -n digital python=3.7 # Configurar digital como variable de entorno y python3.10
 (base) $ conda activate digital  # Activar la variable de entorno de conda denominada digital
-(digital) $ python --version # Debe presentarse la version 3.10 para poder continuar
+(digital) $ python --version # Debe presentarse la version 3.7 para poder continuar
 ```
 > Recuerde que para activar el entorno **digital** deberá hacer uso del comando `$ conda activate digital`.
 > Para desactivar la variable de entorno **digital** en conda ejecutar `$ conda deactivate`
