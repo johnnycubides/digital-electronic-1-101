@@ -56,13 +56,13 @@ make rtl        -> Crear RTL
 * RTL fulladder.v
 
 ```bash
-make rtl rtl2png TOP=fulladder MODULES=halfadder.v
+make rtl rtl2png
 ```
 
 * RTL halfadder.v
 
 ```bash
-make rtl rtl2png TOP=halfadder MODULES=
+make rtl rtl2png TOP=halfadder
 ```
 
 Regards,

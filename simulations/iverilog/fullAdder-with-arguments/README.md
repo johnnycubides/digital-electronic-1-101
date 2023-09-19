@@ -63,13 +63,13 @@ make sim VVP_ARG=+inputs=111 # La salida debe ser 3
 * RTL fulladder.v
 
 ```bash
-make rtl rtl2png TOP=fulladder MODULES=halfadder.v
+make rtl rtl2png
 ```
 
 * RTL halfadder.v
 
 ```bash
-make rtl rtl2png TOP=halfadder MODULES=
+make rtl rtl2png TOP=halfadder
 ```
 
 Regards,

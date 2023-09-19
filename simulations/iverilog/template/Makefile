@@ -6,8 +6,8 @@ TOP?=top
 # En la variable tb poner la Descripción de la simulación a realizar
 tb?=$(TOP)_tb.v
 # Módules .v que hacen parte del proyecto
-# En la variable MODULES se debe agregar los demás módulos que pertenecen al proyecto
-MODULES?=
+# En la variable DESIGN se debe agregar los demás módulos que pertenecen al proyecto
+DESIGN?=
 
 MK_SIM=../../../makefiles/sim.mk
 include $(MK_SIM)

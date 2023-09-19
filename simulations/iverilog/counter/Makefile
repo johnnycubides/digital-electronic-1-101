@@ -4,8 +4,8 @@ clean: clean-sim
 TOP?=counter
 #test bench del proyecto para la simulación
 tb?=$(TOP)_tb.v
-# Módules .v que hacen parte del proyecto
-MODULES?=
+# DESIGN modules.v que hacen parte del proyecto
+DESIGN?=counter.v
 
 MK_SIM=../../../makefiles/sim.mk
 include $(MK_SIM)

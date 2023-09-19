@@ -3,7 +3,7 @@ TOP?=top
 #test bench del proyecto para la simulación
 tb?=$(TOP)_tb.v
 # Módules .v que hacen parte del proyecto
-MODULES?=
+DESIGN?=
 
 S=sim
 
@@ -16,8 +16,8 @@ help-sim:
 	@echo "\tmake sim VVP_ARG=+a=5\ +b=6\t\t:Agregar varios argumentos a la simulación"
 	@echo "\tmake sim VVP_ARG+=+a=5 VVP_ARG+=+b=6\t:Agregar varios argumentos a la simulación"
 	@echo "\tmake rtl rtl2png\t\t\t:Convertir el RTL del formato svg a png"
-	@echo "\tmake rtl rtl2png TOP=modulo1 MODULES=modulo2.v\ modulo3.v\t:Además de convertir, obtiene el RTL de otros modulos (submodulos)"
-	@echo "\tmake rtl rtl2png TOP=modulo1 MODULES=\t:Además de lo anterior se puede obtener el RTL de un módulo que no contiene submodulos"
+	@echo "\tmake rtl rtl2png TOP=modulo1 DESIGN=modulo2.v\ modulo3.v\t:Además de convertir, obtiene el RTL de otros modulos (submodulos)"
+	@echo "\tmake rtl rtl2png TOP=modulo1 DESIGN=\t:Además de lo anterior se puede obtener el RTL de un módulo que no contiene submodulos"
 
 rtl: rtl-from-json view-svg
 
@@ -25,7 +25,7 @@ sim: clean-sim iverilog-compile vpp-simulate wave
 
 iverilog-compile:
 	mkdir -p $S
-	iverilog -o $S/$(TOP).vvp $(tb) $(TOP).v $(MODULES)
+	iverilog -o $S/$(TOP).vvp $(tb) $(DESIGN)
 
 # VVP_ARG permite agregar argumentos en la simulación con vvp
 VVP_ARG=
@@ -37,7 +37,7 @@ wave:
 
 json-yosys:
 	mkdir -p $S
-	yosys -p 'read_verilog $(TOP).v $(MODULES); prep -top $(TOP); hierarchy -check; proc; write_json $S/$(TOP).json'
+	yosys -p 'read_verilog $(DESIGN); prep -top $(TOP); hierarchy -check; proc; write_json $S/$(TOP).json'
 
 rtl-from-json: json-yosys
 	netlistsvg $S/$(TOP).json -o $S/$(TOP).svg
@@ -76,7 +76,7 @@ clean-sim:
 	rm -rf $S $Z
 
 ## YOSYS ARGUMENTS
-RTL_COMMAND?='read_verilog $(TOP).v $(MODULES);\
+RTL_COMMAND?='read_verilog $(DESIGN);\
 						 hierarchy -check;\
 						 show $(TOP)'
 
