@@ -25,5 +25,5 @@ make rtl rtl2png
 
 * Ver el RTL del módulo `./gate_or.v` y exportar a PNG:
 ```bash
-make rtl rtl2png TOP=gate_or MODULES=
+make rtl rtl2png TOP=gate_or
 ```

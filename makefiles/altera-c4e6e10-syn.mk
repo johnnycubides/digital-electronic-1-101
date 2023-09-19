@@ -1,6 +1,6 @@
 TOP?=top
-# Módules .v que hacen parte del proyecto
-MODULES?=
+# DESIGN Modules .v que hacen parte del proyecto
+DESIGN?=
 # Ruta donde está quartus instalado
 PATH_QUARTUS?=~/gitPackages/quartus/quartus/bin
 # Cable programador

@@ -1,5 +1,5 @@
 TOP?=top
-MODULES?=
+DESIGN?=
 DIR_BUILD?=build
 DEVSERIAL?=/dev/ttyACM0
 PCF?=$(TOP).pcf
@@ -13,7 +13,7 @@ help-syn:
 
 syn: json asc bitstream
 
-OBJS+=$(TOP).v $(MODULES)
+OBJS+=$(DESIGN)
 
 $(JSON): $(OBJS)
 	mkdir -p $(DIR_BUILD)

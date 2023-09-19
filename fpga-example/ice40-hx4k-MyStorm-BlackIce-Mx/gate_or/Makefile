@@ -3,7 +3,7 @@ clean: clean-syn clean-sim
 TOP=top
 #test bench del proyecto para la simulación
 tb?=$(TOP)_tb.v
-MODULES=./gate_or.v
+DESIGN=./top.v ./gate_or.v
 DIR_BUILD=build
 DEVSERIAL=/dev/ttyACM0
 
