@@ -1,6 +1,6 @@
 # Ejemplo de Blink en FPGA Blackice
 
-![Imagen RTK](./top.png)
+![Imagen RTK](./blink.png)
 
 ## ¿Cómo ejecutar el ejemplo?
 
