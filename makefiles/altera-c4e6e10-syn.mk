@@ -9,8 +9,9 @@ CABLE?=USB-Blaster
 B=build
 
 help-quartus:
-	@echo "make syn\t-> Sintetizar diseño"
-	@echo "make config\t-> Configurar fpga"
+	@echo "\n## SINTESIS Y CONFIGURACIÓN ##"
+	@echo "\tmake syn\t-> Sintetizar diseño"
+	@echo "\tmake config\t-> Configurar fpga"
 
 init: init-qsf syn-quartus
 

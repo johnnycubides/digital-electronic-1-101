@@ -9,8 +9,9 @@ BISTREAM?=$(DIR_BUILD)/$(TOP).bin
 
 help-syn:
 	@echo "\n## SINTESIS Y CONFIGURACIÓN ##"
-	@echo "\tmake syn\t-> Sintetizar diseño"
-	@echo "\tmake config\t-> Configurar fpga"
+	@echo "\tmake syn\t\t-> Sintetizar diseño"
+	@echo "\tmake config\t\t-> Configurar fpga"
+	@echo "\tmake config-sram\t-> Configurar fpga desde la SRAM"
 
 syn: json asc bitstream
 
@@ -21,14 +22,16 @@ $(JSON): $(OBJS)
 	yosys -p "synth_ice40 -top $(TOP) -json $(JSON)" $(OBJS)
 
 $(ASC): $(JSON)
-	nextpnr-ice40 --hx4k --package tq144 --json $(JSON) --pcf $(PCF) --asc $(ASC)
+	nextpnr-ice40 --hx8k --package ct256 --json $(JSON) --pcf $(PCF) --asc $(ASC)
 
 $(BISTREAM): $(ASC)
 	icepack $(ASC) $(BISTREAM)
 
 config:
-	stty -F $(DEVSERIAL) raw
-	cat $(BISTREAM) > $(DEVSERIAL)
+	iceprog $(BISTREAM)
+
+config-sram:
+	iceprog -S $(BISTREAM)
 
 json:$(JSON)
 asc:$(ASC)

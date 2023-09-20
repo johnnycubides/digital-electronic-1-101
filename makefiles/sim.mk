@@ -8,9 +8,10 @@ DESIGN?=
 S=sim
 
 help-sim:
-	@echo "make rtl \t-> Crear RTL"
-	@echo "make sim \t-> Simular diseño"
-	@echo "make wave \t-> Ver simulación en gtkwave"
+	@echo "\n## SIMULACIÓN Y RTL##"
+	@echo "\tmake rtl \t-> Crear RTL"
+	@echo "\tmake sim \t-> Simular diseño"
+	@echo "\tmake wave \t-> Ver simulación en gtkwave"
 	@echo "\nEjemplos de simulaciones con más argumentos:"
 	@echo "\tmake sim VVP_ARG=+inputs=5\t\t:Agregar un argumento a la simulación"
 	@echo "\tmake sim VVP_ARG=+a=5\ +b=6\t\t:Agregar varios argumentos a la simulación"
