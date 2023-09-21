@@ -24,8 +24,13 @@ rtl: rtl-from-json view-svg
 
 sim: clean-sim iverilog-compile vpp-simulate wave
 
+# MORE_SRC2SIM permite agregar más archivos fuentes para la simulación
+MORE_SRC2SIM?=
 iverilog-compile:
 	mkdir -p $S
+ifneq ($(MORE_SRC2SIM), )
+	cp -var $(MORE_SRC2SIM) $S
+endif
 	iverilog -o $S/$(TOP).vvp $(tb) $(DESIGN)
 
 # VVP_ARG permite agregar argumentos en la simulación con vvp
@@ -62,7 +67,9 @@ Z=prj
 zip-sim:
 	$(RM) $Z $Z.zip
 	mkdir -p $Z
+	# Quitar las últimas dos líneas del Makefile y crear copia en el directorio $Z
 	head -n -2 Makefile > $Z/Makefile
+	# Agregar desde la línea 7 en adelante en el Makefile
 	sed -n '7,$$p' $(MK_SIM) >> $Z/Makefile
 	cp -var *.v *.md .gitignore $Z
 ifneq ($(wildcard *.png),) # Si existe un archivo .png

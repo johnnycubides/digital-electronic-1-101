@@ -1,0 +1,2 @@
+set_io clock J3 # ICE_CLK 12MHz
+set_io led A2 # D7
