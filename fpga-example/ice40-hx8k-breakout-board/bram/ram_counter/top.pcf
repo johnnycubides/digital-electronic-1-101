@@ -1,0 +1,10 @@
+set_io clk J3 # ICE_CLK 12MHz
+
+set_io leds[0] C3 # LED7 D2
+set_io leds[1] B3 # LED6 D3
+set_io leds[2] C4 # LED5 D4
+set_io leds[3] C5 # LED4 D5
+set_io leds[4] A1 # LED3 D6
+set_io leds[5] A2 # LED2 D7
+set_io leds[6] B4 # LED1 D8
+set_io leds[7] B5 # LED0 D9
