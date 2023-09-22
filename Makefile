@@ -2,7 +2,12 @@ DIRS_BLACKICE := ./fpga-example/ice40-hx4k-MyStorm-BlackIce-Mx/blink/\
 								./fpga-example/ice40-hx4k-MyStorm-BlackIce-Mx/gate_or/
 								# ./fpga-example/ice40-hx4k-MyStorm-BlackIce-Mx/blink/
 
-DIRS_ICE40HX8K := ./fpga-example/ice40-hx8k-breakout-board/blink/
+DIRS_ICE40HX8K := ./fpga-example/ice40-hx8k-breakout-board/blink/\
+									./fpga-example/ice40-hx8k-breakout-board/bram/ram2ports-init/\
+									./fpga-example/ice40-hx8k-breakout-board/bram/ram_counter/\
+									./fpga-example/ice40-hx8k-breakout-board/counter/\
+									./fpga-example/ice40-hx8k-breakout-board/freq-div/
+									# ./fpga-example/ice40-hx8k-breakout-board/
 
 DIRS_CYCLONE := ./fpga-example/altera-c4e6e10/blink/\
 								./fpga-example/altera-c4e6e10/fullAdder/
