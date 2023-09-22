@@ -39,7 +39,7 @@ vpp-simulate:
 	cd $S && vvp $(TOP).vvp -vcd $(VVP_ARG)
 
 wave:
-	@gtkwave $S/top.vcd	|| (echo "No hay un forma de onda que motrar en gtkwave, posiblemente no fue solicitada en la simulación")
+	@gtkwave $S/top.vcd	top.gtkw || (echo "No hay un forma de onda que motrar en gtkwave, posiblemente no fue solicitada en la simulación")
 
 json-yosys:
 	mkdir -p $S
@@ -72,6 +72,12 @@ zip-sim:
 	# Agregar desde la línea 7 en adelante en el Makefile
 	sed -n '7,$$p' $(MK_SIM) >> $Z/Makefile
 	cp -var *.v *.md .gitignore $Z
+ifneq ($(wildcard *.mem),) # Si existe un archivo .png
+	cp -var *.mem $Z
+endif
+ifneq ($(wildcard *.hex),) # Si existe un archivo .png
+	cp -var *.hex $Z
+endif
 ifneq ($(wildcard *.png),) # Si existe un archivo .png
 	cp -var *.png $Z
 endif
