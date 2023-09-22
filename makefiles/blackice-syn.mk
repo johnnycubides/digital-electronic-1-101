@@ -42,6 +42,12 @@ zip:
 	sed -n '5,$$p' $(MK_SYN) >> $Z/Makefile
 	sed -n '7,$$p' $(MK_SIM) >> $Z/Makefile
 	cp -var *.v *.md *.pcf .gitignore $Z
+ifneq ($(wildcard *.mem),) # Si existe un archivo .png
+	cp -var *.mem $Z
+endif
+ifneq ($(wildcard *.hex),) # Si existe un archivo .png
+	cp -var *.hex $Z
+endif
 ifneq ($(wildcard *.png),) # Si existe un archivo .png
 	cp -var *.png $Z
 endif

@@ -71,6 +71,12 @@ zip:
 	sed -n '8,$$p' $(MK_SYN) >> $Z/Makefile
 	sed -n '7,$$p' $(MK_SIM) >> $Z/Makefile
 	cp -var *.v *.md *.txt *.qsf *.qpf *.png .gitignore $Z
+ifneq ($(wildcard *.mem),) # Si existe un archivo .png
+	cp -var *.mem $Z
+endif
+ifneq ($(wildcard *.hex),) # Si existe un archivo .png
+	cp -var *.hex $Z
+endif
 	zip -r $Z.zip $Z
 
 init-qsf:
