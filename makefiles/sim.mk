@@ -55,7 +55,8 @@ rtl-xdot:
 	yosys -p $(RTL_COMMAND)
 
 rtl2png:
-	convert -density 1200 $S/$(TOP).svg $(TOP).png
+	convert -density 200 -resize 1200 $S/$(TOP).svg $(TOP).png
+	# convert -resize 1200 -quality 100 $S/$(TOP).svg $(TOP).png
 
 init-sim:	
 	@echo "sim/\nprj/\n" > .gitignore
