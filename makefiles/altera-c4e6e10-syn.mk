@@ -63,7 +63,7 @@ syn-quartus-help:
 	$(CC) --help=flow
 
 # EMPAQUETAR PROYECTO EN .ZIP
-Z=prj
+Z?=prj
 zip:
 	$(RM) $Z $Z.zip
 	mkdir -p $Z

@@ -29,7 +29,7 @@ set_location_assignment PIN_74 -to led
     * ¿Cómo instalar Quartus?
     * Herramientas de simulación y síntesis con *Conda*
 
-2. Descargue el proyecto [prj.zip](./prj.zip) y descomprima en un directorio de trabajo.
+2. Descargue el proyecto [blink.zip](./blink.zip) y descomprima en un directorio de trabajo.
 
 3. Verifique el archivo de configuración denominado `top.qsf` con la configuración propuesta
 en la descripción mencionada arriba o aquella que encuentra en el archivo `./config.txt`.

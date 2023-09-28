@@ -6,6 +6,8 @@ tb?=$(TOP)_tb.v
 DESIGN=./top.v ./gate_or.v
 DIR_BUILD=build
 DEVSERIAL=/dev/ttyACM0
+# Z: Nombre para empaquetar proyecto
+Z=gate_or
 
 MK_SYN=../../../makefiles/blackice-syn.mk
 MK_SIM=../../../makefiles/sim.mk

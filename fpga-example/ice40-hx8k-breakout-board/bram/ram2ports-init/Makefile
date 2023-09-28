@@ -8,6 +8,8 @@ MORE_SRC2SIM=./file.mem
 DESIGN=ram.v
 DIR_BUILD=build
 DEVSERIAL=/dev/ttyACM0
+# Z: Nombre para empaquetar proyecto
+Z=ram2ports-init
 
 MK_SYN=../../../../makefiles/ice40-hx8k-syn.mk
 MK_SIM=../../../../makefiles/sim.mk

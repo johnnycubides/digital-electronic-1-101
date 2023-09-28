@@ -1,7 +1,5 @@
 build/
 sim/
-db/
-incremental_db/
 *.log
-prj/
+gate_or/
 

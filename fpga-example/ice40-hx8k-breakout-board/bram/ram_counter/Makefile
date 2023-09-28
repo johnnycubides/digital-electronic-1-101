@@ -8,6 +8,8 @@ MORE_SRC2SIM=./file.mem
 DESIGN=./top.v ./clk10hz.v ./counter8bits.v ./ram.v
 DIR_BUILD=build
 DEVSERIAL=/dev/ttyACM0
+# Z: Nombre para empaquetar proyecto
+Z=ram_counter
 
 MK_SYN=../../../../makefiles/ice40-hx8k-syn.mk
 MK_SIM=../../../../makefiles/sim.mk

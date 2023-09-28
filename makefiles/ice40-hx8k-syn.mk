@@ -37,7 +37,7 @@ json:$(JSON)
 asc:$(ASC)
 bitstream:$(BISTREAM)
 
-Z=prj
+Z?=prj
 zip:
 	$(RM) $Z $Z.zip
 	mkdir -p $Z

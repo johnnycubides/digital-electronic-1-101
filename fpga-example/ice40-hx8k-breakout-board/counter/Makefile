@@ -10,6 +10,8 @@ MORE_SRC2SIM=
 DESIGN=./top.v ./clk10hz.v ./counter8bits.v
 DIR_BUILD=build
 DEVSERIAL=/dev/ttyACM0
+# Z: Nombre para empaquetar proyecto
+Z=counter
 
 MK_SYN=../../../makefiles/ice40-hx8k-syn.mk
 MK_SIM=../../../makefiles/sim.mk

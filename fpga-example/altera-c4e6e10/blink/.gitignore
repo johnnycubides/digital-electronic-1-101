@@ -3,5 +3,5 @@ sim/
 db/
 incremental_db/
 *.log
-prj/
+blink/
 

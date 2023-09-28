@@ -10,6 +10,8 @@ DESIGN=./top.v ./clock_divider.v
 PATH_QUARTUS=~/gitPackages/quartus/quartus/bin
 # # Cable programador
 # CABLE=USB-Blaster
+# Z: Nombre para empaquetar proyecto
+Z=blink
 
 MK_SYN=../../../makefiles/altera-c4e6e10-syn.mk
 MK_SIM=../../../makefiles/sim.mk

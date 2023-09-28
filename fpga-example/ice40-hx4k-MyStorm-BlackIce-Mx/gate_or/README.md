@@ -2,11 +2,21 @@
 
 ![RTL compuerta OR](./top.png)
 
-1. Síntesis
+## Descargar proyecto .zip
+
+[gate_or.zip](./gate_or.zip)
+
+## Comandos
+
+1. Simulación
+```bash
+make sim
+```
+2. Síntesis
 ```bash
 make syn
 ```
-2. Configuración
+3. Configuración
 ```bash
 make config
 ```
