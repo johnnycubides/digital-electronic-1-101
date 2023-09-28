@@ -61,7 +61,8 @@ init:
 	touch top.png README.md
 
 clean-syn:
-	$(RM) -f $(JSON) $(ASC) $(BISTREAM)
+	$(RM) -rf $(DIR_BUILD)
+	# $(RM) -f $(JSON) $(ASC) $(BISTREAM)
 
 .PHONY: clean
 # .PHONY: upload clean $(TOP).json $(TOP).bin $(TOP).asc init_dir_build

@@ -2,7 +2,7 @@
 
 ## Simulación manual
 
-1. Descargar el archivo [prj.zip](./prj.zip) que contiene el proyecto y descomprimir en el área de trabajo.
+1. Descargar el archivo [projec.zip](./project.zip) que contiene el proyecto y descomprimir en el área de trabajo.
 
 2. Crear el ejecutable *top.vvp* con iverilog:
 

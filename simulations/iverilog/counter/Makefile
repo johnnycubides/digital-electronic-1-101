@@ -6,6 +6,8 @@ TOP?=counter
 tb?=$(TOP)_tb.v
 # DESIGN modules.v que hacen parte del proyecto
 DESIGN?=counter.v
+# Z: Nombre para empaquetar proyecto
+Z=counter
 
 MK_SIM=../../../makefiles/sim.mk
 include $(MK_SIM)

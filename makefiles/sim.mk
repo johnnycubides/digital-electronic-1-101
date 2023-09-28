@@ -88,7 +88,7 @@ endif
 	zip -r $Z.zip $Z
 
 clean-sim:
-	rm -rf $S $Z
+	rm -rf $S $Z $Z.zip
 
 ## YOSYS ARGUMENTS
 RTL_COMMAND?='read_verilog $(DESIGN);\
