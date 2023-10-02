@@ -14,6 +14,9 @@ Vídeo sobre la simulación aquí planteada:
 
 ## Simulación manual
 
+Los siguientes pasos permiten comprender el flujo de simulación de este diseño, para hacer uso de `make`
+revise la siguiente sección.
+
 1. Descargar el archivo [fulladder.zip](./fulladder.zip) que contiene el proyecto y descomprimir en el área de trabajo.
 
 2. Crear el ejecutable *top.vvp* con iverilog:
@@ -42,8 +45,9 @@ vvp top.vvp
 
 ## Simulación a través de Makefile
 
-Este proyecto contiene un `Makefile` que permite automatizar el proceso, para conocer
-las diferentes opciones ejecute en la terminal el comando: `make help`
+Este proyecto contiene un `Makefile` que permite automatizar el proceso; los resultados
+de la simulación serán ubicados en el directorio `sim`, para conocer
+las diferentes opciones del Makefile ejecute en la terminal el comando: `make help`
 
 ```bash
 make sim        -> Simular diseño
