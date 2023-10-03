@@ -9,16 +9,16 @@ S=sim
 
 help-sim:
 	@echo "\n## SIMULACIÓN Y RTL##"
-	@echo "\tmake rtl \t-> Crear RTL"
+	@echo "\tmake rtl \t-> Crear el RTL desde el TOP"
 	@echo "\tmake sim \t-> Simular diseño"
 	@echo "\tmake wave \t-> Ver simulación en gtkwave"
 	@echo "\nEjemplos de simulaciones con más argumentos:"
 	@echo "\tmake sim VVP_ARG=+inputs=5\t\t:Agregar un argumento a la simulación"
 	@echo "\tmake sim VVP_ARG=+a=5\ +b=6\t\t:Agregar varios argumentos a la simulación"
 	@echo "\tmake sim VVP_ARG+=+a=5 VVP_ARG+=+b=6\t:Agregar varios argumentos a la simulación"
-	@echo "\tmake rtl rtl2png\t\t\t:Convertir el RTL del formato svg a png"
-	@echo "\tmake rtl rtl2png TOP=modulo1 DESIGN=modulo2.v\ modulo3.v\t:Además de convertir, obtiene el RTL de otros modulos (submodulos)"
-	@echo "\tmake rtl rtl2png TOP=modulo1 DESIGN=\t:Además de lo anterior se puede obtener el RTL de un módulo que no contiene submodulos"
+	@echo "\tmake rtl TOP=modulo1\t\t\t:Obtiene el RTL de otros modulos (submodulos)"
+	@echo "\tmake rtl rtl2png\t\t\t:Convertir el RTL del TOP desde formato svg a png"
+	@echo "\tmake rtl rtl2png TOP=modulo1\t\t:Además de convertir, obtiene el RTL de otros modulos (submodulos)"
 
 rtl: rtl-from-json view-svg
 
