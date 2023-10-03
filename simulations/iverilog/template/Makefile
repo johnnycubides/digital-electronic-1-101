@@ -9,7 +9,7 @@ tb?=$(TOP)_tb.v
 # En la variable DESIGN se debe agregar los demás módulos que pertenecen al proyecto
 DESIGN?=
 # Z: Nombre para empaquetar proyecto
-Z=project.zip
+Z=project
 
 MK_SIM=../../../makefiles/sim.mk
 include $(MK_SIM)
