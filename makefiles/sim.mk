@@ -19,6 +19,7 @@ help-sim:
 	@echo "\tmake rtl TOP=modulo1\t\t\t:Obtiene el RTL de otros modulos (submodulos)"
 	@echo "\tmake rtl rtl2png\t\t\t:Convertir el RTL del TOP desde formato svg a png"
 	@echo "\tmake rtl rtl2png TOP=modulo1\t\t:Además de convertir, obtiene el RTL de otros modulos (submodulos)"
+	@echo "\tmake convertOneVerilogFile\t\t\t:Crear un único verilog del diseño"
 
 rtl: rtl-from-json view-svg
 
@@ -44,6 +45,13 @@ wave:
 json-yosys:
 	mkdir -p $S
 	yosys -p 'read_verilog $(DESIGN); prep -top $(TOP); hierarchy -check; proc; write_json $S/$(TOP).json'
+
+# COnertir el diseño en un solo archivo de verilog
+convertOneVerilogFile:
+	mkdir -p $S
+	yosys -p 'read_verilog $(DESIGN); prep -top $(TOP); hierarchy -check; proc; opt -full; write_verilog -noattr -nodec $S/$(TOP).v'
+	# yosys -p 'read_verilog $(DESIGN); prep -top $(TOP); hierarchy -check; proc; opt -full; write_verilog -noattr -noexpr -nodec $S/$(TOP).v'
+	# yosys -p 'read_verilog $(DESIGN); prep -top $(TOP); hierarchy -check; proc; flatten; synth; write_verilog -noattr -noexpr $S/$(TOP).v'
 
 rtl-from-json: json-yosys
 	netlistsvg $S/$(TOP).json -o $S/$(TOP).svg

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<circuit>
+  <version>2</version>
+  <attributes/>
+  <visualElements>
+    <visualElement>
+      <elementName>ExternalFile</elementName>
+      <elementAttributes>
+        <entry>
+          <string>applicationType</string>
+          <appType>IVERILOG</appType>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>bcd7seg</string>
+        </entry>
+        <entry>
+          <string>externalInputs</string>
+          <string>a</string>
+        </entry>
+        <entry>
+          <string>externalOutputs</string>
+          <string>b</string>
+        </entry>
+        <entry>
+          <string>CodeFile</string>
+          <file>bcd7seg</file>
+        </entry>
+      </elementAttributes>
+      <pos x="720" y="500"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Seven-Seg</elementName>
+      <elementAttributes>
+        <entry>
+          <string>commonCathode</string>
+          <boolean>true</boolean>
+        </entry>
+        <entry>
+          <string>commonConnectionType</string>
+          <de.neemann.digital.core.io.CommonConnectionType>anode</de.neemann.digital.core.io.CommonConnectionType>
+        </entry>
+      </elementAttributes>
+      <pos x="960" y="420"/>
+    </visualElement>
+  </visualElements>
+  <wires/>
+  <measurementOrdering/>
+</circuit>
