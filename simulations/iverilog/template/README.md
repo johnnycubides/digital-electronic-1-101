@@ -15,7 +15,7 @@ iverilog -o top.vvp top_tb.v
 ```bash
 vvp top.vvp
 ```
-> Para finalizar simulación: `> finsih`
+> Para finalizar simulación: `> finisih`
 
 * Podría también realizar la simulación creando un archivo
 `./file_list.txt` que contiene los módulos que intervienen en la simulación:
