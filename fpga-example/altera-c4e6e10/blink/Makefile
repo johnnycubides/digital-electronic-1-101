@@ -8,8 +8,8 @@ tb=$(TOP)_tb.v
 DESIGN=./top.v ./clock_divider.v
 # # Ruta donde está quartus instalado
 PATH_QUARTUS=~/gitPackages/quartus/quartus/bin
-# # Cable programador
-# CABLE=USB-Blaster
+# Cable programador
+CABLE=USB-Blaster
 # Z: Nombre para empaquetar proyecto
 Z=blink
 
