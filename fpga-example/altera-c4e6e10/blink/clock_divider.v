@@ -1,4 +1,6 @@
-module clock_divider (
+module clock_divider 
+#(parameter INIT=0)
+(
   input clk_in,
   output reg clk_out = 0
 );
@@ -14,7 +16,7 @@ module clock_divider (
 parameter SIZE = 26; 
 parameter LIMIT = 26'd50000000;
 
-reg [SIZE-1:0] count = 0;
+reg [SIZE-1:0] count = INIT;
 
 always@(posedge clk_in)
 begin
