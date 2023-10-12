@@ -10,7 +10,8 @@ la cual está a 50 Mhz, por tanro se requiere un divisor de frecuencia.
 
 ##  CONFIGURACIÓN DE PROYECTO
 
-Agregar en el archivo top.qsf
+En principio, la siguiente información debe estar en el fichero `top.qsf`, en el 
+caso de no encontrarse allí deberá abrir el archivo y agregarla.
 
 ```bash
 set_global_assignment -name FAMILY "Cyclone IV E"
@@ -26,8 +27,8 @@ set_location_assignment PIN_74 -to led
 ## ¿Cómo ejecutar el ejemplo?
 
 1. Deberá tener las herramientas de desarrollo instaladas en su equipo.
-    * ¿Cómo instalar Quartus?
-    * Herramientas de simulación y síntesis con *Conda*
+    * [¿Cómo instalar Quartus?](https://github.com/johnnycubides/digital-electronic-1-101/blob/main/installTools/quartus.md)
+    * [Herramientas de simulación y síntesis con *Conda*](https://github.com/johnnycubides/digital-electronic-1-101/blob/main/installTools/conda-and-tools.md)
 
 2. Descargue el proyecto [blink.zip](./blink.zip) y descomprima en un directorio de trabajo.
 
