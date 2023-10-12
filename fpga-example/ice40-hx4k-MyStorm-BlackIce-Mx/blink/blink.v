@@ -13,9 +13,12 @@
 *                                                                             *
 ******************************************************************************/
 
-module blink(input clk, output led);
+module blink
+#(parameter INIT=0)
+(input clk, output led);
 
-	reg [24:0] count = 24'd0;
+	// reg [24:0] count = 24'd0;
+	reg [24:0] count = INIT;
 
 	assign led = count[24];
 

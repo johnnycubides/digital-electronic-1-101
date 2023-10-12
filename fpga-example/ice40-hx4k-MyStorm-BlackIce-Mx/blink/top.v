@@ -12,17 +12,20 @@
 * permissions and limitations under the License.                              *
 *                                                                             *
 ******************************************************************************/
-module top (
-    // 25MHz clock input
-    input  clk,
-    // Led outputs
-    output [3:0] led
-  );
+module top
+#(parameter INIT=0)
+(
+  // 25MHz clock input
+  input  clk,
+  // Led outputs
+  output [3:0] led
+);
 
   // turn other leds off (active low)
   assign led[2:0] = 3'b111;
 
-  blink my_blink (
+  blink #(.INIT(INIT)) my_blink
+  (
     .clk   (clk),
     .led (led[3])
   );

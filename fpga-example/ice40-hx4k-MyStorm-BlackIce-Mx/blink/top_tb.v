@@ -37,14 +37,14 @@ module testbech;
 
   initial
   begin
-    #1.01E8 $finish(); // [stop(), $finish()]
+    #64 $finish(); // [stop(), $finish()]
   end
 
   // RESULT FOR DEVICE/DESIGN UNDER TEST
   wire [OUTPUT_SIZE-1:0] value;
 
   // DEVICE/DESIGN UNDER TEST
-  top dut (.clk(clk), .led(value));
+  top #(.INIT(24'hfffffa)) dut (.clk(clk), .led(value));
 
   // MONITOR
   initial

@@ -1,4 +1,4 @@
-# Blink en FPGA Altera Cyclon IV
+# Blink en FPGA Altera Cyclone IV
 
 Se trata del parpadeo del LED cada segundo (a 1 Hz), hay que
 tener presente la frecuencia del cristal oscilador de esta FPGA
