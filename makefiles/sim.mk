@@ -93,6 +93,12 @@ endif
 ifneq ($(wildcard *.txt),) # Si existe un archivo .txt
 	cp -var *.txt $Z
 endif
+ifneq ($(wildcard *.gtkw),) # Si existe un archivo .txt
+	cp -var *.gtkw $Z
+endif
+ifneq ($(wildcard *.dig),) # Si existe un archivo .dig
+	cp -var *.dig $Z
+endif
 	zip -r $Z.zip $Z
 
 clean-sim:

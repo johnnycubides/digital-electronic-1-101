@@ -57,6 +57,9 @@ endif
 ifneq ($(wildcard *.txt),) # Si existe un archivo .txt
 	cp -var *.txt $Z
 endif
+ifneq ($(wildcard *.gtkw),) # Si existe un archivo .txt
+	cp -var *.gtkw $Z
+endif
 	zip -r $Z.zip $Z
 
 init:
