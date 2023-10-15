@@ -8,9 +8,41 @@ Vídeo sobre la simulación aquí planteada:
 
 ![RTL del sumador completo](./fulladder.png)
 
+* Formas de onda:
+
+![waves](./waves.png)
+
+
 * RTL del medio sumador
 
 ![RTL del medio sumador](./halfadder.png)
+
+## Simulación a través de Makefile
+
+Este proyecto contiene un `Makefile` que permite automatizar el proceso; los resultados
+de la simulación serán ubicados en el directorio `sim`, para conocer
+las diferentes opciones del Makefile ejecute en la terminal el comando: `make help`
+
+```bash
+make sim        -> Simular diseño
+make wave       -> Ver simulación en gtkwave
+make rtl        -> Crear RTL
+```
+
+## Obtener los RTL
+
+* RTL fulladder.v
+
+```bash
+make rtl rtl2png
+```
+
+* RTL halfadder.v
+
+```bash
+make rtl rtl2png TOP=halfadder
+```
+
 
 ## Simulación manual
 
@@ -41,32 +73,6 @@ gtkwave top.vcd
 ```bash
 iverilog -o top.vvp -c file_list.txt
 vvp top.vvp
-```
-
-## Simulación a través de Makefile
-
-Este proyecto contiene un `Makefile` que permite automatizar el proceso; los resultados
-de la simulación serán ubicados en el directorio `sim`, para conocer
-las diferentes opciones del Makefile ejecute en la terminal el comando: `make help`
-
-```bash
-make sim        -> Simular diseño
-make wave       -> Ver simulación en gtkwave
-make rtl        -> Crear RTL
-```
-
-## Obtener los RTL
-
-* RTL fulladder.v
-
-```bash
-make rtl rtl2png
-```
-
-* RTL halfadder.v
-
-```bash
-make rtl rtl2png TOP=halfadder
 ```
 
 Regards,
