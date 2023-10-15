@@ -2,6 +2,10 @@
 
 ![RTL del contador](./counter.png)
 
+Formas de onda del circuito:
+
+![waves](./waves.png)
+
 ## Simulación manual
 
 1. Descargar el archivo [counter.zip](./counter.zip) que contiene el proyecto y descomprimir en el área de trabajo.
