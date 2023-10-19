@@ -6,13 +6,13 @@ module clk10hz (
 
 /* count = (clk_in / clk_out) */
 /* Ejemplo 1 */
-/* count = 25E6 = 25000000 = (25E6 Mhz)/(1 Hz) */
+/* count = 25E6 = 25000000 = (25E6 Hz)/(1 Hz) */
 /* SIZE = 2^25 = 33.5E6 lo contiene */
 /* Ejemplo 2 */
-/* count = (50E6 Mhz)/(1 Hz) = 50E6 = 50000000 */
+/* count = (50E6 Hz)/(1 Hz) = 50E6 = 50000000 */
 /* SIZE = 2^26 = 67.5E6 lo contiene */
 /* Configuración a 10 Hz */
-/* count = (12E6 Mhz)/(10 Hz) = 12E5 = 1200000 */
+/* count = (12E6 Hz)/(10 Hz) = 12E5 = 1200000 */
 /* SIZE = 2^21 = 1.049E6 lo contiene */
 
 parameter SIZE = 21; 
