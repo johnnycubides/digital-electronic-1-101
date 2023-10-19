@@ -6,14 +6,13 @@
 
 ## Recursos
 
-Ejemplo de divisor de frecuencia
+Ejemplo de divisor de frecuencia:
 
 ```verilog
 module clk10hz (
   input clk_in,
   output reg clk_out = 0
 );
-
 /* count = (clk_in / clk_out) */
 /* Ejemplo 1 */
 /* count = 25E6 = 25000000 = (25E6 Mhz)/(1 Hz) */
@@ -24,12 +23,9 @@ module clk10hz (
 /* Configuración a 10 Hz */
 /* count = (12E6 Mhz)/(10 Hz) = 12E5 = 1200000 */
 /* SIZE = 2^21 = 1.049E6 lo contiene */
-
 parameter SIZE = 21; 
 parameter LIMIT = 21'd1200000;
-
 reg [SIZE-1:0] count = 0;
-
 always@(posedge clk_in)
 begin
   if(count == LIMIT)
@@ -44,5 +40,3 @@ begin
 end
 endmodule
 ```
-
-
