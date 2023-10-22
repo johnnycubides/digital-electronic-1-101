@@ -21,11 +21,13 @@ Instalación del firmware para el analizador lógico compatible con:
 sudo apt install sigrok-firmware-fx2lafw
 ```
 
+Sino pulseview no pude ver el analizador lógico puede agregar las reglas en udev como sigue:
+
 ```bash
 cd /etc/udev/rules.d/
-wget -O 60-libsigrok.rules "https://sigrok.org/gitweb/?p=libsigrok.git;a=blob_plain;f=contrib/60-libsigrok.rules"
-wget -O 61-libsigrok-plugdev.rules "https://sigrok.org/gitweb/?p=libsigrok.git;a=blob_plain;f=contrib/61-libsigrok-plugdev.rules"
-wget -O 61-libsigrok-uaccess.rules "https://sigrok.org/gitweb/?p=libsigrok.git;a=blob_plain;f=contrib/61-libsigrok-uaccess.rules"
+sudo wget -O 60-libsigrok.rules "https://sigrok.org/gitweb/?p=libsigrok.git;a=blob_plain;f=contrib/60-libsigrok.rules"
+sudo wget -O 61-libsigrok-plugdev.rules "https://sigrok.org/gitweb/?p=libsigrok.git;a=blob_plain;f=contrib/61-libsigrok-plugdev.rules"
+sudo wget -O 61-libsigrok-uaccess.rules "https://sigrok.org/gitweb/?p=libsigrok.git;a=blob_plain;f=contrib/61-libsigrok-uaccess.rules"
 sudo udevadm control --reload-rules
 ```
 
@@ -36,5 +38,6 @@ sudo udevadm control --reload-rules
 
 ## Referencias
 
+* [Manual de uso de pulseview](https://sigrok.org/doc/pulseview/0.4.1/manual.html)
 * [PulseView](https://sigrok.org/wiki/PulseView)
 * [Firmware para el analizador lógico](https://sigrok.org/wiki/Lcsoft_Mini_Board)
