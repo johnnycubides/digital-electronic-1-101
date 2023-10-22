@@ -41,3 +41,4 @@ sudo udevadm control --reload-rules
 * [Manual de uso de pulseview](https://sigrok.org/doc/pulseview/0.4.1/manual.html)
 * [PulseView](https://sigrok.org/wiki/PulseView)
 * [Firmware para el analizador lógico](https://sigrok.org/wiki/Lcsoft_Mini_Board)
+* [https://www.saleae.com/downloads/](https://www.saleae.com/downloads/)
