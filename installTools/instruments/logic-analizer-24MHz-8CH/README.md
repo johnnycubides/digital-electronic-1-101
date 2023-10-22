@@ -11,7 +11,7 @@ PulseView.
 
 * Instalación del visor de formas de ondas *PulseView*
 ```bash
-sudo apt install PulseView
+sudo apt install pulseview
 ```
 
 Instalación del firmware para el analizador lógico compatible con:
