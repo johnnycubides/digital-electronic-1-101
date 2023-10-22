@@ -7,7 +7,7 @@ proveedor *Saleae* podrá hacer uso de PulseView o de el [Logic Analyzer de sale
 En el caso de hacer uso de un clone basado en Cypress podrá hacer uso de
 PulseView.
 
-## Opción1: Instalación de PulseView
+## Opción1: Instalación de pulseview
 
 * Instalación del visor de formas de ondas *PulseView*
 ```bash
@@ -19,6 +19,14 @@ Instalación del firmware para el analizador lógico compatible con:
 * Cypress Clone
 ```bash
 sudo apt install sigrok-firmware-fx2lafw
+```
+
+```bash
+cd /etc/udev/rules.d/
+wget -O 60-libsigrok.rules "https://sigrok.org/gitweb/?p=libsigrok.git;a=blob_plain;f=contrib/60-libsigrok.rules"
+wget -O 61-libsigrok-plugdev.rules "https://sigrok.org/gitweb/?p=libsigrok.git;a=blob_plain;f=contrib/61-libsigrok-plugdev.rules"
+wget -O 61-libsigrok-uaccess.rules "https://sigrok.org/gitweb/?p=libsigrok.git;a=blob_plain;f=contrib/61-libsigrok-uaccess.rules"
+sudo udevadm control --reload-rules
 ```
 
 ## Opción 2: Instalación de Logic Analyzer oficial de Saleae
