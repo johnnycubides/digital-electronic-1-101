@@ -5,6 +5,7 @@
     * [Instalación de herramientas opensource de simulación, síntesis y configuración de sistemas digitales](./installTools/conda-and-tools.md)
     * [Instalación de Quartus (Solo para síntesis en FPGA Cyclone IV)](./installTools/quartus.md)
     * Instalación de instrumentos:
+        * [Instalación de analizador lógico](./installTools/instruments/logic-analizer-24MHz-8CH/)
         * [Instalación de osciloscopio owon en Linux](./installTools/instruments/oscilloscope-owon/)
     * Otras herramientas:
         * Geany editor de texto: [Instalación y configuración de Geany](./installTools/geany.md)
