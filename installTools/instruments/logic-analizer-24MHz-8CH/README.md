@@ -21,7 +21,7 @@ Instalación del firmware para el analizador lógico compatible con:
 sudo apt install sigrok-firmware-fx2lafw
 ```
 
-Sino pulseview no pude ver el analizador lógico puede agregar las reglas en udev como sigue:
+Si pulseview no pude ver el analizador lógico puede agregar las reglas en udev como sigue:
 
 ```bash
 cd /etc/udev/rules.d/
