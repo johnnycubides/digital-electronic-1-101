@@ -1,5 +1,8 @@
 # Analizador Lógico
 
+[![Pulseview y sistemas digitales: analizador lógico y fpga](https://img.youtube.com/vi/IeGUhcfG2L8/0.jpg)](https://www.youtube.com/watch?v=IeGUhcfG2L8 "Pulseview y sistemas digitales: analizador lógico y fpga")
+
+
 En este apartado se indica las instrucciones de Instalación
 de un analizador lógico de 8 o 16 canales compatible con
 herramientas opensource. Si hace uso de un analizador lógico del
