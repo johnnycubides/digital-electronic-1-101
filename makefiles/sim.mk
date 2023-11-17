@@ -40,7 +40,7 @@ vpp-simulate:
 	cd $S && vvp $(TOP).vvp -vcd $(VVP_ARG)
 
 wave:
-	@gtkwave $S/top.vcd	top.gtkw || (echo "No hay un forma de onda que motrar en gtkwave, posiblemente no fue solicitada en la simulación")
+	@gtkwave $S/top.vcd	top.gtkw || (echo "No hay un forma de onda que mostrar en gtkwave, posiblemente no fue solicitada en la simulación")
 
 json-yosys:
 	mkdir -p $S
