@@ -7,7 +7,7 @@
 ## Instrucciones de instalación
 
 ```bash
-curl https://raw.githubusercontent.com/johnnycubides/digital-electronic-1-101/main/instruments/oscilloscope-owon/install-owon-linux.sh | sh
+curl https://raw.githubusercontent.com/johnnycubides/digital-electronic-1-101/main/installTools/instruments/oscilloscope-owon/install-owon-linux.sh | sh
 ```
 
 ## Lanzar aplición
