@@ -1,13 +1,18 @@
-# Ejemplo de Blink en FPGA Blackice
+# Ejemplo de uso de periferico UART_TX
 
-![Imagen RTK](./blink.png)
+Se trata de un ejemplo sencillo sobre el uso de una comunicación serial
+ampliamente usada en los dispositivos de electrónica digital. Este es un ejemplo
+básico en el cual se requiere crear la señal en una frequencia que permita
+la transimición de datos a una tasa de baudios determinada.
+
+![Imagen RTL](./top.png)
 
 ## ¿Cómo ejecutar el ejemplo?
 
 1. Deberá tener las herramientas de desarrollo instaladas en su equipo.
     * Herramientas de simulación y síntesis con *Conda*
 
-2. Descargue el proyecto [blink.zip](./blink.zip) y descomprima en un directorio de trabajo.
+2. Descargue el proyecto [uar_tx.zip](./uart_tx.zip) y descomprima en un directorio de trabajo.
 
 3. Para simular y ver los resultados ejecute:
 ```bash
