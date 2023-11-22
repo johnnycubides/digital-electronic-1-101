@@ -1,3 +1,14 @@
+// TEST BENCH
+
+// En este testbech se simula el CLOCK requerido para transmitir
+// información a 9600 baudios, como también el valor en el registro
+// del dato a enviar, es importante ir a la sección de CLOCK STIMULUS
+// para que pueda comprender los criterios para que la simulación
+// sea coherente en la escala de tiempo real.
+//
+// Author: johnny Cubides
+// 2023-11-21
+
 `timescale 1us/10ns // <time_unit>/<time_precision>
 module testbech;
 

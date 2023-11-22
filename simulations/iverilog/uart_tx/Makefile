@@ -7,7 +7,7 @@ TOP?=top
 tb?=$(TOP)_tb.v
 # Módules .v que hacen parte del proyecto
 # En la variable DESIGN se debe agregar los demás módulos que pertenecen al proyecto
-DESIGN?=./top.v ./uart_tx.v
+DESIGN?=./top.v ./uart_tx_8n1.v
 # Agregar aquí otros archivos que se requieran para la simulación
 # MORE_SRC2SIM=./file.mem
 # Z: Nombre para empaquetar proyecto
