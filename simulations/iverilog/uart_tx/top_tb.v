@@ -1,4 +1,4 @@
-// `timescale 1ns/1ns // <time_unit>/<time_precision
+`timescale 1us/10ns // <time_unit>/<time_precision>
 module testbech;
 
   // Determinar el tamaño de los wire como de los estímulos
@@ -43,19 +43,25 @@ module testbech;
 
   // CLOCK STIMULUS
   // Make a regular pulsing clock.
+  // Como 9600 baudios requiere una frecuencia de 9600 Hz * 2
+  // Entonces: Frecuencia requerida 19200 Hz
+  // Por tanto cada TICK es de 1/19200 = 52.083 uS
+  // Cada TICK será de 52.083 y se configura la escala de tiempo 1us con una
+  // precisión de 10ns
+  parameter TICK = 52.083;
   reg clk = 0;
-  always #1 clk = !clk;
+  always #TICK clk = !clk;
 
   reg [7:0] byte2send = 0;
   reg tx_start = 0;
   initial
   begin
-    #1
+    #TICK
     byte2send = 8'b10011010;
     tx_start = 1;
-    #1
+    #TICK
     tx_start = 0;
-    #60 $finish(); // [stop(), $finish()]
+    #(60*TICK) $finish(); // [stop(), $finish()]
   end
 
   // RESULT FOR DEVICE/DESIGN UNDER TEST
