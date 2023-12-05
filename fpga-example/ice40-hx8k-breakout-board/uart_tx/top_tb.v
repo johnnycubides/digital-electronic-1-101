@@ -65,7 +65,10 @@ module testbech;
   wire test_pin;
 
   // DEVICE/DESIGN UNDER TEST
-  top dut (
+  top #(
+    .SIZE_COUNTER(4),
+    .LIMIT_COUNTER(15)
+  ) dut (
     clk,
     tx_done,
     test_pin,

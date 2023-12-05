@@ -13,7 +13,7 @@ assign start = newWord;
 
 initial
 begin
-  word <= 8'd97;
+  word = 8'd97;
 end
 
 always@(posedge newWord)

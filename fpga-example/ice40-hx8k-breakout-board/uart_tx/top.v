@@ -2,7 +2,7 @@ module top #(
   parameter SIZE_DIV625=10,
   parameter LIMIT_DIV625=10'd625,
   parameter SIZE_COUNTER=14,
-  parameter LIMIT_COUNTER=14'd19200
+  parameter LIMIT_COUNTER=14'd9600
 )(
 // Inputs and output ports
   clk_hw,
@@ -18,7 +18,7 @@ output tx_pin;
 output test_pin;
 
 // Declaración de señales [reg, wire]
-wire clk_100hz;
+// wire clk_100hz;
 wire clk_uart;
 wire pulse;
 wire [7:0] word;
