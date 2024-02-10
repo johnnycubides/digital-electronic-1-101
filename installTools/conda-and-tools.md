@@ -1,12 +1,16 @@
+---
+lang: es
+---
+
 <!-- vim-markdown-toc Marked -->
 
 * [Instalación de herramientas](#instalación-de-herramientas)
-    * [Iverilog y Yosys en miniconda](#iverilog-y-yosys-en-miniconda)
-        * [Instalación de miniconda](#instalación-de-miniconda)
-        * [Instalación de herramientas desde miniconda](#instalación-de-herramientas-desde-miniconda)
-            * [Instalación de herramientas de desarrollo con un solo comando](#instalación-de-herramientas-de-desarrollo-con-un-solo-comando)
-            * [Instalación de herramientas de desarrollo paso a paso](#instalación-de-herramientas-de-desarrollo-paso-a-paso)
-    * [Digital](#digital)
+    * [Instalación de Miniconda](#instalación-de-miniconda)
+        * [Instalación de herramientas _opensource_ desde Miniconda](#instalación-de-herramientas-_opensource_-desde-miniconda)
+            * [Instalación de herramientas de desarrollo con un solo comando (Opción 1 recomendada)](#instalación-de-herramientas-de-desarrollo-con-un-solo-comando-(opción-1-recomendada))
+                * [Dar permiso al puerto serial (necesario en ambas opciones)](#dar-permiso-al-puerto-serial-(necesario-en-ambas-opciones))
+            * [Instalación de herramientas de desarrollo paso a paso (Opción 2)](#instalación-de-herramientas-de-desarrollo-paso-a-paso-(opción-2))
+    * [Digital: Simulador de circuitos](#digital:-simulador-de-circuitos)
         * [Instalación de Digital](#instalación-de-digital)
         * [Complementos para digital](#complementos-para-digital)
     * [Referencias](#referencias)
@@ -16,41 +20,75 @@
 # Instalación de herramientas
 
 A continuación se propone la instalación de diferentes herramientas para el diseño, simulación, síntesis, ruteo y configuarción
-de circuitos digitales en tecnologías como FPGAs.
+de circuitos digitales en tecnologías como es el caso de las FPGA. Tenga presente que al final deberá realizar estas actividades:
+
+* Instalación miniconda
+* Instalación de herramientas _opensource_
+* Instalación de _Digital_
+* Dar permisos al puerto USB para comunicación serial
 
 > **¡Tenga en cuenta!** Las instrucciones que van delante del símbolo ` $ ` son aquellas a realizar en el prompt de la consola/terminal; deberá copiarlas y
 > pegarlas en la consola para luego ejecutarlas. Las demás líneas o campos son salidas o resultados de una operación que podrá usar como
 > comparación.
 
-Algunos comandos de Makefile van a requerir algunas aplicaciones, para instalar estas
-herramientas puede ejecutar el siguiente comando:
+
+Antes de instalar las herramientas recomendadas en esta guía, ejecute este
+comando para instalar o actualizar algunas dependencias:
 
 ```bash
-sudo apt install eog imagemagick curl
+sudo apt update
+sudo apt install eog imagemagick curl pandoc
 ```
 
-## Iverilog y Yosys en miniconda
+## Instalación de Miniconda
 
-Se propone para este caso la instalación de Conda o miniconda y generar un espacio de trabajo con las
-herramientas necesarias.
+Miniconda es un ecosistema que homogeniza las características requeridas para
+la instalación y ejecución de aplicaciones, a través de variables de entorno y
+un gestor de paquetes online, lo anterior facilita la instalación de
+aplicaciones con un solo comando y evita los problemas que se asocien a estos
+mismos.
 
-### Instalación de miniconda
+Ejecute los siguientes 3 comandos en una terminal de linux, si en la terminal
+se presenta algún error comparta el resultado para recibir sugerencias.
 
 ```bash
-$ cd Downloads
-$ wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-$ bash Miniconda3-latest-Linux-x86_64.sh # Seguir las instrucciones y reiniciar la terminal
+cd Downloads
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+bash Miniconda3-latest-Linux-x86_64.sh # Seguir las instrucciones y reiniciar la terminal
 ```
 
-### Instalación de herramientas desde miniconda
+### Instalación de herramientas _opensource_ desde Miniconda
 
-#### Instalación de herramientas de desarrollo con un solo comando
+Se presentan dos opciones de instalación, en principio haga uso de la opción 1
+recomendad y seguido de permisos al puerto serial.
+
+#### Instalación de herramientas de desarrollo con un solo comando (Opción 1 recomendada)
+
+Con este único comando podrá instalar todas las herramientas _opensource_ para
+el proceso de diseño de sistemas digitales.
 
 ```bash
 curl https://raw.githubusercontent.com/johnnycubides/digital-electronic-1-101/main/installTools/spec-file.txt > ./spec-file.txt && conda create -n digital --file ./spec-file.txt
 ```
 
-#### Instalación de herramientas de desarrollo paso a paso
+##### Dar permiso al puerto serial (necesario en ambas opciones)
+
+El puerto serial (USB-serial) requiere permisos para poder comunicarse con la
+tarjeta de desarrollo a través del protocolo _UART_. Para dar permisos, ejecute
+el siguiente comando:
+
+```bash
+sudo usermod -a -G dialout `whoami`
+```
+
+Reinicie el equipo, inicie una terminal y al ejecutar el comando `groups` en
+ella deberá ver el grupo *dialout* en pantalla.
+
+#### Instalación de herramientas de desarrollo paso a paso (Opción 2)
+
+Estos comandos fueron ejecutados en la sección anterior de instalación de un
+solo comando, sin embargo, se ponen acá para que pueda conocer las herramientas
+que fueron instaladas.
 
 ```bash
 (base) $ conda update conda # Actualizar conda
@@ -85,7 +123,7 @@ También puede comprobar las versiones instaladas como sigue:
 (digital) $ iverilog -v # versión instalada 13.0
 ```
 
-## Digital
+## Digital: Simulador de circuitos
 
 ![imagen de digital](https://github.com/hneemann/Digital/raw/master/distribution/screenshot2.png)
 
