@@ -6,11 +6,11 @@ lang: es
 
 * [Instalación de herramientas](#instalación-de-herramientas)
     * [Instalación de Miniconda](#instalación-de-miniconda)
-        * [Instalación de herramientas _opensource_ desde Miniconda](#instalación-de-herramientas-_opensource_-desde-miniconda)
+        * [Instalación de herramientas opensource desde Miniconda](#instalación-de-herramientas-opensource-desde-miniconda)
             * [Instalación de herramientas de desarrollo con un solo comando (Opción 1 recomendada)](#instalación-de-herramientas-de-desarrollo-con-un-solo-comando-(opción-1-recomendada))
                 * [Dar permiso al puerto serial (necesario en ambas opciones)](#dar-permiso-al-puerto-serial-(necesario-en-ambas-opciones))
             * [Instalación de herramientas de desarrollo paso a paso (Opción 2)](#instalación-de-herramientas-de-desarrollo-paso-a-paso-(opción-2))
-    * [Digital: Simulador de circuitos](#digital:-simulador-de-circuitos)
+    * [Digital Simulador de circuitos](#digital-simulador-de-circuitos)
         * [Instalación de Digital](#instalación-de-digital)
         * [Complementos para digital](#complementos-para-digital)
     * [Referencias](#referencias)
@@ -57,7 +57,7 @@ wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 bash Miniconda3-latest-Linux-x86_64.sh # Seguir las instrucciones y reiniciar la terminal
 ```
 
-### Instalación de herramientas _opensource_ desde Miniconda
+### Instalación de herramientas opensource desde Miniconda
 
 Se presentan dos opciones de instalación, en principio haga uso de la opción 1
 recomendad y seguido de permisos al puerto serial.
@@ -123,7 +123,7 @@ También puede comprobar las versiones instaladas como sigue:
 (digital) $ iverilog -v # versión instalada 13.0
 ```
 
-## Digital: Simulador de circuitos
+## Digital Simulador de circuitos
 
 ![imagen de digital](https://github.com/hneemann/Digital/raw/master/distribution/screenshot2.png)
 
