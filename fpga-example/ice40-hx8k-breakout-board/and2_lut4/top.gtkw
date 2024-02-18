@@ -1,0 +1,25 @@
+[*]
+[*] GTKWave Analyzer v3.3.117 (w)1999-2023 BSI
+[*] Sun Feb 18 05:18:12 2024
+[*]
+[dumpfile] "/home/johnny/projects/digital-electronic-1-101/fpga-example/ice40-hx8k-breakout-board/and2_lut4/sim/top.vcd"
+[dumpfile_mtime] "Sun Feb 18 04:49:14 2024"
+[dumpfile_size] 745
+[savefile] "/home/johnny/projects/digital-electronic-1-101/fpga-example/ice40-hx8k-breakout-board/and2_lut4/top.gtkw"
+[timestart] 0
+[size] 1918 1150
+[pos] -1 -1
+*-4.471941 35 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] testbech.
+[sst_width] 207
+[signals_width] 208
+[sst_expanded] 1
+[sst_vpaned_height] 342
+@28
+testbech.a
+testbech.b
+testbech.value
+@29
+testbech.dut.out
+[pattern_trace] 1
+[pattern_trace] 0

@@ -1,0 +1,5 @@
+
+set_io a A15
+set_io b A16
+
+set_io s A2 # D7
