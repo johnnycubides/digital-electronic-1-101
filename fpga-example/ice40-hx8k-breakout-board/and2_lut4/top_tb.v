@@ -56,7 +56,7 @@ module testbech;
   // WAVES IN VCD TO OPEN IN GTKWAVE
   initial
   begin
-    $dumpfile("top.vcd");
+    // $dumpfile("top.vcd");
     $dumpvars(0, testbech);
   end
 endmodule
