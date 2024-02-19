@@ -61,7 +61,7 @@ endif
 
 init:
 	@echo "build/\nsim/\n*.log\n$Z/\n" > .gitignore
-	touch top.png README.md
+	touch $(TOP).png README.md
 
 clean-syn:
 	$(RM) -rf $(DIR_BUILD)
