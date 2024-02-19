@@ -37,10 +37,10 @@ endif
 # VVP_ARG permite agregar argumentos en la simulación con vvp
 VVP_ARG=
 vpp-simulate:
-	cd $S && vvp $(TOP).vvp -vcd $(VVP_ARG)
+	cd $S && vvp $(TOP).vvp -vcd $(VVP_ARG) -dumpfile=$(TOP).vcd
 
 wave:
-	@gtkwave $S/top.vcd	top.gtkw || (echo "No hay un forma de onda que mostrar en gtkwave, posiblemente no fue solicitada en la simulación")
+	@gtkwave $S/$(TOP).vcd	$(TOP).gtkw || (echo "No hay un forma de onda que mostrar en gtkwave, posiblemente no fue solicitada en la simulación")
 
 json-yosys:
 	mkdir -p $S
@@ -68,7 +68,7 @@ rtl2png:
 
 init-sim:	
 	@echo "sim/\n$Z/\n" > .gitignore
-	touch README.md top.png
+	touch README.md $(TOP).png
 
 RM=rm -rf
 # EMPAQUETAR SIMULACIÓN EN .ZIP
