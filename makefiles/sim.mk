@@ -46,7 +46,7 @@ json-yosys:
 	mkdir -p $S
 	yosys -p 'read_verilog $(DESIGN); prep -top $(TOP); hierarchy -check; proc; write_json $S/$(TOP).json'
 
-# COnertir el diseño en un solo archivo de verilog
+# Conertir el diseño en un solo archivo de verilog
 convertOneVerilogFile:
 	mkdir -p $S
 	yosys -p 'read_verilog $(DESIGN); prep -top $(TOP); hierarchy -check; proc; opt -full; write_verilog -noattr -nodec $S/$(TOP).v'
