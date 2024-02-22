@@ -8,7 +8,7 @@ lang: es
     * [Instalación de Miniconda](#instalación-de-miniconda)
         * [Instalación de herramientas opensource desde Miniconda](#instalación-de-herramientas-opensource-desde-miniconda)
             * [Instalación de herramientas de desarrollo con un solo comando (Opción 1 recomendada)](#instalación-de-herramientas-de-desarrollo-con-un-solo-comando-(opción-1-recomendada))
-            * [Dar permiso al puerto serial (necesario en ambas opciones)](#dar-permiso-al-puerto-serial-(necesario-en-ambas-opciones))
+            * [Agregar reglas para el uso del hardware y dar permisos (necesario en ambas opciones)](#agregar-reglas-para-el-uso-del-hardware-y-dar-permisos-(necesario-en-ambas-opciones))
             * [Instalación de herramientas de desarrollo paso a paso (Opción 2)](#instalación-de-herramientas-de-desarrollo-paso-a-paso-(opción-2))
     * [Digital Simulador de circuitos](#digital-simulador-de-circuitos)
         * [Instalación de Digital](#instalación-de-digital)
@@ -71,14 +71,14 @@ el proceso de diseño de sistemas digitales.
 curl https://raw.githubusercontent.com/johnnycubides/digital-electronic-1-101/main/installTools/spec-file.txt > ./spec-file.txt && conda create -n digital --file ./spec-file.txt
 ```
 
-#### Dar permiso al puerto serial (necesario en ambas opciones)
+#### Agregar reglas para el uso del hardware y dar permisos (necesario en ambas opciones)
 
 El puerto serial (USB-serial) requiere permisos para poder comunicarse con la
 tarjeta de desarrollo a través del protocolo _UART_. Para dar permisos, ejecute
 el siguiente comando:
 
 ```bash
-sudo usermod -a -G dialout `whoami`
+curl https://raw.githubusercontent.com/johnnycubides/digital-electronic-1-101/main/installTools/hw-permissions.sh | sh
 ```
 
 Reinicie el equipo, inicie una terminal y al ejecutar el comando `groups` en
