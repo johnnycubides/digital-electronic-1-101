@@ -22,13 +22,13 @@ $(JSON): $(OBJS)
 	yosys -p "synth_ecp5 -top $(TOP) -json $(JSON)" $(OBJS)
 
 $(PNR): $(JSON)
-	nextpnr-ecp5 --package CABGA256 --25k --speed 6 --json $(JSON) --lpf $(LPF) --freq 65 --textcfg $(PNR)
+	nextpnr-ecp5 --25k --package CABGA256 --speed 6 --json $(JSON) --lpf $(LPF) --freq 65 --textcfg $(PNR)
 
 $(BISTREAM): $(PNR)
 	ecppack $(PNR) $(BISTREAM)
-
+# USB-UART
 CABLE= -c ft232RL
-
+# Pines del FTDI usable
 FT232RL_TXD=0
 FT232RL_RXD=1
 FT232RL_RTS=2
@@ -37,12 +37,12 @@ FT232RL_DTR=4
 FT232RL_DSR=5
 FT232RL_DCD=6
 FT232RL_RI=7
-
+# JTAG pines relacionados con los pines del ft232rl
 TDO=$(FT232RL_TXD)
 TDI=$(FT232RL_RXD)
 TMS=$(FT232RL_RTS)
 TCK=$(FT232RL_CTS)
-
+# JTAG pines relacionados con los pines del ft232rl
 CABLE_PINES= --pins=$(TDI):$(TDO):$(TCK):$(TMS)
 
 CONFIG_OPTIONS+=$(CABLE)
