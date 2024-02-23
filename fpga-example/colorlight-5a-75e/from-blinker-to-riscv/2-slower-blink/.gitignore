@@ -1,0 +1,4 @@
+build/
+sim/
+*.log
+2-slower-blink/

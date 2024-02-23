@@ -1,0 +1,4 @@
+build/
+sim/
+*.log
+1-your-first-blink/
