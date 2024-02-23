@@ -2,6 +2,7 @@ TOP?=top
 DESIGN?=
 DIR_BUILD?=build
 DEVSERIAL?=/dev/ttyACM0
+DEF_MACROS_VERILOG?=
 LPF?=$(TOP).lpf
 JSON?=$(DIR_BUILD)/$(TOP).json
 PNR?=$(DIR_BUILD)/$(TOP).pnr
@@ -19,7 +20,7 @@ OBJS+=$(DESIGN)
 
 $(JSON): $(OBJS)
 	mkdir -p $(DIR_BUILD)
-	yosys -p "synth_ecp5 -top $(TOP) -json $(JSON)" $(OBJS)
+	yosys $(DEF_MACROS_VERILOG) -p "synth_ecp5 -top $(TOP) -json $(JSON)" $(OBJS)
 
 $(PNR): $(JSON)
 	nextpnr-ecp5 --25k --package CABGA256 --speed 6 --json $(JSON) --lpf $(LPF) --freq 65 --textcfg $(PNR)
@@ -76,8 +77,8 @@ zip:
 	$(RM) $Z $Z.zip
 	mkdir -p $Z
 	head -n -3 Makefile > $Z/Makefile
-	sed -n '5,$$p' $(MK_SYN) >> $Z/Makefile
-	sed -n '7,$$p' $(MK_SIM) >> $Z/Makefile
+	sed -n '6,$$p' $(MK_SYN) >> $Z/Makefile	# Empieza a escribir desde la línea 6
+	sed -n '8,$$p' $(MK_SIM) >> $Z/Makefile # Empieza a escribir desde la línea 8
 	cp -var *.v *.md *.lpf .gitignore $Z
 ifneq ($(wildcard *.mem),) # Si existe un archivo .mem
 	cp -var *.mem $Z

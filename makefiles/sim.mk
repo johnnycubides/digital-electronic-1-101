@@ -4,6 +4,7 @@ TOP?=top
 tb?=$(TOP)_tb.v
 # Módules .v que hacen parte del proyecto
 DESIGN?=
+DEF_MACROS_VERILOG?=
 
 S=sim
 
@@ -44,12 +45,12 @@ wave:
 
 json-yosys:
 	mkdir -p $S
-	yosys -p 'read_verilog $(DESIGN); prep -top $(TOP); hierarchy -check; proc; write_json $S/$(TOP).json'
+	yosys $(DEF_MACROS_VERILOG) -p 'read_verilog $(DESIGN); prep -top $(TOP); hierarchy -check; proc; write_json $S/$(TOP).json'
 
 # Conertir el diseño en un solo archivo de verilog
 convertOneVerilogFile:
 	mkdir -p $S
-	yosys -p 'read_verilog $(DESIGN); prep -top $(TOP); hierarchy -check; proc; opt -full; write_verilog -noattr -nodec $S/$(TOP).v'
+	yosys $(DEF_MACROS_VERILOG) -p 'read_verilog $(DESIGN); prep -top $(TOP); hierarchy -check; proc; opt -full; write_verilog -noattr -nodec $S/$(TOP).v'
 	# yosys -p 'read_verilog $(DESIGN); prep -top $(TOP); hierarchy -check; proc; opt -full; write_verilog -noattr -noexpr -nodec $S/$(TOP).v'
 	# yosys -p 'read_verilog $(DESIGN); prep -top $(TOP); hierarchy -check; proc; flatten; synth; write_verilog -noattr -noexpr $S/$(TOP).v'
 
@@ -60,7 +61,7 @@ view-svg:
 	eog $S/$(TOP).svg
 
 rtl-xdot:
-	yosys -p $(RTL_COMMAND)
+	yosys $(DEF_MACROS_VERILOG) -p $(RTL_COMMAND)
 
 rtl2png:
 	convert -density 200 -resize 1200 $S/$(TOP).svg $(TOP).png
@@ -78,8 +79,8 @@ zip-sim:
 	mkdir -p $Z
 	# Quitar las últimas dos líneas del Makefile y crear copia en el directorio $Z
 	head -n -2 Makefile > $Z/Makefile
-	# Agregar desde la línea 7 en adelante en el Makefile
-	sed -n '7,$$p' $(MK_SIM) >> $Z/Makefile
+	# Agregar desde la línea 8 en adelante en el Makefile
+	sed -n '8,$$p' $(MK_SIM) >> $Z/Makefile
 	cp -var *.v *.md .gitignore $Z
 ifneq ($(wildcard *.mem),) # Si existe un archivo .png
 	cp -var *.mem $Z
