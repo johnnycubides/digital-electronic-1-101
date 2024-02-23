@@ -1,4 +1,4 @@
-# Electrónica Digital I
+# Electrónica Digital
 
 * Instalación de herramientas:
     * [Instalación de GNU/Linux](./installTools/how-install-linux.md)
