@@ -13,7 +13,7 @@
 *                                                                             *
 ******************************************************************************/
 module top
-#(parameter INIT=0)
+#(parameter INIT=1'h0)
 (
   // 25MHz clock input
   input  clk,

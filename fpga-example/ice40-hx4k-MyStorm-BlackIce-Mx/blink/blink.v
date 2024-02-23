@@ -14,7 +14,7 @@
 ******************************************************************************/
 
 module blink
-#(parameter INIT=0)
+#(parameter INIT=25'b0)
 (input clk, output led);
 
 	// reg [24:0] count = 24'd0;
