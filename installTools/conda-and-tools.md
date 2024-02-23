@@ -37,7 +37,7 @@ comando para instalar o actualizar algunas dependencias:
 
 ```bash
 sudo apt update
-sudo apt install eog imagemagick curl geany
+sudo apt install eog imagemagick curl geany geany-plugins
 ```
 
 ## Instalación de Miniconda
