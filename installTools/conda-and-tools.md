@@ -92,7 +92,7 @@ que fueron instaladas.
 
 ```bash
 (base) $ conda update conda # Actualizar conda
-(base) $ conda create -n digital python=3.7 # Configurar digital como variable de entorno y python3.10
+(base) $ conda create -n digital python=3.7 # Configurar digital como variable de entorno y python3.7
 (base) $ conda activate digital  # Activar la variable de entorno de conda denominada digital
 (digital) $ python --version # Debe presentarse la version 3.7 para poder continuar
 ```
