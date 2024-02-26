@@ -1,0 +1,30 @@
+[*]
+[*] GTKWave Analyzer v3.3.117 (w)1999-2023 BSI
+[*] Sat Feb 24 15:37:34 2024
+[*]
+[dumpfile] "/home/johnny/projects/digital-electronic-1-101/fpga-example/colorlight-5a-75e/from-blinker-to-riscv/1-your-first-blink/sim/top.vcd"
+[dumpfile_mtime] "Sat Feb 24 15:37:09 2024"
+[dumpfile_size] 2334
+[savefile] "/home/johnny/projects/digital-electronic-1-101/fpga-example/colorlight-5a-75e/from-blinker-to-riscv/1-your-first-blink/top.gtkw"
+[timestart] 0
+[size] 1918 1150
+[pos] -1 -1
+*-7.013961 50 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 207
+[signals_width] 146
+[sst_expanded] 1
+[sst_vpaned_height] 342
+@800023
+testbech.value[4:0]
+@29
+(0)testbech.value[4:0]
+(1)testbech.value[4:0]
+(2)testbech.value[4:0]
+(3)testbech.value[4:0]
+(4)testbech.value[4:0]
+@1001201
+-group_end
+@28
+testbech.clk
+[pattern_trace] 1
+[pattern_trace] 0

@@ -4,7 +4,7 @@ TOP=top
 #test bench del proyecto para la simulación
 tb?=$(TOP)_tb.v
 DESIGN=top.v
-DEF_MACROS_VERILOG=-DECP5_EVN -DBOARD_FREQ=25
+DEF_MACROS_VERILOG= -DCPU_FREQ=40 -DECP5_COLORLIGHT
 DIR_BUILD=build
 DEVSERIAL=/dev/ttyACM0
 # Z: Nombre para empaquetar proyecto
