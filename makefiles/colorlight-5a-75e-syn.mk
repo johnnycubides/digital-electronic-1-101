@@ -2,7 +2,7 @@ TOP?=top
 DESIGN?=
 DIR_BUILD?=build
 DEVSERIAL?=/dev/ttyACM0
-DEF_MACROS_VERILOG?=
+DEF_MACROS_VERILOG_SYN?=
 LPF?=$(TOP).lpf
 JSON?=$(DIR_BUILD)/$(TOP).json
 PNR?=$(DIR_BUILD)/$(TOP).pnr
@@ -20,7 +20,7 @@ OBJS+=$(DESIGN)
 
 $(JSON): $(OBJS)
 	mkdir -p $(DIR_BUILD)
-	yosys $(DEF_MACROS_VERILOG) -p "synth_ecp5 -top $(TOP) -json $(JSON)" $(OBJS)
+	yosys $(DEF_MACROS_VERILOG_SYN) -p "synth_ecp5 -top $(TOP) -json $(JSON)" $(OBJS)
 
 $(PNR): $(JSON)
 	nextpnr-ecp5 --25k --package CABGA256 --speed 6 --json $(JSON) --lpf $(LPF) --freq 65 --textcfg $(PNR)
