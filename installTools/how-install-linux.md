@@ -132,6 +132,8 @@ Para tener mayor claridad sobre el mundo de los comandos en Linux tenga de refer
 
 [Sitio oficial del libro](https://linuxcommand.org/index.php)
 
+[Curso completo de Linux para principiantes (vídeo youtube)](https://youtu.be/jVQKk8IB9pA?si=3hPLS1l9Msk2XJ3O)
+
 También puede tener una lista de comandos útiles en linux en el siguiente sitio: [linuxcommandlibrary](https://linuxcommandlibrary.com/)
 
 ## 3. Gestores de paquetes
