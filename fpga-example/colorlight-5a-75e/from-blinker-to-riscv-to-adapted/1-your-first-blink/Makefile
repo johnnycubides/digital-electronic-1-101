@@ -7,7 +7,7 @@ DESIGN=top.v
 DEF_MACROS_VERILOG_SYN=
 DEF_MACROS_VERILOG_SIM=
 DIR_BUILD=build
-DEVSERIAL=/dev/ttyACM0
+DEVSERIAL=/dev/ttyUSB0
 # Z: Nombre para empaquetar proyecto
 Z=1-your-first-blink
 

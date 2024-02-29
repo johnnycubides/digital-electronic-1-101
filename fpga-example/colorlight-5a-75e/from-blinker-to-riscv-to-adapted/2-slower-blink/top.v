@@ -4,14 +4,12 @@
  */
 
 `default_nettype none
-`include "clockworks.v"
+`include "../general/clockworks.v"
 
 module top (
-    input  CLK,        // system clock 
-    input  RESET,      // reset button
-    output [4:0] LEDS, // system LEDs
-    input  RXD,        // UART receive
-    output TXD         // UART transmit
+  input  CLK,         // system clock 
+  input  RESET,       // reset button
+  output [4:0] LEDS   // system LEDs
 );
 
    wire clk;    // internal clock
@@ -36,5 +34,4 @@ module top (
    );
    
    assign LEDS = count;
-   assign TXD  = 1'b0; // not used for now   
 endmodule

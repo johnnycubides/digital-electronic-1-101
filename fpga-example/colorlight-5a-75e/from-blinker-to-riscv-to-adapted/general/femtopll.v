@@ -6,7 +6,8 @@
  *  WIP: IceFeather
  */ 
 
-`ifdef BENCH_OR_LINT
+// `ifdef BENCH_OR_LINT
+`ifdef BENCH
  `define PASSTHROUGH_PLL
 `endif
 
@@ -22,7 +23,5 @@ module femtoPLL #(
    assign clk = pclk;   
 endmodule
 `else
- `ifdef ECP5_COLORLIGHT
-  `include "pll_ecp5_25Mhz.v"
- `endif
+  `include "../pll/pll_ecp5_25Mhz.v"
 `endif
