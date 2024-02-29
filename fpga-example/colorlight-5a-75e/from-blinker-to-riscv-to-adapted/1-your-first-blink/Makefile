@@ -4,7 +4,8 @@ TOP=top
 #test bench del proyecto para la simulación
 tb?=$(TOP)_tb.v
 DESIGN=top.v
-DEF_MACROS_VERILOG=
+DEF_MACROS_VERILOG_SYN=
+DEF_MACROS_VERILOG_SIM=
 DIR_BUILD=build
 DEVSERIAL=/dev/ttyACM0
 # Z: Nombre para empaquetar proyecto
