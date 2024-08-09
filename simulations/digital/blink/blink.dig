@@ -187,6 +187,27 @@ un contador de N bits</string>
       </elementAttributes>
       <pos x="620" y="300"/>
     </visualElement>
+    <visualElement>
+      <elementName>Text</elementName>
+      <elementAttributes>
+        <entry>
+          <string>textFontSize</string>
+          <int>12</int>
+        </entry>
+        <entry>
+          <string>Description</string>
+          <string>El LED está ubicado en el bit más
+significativo de la salida del contador.
+Conecte el LED a una salida diferente
+a la actual y observe la variación en
+velocidad del parpadeo  de LED (blink).
+¿Qué puede concluir sobre el
+comportamiento del LED en función
+del bit a usar?</string>
+        </entry>
+      </elementAttributes>
+      <pos x="960" y="480"/>
+    </visualElement>
   </visualElements>
   <wires>
     <wire>

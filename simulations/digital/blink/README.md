@@ -4,6 +4,8 @@ lang: es
 
 # Blink
 
+![Blink](./blink.svg)
+
 **Descripción**: Simulación en *Digital* de un "Blink"; el cual consiste en hacer parpadear
 un LED a través de un contador que se desborda al llegar al límite de conteo. El LED
 es ubicado en la salida del registro tipo D en el bit más significativo. Dependiendo

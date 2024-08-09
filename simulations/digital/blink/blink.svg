@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Created with Digital by H.Neemann -->
-<!-- created: Fri Aug 09 15:34:54 COT 2024 -->
+<!-- created: Fri Aug 09 15:55:13 COT 2024 -->
 
 <svg
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   width="86.55mm"
-   height="38.85mm"
-   viewBox="601 298 577 259">
+   width="88.2mm"
+   height="45.15mm"
+   viewBox="601 298 588 301">
 <g stroke-linecap="square">
-<path d="M 1000,420 L 1060,420 L 1060,440" stroke="#008e00" stroke-width="4.0" fill="none"/>
-<path d="M 1000,340 L 1140,340 L 1140,360" stroke="#008e00" stroke-width="4.0" fill="none"/>
-<path d="M 1000,440 L 1040,440 L 1040,460" stroke="#008e00" stroke-width="4.0" fill="none"/>
-<path d="M 1000,380 L 1100,380 L 1100,400" stroke="#008e00" stroke-width="4.0" fill="none"/>
+<path d="M 1000,400 L 1080,400 L 1080,420" stroke="#66ff66" stroke-width="4.0" fill="none"/>
+<path d="M 1000,320 L 1160,320 L 1160,340" stroke="#66ff66" stroke-width="4.0" fill="none"/>
+<path d="M 1000,420 L 1060,420 L 1060,440" stroke="#66ff66" stroke-width="4.0" fill="none"/>
+<path d="M 1000,360 L 1120,360 L 1120,380" stroke="#66ff66" stroke-width="4.0" fill="none"/>
+<path d="M 620,460 L 660,460" stroke="#66ff66" stroke-width="4.0" fill="none"/>
 <path d="M 620,440 L 660,440" stroke="#0000b2" stroke-width="4.0" fill="none"/>
 <path d="M 780,440 L 840,440" stroke="#0000b2" stroke-width="4.0" fill="none"/>
 <path d="M 900,460 L 940,460 L 980,460" stroke="#0000b2" stroke-width="4.0" fill="none"/>
@@ -28,14 +29,13 @@
 <path d="M 1000,360 L 990,360" stroke="#000000" stroke-width="4.0" fill="none"/>
 <path d="M 1000,340 L 990,340" stroke="#000000" stroke-width="4.0" fill="none"/>
 <path d="M 1000,320 L 990,320" stroke="#000000" stroke-width="4.0" fill="none"/>
-<path d="M 1000,400 L 1080,400 L 1080,420" stroke="#66ff66" stroke-width="4.0" fill="none"/>
-<path d="M 1000,320 L 1160,320 L 1160,340" stroke="#66ff66" stroke-width="4.0" fill="none"/>
-<path d="M 1000,360 L 1120,360 L 1120,380" stroke="#66ff66" stroke-width="4.0" fill="none"/>
-<path d="M 620,460 L 660,460" stroke="#66ff66" stroke-width="4.0" fill="none"/>
-<path d="M 1000,460 L 1020,460 L 1020,480" stroke="#66ff66" stroke-width="4.0" fill="none"/>
-<path d="M 800,540 L 820,540 L 820,480 L 840,480" stroke="#66ff66" stroke-width="4.0" fill="none"/>
+<path d="M 1000,340 L 1140,340 L 1140,360" stroke="#008e00" stroke-width="4.0" fill="none"/>
+<path d="M 1000,440 L 1040,440 L 1040,460" stroke="#008e00" stroke-width="4.0" fill="none"/>
+<path d="M 1000,380 L 1100,380 L 1100,400" stroke="#008e00" stroke-width="4.0" fill="none"/>
+<path d="M 1000,460 L 1020,460 L 1020,480" stroke="#008e00" stroke-width="4.0" fill="none"/>
+<path d="M 800,540 L 820,540 L 820,480 L 840,480" stroke="#008e00" stroke-width="4.0" fill="none"/>
 <g>
-<text text-anchor="middle" x="810.0" y="377.0" fill="#32a232" style="font-size:12px">A9</text>
+<text text-anchor="middle" x="810.0" y="377.0" fill="#32a232" style="font-size:12px">AC</text>
 <circle cx="940.0" cy="460.0" r="4.0" stroke="#0000b2" stroke-width="4.0" fill="#0000b2" />
 </g>
 <g>
@@ -104,7 +104,7 @@
 <circle cx="1000.0" cy="320.0" r="2.0" stroke="#b20000" stroke-width="4.0" fill="#b20000" />
 </g>
 <g>
-<text text-anchor="start" x="1022.0" y="468.0" fill="#000000" style="font-size:24px">1</text>
+<text text-anchor="start" x="1022.0" y="468.0" fill="#000000" style="font-size:24px">0</text>
 <circle cx="1020.0" cy="460.0" r="2.0" stroke="#0000b2" stroke-width="4.0" fill="#0000b2" />
 </g>
 <g>
@@ -112,7 +112,7 @@
 <circle cx="1040.0" cy="440.0" r="2.0" stroke="#0000b2" stroke-width="4.0" fill="#0000b2" />
 </g>
 <g>
-<text text-anchor="start" x="1062.0" y="428.0" fill="#000000" style="font-size:24px">0</text>
+<text text-anchor="start" x="1062.0" y="428.0" fill="#000000" style="font-size:24px">1</text>
 <circle cx="1060.0" cy="420.0" r="2.0" stroke="#0000b2" stroke-width="4.0" fill="#0000b2" />
 </g>
 <g>
@@ -143,6 +143,16 @@
 <g>
 <text text-anchor="start" x="620.0" y="318.0" fill="#000000" style="font-size:24px">Blink haciendo uso de</text>
 <text text-anchor="start" x="620.0" y="348.0" fill="#000000" style="font-size:24px">un contador de N bits</text>
+</g>
+<g>
+<text text-anchor="start" x="960.0" y="489.0" fill="#000000" style="font-size:12px">El LED está ubicado en el bit más</text>
+<text text-anchor="start" x="960.0" y="504.0" fill="#000000" style="font-size:12px">significativo de la salida del contador.</text>
+<text text-anchor="start" x="960.0" y="519.0" fill="#000000" style="font-size:12px">Conecte el LED a una salida diferente</text>
+<text text-anchor="start" x="960.0" y="534.0" fill="#000000" style="font-size:12px">a la actual y observe la variación en</text>
+<text text-anchor="start" x="960.0" y="549.0" fill="#000000" style="font-size:12px">velocidad del parpadeo de LED (blink).</text>
+<text text-anchor="start" x="960.0" y="564.0" fill="#000000" style="font-size:12px">¿Qué puede concluir sobre el</text>
+<text text-anchor="start" x="960.0" y="579.0" fill="#000000" style="font-size:12px">comportamiento del LED en función</text>
+<text text-anchor="start" x="960.0" y="594.0" fill="#000000" style="font-size:12px">del bit a usar?</text>
 </g>
 </g>
 </svg>
