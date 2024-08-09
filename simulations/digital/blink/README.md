@@ -23,3 +23,4 @@ obtendrá tres archivos.
 **Observaciones**:
 * Debe tener instalada las herramientas de digital en conda y la aplicación Digital.sh, esta información se encuentra en el repositorio https://github.com/johnnycubides/digital-electronic-1-101/
 
+Johnny
