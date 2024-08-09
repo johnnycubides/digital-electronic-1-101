@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Digital by H.Neemann -->
+<!-- created: Fri Aug 09 17:06:48 COT 2024 -->
+
+<svg
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   width="108.3mm"
+   height="60.3mm"
+   viewBox="535 318 722 402">
+<g stroke-linecap="square">
+<path d="M 623,349 L 648,349 L 648,374 L 673,374 L 673,349 L 698,349 L 698,374 L 723,374 L 723,349 L 748,349 L 748,374 L 773,374 L 773,349 L 798,349 L 798,374 L 823,374 L 823,349 L 848,349 L 848,374 L 873,374 L 873,349 L 898,349 L 898,374 L 923,374 L 923,349 L 948,349 L 948,374 L 973,374 L 973,349 L 998,349 L 998,374 L 1023,374 L 1023,349 L 1048,349 L 1048,374 L 1073,374 L 1073,349 L 1098,349 L 1098,374 L 1123,374 L 1123,349 L 1148,349 L 1148,374 L 1173,374 L 1173,349 L 1198,349 L 1198,374 L 1223,374 L 1223,349 L 1248,349" stroke="#000000" stroke-width="4.0" fill="none"/>
+<path d="M 623,384 L 648,384 L 673,384 L 698,384 L 723,384 L 723,409 L 748,409 L 773,409 L 798,409 L 823,409 L 848,409 L 873,409 L 898,409 L 923,409 L 923,384 L 948,384 L 973,384 L 998,384 L 1023,384 L 1023,409 L 1048,409 L 1073,409 L 1098,409 L 1123,409 L 1148,409 L 1173,409 L 1198,409 L 1223,409 L 1223,384 L 1248,384" stroke="#000000" stroke-width="4.0" fill="none"/>
+<path d="M 720,680 L 740,680 L 740,620" stroke="#008e00" stroke-width="4.0" fill="none"/>
+<path d="M 623,379 L 1248,379" stroke-dasharray="4.0,4.0" stroke="#000000" stroke-width="1.0" fill="none"/>
+<path d="M 1248,344 L 623,344 L 623,414 L 1248,414 Z" stroke-dasharray="4.0,4.0" stroke="#000000" stroke-width="1.0" fill="none"/>
+<path d="M 648,344 L 648,414" stroke-dasharray="4.0,4.0" stroke="#000000" stroke-width="1.0" fill="none"/>
+<path d="M 673,344 L 673,414" stroke-dasharray="4.0,4.0" stroke="#000000" stroke-width="1.0" fill="none"/>
+<path d="M 698,344 L 698,414" stroke-dasharray="4.0,4.0" stroke="#000000" stroke-width="1.0" fill="none"/>
+<path d="M 723,344 L 723,414" stroke-dasharray="4.0,4.0" stroke="#000000" stroke-width="1.0" fill="none"/>
+<path d="M 748,344 L 748,414" stroke-dasharray="4.0,4.0" stroke="#000000" stroke-width="1.0" fill="none"/>
+<path d="M 773,344 L 773,414" stroke-dasharray="4.0,4.0" stroke="#000000" stroke-width="1.0" fill="none"/>
+<path d="M 798,344 L 798,414" stroke-dasharray="4.0,4.0" stroke="#000000" stroke-width="1.0" fill="none"/>
+<path d="M 823,344 L 823,414" stroke-dasharray="4.0,4.0" stroke="#000000" stroke-width="1.0" fill="none"/>
+<path d="M 848,344 L 848,414" stroke-dasharray="4.0,4.0" stroke="#000000" stroke-width="1.0" fill="none"/>
+<path d="M 873,344 L 873,414" stroke-dasharray="4.0,4.0" stroke="#000000" stroke-width="1.0" fill="none"/>
+<path d="M 898,344 L 898,414" stroke-dasharray="4.0,4.0" stroke="#000000" stroke-width="1.0" fill="none"/>
+<path d="M 923,344 L 923,414" stroke-dasharray="4.0,4.0" stroke="#000000" stroke-width="1.0" fill="none"/>
+<path d="M 948,344 L 948,414" stroke-dasharray="4.0,4.0" stroke="#000000" stroke-width="1.0" fill="none"/>
+<path d="M 973,344 L 973,414" stroke-dasharray="4.0,4.0" stroke="#000000" stroke-width="1.0" fill="none"/>
+<path d="M 998,344 L 998,414" stroke-dasharray="4.0,4.0" stroke="#000000" stroke-width="1.0" fill="none"/>
+<path d="M 1023,344 L 1023,414" stroke-dasharray="4.0,4.0" stroke="#000000" stroke-width="1.0" fill="none"/>
+<path d="M 1048,344 L 1048,414" stroke-dasharray="4.0,4.0" stroke="#000000" stroke-width="1.0" fill="none"/>
+<path d="M 1073,344 L 1073,414" stroke-dasharray="4.0,4.0" stroke="#000000" stroke-width="1.0" fill="none"/>
+<path d="M 1098,344 L 1098,414" stroke-dasharray="4.0,4.0" stroke="#000000" stroke-width="1.0" fill="none"/>
+<path d="M 1123,344 L 1123,414" stroke-dasharray="4.0,4.0" stroke="#000000" stroke-width="1.0" fill="none"/>
+<path d="M 1148,344 L 1148,414" stroke-dasharray="4.0,4.0" stroke="#000000" stroke-width="1.0" fill="none"/>
+<path d="M 1173,344 L 1173,414" stroke-dasharray="4.0,4.0" stroke="#000000" stroke-width="1.0" fill="none"/>
+<path d="M 1198,344 L 1198,414" stroke-dasharray="4.0,4.0" stroke="#000000" stroke-width="1.0" fill="none"/>
+<path d="M 1223,344 L 1223,414" stroke-dasharray="4.0,4.0" stroke="#000000" stroke-width="1.0" fill="none"/>
+<path d="M 620,520 L 660,520" stroke="#66ff66" stroke-width="4.0" fill="none"/>
+<path d="M 900,520 L 940,520 L 960,520" stroke="#66ff66" stroke-width="4.0" fill="none"/>
+<path d="M 940,520 L 940,540" stroke="#66ff66" stroke-width="4.0" fill="none"/>
+<path d="M 620,480 L 660,480" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 740,500 L 780,500 L 820,500" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 620,580 L 720,580" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 760,600 L 780,600 L 780,540 L 820,540" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 620,620 L 720,620" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<path d="M 780,460 L 780,500" stroke="#0000b2" stroke-width="4.0" fill="none"/>
+<g>
+<circle cx="780.0" cy="500.0" r="4.0" stroke="#0000b2" stroke-width="4.0" fill="#0000b2" />
+<text text-anchor="middle" x="670.0" y="577.0" fill="#32a232" style="font-size:12px">1</text>
+<circle cx="940.0" cy="520.0" r="4.0" stroke="#66ff66" stroke-width="4.0" fill="#66ff66" />
+<text text-anchor="middle" x="670.0" y="617.0" fill="#32a232" style="font-size:12px">2</text>
+</g>
+<g>
+<path d="M 589,505 L 619,505 L 619,535 L 589,535 Z" stroke="#000000" stroke-width="4.0" fill="none"/>
+<text text-anchor="end" x="575.0" y="529.0" fill="#000000" style="font-size:24px"><tspan style="font-style:italic;">CLK</tspan></text>
+<path d="M 595,525 L 600,525 L 600,515 L 605,515 L 605,525 L 610,525 L 610,515 L 615,515" stroke="#000000" stroke-width="2.0" fill="none"/>
+<circle cx="620.0" cy="520.0" r="2.0" stroke="#b20000" stroke-width="4.0" fill="#b20000" />
+</g>
+<g>
+<text text-anchor="start" x="820.0" y="598.0" fill="#000000" style="font-size:24px">PWM</text>
+</g>
+<g>
+<text text-anchor="start" x="1020.0" y="547.5" fill="#000000" style="font-size:10px">PWM: Modulación por ancho de pulso.</text>
+<text text-anchor="start" x="1020.0" y="559.5" fill="#000000" style="font-size:10px">En LIMIT se pone la cuenta correspondiente</text>
+<text text-anchor="start" x="1020.0" y="571.5" fill="#000000" style="font-size:10px">al periodo. Se tiene un selector de DUTY,</text>
+<text text-anchor="start" x="1020.0" y="583.5" fill="#000000" style="font-size:10px">el cual, dependiendo de la posición se</text>
+<text text-anchor="start" x="1020.0" y="595.5" fill="#000000" style="font-size:10px">muestra el DUTY1 o el DUTY2. El DUTY</text>
+<text text-anchor="start" x="1020.0" y="607.5" fill="#000000" style="font-size:10px">es no puede ser mayot a LIMIT. Cuando DUTY</text>
+<text text-anchor="start" x="1020.0" y="619.5" fill="#000000" style="font-size:10px">y LIMIT son iguales, se dice que el DUTY</text>
+<text text-anchor="start" x="1020.0" y="631.5" fill="#000000" style="font-size:10px">es del 100%. Cuando el DUTY es la mitad</text>
+<text text-anchor="start" x="1020.0" y="643.5" fill="#000000" style="font-size:10px">del LIMIT, se dice que DUITY es del</text>
+<text text-anchor="start" x="1020.0" y="655.5" fill="#000000" style="font-size:10px">50 %. Puede ver las formas de onda</text>
+<text text-anchor="start" x="1020.0" y="667.5" fill="#000000" style="font-size:10px">del ancho del pulso en el osciloscopio.</text>
+<text text-anchor="start" x="1020.0" y="679.5" fill="#000000" style="font-size:10px">Observación: En el osciloscopio, en CLK,</text>
+<text text-anchor="start" x="1020.0" y="691.5" fill="#000000" style="font-size:10px">cuando se modifica el Selector, se genera</text>
+<text text-anchor="start" x="1020.0" y="703.5" fill="#000000" style="font-size:10px">un estado donde se mantienen un estado,</text>
+<text text-anchor="start" x="1020.0" y="715.5" fill="#000000" style="font-size:10px">el cual es propio de la simulación.</text>
+</g>
+<g>
+<path d="M 661,470 L 739,470 L 739,530 L 661,530 Z" stroke="#000000" stroke-width="4.0" fill="none"/>
+<text text-anchor="middle" x="700.0" y="462.0" fill="#000000" style="font-size:24px">counter</text>
+<text text-anchor="start" x="664.0" y="486.75" fill="#808080" style="font-size:18px">LIMIT</text>
+<text text-anchor="start" x="664.0" y="526.75" fill="#808080" style="font-size:18px">CLK</text>
+<text text-anchor="end" x="736.0" y="506.75" fill="#808080" style="font-size:18px">Q</text>
+<text text-anchor="middle" x="700.0" y="547.5" fill="#808080" style="font-size:18px">External</text>
+<circle cx="660.0" cy="480.0" r="2.0" stroke="#0000b2" stroke-width="4.0" fill="#0000b2" />
+<circle cx="660.0" cy="520.0" r="2.0" stroke="#0000b2" stroke-width="4.0" fill="#0000b2" />
+<circle cx="740.0" cy="500.0" r="2.0" stroke="#b20000" stroke-width="4.0" fill="#b20000" />
+</g>
+<g>
+<path d="M 821,490 L 899,490 L 899,550 L 821,550 Z" stroke="#000000" stroke-width="4.0" fill="none"/>
+<text text-anchor="middle" x="860.0" y="482.0" fill="#000000" style="font-size:24px">comparator</text>
+<text text-anchor="start" x="824.0" y="506.75" fill="#808080" style="font-size:18px">a</text>
+<text text-anchor="start" x="824.0" y="546.75" fill="#808080" style="font-size:18px">b</text>
+<text text-anchor="end" x="896.0" y="526.75" fill="#808080" style="font-size:18px">equal</text>
+<text text-anchor="middle" x="860.0" y="567.5" fill="#808080" style="font-size:18px">External</text>
+<circle cx="820.0" cy="500.0" r="2.0" stroke="#0000b2" stroke-width="4.0" fill="#0000b2" />
+<circle cx="820.0" cy="540.0" r="2.0" stroke="#0000b2" stroke-width="4.0" fill="#0000b2" />
+<circle cx="900.0" cy="520.0" r="2.0" stroke="#b20000" stroke-width="4.0" fill="#b20000" />
+</g>
+<g>
+<text text-anchor="end" x="617.0" y="489.0" fill="#000000" style="font-size:24px">5</text>
+<circle cx="620.0" cy="480.0" r="2.0" stroke="#b20000" stroke-width="4.0" fill="#b20000" />
+</g>
+<g>
+<text text-anchor="end" x="617.0" y="589.0" fill="#000000" style="font-size:24px">1</text>
+<circle cx="620.0" cy="580.0" r="2.0" stroke="#b20000" stroke-width="4.0" fill="#b20000" />
+</g>
+<g>
+<text text-anchor="start" x="782.0" y="468.0" fill="#000000" style="font-size:24px">0</text>
+<circle cx="780.0" cy="460.0" r="2.0" stroke="#0000b2" stroke-width="4.0" fill="#0000b2" />
+</g>
+<g>
+<text text-anchor="end" x="621.0" y="370.0" fill="#000000" style="font-size:24px">CLK</text>
+<text text-anchor="end" x="621.0" y="405.0" fill="#000000" style="font-size:24px">PWM</text>
+</g>
+<g>
+<circle cx="976.0" cy="520.0" r="9.0" stroke="#66ff66" stroke-width="4.0" fill="#66ff66" />
+<circle cx="976.0" cy="520.0" r="15.0" stroke="#000000" stroke-width="4.0" fill="none" />
+<text text-anchor="start" x="1005.0" y="529.0" fill="#000000" style="font-size:24px"><tspan style="font-style:italic;">PWM</tspan></text>
+<circle cx="960.0" cy="520.0" r="2.0" stroke="#0000b2" stroke-width="4.0" fill="#0000b2" />
+</g>
+<g>
+<text text-anchor="start" x="942.0" y="548.0" fill="#000000" style="font-size:24px">1</text>
+<circle cx="940.0" cy="540.0" r="2.0" stroke="#0000b2" stroke-width="4.0" fill="#0000b2" />
+</g>
+<g>
+<path d="M 721,576 L 759,585 L 759,615 L 721,624 Z" stroke="#000000" stroke-width="4.0" fill="none"/>
+<text text-anchor="start" x="723.0" y="595.5" fill="#808080" style="font-size:18px">0</text>
+<circle cx="740.0" cy="620.0" r="2.0" stroke="#0000b2" stroke-width="4.0" fill="#0000b2" />
+<circle cx="720.0" cy="580.0" r="2.0" stroke="#0000b2" stroke-width="4.0" fill="#0000b2" />
+<circle cx="720.0" cy="620.0" r="2.0" stroke="#0000b2" stroke-width="4.0" fill="#0000b2" />
+<circle cx="760.0" cy="600.0" r="2.0" stroke="#b20000" stroke-width="4.0" fill="#b20000" />
+</g>
+<g>
+<text text-anchor="end" x="617.0" y="629.0" fill="#000000" style="font-size:24px">2</text>
+<circle cx="620.0" cy="620.0" r="2.0" stroke="#b20000" stroke-width="4.0" fill="#b20000" />
+</g>
+<g>
+<path d="M 719,690 L 661,690 L 661,670 L 719,670 Z" stroke="#000000" stroke-width="4.0" fill="none"/>
+<path d="M 665,686 L 690,686 L 690,674 L 665,674 Z" stroke="#808080" stroke-width="0.0" fill="#808080" fill-opacity="1.0"/>
+<circle cx="720.0" cy="680.0" r="2.0" stroke="#b20000" stroke-width="4.0" fill="#b20000" />
+</g>
+<g>
+<text text-anchor="start" x="600.0" y="569.0" fill="#000000" style="font-size:12px">DUTY1</text>
+</g>
+<g>
+<text text-anchor="start" x="600.0" y="609.0" fill="#000000" style="font-size:12px">DUTY2</text>
+</g>
+<g>
+<text text-anchor="start" x="620.0" y="669.0" fill="#000000" style="font-size:12px">Selector</text>
+</g>
+<g>
+<text text-anchor="start" x="600.0" y="329.0" fill="#000000" style="font-size:12px">Osciloscopio</text>
+</g>
+</g>
+</svg>
