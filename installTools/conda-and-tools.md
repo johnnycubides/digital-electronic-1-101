@@ -157,6 +157,16 @@ Para realizar la instalación de Digital en su sistema podrá seguir estos 3 pas
 2. Ejecutar la aplicación: Se descomprime el archivo .zip y en la carpeta generada basta con lanzar el ejecutable con extensión .exe para Windows o `java -jar Digital.jar` en una terminal para Linux.
 3. Instalar Digital: si desea encontrar Digital en el menú de aplicaciones bastará con ejecutar el comando `./install.sh` en el directorio donde se encuentra Digital.jar.
 
+A continuación se presenta el ejemplo de instalación de *Digital* en un directorio del usuario. Observe el paso a paso:
+```
+mkdir -p ~/gitPackages/ # Crear directorio de descarga
+cd ~/gitPackages/ # Ubircase dentro del directorio
+wget -O "Digital.zip" https://github.com/hneemann/Digital/releases/latest/download/Digital.zip # descargar Digital.zip
+unzip Digital.zip # Descromprimir digital
+cd Digital # Entrar en el directorio de Digital
+./install.sh # Instalar Digital
+```
+
 ### Complementos para digital
 
 Digital permite importar descripciones VHDL o Verilog a su área de trabajo para realizar simulaciones, para habilitar esta opción
