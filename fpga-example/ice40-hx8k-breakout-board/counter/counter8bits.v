@@ -1,31 +1,31 @@
-parameter SIZE = 8; 
+`ifndef SIZE
+`define SIZE 8
+`endif
 
 module counter8bits (
-// Inputs and output ports
-  input clk,
-  output reg [SIZE-1:0] count
+    // Inputs and output ports
+    input clk,
+    output reg [`SIZE-1:0] count
 );
 
-// Descripción del comportamiento
-// parameter LIMIT = 8'd255;
+  // Descripción del comportamiento
+  // parameter LIMIT = 8'd255;
 
-// reg [SIZE-1:0] count = 0;
-initial
-begin
-  count = 0;
-end
+  // reg [SIZE-1:0] count = 0;
+  initial begin
+    count = 0;
+  end
 
-always@(posedge clk)
-begin
-  // if(count == LIMIT)
-  // begin
+  always @(posedge clk) begin
+    // if(count == LIMIT)
+    // begin
     // count <= 0;
     // clk_out <= ~clk_out;
-  // end
-  // else
-  // begin
+    // end
+    // else
+    // begin
     count <= count + 1;
-  // end
-end
+    // end
+  end
 
 endmodule

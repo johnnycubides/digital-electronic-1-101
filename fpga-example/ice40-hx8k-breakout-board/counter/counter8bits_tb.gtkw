@@ -1,0 +1,33 @@
+[*]
+[*] GTKWave Analyzer v3.3.117 (w)1999-2023 BSI
+[*] Thu Aug 22 21:37:49 2024
+[*]
+[dumpfile] "/home/johnny/projects/digital-electronic-1-101/fpga-example/ice40-hx8k-breakout-board/counter/sim/counter8bits_tb.vcd"
+[dumpfile_mtime] "Thu Aug 22 21:37:38 2024"
+[dumpfile_size] 10118
+[savefile] "/home/johnny/projects/digital-electronic-1-101/fpga-example/ice40-hx8k-breakout-board/counter/counter8bits_tb.gtkw"
+[timestart] 0
+[size] 1918 1150
+[pos] -1 -1
+*-6.097696 512 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 207
+[signals_width] 155
+[sst_expanded] 1
+[sst_vpaned_height] 342
+@28
+counter8bits_tb.clk
+@800024
+counter8bits_tb.probe[7:0]
+@28
+(0)counter8bits_tb.probe[7:0]
+(1)counter8bits_tb.probe[7:0]
+(2)counter8bits_tb.probe[7:0]
+(3)counter8bits_tb.probe[7:0]
+(4)counter8bits_tb.probe[7:0]
+(5)counter8bits_tb.probe[7:0]
+(6)counter8bits_tb.probe[7:0]
+(7)counter8bits_tb.probe[7:0]
+@1001200
+-group_end
+[pattern_trace] 1
+[pattern_trace] 0
