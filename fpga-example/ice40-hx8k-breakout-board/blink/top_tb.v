@@ -1,9 +1,10 @@
-`timescale 10ns/10ns // <time_unit>/<time_precision
+`include "./top.v"
+`timescale 10ns / 10ns  // <time_unit>/<time_precision
 module testbech;
 
   // Determinar el tamaño de los wire como de los estímulos
   /* parameter INPUT_SIZE = 3; */
-  parameter OUTPUT_SIZE = 4;
+  parameter OUTPUT_SIZE = 1;
 
   /* // STIMULUS 1 */
   /* reg a = 0, b = 0; */
@@ -33,28 +34,26 @@ module testbech;
   // CLOCK STIMULUS
   // Make a regular pulsing clock.
   reg clk = 0;
-  always #2 clk = !clk;
+  always #1 clk = !clk;
 
-  initial
-  begin
-    #1.01E8 $finish(); // [stop(), $finish()]
+  initial begin
+    #40 $finish();  // [stop(), $finish()]
   end
 
   // RESULT FOR DEVICE/DESIGN UNDER TEST
   wire [OUTPUT_SIZE-1:0] value;
 
   // DEVICE/DESIGN UNDER TEST
-  top dut (.clk(clk), .led(value));
+  top dut (
+      .clk(clk),
+      .led(value)
+  );
 
   // MONITOR
-  initial
-    $monitor("Time: %t, out = %d",
-      $time, value);
+  initial $monitor("Time: %t, out = %d", $time, value);
 
   // WAVES IN VCD TO OPEN IN GTKWAVE
-  initial
-  begin
-    $dumpfile("top.vcd");
+  initial begin
     $dumpvars(0, testbech);
   end
 endmodule

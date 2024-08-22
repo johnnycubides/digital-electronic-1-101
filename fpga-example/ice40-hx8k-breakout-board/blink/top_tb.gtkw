@@ -1,0 +1,25 @@
+[*]
+[*] GTKWave Analyzer v3.3.117 (w)1999-2023 BSI
+[*] Thu Aug 22 22:46:22 2024
+[*]
+[dumpfile] "/home/johnny/projects/digital-electronic-1-101/fpga-example/ice40-hx8k-breakout-board/blink/sim/top_tb.vcd"
+[dumpfile_mtime] "Thu Aug 22 22:46:16 2024"
+[dumpfile_size] 1396
+[savefile] "/home/johnny/projects/digital-electronic-1-101/fpga-example/ice40-hx8k-breakout-board/blink/top_tb.gtkw"
+[timestart] 0
+[size] 1000 600
+[pos] -1 -1
+*-7.198557 380 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] testbech.
+[treeopen] testbech.dut.
+[sst_width] 207
+[signals_width] 195
+[sst_expanded] 1
+[sst_vpaned_height] 149
+@28
+testbech.clk
+testbech.value
+@25
+testbech.dut.my_blink.count[24:0]
+[pattern_trace] 1
+[pattern_trace] 0
