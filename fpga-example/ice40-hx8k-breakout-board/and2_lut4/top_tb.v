@@ -1,4 +1,5 @@
-`timescale 10ns/10ns // <time_unit>/<time_precision
+`include "./top.v"
+`timescale 10ns / 10ns  // <time_unit>/<time_precision
 module testbech;
 
   // Determinar el tamaño de los wire como de los estímulos
@@ -37,25 +38,25 @@ module testbech;
   always #1 a = ~a;
   always #2 b = ~b;
 
-  initial
-  begin
-    #16 $finish(); // [stop(), $finish()]
+  initial begin
+    #16 $finish();  // [stop(), $finish()]
   end
 
   // RESULT FOR DEVICE/DESIGN UNDER TEST
   wire [OUTPUT_SIZE-1:0] value;
 
   // DEVICE/DESIGN UNDER TEST
-  top dut (.a(a), .b(b), .s(value));
+  top dut (
+      .a(a),
+      .b(b),
+      .s(value)
+  );
 
   // MONITOR
-  initial
-    $monitor("Time: %t, out = %d",
-      $time, value);
+  initial $monitor("Time: %t, out = %d", $time, value);
 
   // WAVES IN VCD TO OPEN IN GTKWAVE
-  initial
-  begin
+  initial begin
     // $dumpfile("top.vcd");
     $dumpvars(0, testbech);
   end
