@@ -1,10 +1,11 @@
 # CONDA=~/miniconda3/bin/conda
-TOP?=top
-#test bench del proyecto para la simulación
-tb?=$(TOP)_tb.v
+top?=
 # Módules .v que hacen parte del proyecto
 DESIGN?=
 DEF_MACROS_VERILOG_SIM?=
+#test bench del proyecto para la simulación
+tb?=$(TOP_NAME)_tb.v
+TBN=$(basename $(notdir $(tb)))
 
 S=sim
 
@@ -20,7 +21,7 @@ help-sim:
 	@echo "\tmake rtl TOP=modulo1\t\t\t:Obtiene el RTL de otros modulos (submodulos)"
 	@echo "\tmake rtl rtl2png\t\t\t:Convertir el RTL del TOP desde formato svg a png"
 	@echo "\tmake rtl rtl2png TOP=modulo1\t\t:Además de convertir, obtiene el RTL de otros modulos (submodulos)"
-	@echo "\tmake convertOneVerilogFile\t\t\t:Crear un único verilog del diseño"
+	@echo "\tmake ConvertOneVerilogFile\t\t\t:Crear un único verilog del diseño"
 
 rtl: rtl-from-json view-svg
 
@@ -33,43 +34,43 @@ iverilog-compile:
 ifneq ($(MORE_SRC2SIM), )
 	cp -var $(MORE_SRC2SIM) $S
 endif
-	iverilog -o $S/$(TOP).vvp $(tb) $(DESIGN)
+	iverilog $(DEF_MACROS_VERILOG_SIM) -o $S/$(TBN).vvp $(tb)
 
 # VVP_ARG permite agregar argumentos en la simulación con vvp
 VVP_ARG=
 vpp-simulate:
-	cd $S && vvp $(TOP).vvp -vcd $(VVP_ARG) -dumpfile=$(TOP).vcd
+	cd $S && vvp $(TBN).vvp -vcd $(VVP_ARG) -dumpfile=$(TBN).vcd
 
 wave:
-	@gtkwave $S/$(TOP).vcd	$(TOP).gtkw || (echo "No hay un forma de onda que mostrar en gtkwave, posiblemente no fue solicitada en la simulación")
+	@gtkwave $S/$(TBN).vcd $(TBN).gtkw || (echo "No hay un forma de onda que mostrar en gtkwave, posiblemente no fue solicitada en la simulación")
 
 json-yosys:
 	mkdir -p $S
-	yosys $(DEF_MACROS_VERILOG_SIM) -p 'read_verilog $(DESIGN); prep -top $(TOP); hierarchy -check; proc; write_json $S/$(TOP).json'
+	yosys $(DEF_MACROS_VERILOG_SIM) -p 'read_verilog $(DESIGN); prep -top $(top); hierarchy -check; proc; write_json $S/$(top).json'
 
-# Conertir el diseño en un solo archivo de verilog
-convertOneVerilogFile:
+# Convertir el diseño en un solo archivo de verilog
+ConvertOneVerilogFile:
 	mkdir -p $S
-	yosys $(DEF_MACROS_VERILOG_SIM) -p 'read_verilog $(DESIGN); prep -top $(TOP); hierarchy -check; proc; opt -full; write_verilog -noattr -nodec $S/$(TOP).v'
+	yosys $(DEF_MACROS_VERILOG_SIM) -p 'read_verilog $(DESIGN); prep -top $(top); hierarchy -check; proc; opt -full; write_verilog -noattr -nodec $S/$(top).v'
 	# yosys -p 'read_verilog $(DESIGN); prep -top $(TOP); hierarchy -check; proc; opt -full; write_verilog -noattr -noexpr -nodec $S/$(TOP).v'
 	# yosys -p 'read_verilog $(DESIGN); prep -top $(TOP); hierarchy -check; proc; flatten; synth; write_verilog -noattr -noexpr $S/$(TOP).v'
 
 rtl-from-json: json-yosys
-	netlistsvg $S/$(TOP).json -o $S/$(TOP).svg
+	netlistsvg $S/$(top).json -o $S/$(top).svg
 
 view-svg:
-	eog $S/$(TOP).svg
+	eog $S/$(top).svg
 
 rtl-xdot:
 	yosys $(DEF_MACROS_VERILOG_SIM) -p $(RTL_COMMAND)
 
 rtl2png:
-	convert -density 200 -resize 1200 $S/$(TOP).svg $(TOP).png
+	convert -density 200 -resize 1200 $S/$(top).svg $(top).png
 	# convert -resize 1200 -quality 100 $S/$(TOP).svg $(TOP).png
 
 init-sim:	
 	@echo "sim/\n$Z/\n" > .gitignore
-	touch README.md $(TOP).png
+	touch README.md $(top).png
 
 RM=rm -rf
 # EMPAQUETAR SIMULACIÓN EN .ZIP
@@ -79,8 +80,8 @@ zip-sim:
 	mkdir -p $Z
 	# Quitar las últimas dos líneas del Makefile y crear copia en el directorio $Z
 	head -n -2 Makefile > $Z/Makefile
-	# Agregar desde la línea 8 en adelante en el Makefile
-	sed -n '8,$$p' $(MK_SIM) >> $Z/Makefile
+	# Agregar desde la línea 7 en adelante en el Makefile
+	sed -n '7,$$p' $(MK_SIM) >> $Z/Makefile
 	cp -var *.v *.md .gitignore $Z
 ifneq ($(wildcard *.mem),) # Si existe un archivo .png
 	cp -var *.mem $Z
@@ -108,5 +109,5 @@ clean-sim:
 ## YOSYS ARGUMENTS
 RTL_COMMAND?='read_verilog $(DESIGN);\
 						 hierarchy -check;\
-						 show $(TOP)'
+						 show $(top)'
 
