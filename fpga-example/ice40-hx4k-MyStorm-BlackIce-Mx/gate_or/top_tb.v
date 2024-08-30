@@ -1,4 +1,5 @@
-module testbech;
+`include "./top.v"
+module top_tb;
 
   // Determinar el tamaño de los buses de comunicación como de los estímulos
   parameter INPUT_SIZE = 2;
@@ -19,11 +20,12 @@ module testbech;
   reg [INPUT_SIZE-1:0] inputs;
   /* inputs[0] inputs[1] inputs[2] */
   integer i;
-  initial
-  begin
+  initial begin
     /* inputs = 0; */
-    for (i=0; i<2**INPUT_SIZE; i=i+1) // 2 elevado a la INPUT_SIZE
-    begin
+    for (
+        i = 0; i < 2 ** INPUT_SIZE; i = i + 1
+    )  // 2 elevado a la INPUT_SIZE
+        begin
       inputs = i;
       #1;
     end
@@ -38,7 +40,11 @@ module testbech;
   wire [OUTPUT_SIZE-1:0] outputs;
 
   // DEVICE/DESIGN UNDER TEST
-  top dut (.a(inputs[1]), .b(inputs[0]), .c(outputs[0]));
+  top dut (
+      .a(inputs[1]),
+      .b(inputs[0]),
+      .c(outputs[0])
+  );
 
   /* // MONITOR */
   /* initial */
@@ -46,10 +52,9 @@ module testbech;
   /*     $time, a, b, value); */
 
   // WAVES IN VCD TO OPEN IN GTKWAVE
-  initial
-  begin
-    $dumpfile("top.vcd");
-    $dumpvars(0, testbech);
+  initial begin
+    // $dumpfile("top_tb.vcd");
+    $dumpvars(0, top_tb);
   end
 
 

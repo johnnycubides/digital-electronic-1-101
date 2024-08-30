@@ -1,0 +1,27 @@
+[*]
+[*] GTKWave Analyzer v3.3.117 (w)1999-2023 BSI
+[*] Fri Aug 30 12:55:16 2024
+[*]
+[dumpfile] "/home/johnny/projects/digital-electronic-1-101/fpga-example/ice40-hx4k-MyStorm-BlackIce-Mx/gate_or/sim/top_tb.vcd"
+[dumpfile_mtime] "Fri Aug 30 12:54:50 2024"
+[dumpfile_size] 732
+[savefile] "/home/johnny/projects/digital-electronic-1-101/fpga-example/ice40-hx4k-MyStorm-BlackIce-Mx/gate_or/top_tb.gtkw"
+[timestart] 0
+[size] 2256 1427
+[pos] -51 -51
+*-0.687335 3 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 249
+[signals_width] 140
+[sst_expanded] 1
+[sst_vpaned_height] 434
+@800028
+top_tb.inputs[1:0]
+@28
+(0)top_tb.inputs[1:0]
+(1)top_tb.inputs[1:0]
+@1001200
+-group_end
+@29
+top_tb.outputs
+[pattern_trace] 1
+[pattern_trace] 0
