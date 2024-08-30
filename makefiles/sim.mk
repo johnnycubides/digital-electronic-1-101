@@ -2,7 +2,7 @@
 top?=
 # Módules .v que hacen parte del proyecto
 DESIGN?=
-DEF_MACROS_VERILOG_SIM?=
+MACROS_SIM?=
 #test bench del proyecto para la simulación
 tb?=$(TOP_NAME)_tb.v
 TBN=$(basename $(notdir $(tb)))
@@ -34,7 +34,7 @@ iverilog-compile:
 ifneq ($(MORE_SRC2SIM), )
 	cp -var $(MORE_SRC2SIM) $S
 endif
-	iverilog $(DEF_MACROS_VERILOG_SIM) -o $S/$(TBN).vvp $(tb)
+	iverilog $(MACROS_SIM) -o $S/$(TBN).vvp $(tb)
 
 # VVP_ARG permite agregar argumentos en la simulación con vvp
 VVP_ARG=
@@ -46,12 +46,12 @@ wave:
 
 json-yosys:
 	mkdir -p $S
-	yosys $(DEF_MACROS_VERILOG_SIM) -p 'read_verilog $(DESIGN); prep -top $(top); hierarchy -check; proc; write_json $S/$(top).json'
+	yosys $(MACROS_SIM) -p 'read_verilog $(DESIGN); prep -top $(top); hierarchy -check; proc; write_json $S/$(top).json'
 
 # Convertir el diseño en un solo archivo de verilog
 ConvertOneVerilogFile:
 	mkdir -p $S
-	yosys $(DEF_MACROS_VERILOG_SIM) -p 'read_verilog $(DESIGN); prep -top $(top); hierarchy -check; proc; opt -full; write_verilog -noattr -nodec $S/$(top).v'
+	yosys $(MACROS_SIM) -p 'read_verilog $(DESIGN); prep -top $(top); hierarchy -check; proc; opt -full; write_verilog -noattr -nodec $S/$(top).v'
 	# yosys -p 'read_verilog $(DESIGN); prep -top $(TOP); hierarchy -check; proc; opt -full; write_verilog -noattr -noexpr -nodec $S/$(TOP).v'
 	# yosys -p 'read_verilog $(DESIGN); prep -top $(TOP); hierarchy -check; proc; flatten; synth; write_verilog -noattr -noexpr $S/$(TOP).v'
 
@@ -62,7 +62,7 @@ view-svg:
 	eog $S/$(top).svg
 
 rtl-xdot:
-	yosys $(DEF_MACROS_VERILOG_SIM) -p $(RTL_COMMAND)
+	yosys $(MACROS_SIM) -p $(RTL_COMMAND)
 
 rtl2png:
 	convert -density 200 -resize 1200 $S/$(top).svg $(top).png
