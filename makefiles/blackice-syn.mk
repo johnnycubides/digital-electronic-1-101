@@ -1,11 +1,12 @@
-TOP?=top
 DESIGN?=
-DIR_BUILD?=build
 DEVSERIAL?=/dev/ttyACM0
-PCF?=$(TOP).pcf
-JSON?=$(DIR_BUILD)/$(TOP).json
-ASC?=$(DIR_BUILD)/$(TOP).asc
-BISTREAM?=$(DIR_BUILD)/$(TOP).bin
+DIR_BUILD?=build
+top_NAME=$(basename $(notdir $(DESIGN)))
+top?=$(top_NAME)
+PCF?=$(top).pcf
+JSON?=$(DIR_BUILD)/$(top).json
+ASC?=$(DIR_BUILD)/$(top).asc
+BISTREAM?=$(DIR_BUILD)/$(top).bin
 
 help-syn:
 	@echo "\n## SINTESIS Y CONFIGURACIÓN ##"
@@ -18,7 +19,7 @@ OBJS+=$(DESIGN)
 
 $(JSON): $(OBJS)
 	mkdir -p $(DIR_BUILD)
-	yosys -p "synth_ice40 -top $(TOP) -json $(JSON)" $(OBJS)
+	yosys -p "synth_ice40 -top $(top) -json $(JSON)" $(OBJS)
 
 $(ASC): $(JSON)
 	nextpnr-ice40 --hx4k --package tq144 --json $(JSON) --pcf $(PCF) --asc $(ASC)
@@ -39,7 +40,7 @@ zip:
 	$(RM) $Z $Z.zip
 	mkdir -p $Z
 	head -n -3 Makefile > $Z/Makefile
-	sed -n '5,$$p' $(MK_SYN) >> $Z/Makefile
+	sed -n '4,$$p' $(MK_SYN) >> $Z/Makefile
 	sed -n '7,$$p' $(MK_SIM) >> $Z/Makefile
 	cp -var *.v *.md *.pcf .gitignore $Z
 ifneq ($(wildcard *.mem),) # Si existe un archivo .mem
@@ -61,11 +62,11 @@ endif
 
 init:
 	@echo "build/\nsim/\n*.log\n$Z/\n" > .gitignore
-	touch $(TOP).png README.md
+	touch $(top).png README.md
 
 clean-syn:
 	$(RM) -rf $(DIR_BUILD)
 	# $(RM) -f $(JSON) $(ASC) $(BISTREAM)
 
 .PHONY: clean
-# .PHONY: upload clean $(TOP).json $(TOP).bin $(TOP).asc init_dir_build
+# .PHONY: upload clean $(top).json $(top).bin $(top).asc init_dir_build

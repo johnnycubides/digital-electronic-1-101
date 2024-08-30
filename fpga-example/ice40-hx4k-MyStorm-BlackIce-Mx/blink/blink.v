@@ -13,16 +13,18 @@
 *                                                                             *
 ******************************************************************************/
 
-module blink
-#(parameter INIT=25'b0)
-(input clk, output led);
+module blink #(
+    parameter INIT = 25'b0
+) (
+    input  clk,
+    output led
+);
 
-	// reg [24:0] count = 24'd0;
-	reg [24:0] count = INIT;
+  // reg [24:0] count = 24'd0;
+  reg [24:0] count = INIT;
 
-	assign led = count[24];
+  assign led = count[24];
 
-	always @(posedge clk)
-		count <= count + 1;
+  always @(posedge clk) count <= count + 1;
 
 endmodule
