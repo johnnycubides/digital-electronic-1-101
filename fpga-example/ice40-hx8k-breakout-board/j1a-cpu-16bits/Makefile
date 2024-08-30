@@ -7,7 +7,7 @@ tb?=./counter8bits_tb.v
 MORE_SRC2SIM=
 # tb?=$(TOP)_tb.v
 # DESIGN=./freq_divider.v ./top.v
-DESIGN=./j1a.v
+DESIGN=./top.v
 DIR_BUILD=build
 DEVSERIAL=/dev/ttyACM0
 # Z: Nombre para empaquetar proyecto

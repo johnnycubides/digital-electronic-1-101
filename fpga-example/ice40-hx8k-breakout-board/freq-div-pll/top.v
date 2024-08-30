@@ -20,11 +20,10 @@ module top (
       .CLK_OUT(led)
   );
 
-  
+
   pll pll (
-    .clock_in(clock),
-    .clock_out(pllClock)
+      .clock_in (clock),
+      .clock_out(pllClock)
   );
-  
 
 endmodule
