@@ -3,7 +3,7 @@ clean: clean-syn clean-sim
 top=top
 #test bench del proyecto para la simulación
 tb?=$(top)_tb.v
-DEF_MACROS_VERILOG_SIM=-DINIT=\(2**24-10\)
+MACROS_SIM=-DINIT=\(2**24-10\)
 DESIGN=top.v
 DIR_BUILD=build
 DEVSERIAL=/dev/ttyACM0
