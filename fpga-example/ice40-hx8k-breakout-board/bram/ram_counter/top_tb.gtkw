@@ -1,0 +1,47 @@
+[*]
+[*] GTKWave Analyzer v3.3.117 (w)1999-2023 BSI
+[*] Fri Aug 30 03:19:26 2024
+[*]
+[dumpfile] "/home/johnny/projects/digital-electronic-1-101/fpga-example/ice40-hx8k-breakout-board/bram/ram_counter/sim/top_tb.vcd"
+[dumpfile_mtime] "Fri Aug 30 03:17:59 2024"
+[dumpfile_size] 2467
+[savefile] "/home/johnny/projects/digital-electronic-1-101/fpga-example/ice40-hx8k-breakout-board/bram/ram_counter/top_tb.gtkw"
+[timestart] 0
+[size] 1918 1150
+[pos] -1 -1
+*-14.327024 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top_tb.
+[sst_width] 207
+[signals_width] 118
+[sst_expanded] 1
+[sst_vpaned_height] 342
+@28
+top_tb.clk2
+@c00025
+top_tb.dut.runner[7:0]
+@28
+(0)top_tb.dut.runner[7:0]
+(1)top_tb.dut.runner[7:0]
+(2)top_tb.dut.runner[7:0]
+(3)top_tb.dut.runner[7:0]
+(4)top_tb.dut.runner[7:0]
+(5)top_tb.dut.runner[7:0]
+(6)top_tb.dut.runner[7:0]
+(7)top_tb.dut.runner[7:0]
+@1401205
+-group_end
+@800022
+top_tb.leds[7:0]
+@28
+(0)top_tb.leds[7:0]
+(1)top_tb.leds[7:0]
+(2)top_tb.leds[7:0]
+(3)top_tb.leds[7:0]
+(4)top_tb.leds[7:0]
+(5)top_tb.leds[7:0]
+(6)top_tb.leds[7:0]
+(7)top_tb.leds[7:0]
+@1001200
+-group_end
+[pattern_trace] 1
+[pattern_trace] 0

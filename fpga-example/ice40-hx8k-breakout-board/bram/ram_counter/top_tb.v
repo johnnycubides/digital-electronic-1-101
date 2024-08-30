@@ -1,5 +1,7 @@
-`timescale 10ns/10ns // <time_unit>/<time_precision
-module testbech;
+`timescale 10ns / 10ns  // <time_unit>/<time_precision
+`include "./top.v"
+
+module top_tb;
 
   // // Determinar el tamaño de los wire como de los estímulos
   // parameter INPUT_SIZE = 3;
@@ -48,9 +50,8 @@ module testbech;
   reg clk2 = 0;
   always #5 clk2 = !clk2;
 
-  initial
-  begin
-    #160 $finish(); // [stop(), $finish()]
+  initial begin
+    #160 $finish();  // [stop(), $finish()]
   end
 
   // // RESULT FOR DEVICE/DESIGN UNDER TEST
@@ -59,42 +60,48 @@ module testbech;
   // // DEVICE/DESIGN UNDER TEST
   // top dut (.a(inputs[1]), .b(inputs[0]), .c(value[0]));
   //
-  wire [7:0] runner;
+  // wire [7:0] runner;
   wire [7:0] leds;
 
-  counter8bits counter(.clk(clk2), .count(runner));
+  // counter8bits counter (
+  //     .clk  (clk2),
+  //     .count(runner)
+  // );
 
-  reg write_enable_A  = 0;
-  reg write_enable_B  = 0;
-  reg [7:0] data_in_A = 0;
-  reg [7:0] data_in_B = 0;
+  // reg write_enable_A = 0;
+  // reg write_enable_B = 0;
+  // reg [7:0] data_in_A = 0;
+  // reg [7:0] data_in_B = 0;
   // reg [7:0] address_A;
-  reg [7:0] address_B = 0;
+  // reg [7:0] address_B = 0;
   // wire [7:0] data_out_A;
-  wire [7:0] data_out_B;
+  // wire [7:0] data_out_B;
 
   // dual_port_ram #("./file.hex") dut (
-  dual_port_ram ram0 (
-      .clock(clk2),
-      .write_enable_A(write_enable_A),
-      .write_enable_B(write_enable_B),
-      .data_in_A(data_in_A),
-      .data_in_B(data_in_B),
-      .address_A({4'b0000, runner[3:0]}),
-      .address_B(address_B),
-      .data_out_A(leds),
-      .data_out_B(data_out_B)
+  // dual_port_ram ram0 (
+  //     .clock(clk2),
+  //     .write_enable_A(write_enable_A),
+  //     .write_enable_B(write_enable_B),
+  //     .data_in_A(data_in_A),
+  //     .data_in_B(data_in_B),
+  //     .address_A({4'b0000, runner[3:0]}),
+  //     .address_B(address_B),
+  //     .data_out_A(leds),
+  //     .data_out_B(data_out_B)
+  // );
+
+  top dut (
+      .clk (clk2),
+      .leds(leds)
   );
 
   // // MONITOR
   // initial
-    // $monitor("Time: %t, a = %d, b = %d => out = %d",
-    //   $time, a, b, value);
+  // $monitor("Time: %t, a = %d, b = %d => out = %d",
+  //   $time, a, b, value);
 
   // // WAVES IN VCD TO OPEN IN GTKWAVE
-  initial
-  begin
-    $dumpfile("top.vcd");
-    $dumpvars(0, testbech);
+  initial begin
+    $dumpvars(0, top_tb);
   end
 endmodule

@@ -1,11 +1,12 @@
 help: help-sim help-syn
 clean: clean-syn clean-sim
-TOP=top
+# TOP=top
 #test bench del proyecto para la simulación
-tb?=$(TOP)_tb.v
+tb?=./top_tb.v
+MACROS_SIM=-DSIM
 # Agregar aquí otros archivos que se requieran para la simulación
 MORE_SRC2SIM=./file.mem
-DESIGN=./top.v ./clk10hz.v ./counter8bits.v ./ram.v
+DESIGN=./top.v
 DIR_BUILD=build
 DEVSERIAL=/dev/ttyACM0
 # Z: Nombre para empaquetar proyecto
