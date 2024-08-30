@@ -1,0 +1,33 @@
+[*]
+[*] GTKWave Analyzer v3.3.117 (w)1999-2023 BSI
+[*] Fri Aug 30 22:47:42 2024
+[*]
+[dumpfile] "/home/johnny/projects/digital-electronic-1-101/fpga-example/colorlight-5a-75e/blink/sim/top_tb.vcd"
+[dumpfile_mtime] "Fri Aug 30 22:47:02 2024"
+[dumpfile_size] 1177
+[savefile] "/home/johnny/projects/digital-electronic-1-101/fpga-example/colorlight-5a-75e/blink/top_tb.gtkw"
+[timestart] 0
+[size] 1000 600
+[pos] -1 -1
+*-6.918449 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top_tb.
+[treeopen] top_tb.dut.
+[sst_width] 207
+[signals_width] 118
+[sst_expanded] 1
+[sst_vpaned_height] 149
+@28
+top_tb.clk
+@800022
+top_tb.value[3:0]
+@28
+(0)top_tb.value[3:0]
+(1)top_tb.value[3:0]
+(2)top_tb.value[3:0]
+(3)top_tb.value[3:0]
+@1001200
+-group_end
+@22
+top_tb.dut.my_blink.count[24:0]
+[pattern_trace] 1
+[pattern_trace] 0

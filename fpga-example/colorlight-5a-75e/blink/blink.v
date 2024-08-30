@@ -13,13 +13,19 @@
 *                                                                             *
 ******************************************************************************/
 
-module blink(input clk, output led);
+`ifndef INIT
+`define INIT 25'd0
+`endif
 
-	reg [24:0] count = 25'd0;
+module blink (
+    input  clk,
+    output led
+);
 
-	assign led = count[24];
+  reg [24:0] count = `INIT;
 
-	always @(posedge clk)
-		count <= count + 1;
+  assign led = count[24];
+
+  always @(posedge clk) count <= count + 1;
 
 endmodule
