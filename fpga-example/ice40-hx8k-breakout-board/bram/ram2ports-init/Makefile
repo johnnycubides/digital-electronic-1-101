@@ -1,11 +1,11 @@
 help: help-sim help-syn
 clean: clean-syn clean-sim
-TOP=dual_port_ram
+# TOP=dual_port_ram
 #test bench del proyecto para la simulación
-tb?=./ram_tb.v
+tb?=./dual_port_ram_tb.v
 MORE_SRC2SIM=./file.mem
 # tb?=$(TOP)_tb.v
-DESIGN=ram.v
+DESIGN=./dual_port_ram.v
 DIR_BUILD=build
 DEVSERIAL=/dev/ttyACM0
 # Z: Nombre para empaquetar proyecto

@@ -1,0 +1,23 @@
+[*]
+[*] GTKWave Analyzer v3.3.117 (w)1999-2023 BSI
+[*] Fri Aug 30 02:48:33 2024
+[*]
+[dumpfile] "/home/johnny/projects/digital-electronic-1-101/fpga-example/ice40-hx8k-breakout-board/bram/ram2ports-init/sim/dual_port_ram_tb.vcd"
+[dumpfile_mtime] "Fri Aug 30 02:48:27 2024"
+[dumpfile_size] 1176
+[savefile] "/home/johnny/projects/digital-electronic-1-101/fpga-example/ice40-hx8k-breakout-board/bram/ram2ports-init/dual_port_ram_tb.gtkw"
+[timestart] 0
+[size] 1918 1150
+[pos] -1 -1
+*-11.949574 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 207
+[signals_width] 150
+[sst_expanded] 1
+[sst_vpaned_height] 342
+@28
+dual_port_ram_tb.clock
+@22
+dual_port_ram_tb.address_A[7:0]
+dual_port_ram_tb.data_out_A[7:0]
+[pattern_trace] 1
+[pattern_trace] 0
