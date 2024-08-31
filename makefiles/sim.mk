@@ -46,12 +46,12 @@ wave:
 
 json-yosys:
 	mkdir -p $S
-	yosys $(MACROS_SIM) -p 'read_verilog $(DESIGN); prep -top $(top); hierarchy -check; proc; write_json $S/$(top).json'
+	yosys $(MACROS_SIM) -p 'prep -top $(top); hierarchy -check; proc; write_json $S/$(top).json' $(DESIGN)
 
 # Convertir el diseño en un solo archivo de verilog
 ConvertOneVerilogFile:
 	mkdir -p $S
-	yosys $(MACROS_SIM) -p 'read_verilog $(DESIGN); prep -top $(top); hierarchy -check; proc; opt -full; write_verilog -noattr -nodec $S/$(top).v'
+	yosys $(MACROS_SIM) -p 'prep -top $(top); hierarchy -check; proc; opt -full; write_verilog -noattr -nodec $S/$(top).v' $(DESIGN)
 	# yosys -p 'read_verilog $(DESIGN); prep -top $(TOP); hierarchy -check; proc; opt -full; write_verilog -noattr -noexpr -nodec $S/$(TOP).v'
 	# yosys -p 'read_verilog $(DESIGN); prep -top $(TOP); hierarchy -check; proc; flatten; synth; write_verilog -noattr -noexpr $S/$(TOP).v'
 
