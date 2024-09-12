@@ -116,6 +116,7 @@ que fueron instaladas.
 (digital) $ conda install -c conda-forge gtkwave 
 (digital) $ conda install conda-forge::verilator
 (digital) $ conda install gcc-riscv64-elf-newlib
+(digital) $ conda install conda-forge::verible
 ```
 
 > Para comprobar que se han instalado las herramientas requeridas podrá listar y ubicarlas con el comando `$ conda list`
