@@ -1,0 +1,4 @@
+set_io clk J3 # 
+
+set_io trigger A2 # D7
+set_io probe C3 # D2

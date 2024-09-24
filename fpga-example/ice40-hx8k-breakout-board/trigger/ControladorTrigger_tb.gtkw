@@ -1,0 +1,23 @@
+[*]
+[*] GTKWave Analyzer v3.3.117 (w)1999-2023 BSI
+[*] Tue Sep 24 23:14:17 2024
+[*]
+[dumpfile] "/home/johnny/projects/digital-electronic-1-101/fpga-example/ice40-hx8k-breakout-board/trigger/sim/ControladorTrigger_tb.vcd"
+[dumpfile_mtime] "Tue Sep 24 23:14:04 2024"
+[dumpfile_size] 21988
+[savefile] "/home/johnny/projects/digital-electronic-1-101/fpga-example/ice40-hx8k-breakout-board/trigger/ControladorTrigger_tb.gtkw"
+[timestart] 0
+[size] 1918 1150
+[pos] -1 -1
+*-21.300232 8590000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] ControladorTrigger_tb.
+[sst_width] 207
+[signals_width] 110
+[sst_expanded] 1
+[sst_vpaned_height] 342
+@29
+ControladorTrigger_tb.clk_tb
+ControladorTrigger_tb.trigger_tb
+ControladorTrigger_tb.UUT.pulso
+[pattern_trace] 1
+[pattern_trace] 0
