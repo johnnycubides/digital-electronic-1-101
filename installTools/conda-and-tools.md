@@ -8,11 +8,11 @@ lang: es
   * [Instalación de Miniconda](#instalación-de-miniconda)
     * [Instalación de herramientas opensource desde Miniconda](#instalación-de-herramientas-opensource-desde-miniconda)
       * [Instalación de herramientas de desarrollo con un solo comando](#instalación-de-herramientas-de-desarrollo-con-un-solo-comando)
-      * [Agregar reglas para el uso del hardware y dar permisos (necesario en ambas opciones)](#agregar-reglas-para-el-uso-del-hardware-y-dar-permisos-(necesario-en-ambas-opciones))
+      * [Agregar reglas para el uso del hardware y dar permisos](#agregar-reglas-para-el-uso-del-hardware-y-dar-permisos)
   * [Digital Simulador de circuitos](#digital-simulador-de-circuitos)
     * [Instalación de Digital](#instalación-de-digital)
-  * [Lite XL (Editor de texto liviano)](#lite-xl-(editor-de-texto-liviano))
-  * [Qucs_s simulador de circuitos](#qucs_s-simulador-de-circuitos)
+  * [Lite XL, Editor de texto liviano)](#lite-xl,-editor-de-texto-liviano))
+  * [Qucs_S, simulador de circuitos](#qucs_s,-simulador-de-circuitos)
   * [Referencias](#referencias)
 
 <!-- vim-markdown-toc -->
@@ -73,7 +73,7 @@ el proceso de diseño de sistemas digitales.
 curl https://raw.githubusercontent.com/johnnycubides/digital-electronic-1-101/main/installTools/spec-file.txt > ./spec-file.txt && conda create -n digital --file ./spec-file.txt
 ```
 
-#### Agregar reglas para el uso del hardware y dar permisos (necesario en ambas opciones)
+#### Agregar reglas para el uso del hardware y dar permisos
 
 El puerto serial (USB-serial) requiere permisos para poder comunicarse con la
 tarjeta de desarrollo a través del protocolo _UART_. Para dar permisos, ejecute
@@ -104,7 +104,7 @@ curl https://raw.githubusercontent.com/johnnycubides/swissknife/refs/heads/maste
 
 **Observación**: En algunas distribuciones va a requerirse la instalación de libfuse, la cual se puede instalar puedes ejecutar `sudo apt install libfuse2`
 
-## Lite XL (Editor de texto liviano)
+## Lite XL, Editor de texto liviano)
 
 Se trata de un editor liviano y potente con capacidad de resalte de sintaxis, servidor LSP, terminal embebida, entre otras.
 Para realizar la instalación ejecute el siguiente comando en la terminal:
@@ -113,9 +113,9 @@ Para realizar la instalación ejecute el siguiente comando en la terminal:
 curl https://raw.githubusercontent.com/johnnycubides/swissknife/master/bash/installs/lite-xl/install-all.bash | bash
 ```
 
-## Qucs_s simulador de circuitos
+## Qucs_S, simulador de circuitos
 
-Si mulador de circuitos que hace uso de ngspice, puede realizar simulaciones digitales como analógicas.
+Simulador de circuitos que hace uso de ngspice, puede realizar simulaciones digitales como analógicas.
 
 Para instalar, ejecute el siguiente comando:
 
