@@ -2,18 +2,18 @@
 lang: es
 ---
 
+
 <!-- vim-markdown-toc Marked -->
 
 * [Instalación de herramientas](#instalación-de-herramientas)
-    * [Instalación de Miniconda](#instalación-de-miniconda)
-        * [Instalación de herramientas opensource desde Miniconda](#instalación-de-herramientas-opensource-desde-miniconda)
-            * [Instalación de herramientas de desarrollo con un solo comando (Opción 1 recomendada)](#instalación-de-herramientas-de-desarrollo-con-un-solo-comando-(opción-1-recomendada))
-            * [Agregar reglas para el uso del hardware y dar permisos (necesario en ambas opciones)](#agregar-reglas-para-el-uso-del-hardware-y-dar-permisos-(necesario-en-ambas-opciones))
-            * [Instalación de herramientas de desarrollo paso a paso (Opción 2)](#instalación-de-herramientas-de-desarrollo-paso-a-paso-(opción-2))
-    * [Digital Simulador de circuitos](#digital-simulador-de-circuitos)
-        * [Instalación de Digital](#instalación-de-digital)
-        * [Complementos para digital](#complementos-para-digital)
-    * [Referencias](#referencias)
+  * [Instalación de Miniconda](#instalación-de-miniconda)
+    * [Instalación de herramientas opensource desde Miniconda](#instalación-de-herramientas-opensource-desde-miniconda)
+      * [Instalación de herramientas de desarrollo con un solo comando](#instalación-de-herramientas-de-desarrollo-con-un-solo-comando)
+      * [Agregar reglas para el uso del hardware y dar permisos (necesario en ambas opciones)](#agregar-reglas-para-el-uso-del-hardware-y-dar-permisos-(necesario-en-ambas-opciones))
+  * [Digital Simulador de circuitos](#digital-simulador-de-circuitos)
+    * [Instalación de Digital](#instalación-de-digital)
+  * [Lite XL (Editor de texto liviano)](#lite-xl-(editor-de-texto-liviano))
+  * [Referencias](#referencias)
 
 <!-- vim-markdown-toc -->
 
