@@ -22,10 +22,12 @@ lang: es
 A continuación se propone la instalación de diferentes herramientas para el diseño, simulación, síntesis, ruteo y configuarción
 de circuitos digitales en tecnologías como es el caso de las FPGA. Tenga presente que al final deberá realizar estas actividades:
 
-* Instalación miniconda
+* Instalación Miniconda
 * Instalación de herramientas _opensource_
-* Instalación de _Digital_
 * Dar permisos al puerto USB para comunicación serial
+* Instalación de _Digital_
+* Instalación del editor de texto Lite XL
+* Instalación de Qucs para simulaciones analógicas y digitales
 
 > **¡Tenga en cuenta!** Las instrucciones que van delante del símbolo ` $ ` son aquellas a realizar en el prompt de la consola/terminal; deberá copiarlas y
 > pegarlas en la consola para luego ejecutarlas. Las demás líneas o campos son salidas o resultados de una operación que podrá usar como
@@ -37,7 +39,7 @@ comando para instalar o actualizar algunas dependencias:
 
 ```bash
 sudo apt update
-sudo apt install eog imagemagick curl wget openjdk-11-jdk git -y
+sudo apt install eog imagemagick curl wget openjdk-11-jdk git pulseview ngspice -y
 ```
 
 ## Instalación de Miniconda
@@ -62,7 +64,7 @@ bash Miniconda3-latest-Linux-x86_64.sh # Seguir las instrucciones y reiniciar la
 Se presentan dos opciones de instalación, en principio haga uso de la opción 1
 recomendada y seguido de permisos al puerto serial.
 
-#### Instalación de herramientas de desarrollo con un solo comando (Opción 1 recomendada)
+#### Instalación de herramientas de desarrollo con un solo comando
 
 Con este único comando podrá instalar todas las herramientas _opensource_ para
 el proceso de diseño de sistemas digitales.
@@ -84,53 +86,6 @@ curl https://raw.githubusercontent.com/johnnycubides/digital-electronic-1-101/ma
 Reinicie el equipo, inicie una terminal y al ejecutar el comando `groups` en
 ella deberá ver el grupo *dialout* en pantalla.
 
-#### Instalación de herramientas de desarrollo paso a paso (Opción 2)
-
-Estos comandos fueron ejecutados en la sección anterior de instalación de un
-solo comando, sin embargo, se ponen acá para que pueda conocer las herramientas
-que fueron instaladas.
-
-```bash
-(base) $ conda update conda # Actualizar conda
-(base) $ conda create -n digital python=3.7 # Configurar digital como variable de entorno y python3.7
-(base) $ conda activate digital  # Activar la variable de entorno de conda denominada digital
-(digital) $ python --version # Debe presentarse la version 3.7 para poder continuar
-```
-> Recuerde que para activar el entorno **digital** deberá hacer uso del comando `$ conda activate digital`.
-> Para desactivar la variable de entorno **digital** en conda ejecutar `$ conda deactivate`
-
-
-```bash
-(digital) $ conda install conda-forge::libstdcxx-ng
-(digital) $ conda install conda-forge::libusb
-(digital) $ conda install conda-forge::libftdi 
-(digital) $ conda install conda-forge::libhidapi
-(digital) $ conda install johnnycubides::openfpgaloader 
-(digital) $ conda install -c litex-hub nextpnr-ice40
-(digital) $ conda install -c litex-hub nextpnr-ecp5
-(digital) $ conda install -c litex-hub iceprog
-(digital) $ conda install -c litex-hub yosys
-(digital) $ conda install -c litex-hub iverilog
-(digital) $ conda install -c symbiflow netlistsvg
-(digital) $ conda install -c conda-forge graphviz
-(digital) $ conda install -c conda-forge gtkwave 
-(digital) $ conda install conda-forge::verilator
-(digital) $ conda install gcc-riscv64-elf-newlib
-(digital) $ conda install conda-forge::verible
-```
-
-> Para comprobar que se han instalado las herramientas requeridas podrá listar y ubicarlas con el comando `$ conda list`
-> Para remover un paquete instalado puede ejecutar como sigue: `conda remove name-package`
-
-
-También puede comprobar las versiones instaladas como sigue:
-
-```
-(digital) $ gtkwave --version # versión instalada v3.3.117
-(digital) $ yosys --version) # versión instalada Yosys 0.32+74
-(digital) $ iverilog -v # versión instalada 13.0
-```
-
 ## Digital Simulador de circuitos
 
 ![imagen de digital](https://github.com/hneemann/Digital/raw/master/distribution/screenshot2.png)
@@ -143,34 +98,22 @@ realiza diferentes análisis, test de comportamiento, como también exporta los 
 
 ### Instalación de Digital
 
-> Digital requiere la máquina virtual de java, puede comprobar que tenga instalada usando el comando`java --version`.
-> en el caso de no tener instalada la máquina virtual podría revisar el siguiente enlace: [JVM](https://adoptium.net/).
-
-> En el caso de no tener instalado el JDK o alguna librería requerida en Linux podrá realizar la instalación del JDK desde un gestor de paquetes, ejemplo:
-```bash
-$ sudo apt install openjdk-11-jdk # > Si es una distribución basada en debian
-$ pamac install jdk-openjdk # > Si es una distribución basada en arch
-```
-
-Para realizar la instalación de Digital en su sistema podrá seguir estos 3 pasos:
-
-1. Descargar [Digital.zip](https://github.com/hneemann/Digital/releases/latest/download/Digital.zip): este archivo contiene la aplicación y los scripts necesarios.
-2. Ejecutar la aplicación: Se descomprime el archivo .zip y en la carpeta generada basta con lanzar el ejecutable con extensión .exe para Windows o `java -jar Digital.jar` en una terminal para Linux.
-3. Instalar Digital: si desea encontrar Digital en el menú de aplicaciones bastará con ejecutar el comando `./install.sh` en el directorio donde se encuentra Digital.jar.
-
-A continuación se presenta el ejemplo de instalación de *Digital* en un directorio del usuario. Observe el paso a paso:
+Ejecute el siguiente comando en la terminal:
 
 ```
 curl https://raw.githubusercontent.com/johnnycubides/swissknife/refs/heads/master/bash/installs/digital-sh/digital-install.sh | bash -s install
 ```
 
-### Complementos para digital
+**Observación**: En algunas distribuciones va a requerirse la instalación de libfuse, la cual se puede instalar puedes ejecutar `sudo apt install libfuse2`
 
-Digital permite importar descripciones VHDL o Verilog a su área de trabajo para realizar simulaciones, para habilitar esta opción
-se requiere la instalación de un simulador según el lenguaje que se quiera importar:
+## Lite XL (Editor de texto liviano)
 
-* Para Verilog -> Icarus Verilog (el cual ya fue instalado con conda), [docs](https://steveicarus.github.io/iverilog/usage/installation.html), [Windows bin](https://bleyer.org/icarus/)
-* Para VHDL -> GHDL (si quiere simulador con VHDL), [Docs](http://ghdl.free.fr/site/pmwiki.php?n=Main.HomePage), [Binarios](https://github.com/ghdl/ghdl/releases), [Wiki](https://github.com/ghdl/ghdl/wiki)
+Se trata de un editor liviano y potente con capacidad de resalte de sintaxis, servidor LSP, terminal embebida, entre otras.
+Para realizar la instalación ejecute el siguiente comando en la terminal:
+
+```
+curl https://raw.githubusercontent.com/johnnycubides/swissknife/master/bash/installs/lite-xl/install-all.bash | bash
+```
 
 ## Referencias
 
