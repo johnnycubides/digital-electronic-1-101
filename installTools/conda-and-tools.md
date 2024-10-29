@@ -2,7 +2,6 @@
 lang: es
 ---
 
-
 <!-- vim-markdown-toc Marked -->
 
 * [Instalación de herramientas](#instalación-de-herramientas)
@@ -13,6 +12,7 @@ lang: es
   * [Digital Simulador de circuitos](#digital-simulador-de-circuitos)
     * [Instalación de Digital](#instalación-de-digital)
   * [Lite XL (Editor de texto liviano)](#lite-xl-(editor-de-texto-liviano))
+  * [Qucs_s simulador de circuitos](#qucs_s-simulador-de-circuitos)
   * [Referencias](#referencias)
 
 <!-- vim-markdown-toc -->
@@ -88,8 +88,6 @@ ella deberá ver el grupo *dialout* en pantalla.
 
 ## Digital Simulador de circuitos
 
-![imagen de digital](https://github.com/hneemann/Digital/raw/master/distribution/screenshot2.png)
-
 Digital es una herramienta didáctica escrita en java e inspirada por [logisim](http://www.cburch.com/logisim/).
 Esta herramienta permite comprender cómo se construyen y se comportan los diferentes circuitos electrónicos digitales,
 realiza diferentes análisis, test de comportamiento, como también exporta los módulos digitales a lenguajes de descripción HDL.
@@ -113,6 +111,16 @@ Para realizar la instalación ejecute el siguiente comando en la terminal:
 
 ```
 curl https://raw.githubusercontent.com/johnnycubides/swissknife/master/bash/installs/lite-xl/install-all.bash | bash
+```
+
+## Qucs_s simulador de circuitos
+
+Si mulador de circuitos que hace uso de ngspice, puede realizar simulaciones digitales como analógicas.
+
+Para instalar, ejecute el siguiente comando:
+
+```
+curl https://raw.githubusercontent.com/johnnycubides/swissknife/master/bash/installs/qucs_s/install-all.bash | bash -s all
 ```
 
 ## Referencias
