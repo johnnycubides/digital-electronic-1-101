@@ -11,7 +11,7 @@ lang: es
       * [Agregar reglas para el uso del hardware y dar permisos](#agregar-reglas-para-el-uso-del-hardware-y-dar-permisos)
   * [Digital Simulador de circuitos](#digital-simulador-de-circuitos)
     * [Instalación de Digital](#instalación-de-digital)
-  * [Lite XL, Editor de texto liviano)](#lite-xl,-editor-de-texto-liviano))
+  * [Lite XL, Editor de texto liviano](#lite-xl,-editor-de-texto-liviano)
   * [Qucs_S, simulador de circuitos](#qucs_s,-simulador-de-circuitos)
   * [Referencias](#referencias)
 
@@ -104,7 +104,7 @@ curl https://raw.githubusercontent.com/johnnycubides/swissknife/refs/heads/maste
 
 **Observación**: En algunas distribuciones va a requerirse la instalación de libfuse, la cual se puede instalar puedes ejecutar `sudo apt install libfuse2`
 
-## Lite XL, Editor de texto liviano)
+## Lite XL, Editor de texto liviano
 
 Se trata de un editor liviano y potente con capacidad de resalte de sintaxis, servidor LSP, terminal embebida, entre otras.
 Para realizar la instalación ejecute el siguiente comando en la terminal:
