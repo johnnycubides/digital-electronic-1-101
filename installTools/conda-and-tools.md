@@ -37,7 +37,7 @@ comando para instalar o actualizar algunas dependencias:
 
 ```bash
 sudo apt update
-sudo apt install eog imagemagick curl geany geany-plugins
+sudo apt install eog imagemagick curl wget openjdk-11-jdk git -y
 ```
 
 ## Instalación de Miniconda
@@ -52,7 +52,7 @@ Ejecute los siguientes 3 comandos en una terminal de linux, si en la terminal
 se presenta algún error comparta el resultado para recibir sugerencias.
 
 ```bash
-cd Downloads
+cd && cd Descargas || cd Downloads
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 bash Miniconda3-latest-Linux-x86_64.sh # Seguir las instrucciones y reiniciar la terminal
 ```
@@ -60,7 +60,7 @@ bash Miniconda3-latest-Linux-x86_64.sh # Seguir las instrucciones y reiniciar la
 ### Instalación de herramientas opensource desde Miniconda
 
 Se presentan dos opciones de instalación, en principio haga uso de la opción 1
-recomendad y seguido de permisos al puerto serial.
+recomendada y seguido de permisos al puerto serial.
 
 #### Instalación de herramientas de desarrollo con un solo comando (Opción 1 recomendada)
 
@@ -159,13 +159,9 @@ Para realizar la instalación de Digital en su sistema podrá seguir estos 3 pas
 3. Instalar Digital: si desea encontrar Digital en el menú de aplicaciones bastará con ejecutar el comando `./install.sh` en el directorio donde se encuentra Digital.jar.
 
 A continuación se presenta el ejemplo de instalación de *Digital* en un directorio del usuario. Observe el paso a paso:
+
 ```
-mkdir -p ~/gitPackages/ # Crear directorio de descarga
-cd ~/gitPackages/ # Ubircase dentro del directorio
-wget -O "Digital.zip" https://github.com/hneemann/Digital/releases/latest/download/Digital.zip # descargar Digital.zip
-unzip Digital.zip # Descromprimir digital
-cd Digital # Entrar en el directorio de Digital
-./install.sh # Instalar Digital
+curl https://raw.githubusercontent.com/johnnycubides/swissknife/refs/heads/master/bash/installs/digital-sh/digital-install.sh | bash -s install
 ```
 
 ### Complementos para digital
