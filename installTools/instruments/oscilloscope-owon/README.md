@@ -1,8 +1,8 @@
-# Osciloscopio UOMO
+# Osciloscopio OWON
 
-![uomo-pc](img/uomo-pc.jpg)
+![owon-pc](img/uomo-pc.jpg)
 
-![uomo](img/uomo-app.png)
+![owon](img/owon-app.png)
 
 ## Instrucciones de instalación
 
