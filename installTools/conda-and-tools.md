@@ -61,8 +61,8 @@ bash Miniconda3-latest-Linux-x86_64.sh # Seguir las instrucciones y reiniciar la
 
 ### Instalación de herramientas opensource desde Miniconda
 
-Se presentan dos opciones de instalación, en principio haga uso de la opción 1
-recomendada y seguido de permisos al puerto serial.
+A continuación se presenta las instrucciones de instalación de las herramientas de desarrollo 
+como también para habilitar los permisos de hardware.
 
 #### Instalación de herramientas de desarrollo con un solo comando
 
