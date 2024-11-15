@@ -5,15 +5,15 @@ lang: es
 <!-- vim-markdown-toc Marked -->
 
 * [Instalación de herramientas](#instalación-de-herramientas)
-  * [1. Instalación de dependencias](#1.-instalación-de-dependencias)
-  * [2. Instalación de Miniconda](#2.-instalación-de-miniconda)
-    * [2.1 Instalación de herramientas opensource desde Miniconda](#2.1-instalación-de-herramientas-opensource-desde-miniconda)
-  * [3. Agregar reglas para permisos de hardware](#3.-agregar-reglas-para-permisos-de-hardware)
-  * [4. Instalación de herramientas importantes en el diseño](#4.-instalación-de-herramientas-importantes-en-el-diseño)
-    * [4.1 Digital | Simulador de circuitos](#4.1-digital-|-simulador-de-circuitos)
+  * [1 Instalación de dependencias](#1-instalación-de-dependencias)
+  * [2 Instalación de Miniconda](#2-instalación-de-miniconda)
+    * [2_1 Instalación de herramientas opensource desde Miniconda](#2_1-instalación-de-herramientas-opensource-desde-miniconda)
+  * [3 Agregar reglas para permisos de hardware](#3-agregar-reglas-para-permisos-de-hardware)
+  * [4 Instalación de herramientas importantes en el diseño](#4-instalación-de-herramientas-importantes-en-el-diseño)
+    * [4_1 Digital | Simulador de circuitos](#4_1-digital-|-simulador-de-circuitos)
       * [Instalación de Digital](#instalación-de-digital)
-    * [4.2 Lite XL | Editor de texto liviano](#4.2-lite-xl-|-editor-de-texto-liviano)
-    * [4.3 Qucs_S | Simulador de circuitos analógicos y digitales](#4.3-qucs_s-|-simulador-de-circuitos-analógicos-y-digitales)
+    * [4_2 Lite XL | Editor de texto liviano](#4_2-lite-xl-|-editor-de-texto-liviano)
+    * [4_3 Qucs_S | Simulador de circuitos analógicos y digitales](#4_3-qucs_s-|-simulador-de-circuitos-analógicos-y-digitales)
   * [Referencias](#referencias)
 
 <!-- vim-markdown-toc -->
@@ -38,7 +38,7 @@ de circuitos digitales en tecnologías como es el caso de las FPGA. Tenga presen
 Antes de instalar las herramientas recomendadas en esta guía, ejecute este
 comando para instalar o actualizar algunas dependencias:
 
-## 1. Instalación de dependencias
+## 1 Instalación de dependencias
 
 Para las distribuciones basadas en debian, puede ejecutar el siguiente comando:
 
@@ -49,7 +49,7 @@ sudo apt install eog imagemagick curl wget openjdk-11-jdk git pulseview ngspice 
 
 En el caso de otras distribuciones deberá consultar cómo puede hacerlo.
 
-## 2. Instalación de Miniconda
+## 2 Instalación de Miniconda
 
 Miniconda es un ecosistema que homogeniza las características requeridas para
 la instalación y ejecución de aplicaciones, a través de variables de entorno y
@@ -66,7 +66,7 @@ wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 bash Miniconda3-latest-Linux-x86_64.sh # Seguir las instrucciones y reiniciar la terminal
 ```
 
-### 2.1 Instalación de herramientas opensource desde Miniconda
+### 2_1 Instalación de herramientas opensource desde Miniconda
 
 Con el siguiente comando podrá instalar todas las herramientas _opensource_
 para el proceso de diseño de sistemas digitales y que estas se activen
@@ -85,7 +85,7 @@ curl https://raw.githubusercontent.com/johnnycubides/digital-electronic-1-101/ma
 conda activate digital
 ```
 
-## 3. Agregar reglas para permisos de hardware
+## 3 Agregar reglas para permisos de hardware
 
 El puerto serial (USB-serial) requiere permisos para poder comunicarse con la
 tarjeta de desarrollo a través del protocolo _UART_. Para dar permisos, ejecute
@@ -98,9 +98,9 @@ curl https://raw.githubusercontent.com/johnnycubides/digital-electronic-1-101/ma
 Reinicie el equipo, inicie una terminal y al ejecutar el comando `groups` en
 ella deberá ver el grupo *dialout* en pantalla.
 
-## 4. Instalación de herramientas importantes en el diseño
+## 4 Instalación de herramientas importantes en el diseño
 
-### 4.1 Digital | Simulador de circuitos
+### 4_1 Digital | Simulador de circuitos
 
 Digital es una herramienta didáctica escrita en java e inspirada por [logisim](http://www.cburch.com/logisim/).
 Esta herramienta permite comprender cómo se construyen y se comportan los diferentes circuitos electrónicos digitales,
@@ -118,7 +118,7 @@ curl https://raw.githubusercontent.com/johnnycubides/swissknife/refs/heads/maste
 
 **Observación**: En algunas distribuciones va a requerirse la instalación de libfuse, la cual se puede instalar puedes ejecutar `sudo apt install libfuse2`
 
-### 4.2 Lite XL | Editor de texto liviano
+### 4_2 Lite XL | Editor de texto liviano
 
 Se trata de un editor liviano y potente con capacidad de resalte de sintaxis, servidor LSP, terminal embebida, entre otras.
 Para realizar la instalación ejecute el siguiente comando en la terminal:
@@ -127,7 +127,7 @@ Para realizar la instalación ejecute el siguiente comando en la terminal:
 curl https://raw.githubusercontent.com/johnnycubides/swissknife/master/bash/installs/lite-xl/install-all.bash | bash
 ```
 
-### 4.3 Qucs_S | Simulador de circuitos analógicos y digitales
+### 4_3 Qucs_S | Simulador de circuitos analógicos y digitales
 
 Simulador de circuitos que hace uso de ngspice, puede realizar simulaciones
 digitales como analógicas. Para instalar, ejecute el siguiente comando:
