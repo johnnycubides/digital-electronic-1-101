@@ -14,6 +14,10 @@
 > indica que podrá hacer la configuración desde la memoria flash; la configuración
 > será cargada en la flash de la IceCore y en cada reinicio se cargará tal configuración.
 
+## Vídeos útiles
+
+* [Configuración voltail y percistente para blackice2 ice40](https://www.youtube.com/watch?v=lVM3kEyNgYA)
+
 ## Referencias
 
 * [Datashet familias ice40](../resource-ice40/iCE40LPHXFamilyDataSheet.pdf)
