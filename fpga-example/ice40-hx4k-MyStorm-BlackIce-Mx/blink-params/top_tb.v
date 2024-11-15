@@ -4,7 +4,7 @@ module top_tb;
 
   // Determinar el tamaño de los wire como de los estímulos
   /* parameter INPUT_SIZE = 3; */
-  parameter integer OUTPUT_SIZE = 1;
+  parameter OUTPUT_SIZE = 4;
 
   /* // STIMULUS 1 */
   /* reg a = 0, b = 0; */
@@ -34,26 +34,29 @@ module top_tb;
   // CLOCK STIMULUS
   // Make a regular pulsing clock.
   reg clk = 0;
-  always #1 clk = !clk;
+  always #2 clk = !clk;
 
   initial begin
-    #40 $finish();  // [stop(), $finish()]
+    #64 $finish();  // [stop(), $finish()]
   end
 
   // RESULT FOR DEVICE/DESIGN UNDER TEST
-  wire [OUTPUT_SIZE-1:0] probe;
+  wire [OUTPUT_SIZE-1:0] value;
 
   // DEVICE/DESIGN UNDER TEST
-  top dut (
+  top #(
+      .INIT(24'hfffffa)
+  ) dut (
       .clk(clk),
-      .led(probe)
+      .led(value)
   );
 
   // MONITOR
-  initial $monitor("Time: %t, out = %d", $time, probe);
+  initial $monitor("Time: %t, out = %d", $time, value);
 
   // WAVES IN VCD TO OPEN IN GTKWAVE
   initial begin
+    // $dumpfile("top_tb.vcd");
     $dumpvars(0, top_tb);
   end
 endmodule

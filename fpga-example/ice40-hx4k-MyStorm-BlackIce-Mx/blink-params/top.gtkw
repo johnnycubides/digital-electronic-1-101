@@ -1,0 +1,33 @@
+[*]
+[*] GTKWave Analyzer v3.3.117 (w)1999-2023 BSI
+[*] Fri Feb 23 00:12:19 2024
+[*]
+[dumpfile] "/home/johnny/projects/digital-electronic-1-101/fpga-example/ice40-hx4k-MyStorm-BlackIce-Mx/blink/sim/top.vcd"
+[dumpfile_mtime] "Fri Feb 23 00:11:44 2024"
+[dumpfile_size] 1393
+[savefile] "/home/johnny/projects/digital-electronic-1-101/fpga-example/ice40-hx4k-MyStorm-BlackIce-Mx/blink/top.gtkw"
+[timestart] 0
+[size] 1920 1176
+[pos] -1 -1
+*-6.691836 240 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] testbech.
+[treeopen] testbech.dut.
+[sst_width] 249
+[signals_width] 213
+[sst_expanded] 1
+[sst_vpaned_height] 434
+@29
+testbech.clk
+@800022
+testbech.value[3:0]
+@28
+(0)testbech.value[3:0]
+(1)testbech.value[3:0]
+(2)testbech.value[3:0]
+(3)testbech.value[3:0]
+@1001200
+-group_end
+@22
+testbech.dut.my_blink.count[24:0]
+[pattern_trace] 1
+[pattern_trace] 0

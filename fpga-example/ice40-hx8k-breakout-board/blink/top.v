@@ -1,6 +1,7 @@
 `include "./blink.v"
+
 module top (
-    // 25MHz clock input
+    // 12MHz clock input
     input  clk,
     // Led outputs
     output led
