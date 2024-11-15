@@ -13,7 +13,7 @@ lang: es
     * [4.1 Digital: Simulador de circuitos](#4.1-digital:-simulador-de-circuitos)
       * [Instalación de Digital](#instalación-de-digital)
     * [4.2 Lite XL: Editor de texto liviano](#4.2-lite-xl:-editor-de-texto-liviano)
-    * [4.3 Qucs_S: simulador de circuitos analógicos y digitales](#4.3-qucs_s:-simulador-de-circuitos-analógicos-y-digitales)
+    * [4.3 Qucs_S | Simulador de circuitos analógicos y digitales](#4.3-qucs_s-|-simulador-de-circuitos-analógicos-y-digitales)
   * [Referencias](#referencias)
 
 <!-- vim-markdown-toc -->
@@ -130,7 +130,7 @@ Para realizar la instalación ejecute el siguiente comando en la terminal:
 curl https://raw.githubusercontent.com/johnnycubides/swissknife/master/bash/installs/lite-xl/install-all.bash | bash
 ```
 
-### 4.3 Qucs_S: simulador de circuitos analógicos y digitales
+### 4.3 Qucs_S | Simulador de circuitos analógicos y digitales
 
 Simulador de circuitos que hace uso de ngspice, puede realizar simulaciones
 digitales como analógicas. Para instalar, ejecute el siguiente comando:
