@@ -8,11 +8,11 @@ lang: es
   * [1. Instalación de dependencias](#1.-instalación-de-dependencias)
   * [2. Instalación de Miniconda](#2.-instalación-de-miniconda)
     * [2.1 Instalación de herramientas opensource desde Miniconda](#2.1-instalación-de-herramientas-opensource-desde-miniconda)
-  * [3. Agregar reglas para el uso del hardware y dar permisos](#3.-agregar-reglas-para-el-uso-del-hardware-y-dar-permisos)
+  * [3. Agregar reglas para permisos de hardware](#3.-agregar-reglas-para-permisos-de-hardware)
   * [4. Instalación de herramientas importantes en el diseño](#4.-instalación-de-herramientas-importantes-en-el-diseño)
-    * [4.1 Digital: Simulador de circuitos](#4.1-digital:-simulador-de-circuitos)
+    * [4.1 Digital | Simulador de circuitos](#4.1-digital-|-simulador-de-circuitos)
       * [Instalación de Digital](#instalación-de-digital)
-    * [4.2 Lite XL: Editor de texto liviano](#4.2-lite-xl:-editor-de-texto-liviano)
+    * [4.2 Lite XL | Editor de texto liviano](#4.2-lite-xl-|-editor-de-texto-liviano)
     * [4.3 Qucs_S | Simulador de circuitos analógicos y digitales](#4.3-qucs_s-|-simulador-de-circuitos-analógicos-y-digitales)
   * [Referencias](#referencias)
 
@@ -78,17 +78,17 @@ para el proceso de diseño de sistemas digitales.
 curl https://raw.githubusercontent.com/johnnycubides/digital-electronic-1-101/main/installTools/spec-file.txt > ./spec-file.txt && conda create -n digital --file ./spec-file.txt
 ```
 
-Para iniciar el entorno de conda con las herramientas instaladas deberá siempre
-ejecutar en la terminal `conda activate digital`, sin embargo, si desea que
-cada vez que se lance una terminal, conda quede activo, guarde en el archivo
-`~/.bashrc` la instrucción anteriormente indicada. Una manera de hacerlo es la
-siguiente:
+> Para iniciar el entorno de conda con las herramientas instaladas deberá
+> siempre ejecutar en la terminal `conda activate digital`, sin embargo, si
+> desea que cada vez que se lance una terminal, conda quede activo, guarde en
+> el archivo `~/.bashrc` la instrucción anteriormente indicada. Una manera de
+> hacerlo es la siguiente:
 
 ```
 echo "conda activate digital" >> ~/.bashrc
 ```
 
-## 3. Agregar reglas para el uso del hardware y dar permisos
+## 3. Agregar reglas para permisos de hardware
 
 El puerto serial (USB-serial) requiere permisos para poder comunicarse con la
 tarjeta de desarrollo a través del protocolo _UART_. Para dar permisos, ejecute
@@ -103,7 +103,7 @@ ella deberá ver el grupo *dialout* en pantalla.
 
 ## 4. Instalación de herramientas importantes en el diseño
 
-### 4.1 Digital: Simulador de circuitos
+### 4.1 Digital | Simulador de circuitos
 
 Digital es una herramienta didáctica escrita en java e inspirada por [logisim](http://www.cburch.com/logisim/).
 Esta herramienta permite comprender cómo se construyen y se comportan los diferentes circuitos electrónicos digitales,
@@ -121,7 +121,7 @@ curl https://raw.githubusercontent.com/johnnycubides/swissknife/refs/heads/maste
 
 **Observación**: En algunas distribuciones va a requerirse la instalación de libfuse, la cual se puede instalar puedes ejecutar `sudo apt install libfuse2`
 
-### 4.2 Lite XL: Editor de texto liviano
+### 4.2 Lite XL | Editor de texto liviano
 
 Se trata de un editor liviano y potente con capacidad de resalte de sintaxis, servidor LSP, terminal embebida, entre otras.
 Para realizar la instalación ejecute el siguiente comando en la terminal:
