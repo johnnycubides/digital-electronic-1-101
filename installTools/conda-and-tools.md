@@ -5,14 +5,15 @@ lang: es
 <!-- vim-markdown-toc Marked -->
 
 * [Instalación de herramientas](#instalación-de-herramientas)
-  * [Instalación de Miniconda](#instalación-de-miniconda)
-    * [Instalación de herramientas opensource desde Miniconda](#instalación-de-herramientas-opensource-desde-miniconda)
-      * [Instalación de herramientas de desarrollo con un solo comando](#instalación-de-herramientas-de-desarrollo-con-un-solo-comando)
-      * [Agregar reglas para el uso del hardware y dar permisos](#agregar-reglas-para-el-uso-del-hardware-y-dar-permisos)
-  * [Digital Simulador de circuitos](#digital-simulador-de-circuitos)
-    * [Instalación de Digital](#instalación-de-digital)
-  * [Lite XL Editor de texto liviano](#lite-xl-editor-de-texto-liviano)
-  * [Qucs_S simulador de circuitos](#qucs_s-simulador-de-circuitos)
+  * [1. Instalación de dependencias](#1.-instalación-de-dependencias)
+  * [2. Instalación de Miniconda](#2.-instalación-de-miniconda)
+    * [2.1 Instalación de herramientas opensource desde Miniconda](#2.1-instalación-de-herramientas-opensource-desde-miniconda)
+  * [3. Agregar reglas para el uso del hardware y dar permisos](#3.-agregar-reglas-para-el-uso-del-hardware-y-dar-permisos)
+  * [4. Instalación de herramientas importantes en el diseño](#4.-instalación-de-herramientas-importantes-en-el-diseño)
+    * [4.1 Digital: Simulador de circuitos](#4.1-digital:-simulador-de-circuitos)
+      * [Instalación de Digital](#instalación-de-digital)
+    * [4.2 Lite XL: Editor de texto liviano](#4.2-lite-xl:-editor-de-texto-liviano)
+    * [4.3 Qucs_S: simulador de circuitos analógicos y digitales](#4.3-qucs_s:-simulador-de-circuitos-analógicos-y-digitales)
   * [Referencias](#referencias)
 
 <!-- vim-markdown-toc -->
@@ -37,12 +38,18 @@ de circuitos digitales en tecnologías como es el caso de las FPGA. Tenga presen
 Antes de instalar las herramientas recomendadas en esta guía, ejecute este
 comando para instalar o actualizar algunas dependencias:
 
+## 1. Instalación de dependencias
+
+Para las distribuciones basadas en debian, puede ejecutar el siguiente comando:
+
 ```bash
 sudo apt update
 sudo apt install eog imagemagick curl wget openjdk-11-jdk git pulseview ngspice -y
 ```
 
-## Instalación de Miniconda
+En el caso de otras distribuciones deberá consultar cómo puede hacerlo.
+
+## 2. Instalación de Miniconda
 
 Miniconda es un ecosistema que homogeniza las características requeridas para
 la instalación y ejecución de aplicaciones, a través de variables de entorno y
@@ -59,21 +66,29 @@ wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 bash Miniconda3-latest-Linux-x86_64.sh # Seguir las instrucciones y reiniciar la terminal
 ```
 
-### Instalación de herramientas opensource desde Miniconda
+### 2.1 Instalación de herramientas opensource desde Miniconda
 
 A continuación se presenta las instrucciones de instalación de las herramientas de desarrollo 
 como también para habilitar los permisos de hardware.
 
-#### Instalación de herramientas de desarrollo con un solo comando
-
-Con este único comando podrá instalar todas las herramientas _opensource_ para
-el proceso de diseño de sistemas digitales.
+Con el siguiente comando podrá instalar todas las herramientas _opensource_
+para el proceso de diseño de sistemas digitales.
 
 ```bash
 curl https://raw.githubusercontent.com/johnnycubides/digital-electronic-1-101/main/installTools/spec-file.txt > ./spec-file.txt && conda create -n digital --file ./spec-file.txt
 ```
 
-#### Agregar reglas para el uso del hardware y dar permisos
+Para iniciar el entorno de conda con las herramientas instaladas deberá siempre
+ejecutar en la terminal `conda activate digital`, sin embargo, si desea que
+cada vez que se lance una terminal, conda quede activo, guarde en el archivo
+`~/.bashrc` la instrucción anteriormente indicada. Una manera de hacerlo es la
+siguiente:
+
+```
+echo "conda activate digital" >> ~/.bashrc
+```
+
+## 3. Agregar reglas para el uso del hardware y dar permisos
 
 El puerto serial (USB-serial) requiere permisos para poder comunicarse con la
 tarjeta de desarrollo a través del protocolo _UART_. Para dar permisos, ejecute
@@ -86,7 +101,9 @@ curl https://raw.githubusercontent.com/johnnycubides/digital-electronic-1-101/ma
 Reinicie el equipo, inicie una terminal y al ejecutar el comando `groups` en
 ella deberá ver el grupo *dialout* en pantalla.
 
-## Digital Simulador de circuitos
+## 4. Instalación de herramientas importantes en el diseño
+
+### 4.1 Digital: Simulador de circuitos
 
 Digital es una herramienta didáctica escrita en java e inspirada por [logisim](http://www.cburch.com/logisim/).
 Esta herramienta permite comprender cómo se construyen y se comportan los diferentes circuitos electrónicos digitales,
@@ -94,7 +111,7 @@ realiza diferentes análisis, test de comportamiento, como también exporta los 
 
 * [Repositorio del proyecto digital en github](https://github.com/hneemann/Digital)
 
-### Instalación de Digital
+#### Instalación de Digital
 
 Ejecute el siguiente comando en la terminal:
 
@@ -104,7 +121,7 @@ curl https://raw.githubusercontent.com/johnnycubides/swissknife/refs/heads/maste
 
 **Observación**: En algunas distribuciones va a requerirse la instalación de libfuse, la cual se puede instalar puedes ejecutar `sudo apt install libfuse2`
 
-## Lite XL Editor de texto liviano
+### 4.2 Lite XL: Editor de texto liviano
 
 Se trata de un editor liviano y potente con capacidad de resalte de sintaxis, servidor LSP, terminal embebida, entre otras.
 Para realizar la instalación ejecute el siguiente comando en la terminal:
@@ -113,11 +130,10 @@ Para realizar la instalación ejecute el siguiente comando en la terminal:
 curl https://raw.githubusercontent.com/johnnycubides/swissknife/master/bash/installs/lite-xl/install-all.bash | bash
 ```
 
-## Qucs_S simulador de circuitos
+### 4.3 Qucs_S: simulador de circuitos analógicos y digitales
 
-Simulador de circuitos que hace uso de ngspice, puede realizar simulaciones digitales como analógicas.
-
-Para instalar, ejecute el siguiente comando:
+Simulador de circuitos que hace uso de ngspice, puede realizar simulaciones
+digitales como analógicas. Para instalar, ejecute el siguiente comando:
 
 ```
 curl https://raw.githubusercontent.com/johnnycubides/swissknife/master/bash/installs/qucs_s/install-all.bash | bash -s all
