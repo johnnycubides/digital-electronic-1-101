@@ -80,7 +80,7 @@ curl https://raw.githubusercontent.com/johnnycubides/digital-electronic-1-101/ma
 
 > Para iniciar el entorno de conda con las herramientas instaladas deberá
 > siempre ejecutar en la terminal `conda activate digital`, sin embargo, si
-> desea que cada vez que se lance una terminal, conda quede activo, guarde en
+> desea que cada vez que se lance una terminal conda quede activo, guarde en
 > el archivo `~/.bashrc` la instrucción anteriormente indicada. Una manera de
 > hacerlo es la siguiente:
 

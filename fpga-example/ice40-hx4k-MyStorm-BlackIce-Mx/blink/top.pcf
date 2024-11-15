@@ -1,9 +1,9 @@
 set_io clk 60 # Señal de reloj del hardware 25 MHz
 
-set_io led 49 # RED LED
+set_io led 56 # RED LED
 
 # COMENTARIOS
-# 49 # RED LED
+# 56 # RED LED
 # 55 # YELLOW LED
 # 52 # GREEN LED | SW1
 # 49 # BLUE LED | SW2
