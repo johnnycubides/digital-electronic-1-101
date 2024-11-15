@@ -4,7 +4,7 @@ En el siguiente vídeo encontrará un ejemplo de instalación de Quartus para GN
 del justamente las dependencias para la Cyclone IV, lo anterior permite que el tamaño de la instalación
 sea menor a la instalación standar.
 
-[![Instalación de Quartus Lite para FPGA Cyclone IV en Linux](https://img.youtube.com/vi/jhNEbPWZCAY/0.jpg)](https://www.youtube.com/watch?v=jhNEbPWZCAY "Instalación de Quartus Lite para FPGA Cyclone IV en Linux")
+[![Instalación de Quartus Lite para FPGA Cyclone IV en Linux](https://img.youtube.com/vi/2SIvtz-5iro/0.jpg)](https://www.youtube.com/watch?v=2SIvtz-5iro "Instalación de Quartus Lite para FPGA Cyclone IV en Linux")
 
 ## Agregar reglas para el dispositivo programador (Blaster)
 
