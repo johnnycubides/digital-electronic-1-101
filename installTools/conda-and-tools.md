@@ -68,24 +68,21 @@ bash Miniconda3-latest-Linux-x86_64.sh # Seguir las instrucciones y reiniciar la
 
 ### 2.1 Instalación de herramientas opensource desde Miniconda
 
-A continuación se presenta las instrucciones de instalación de las herramientas de desarrollo 
-como también para habilitar los permisos de hardware.
-
 Con el siguiente comando podrá instalar todas las herramientas _opensource_
-para el proceso de diseño de sistemas digitales.
+para el proceso de diseño de sistemas digitales y que estas se activen
+automáticamente al iniciar una terminal:
 
 ```bash
-curl https://raw.githubusercontent.com/johnnycubides/digital-electronic-1-101/main/installTools/spec-file.txt > ./spec-file.txt && conda create -n digital --file ./spec-file.txt
+curl https://raw.githubusercontent.com/johnnycubides/digital-electronic-1-101/main/installTools/spec-file.txt > ./spec-file.txt && conda create -n digital --file ./spec-file.txt && echo "conda activate digital" >> ~/.bashrc
 ```
 
-> Para iniciar el entorno de conda con las herramientas instaladas deberá
-> siempre ejecutar en la terminal `conda activate digital`, sin embargo, si
-> desea que cada vez que se lance una terminal conda quede activo, guarde en
-> el archivo `~/.bashrc` la instrucción anteriormente indicada. Una manera de
-> hacerlo es la siguiente:
+> Sino desea que se active automáticamente la variable de entorno digital,
+> puede remover el texto `conda activate digital` que fue agregado en el archivo
+> `~/.bashrc` cuando ejecutó el anterior comando. La activación manual de la
+> variable de entorno se puede dar ejecutando en la terminal:
 
-```
-echo "conda activate digital" >> ~/.bashrc
+```bash
+conda activate digital
 ```
 
 ## 3. Agregar reglas para permisos de hardware
