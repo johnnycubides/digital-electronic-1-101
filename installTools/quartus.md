@@ -14,7 +14,7 @@ agregar las reglas ejecute los pasos del 1 al 3 que verá a continuación:
 
 1. Crear un archivo representativo de las reglas:
 ```bash
-sudo geany /etc/udev/rules.d/60-blaster.rules
+sudo lite-xl /etc/udev/rules.d/60-blaster.rules
 ```
 2. En él agregar el siguiente contenido, guardar y cerrar:
 
