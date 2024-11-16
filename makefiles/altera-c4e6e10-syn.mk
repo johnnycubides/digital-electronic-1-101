@@ -21,6 +21,7 @@ help-quartus:
 	@echo "\tmake syn\t\t-> Sintetizar diseño"
 	@echo "\tmake config\t\t-> Configurar fpga"
 	@echo "\tmake config-flash\t-> Configurar flash memory"
+	@echo "\tmake erase-flash\t-> Borrar memoria flash (debe tener un archivo $B/$(top).jic)"
 
 init: init-qsf syn-quartus
 
@@ -75,6 +76,10 @@ config-cram:
 config-flash:
 	@echo "Iniciar configuración de memoria flash tarjeta de desarrollo"
 	$(PGM) -m JTAG -o "pvbi;$B/$(top).jic@$(INDEX_DEV)"
+
+erase-flash:
+	@echo "Borrar flash"
+	$(PGM) -m JTAG -o "ir;$B/$(top).jic@$(INDEX_DEV)"
 
 # Convertir archivo sof a jic
 # Opciones relacionadas al converter ./quartus_cpf --help=jic
