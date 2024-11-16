@@ -5,29 +5,31 @@ DESIGN?=
 PATH_QUARTUS?=~/gitPackages/quartus/quartus/bin
 # Cable programador
 CABLE?=USB-Blaster
+# Configuracion device
+CONF_DEV=EPCS16
+# Flash loader
+FLASH_LOADER=EP4CE10
 
 B=build
 
 help-quartus:
 	@echo "\n## SINTESIS Y CONFIGURACIÓN ##"
-	@echo "\tmake syn\t-> Sintetizar diseño"
-	@echo "\tmake config\t-> Configurar fpga"
+	@echo "\tmake syn\t\t-> Sintetizar diseño"
+	@echo "\tmake config\t\t-> Configurar fpga"
+	@echo "\tmake config-flash\t-> Configurar flash memory"
 
 init: init-qsf syn-quartus
 
-syn: syn-quartus
-
-report-syn: report-syn-quartus
-
-config: config-fpga-quartus
-
-# clean: clean-sim clean-syn-quartus
+config: config-cram
 
 # Aplicación de síntesis
 CC=$(PATH_QUARTUS)/quartus_sh
 
-# Aplicación para la programación
+# Aplicación para configuración de FPGA
 PGM=$(PATH_QUARTUS)/quartus_pgm
+
+# Aplicación para convertir formatos
+CPF=$(PATH_QUARTUS)/quartus_cpf
 
 # Indice de dispositivos (FPGA) encontrados
 INDEX_DEV=1
@@ -35,31 +37,42 @@ INDEX_DEV=1
 ## INICIO DE COMANDOS ##
 
 # Flujo de compilación: 
-syn-quartus:
+syn:
 	@echo "Flujo de síntesis"
 	$(CC) --flow compile $(TOP)
 	@cat $B/$(TOP).fit.summary
 
-report-syn-quartus:
+syn-report:
 	cat $B/top.sta.rpt
 
-# Configurar la FPGA con el bitsream
-config-fpga-quartus:
+# Configurar cram
+config-cram:
 	@echo "Iniciar programación de FPGA"
-	$(PGM) -m JTAG -o "P;$B/$(TOP).sof@$(INDEX_DEV)"
+	$(PGM) -m JTAG -o "p;$B/$(TOP).sof@$(INDEX_DEV)"
+
+# Configurar memoria flash
+# Para conocer las diferentes opciones ./quartus_pgm --help=o
+config-flash:
+	@echo "Iniciar configuración de memoria flash tarjeta de desarrollo"
+	$(PGM) -m JTAG -o "pvbi;$B/$(TOP).jic@$(INDEX_DEV)"
+
+# Convertir archivo sof a jic
+# Opciones relacionadas al converter ./quartus_cpf --help=jic
+convert-sof2jit:
+	$(CPF) -c -d $(CONF_DEV) -s $(FLASH_LOADER) -m ASx1 $B/$(TOP).sof $B/$(TOP).jic
 
 # Listar un cable programador
-cable-list-quartus:
+cable-list:
 	@echo "Detectar cable"
 	$(PGM) -l
 
 # Detectar una fpga
-fpga-detect-quartus:
+fpga-detect:
 	@echo "Detectar fpga"
 	$(PGM) -c $(CABLE) -a
 
 # Ayuda sobre comandos de ejemplo
-syn-quartus-help:
+syn-help:
 	$(CC) --help=flow
 
 # EMPAQUETAR PROYECTO EN .ZIP
@@ -90,7 +103,7 @@ init-qsf:
 	@echo "## END\n"
 
 RM=rm -rf
-clean-syn-quartus:
+clean-syn:
 	$(RM) db incremental_db $B
 
 clean-zip:
