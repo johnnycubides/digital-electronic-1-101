@@ -1,16 +1,18 @@
-TOP?=top
-# DESIGN Modules .v que hacen parte del proyecto
 DESIGN?=
+DEVSERIAL?=/dev/ttyUSB0
+DIR_BUILD?=build
+top_NAME=$(basename $(notdir $(DESIGN)))
+top?=$(top_NAME)
 # Ruta donde está quartus instalado
 PATH_QUARTUS?=~/gitPackages/quartus/quartus/bin
 # Cable programador
 CABLE?=USB-Blaster
-# Configuracion device
+# Configuration device
 CONF_DEV=EPCS16
 # Flash loader
 FLASH_LOADER=EP4CE10
 
-B=build
+B=$(DIR_BUILD)
 
 help-quartus:
 	@echo "\n## SINTESIS Y CONFIGURACIÓN ##"
@@ -39,8 +41,8 @@ INDEX_DEV=1
 # Flujo de compilación: 
 syn:
 	@echo "Flujo de síntesis"
-	$(CC) --flow compile $(TOP)
-	@cat $B/$(TOP).fit.summary
+	$(CC) --flow compile $(top)
+	@cat $B/$(top).fit.summary
 
 syn-report:
 	cat $B/top.sta.rpt
@@ -48,18 +50,18 @@ syn-report:
 # Configurar cram
 config-cram:
 	@echo "Iniciar programación de FPGA"
-	$(PGM) -m JTAG -o "p;$B/$(TOP).sof@$(INDEX_DEV)"
+	$(PGM) -m JTAG -o "p;$B/$(top).sof@$(INDEX_DEV)"
 
 # Configurar memoria flash
 # Para conocer las diferentes opciones ./quartus_pgm --help=o
 config-flash:
 	@echo "Iniciar configuración de memoria flash tarjeta de desarrollo"
-	$(PGM) -m JTAG -o "pvbi;$B/$(TOP).jic@$(INDEX_DEV)"
+	$(PGM) -m JTAG -o "pvbi;$B/$(top).jic@$(INDEX_DEV)"
 
 # Convertir archivo sof a jic
 # Opciones relacionadas al converter ./quartus_cpf --help=jic
-convert-sof2jit:
-	$(CPF) -c -d $(CONF_DEV) -s $(FLASH_LOADER) -m ASx1 $B/$(TOP).sof $B/$(TOP).jic
+convert-sof2jic:
+	$(CPF) -c -d $(CONF_DEV) -s $(FLASH_LOADER) -m ASx1 $B/$(top).sof $B/$(top).jic
 
 # Listar un cable programador
 cable-list:
@@ -81,7 +83,7 @@ zip:
 	$(RM) $Z $Z.zip
 	mkdir -p $Z
 	head -n -3 Makefile > $Z/Makefile
-	sed -n '8,$$p' $(MK_SYN) >> $Z/Makefile
+	sed -n '4,$$p' $(MK_SYN) >> $Z/Makefile
 	sed -n '7,$$p' $(MK_SIM) >> $Z/Makefile
 	cp -var *.v *.md *.txt *.qsf *.qpf *.png .gitignore $Z
 ifneq ($(wildcard *.mem),) # Si existe un archivo .png
