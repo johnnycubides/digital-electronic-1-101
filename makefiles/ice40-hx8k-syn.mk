@@ -7,6 +7,8 @@ PCF?=$(top).pcf
 JSON?=$(DIR_BUILD)/$(top).json
 ASC?=$(DIR_BUILD)/$(top).asc
 BISTREAM?=$(DIR_BUILD)/$(top).bin
+# MACRO_SYN sirve para indicar definiciones de preprocesamiento en la sintesis
+MACRO_SYN?=
 
 help-syn:
 	@echo "\n## SINTESIS Y CONFIGURACIÓN ##"
@@ -22,7 +24,7 @@ OBJS+=$(DESIGN)
 
 $(JSON): $(OBJS)
 	mkdir -p $(DIR_BUILD)
-	yosys -p "synth_ice40 -top $(top) -json $(JSON)" $(OBJS)
+	yosys $(MACRO_SYN) -p "synth_ice40 -top $(top) -json $(JSON)" $(OBJS)
 
 $(ASC): $(JSON)
 	nextpnr-ice40 --hx8k --package ct256 --json $(JSON) --pcf $(PCF) --asc $(ASC)

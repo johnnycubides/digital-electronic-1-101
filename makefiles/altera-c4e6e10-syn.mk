@@ -13,6 +13,8 @@ CONF_DEV=EPCS16
 FLASH_LOADER=EP4CE10
 
 B=$(DIR_BUILD)
+# MACROS_SYN sirve para indicar definiciones de preprocesamiento
+MACROS_SYN?=
 
 help-quartus:
 	@echo "\n## SINTESIS Y CONFIGURACIÓN ##"
@@ -24,24 +26,40 @@ init: init-qsf syn-quartus
 
 config: config-cram
 
-# Aplicación de síntesis
+# Scrip general de flujo de diseño
 CC=$(PATH_QUARTUS)/quartus_sh
-
 # Aplicación para configuración de FPGA
 PGM=$(PATH_QUARTUS)/quartus_pgm
-
 # Aplicación para convertir formatos
 CPF=$(PATH_QUARTUS)/quartus_cpf
+# Mapeo, síntesis lógica
+MAP=$(PATH_QUARTUS)/quartus_map
+# Place and route (fitter)
+FIT=$(PATH_QUARTUS)/quartus_fit
+# Asociación de pines y optimización Assembler
+ASM=$(PATH_QUARTUS)/quartus_asm
+# Generación de archivos de configuración
+STA=$(PATH_QUARTUS)/quartus_sta
 
 # Indice de dispositivos (FPGA) encontrados
 INDEX_DEV=1
+
+# Si existen macros definidas, las pone en el formato que comprede quartus_map
+MACROS_SYN_MAP := $(foreach macro,$(MACROS_SYN),--verilog_macro "$(macro)")
 
 ## INICIO DE COMANDOS ##
 
 # Flujo de compilación: 
 syn:
-	@echo "Flujo de síntesis"
+	@echo "Flujo de síntesis $(MACROS_SYN)"
+ifeq ($(MACROS_SYN),)
 	$(CC) --flow compile $(top)
+else
+	$(MAP) $(top) $(MACROS_SYN_MAP)
+	$(FIT) $(top)
+	$(ASM) $(top)
+	$(STA) $(top)
+endif
 	@cat $B/$(top).fit.summary
 
 syn-report:
