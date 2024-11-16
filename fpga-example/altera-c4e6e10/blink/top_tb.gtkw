@@ -1,0 +1,22 @@
+[*]
+[*] GTKWave Analyzer v3.3.117 (w)1999-2023 BSI
+[*] Sat Nov 16 04:37:05 2024
+[*]
+[dumpfile] "/home/johnny/projects/digital-electronic-1-101/fpga-example/altera-c4e6e10/blink/sim/top_tb.vcd"
+[dumpfile_mtime] "Sat Nov 16 04:36:46 2024"
+[dumpfile_size] 1528
+[savefile] "/home/johnny/projects/digital-electronic-1-101/fpga-example/altera-c4e6e10/blink/top_tb.gtkw"
+[timestart] 0
+[size] 1000 600
+[pos] -1 -1
+*-8.238217 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 207
+[signals_width] 78
+[sst_expanded] 1
+[sst_vpaned_height] 149
+@28
+top_tb.clk
+@29
+top_tb.value
+[pattern_trace] 1
+[pattern_trace] 0

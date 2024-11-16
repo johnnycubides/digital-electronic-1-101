@@ -1,15 +1,16 @@
 help: help-sim help-quartus
-clean: clean-zip clean-syn-quartus clean-sim
-
-TOP=top
+clean: clean-zip clean-syn clean-sim
+top=top
 #test bench del proyecto para la simulación
-tb=$(TOP)_tb.v
-# Módules .v que hacen parte del proyecto
-DESIGN=./top.v ./clock_divider.v
-# # Ruta donde está quartus instalado
+tb=$(top)_tb.v
+MACROS_SIM=
+DESIGN=./top.v
+DIR_BUILD=build
+DEVSERIAL=
+# Ruta donde está quartus instalado
 PATH_QUARTUS=~/gitPackages/quartus/quartus/bin
 # Cable programador
-CABLE=USB-Blaster
+# CABLE=USB-Blaster
 # Z: Nombre para empaquetar proyecto
 Z=blink
 
