@@ -2,11 +2,17 @@
 
 Se trata del parpadeo del LED cada segundo (a 1 Hz), hay que
 tener presente la frecuencia del cristal oscilador de esta FPGA
-la cual está a 50 Mhz, por tanro se requiere un divisor de frecuencia.
+la cual está a 50 Mhz, por tanto se requiere un divisor de frecuencia.
 
 ## Diagrama RTL
 
+**RTL top**
+
 ![RTL top](./top.png)
+
+**RTL Divider**
+
+![RTL clock_divider](./clock_divider.png)
 
 ##  CONFIGURACIÓN DE PROYECTO
 
