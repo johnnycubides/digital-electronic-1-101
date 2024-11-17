@@ -16,7 +16,13 @@
 
 ## Vídeos útiles
 
-1. [![Configuración volátil y persistente para blackice2 ice40](https://img.youtube.com/vi/lVM3kEyNgYA/0.jpg)](https://www.youtube.com/watch?v=lVM3kEyNgYA "Configuración volátil y persistente para blackice2 ice40")
+1. [Configuración volátil y persistente para blackice2 ice40](https://www.youtube.com/watch?v=lVM3kEyNgYA):
+  En este vídeo se muestra el procedimiento para configurar la ice40 ya sea de manera volátil (configurando a través de memoria CRAM),
+  de persistente (subiendo el bitstream a la memoria flash de la placa de desarrollo).
+
+[![Configuración volátil y persistente para blackice2 ice40](https://img.youtube.com/vi/lVM3kEyNgYA/0.jpg)](https://www.youtube.com/watch?v=lVM3kEyNgYA "Configuración volátil y persistente para blackice2 ice40")
+
+
 
 ## Referencias
 
