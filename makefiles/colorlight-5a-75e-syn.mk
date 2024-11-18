@@ -17,6 +17,7 @@ help-syn:
 	@echo "\tmake config-help\t-> Ayuda sobre cómo configurar la Colorlight"
 	@echo "\tmake detect\t\t-> Detectar FPGA"
 	@echo "\tmake reset\t\t-> Reiniciar FPGA"
+	@echo "\tmake erase-flash\t-> Borrar la memoria flash de configuración"
 
 syn: json pnr bitstream
 
@@ -68,7 +69,10 @@ detect:
 	$(PATH_OPEN_FPGA_LOADER) $(CONFIG_OPTIONS) --detect $(OPTIONS_CABLE)
 
 config-flash:
-	$(PATH_OPEN_FPGA_LOADER) $(CONFIG_OPTIONS) -f $(BISTREAM)
+	$(PATH_OPEN_FPGA_LOADER) $(CONFIG_OPTIONS) -f $(BISTREAM) --unprotect-flash
+
+erase-flash:
+	$(PATH_OPEN_FPGA_LOADER) $(CONFIG_OPTIONS) --bulk-erase
 
 config-sram:
 	$(PATH_OPEN_FPGA_LOADER) $(CONFIG_OPTIONS) -m $(BISTREAM)
