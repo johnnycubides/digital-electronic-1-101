@@ -12,9 +12,11 @@ BISTREAM?=$(DIR_BUILD)/$(top).bin
 help-syn:
 	@echo "\n## SINTESIS Y CONFIGURACIÓN ##"
 	@echo "\tmake syn\t\t-> Sintetizar diseño"
-	@echo "\tmake config\t\t-> Configurar fpga en SRAM"
+	@echo "\tmake config\t\t-> Configurar fpga en CRAM"
 	@echo "\tmake config-flash\t-> Guardar el bistream en memoria flash"
-	@echo "\tmake config-info\t-> Información sobre cómo configurar la Colorlight"
+	@echo "\tmake config-help\t-> Ayuda sobre cómo configurar la Colorlight"
+	@echo "\tmake detect\t\t-> Detectar FPGA"
+	@echo "\tmake reset\t\t-> Reiniciar FPGA"
 
 syn: json pnr bitstream
 
@@ -73,7 +75,7 @@ config-sram:
 
 config: config-sram
 
-config-info:
+config-help:
 	@echo "## INFORMACIÓN DE CONFIGURACIÓN PARA COLORLIGHT ##\n\n\
 	1. ENERGIZAR LA PLACA DE DESARROLLO COLORLIGHT: Para configurar la Colorlight se requiere un bridge como también una fuente de alimentación. \
 	En este ejemplo, se supondrá el uso del FT232RL, el cual es un adaptador USB a UART que sirve para emular un bridge JTAG. \
@@ -90,7 +92,7 @@ config-info:
 	2.3 El comando *make config* y los alternativos tiene asociado los pines del JTAG de la siguiente manera: **CABLE_PINES=TDI:TDO:TCK:TMS**, en donde los valores son sustituidos por el número del pin del FT232RL \
 	para emular el JTAG. Por defecto, al ejecutar el comando *make config*, los pines que son usados son:\n\n\
 	\t-Orden de los pines para la configuración: CABLE_PINES=TDI:TDO:TCK:TMS\n\
-	\t-Pines del FT232RL usados por defecto:     CABLE_PINES=$(TDI):$(TDO):$(TCK):$(TMS)\n\n\
+	\t-Pines del FT232RL usados por defecto:     CABLE_PINES=$(TDI):$(TDO):$(TCK):$(TMS)\t\t, es decir, La pareja de pines [pinFPGA--pinFT232], como sigue: J32--TXD, J30--CTS, J27--DTR y J31--RXD.\n\n\
 	2.4 Si desea hacer uso de otros pines, simplemente conectelos desde el FT232RL al JTAG de la FPGA y en el uso del comando *make config* y sus alternativos, indique explícitamente los pines a usar, ejemplo:\n\n\
 	\tmake config CABLE_PINES=5:4:7:6\n\n\
 	Lo anterior quiere decir que se ha seleccionado una configuración en la cual se conectará la FPGA y el FT232RL como sigue: TDI--DSR, TDO--DTR, TCK--RI y TMS--DCD.\n\n\
