@@ -4,7 +4,7 @@ Este repositorio está orientado al diseño de sistemas digitales complejos
 principalmente con herramientas *Open Source*, por tanto, requiere de una
 distribución *GNU/Linux* para instalar las herramientas y probar los ejemplos.
 
-A continuación se presenta un menú de hiper enlaces que son de utilidad para
+A continuación se presenta un menú de enlaces que son de utilidad para
 navegar por el contenido:
 
 * Instalación de herramientas:
