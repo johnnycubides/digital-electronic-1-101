@@ -3,8 +3,8 @@
 // la cual tienen un reloj de hardware de 25 MHz (periodo 40 nS)
 
 // CONFIGURACIÓN DEL TIMESCALE
-// Tenga encuenta que: solo puede los enteros 1, 10, 100 en la escala de s, ms,
-// us, ns, ps, fs.
+// Tenga encuenta que: solo puede usar los enteros 1, 10, 100 en la escala de
+// s, ms, us, ns, ps, fs.
 // Para el time_unit se hará uso de 10 nS, en vista del perido del clock. el
 // time_precision, se pone según interés
 `timescale 10ns / 10ns  // <time_unit>/<time_precision
@@ -21,7 +21,7 @@
 module top_tb;
 
   // Determinar el tamaño de los wire como de los estímulos
-  /* parameter INPUT_SIZE = 3; */
+  // parameter integer INPUT_SIZE = 3;
   parameter integer OUTPUT_SIZE = 1;
 
   // Make a regular pulsing clock.
@@ -30,13 +30,13 @@ module top_tb;
 
   // CLOCK STIMULUS
   initial begin
-    #(`TIME_UNIT*32) $finish();  // [stop(), $finish()]
+    #(`TIME_UNIT * 32) $finish();  // [stop(), $finish()]
   end
 
   // // STIMULUS 1
   // reg a = 0, b = 0;
   // initial
-  // begin 
+  // begin
   //   # 17 a = 1, b = 1;
   //   # 11 a = 1, b = 0;
   //   # 29 a = 1, b = 1;

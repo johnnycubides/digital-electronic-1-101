@@ -8,6 +8,10 @@ JSON?=$(DIR_BUILD)/$(top).json
 ASC?=$(DIR_BUILD)/$(top).asc
 BISTREAM?=$(DIR_BUILD)/$(top).bin
 
+# MACRO_SYN sirve para indicar definiciones de preprocesamiento en la sintesis
+MACRO_SYN?=
+MACROS_SYN := $(foreach macro,$(MACROS_SYN),"$(macro)")
+
 help-syn:
 	@echo "\n## SINTESIS Y CONFIGURACIÓN ##"
 	@echo "\tmake syn\t-> Sintetizar diseño"
@@ -19,7 +23,7 @@ OBJS+=$(DESIGN)
 
 $(JSON): $(OBJS)
 	mkdir -p $(DIR_BUILD)
-	yosys -p "synth_ice40 -top $(top) -json $(JSON)" $(OBJS)
+	yosys $(MACRO_SYN) -p "synth_ice40 -top $(top) -json $(JSON)" $(OBJS)
 
 $(ASC): $(JSON)
 	nextpnr-ice40 --hx4k --package tq144 --json $(JSON) --pcf $(PCF) --asc $(ASC)

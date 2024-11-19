@@ -8,6 +8,8 @@ LPF?=$(top).lpf
 JSON?=$(DIR_BUILD)/$(top).json
 PNR?=$(DIR_BUILD)/$(top).pnr
 BISTREAM?=$(DIR_BUILD)/$(top).bin
+# MACRO_SYN sirve para indicar definiciones de preprocesamiento en la sintesis
+MACROS_SYN := $(foreach macro,$(MACROS_SYN),"$(macro)")
 
 help-syn:
 	@echo "\n## SINTESIS Y CONFIGURACIÓN ##"

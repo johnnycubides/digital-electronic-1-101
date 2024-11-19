@@ -3,8 +3,8 @@ top?=
 # Módules .v que hacen parte del proyecto
 DESIGN?=
 MACROS_SIM?=
-#test bench del proyecto para la simulación
-tb?=$(TOP_NAME)_tb.v
+top_NAME=$(basename $(notdir $(DESIGN)))
+tb?=$(top_NAME)_tb.v
 TBN=$(basename $(notdir $(tb)))
 
 S=sim
@@ -27,6 +27,7 @@ rtl: rtl-from-json view-svg
 
 sim: clean-sim iverilog-compile vpp-simulate wave
 
+MACROS_SIM := $(foreach macro,$(MACROS_SIM),"$(macro)")
 # MORE_SRC2SIM permite agregar más archivos fuentes para la simulación
 MORE_SRC2SIM?=
 iverilog-compile:
@@ -81,7 +82,7 @@ zip-sim:
 	# Quitar las últimas dos líneas del Makefile y crear copia en el directorio $Z
 	head -n -2 Makefile > $Z/Makefile
 	# Agregar desde la línea 7 en adelante en el Makefile
-	sed -n '7,$$p' $(MK_SIM) >> $Z/Makefile
+	sed -n '6,$$p' $(MK_SIM) >> $Z/Makefile
 	cp -var *.v *.md .gitignore $Z
 ifneq ($(wildcard *.mem),) # Si existe un archivo .png
 	cp -var *.mem $Z

@@ -1,9 +1,9 @@
 help: help-sim help-syn
 clean: clean-syn clean-sim
-TOP=top
+top=top
 #test bench del proyecto para la simulación
-tb?=$(TOP)_tb.v
-MACROS_SIM=-DINIT=\(2**24-10\)
+tb?=$(top)_tb.v
+MACROS_SIM=-DINIT=(2**24-10)
 DESIGN=top.v
 DIR_BUILD=build
 DEVSERIAL=/dev/ttyACM0

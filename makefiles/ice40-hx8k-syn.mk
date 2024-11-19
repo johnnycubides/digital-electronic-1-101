@@ -8,7 +8,8 @@ JSON?=$(DIR_BUILD)/$(top).json
 ASC?=$(DIR_BUILD)/$(top).asc
 BISTREAM?=$(DIR_BUILD)/$(top).bin
 # MACRO_SYN sirve para indicar definiciones de preprocesamiento en la sintesis
-MACRO_SYN?=
+MACROS_SYN?=
+MACROS_SYN := $(foreach macro,$(MACROS_SYN),"$(macro)")
 
 help-syn:
 	@echo "\n## SINTESIS Y CONFIGURACIÓN ##"

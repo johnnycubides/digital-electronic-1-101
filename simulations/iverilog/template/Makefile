@@ -1,17 +1,18 @@
 help: help-sim
 clean: clean-sim
 # CONDA=~/miniconda3/bin/conda
-# En la variable TOP poner el nombre que contiene el top.v del diseño
-TOP?=top
+# En la variable top poner el id del módulo que contiene el top.v del diseño
+top?=top
 # En la variable tb poner la Descripción de la simulación a realizar
-tb?=$(TOP)_tb.v
+tb?=$(top)_tb.v
 # Módules .v que hacen parte del proyecto
-# En la variable DESIGN se debe agregar los demás módulos que pertenecen al proyecto
-DESIGN?=
+DESIGN?=top.v
 # Agregar aquí otros archivos que se requieran para la simulación
 # MORE_SRC2SIM=./file.mem
-# Z: Nombre para empaquetar proyecto
-Z=project
+# MACROS_SIM sirve para indicar definiciones de preprocesamiento
+# MACROS_SIM?=
+# Z: Nombre para empaquetar proyecto en este caso template
+Z=template
 
 MK_SIM=../../../makefiles/sim.mk
 include $(MK_SIM)
