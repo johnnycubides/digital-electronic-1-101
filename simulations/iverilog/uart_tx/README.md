@@ -13,7 +13,7 @@ make rtl        -> Crear RTL
 
 ## Simulación manual
 
-1. Descargar el archivo [projec.zip](./project.zip) que contiene el proyecto y descomprimir en el área de trabajo.
+1. Descargar el archivo [uart_tx.zip](./uart_tx.zip) que contiene el proyecto y descomprimir en el área de trabajo.
 
 2. Crear el ejecutable *top.vvp* con iverilog:
 
