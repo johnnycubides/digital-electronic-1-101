@@ -1,0 +1,24 @@
+[*]
+[*] GTKWave Analyzer v3.3.117 (w)1999-2023 BSI
+[*] Tue Nov 19 16:07:43 2024
+[*]
+[dumpfile] "/home/johnny/projects/digital-electronic-1-101/simulations/iverilog/uart_tx/sim/top_tb.vcd"
+[dumpfile_mtime] "Tue Nov 19 16:07:06 2024"
+[dumpfile_size] 1979
+[savefile] "/home/johnny/projects/digital-electronic-1-101/simulations/iverilog/uart_tx/top_tb.gtkw"
+[timestart] 0
+[size] 1000 600
+[pos] -1 -1
+*-19.893709 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 207
+[signals_width] 94
+[sst_expanded] 1
+[sst_vpaned_height] 149
+@28
+top_tb.clk
+top_tb.tx_done
+top_tb.tx_pin
+@29
+top_tb.tx_start
+[pattern_trace] 1
+[pattern_trace] 0

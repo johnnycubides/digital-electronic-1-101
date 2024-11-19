@@ -1,4 +1,5 @@
-module testbech;
+`include "./fulladder.v"
+module fulladder_tb;
 
   // STIMULUS
   // reg a = 0, b = 0;
@@ -11,7 +12,7 @@ module testbech;
   //   # 100 $finish(); // [stop(), $finish()]
   // end
 
-  reg [2:0] inputs;
+  reg  [2:0] inputs;
   // inputs[0] inputs[1] inputs[2]
   // integer i;
   // initial
@@ -32,21 +33,22 @@ module testbech;
   wire [1:0] outs;
   // DEVICE/DESIGN UNDER TEST
   fulladder dut (
-    .in_b(inputs[2]), .in_a(inputs[1]), .in_ci(inputs[0]),
-    .out_co(outs[1]), .out_s(outs[0])
+      .in_b  (inputs[2]),
+      .in_a  (inputs[1]),
+      .in_ci (inputs[0]),
+      .out_co(outs[1]),
+      .out_s (outs[0])
   );
 
   // STIMULUS ARGS
-  initial
-  begin
-    if(! $value$plusargs("inputs=%b", inputs)) begin
+  initial begin
+    if (!$value$plusargs("inputs=%b", inputs)) begin
       $display("ERROR: please specify +inputs=<value> to start.");
       $finish;
     end
 
     wait (outs) $display("outs = %d", outs);
-    #1
-    $finish;
+    #1 $finish;
   end
 
   // MONITOR
@@ -55,10 +57,8 @@ module testbech;
   //     $time, a, b, value);
 
   // WAVES IN VCD TO OPEN IN GTKWAVE
-  initial
-  begin
-    $dumpfile("top.vcd");
-    $dumpvars(0, testbech);
+  initial begin
+    $dumpvars(0, fulladder_tb);
   end
 
 

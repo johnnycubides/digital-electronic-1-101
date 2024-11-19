@@ -9,8 +9,9 @@
 // Author: johnny Cubides
 // 2023-11-21
 
-`timescale 1us/10ns // <time_unit>/<time_precision>
-module testbech;
+`timescale 1us / 10ns  // <time_unit>/<time_precision>
+`include "./top.v"
+module top_tb;
 
   // Determinar el tamaño de los wire como de los estímulos
   // parameter INPUT_SIZE = 1;
@@ -65,14 +66,11 @@ module testbech;
 
   reg [7:0] byte2send = 0;
   reg tx_start = 0;
-  initial
-  begin
-    #TICK
-    byte2send = 8'b10011010;
+  initial begin
+    #TICK byte2send = 8'b10011010;
     tx_start = 1;
-    #TICK
-    tx_start = 0;
-    #(60*TICK) $finish(); // [stop(), $finish()]
+    #TICK tx_start = 0;
+    #(60 * TICK) $finish();  // [stop(), $finish()]
   end
 
   // RESULT FOR DEVICE/DESIGN UNDER TEST
@@ -82,11 +80,11 @@ module testbech;
 
   // DEVICE/DESIGN UNDER TEST
   top dut (
-    clk,
-    byte2send,
-    tx_start,
-    tx_done,
-    tx_pin
+      clk,
+      byte2send,
+      tx_start,
+      tx_done,
+      tx_pin
   );
 
   // // MONITOR
@@ -95,9 +93,7 @@ module testbech;
   //     $time, inputs[0], value);
 
   // // WAVES IN VCD TO OPEN IN GTKWAVE
-  initial
-  begin
-    $dumpfile("top.vcd");
-    $dumpvars(0, testbech);
+  initial begin
+    $dumpvars(0, top_tb);
   end
 endmodule
