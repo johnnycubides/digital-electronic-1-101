@@ -9,7 +9,7 @@
 `include "./ram.v"
 
 module top (
-    input  CLK,        // system clock 
+    input  CLK,        // system clock
     input  RESET,      // reset button
     output [4:0] LEDS // system LEDs
 );
@@ -31,5 +31,4 @@ module top (
      .clk(clk),
      .resetn(resetn)
    );
-   
 endmodule

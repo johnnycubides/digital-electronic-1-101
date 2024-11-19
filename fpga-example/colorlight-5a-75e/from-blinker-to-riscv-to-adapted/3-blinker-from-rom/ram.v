@@ -1,4 +1,4 @@
-module Ram (
+module ram (
 // Inputs and output ports
   input wire [4:0] address,
   input clk,
@@ -29,7 +29,7 @@ initial begin
   MEM[17] = 5'b11100;
   MEM[18] = 5'b11000;
   MEM[19] = 5'b10000;
-  MEM[20] = 5'b00000;       
+  MEM[20] = 5'b00000;
 end
 // Descripción del comportamiento
 always @(posedge clk) begin
