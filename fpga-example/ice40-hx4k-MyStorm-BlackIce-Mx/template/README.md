@@ -31,6 +31,10 @@ make rtl
 
 > Para obtener los comandos de ayuda escriba en la consola: `make help`
 
+## Pinout de la Blackice2
+
+![pin out Blackice2](./blackice-mx-pinout.png) 
+
 Saludos,
 
 Johnny
