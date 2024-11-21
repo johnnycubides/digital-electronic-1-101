@@ -12,4 +12,5 @@ Los demás comandos los encuentra en el mismo vídeo.
 
 [![Configuración volátil y persistente de FPGA Cyclone IV](https://img.youtube.com/vi/QzFHMY5IMPI/0.jpg)](https://www.youtube.com/watch?v=QzFHMY5IMPI "Configuración volátil y persistente de FPGA Cyclone IV")
 
+Johnny
 
