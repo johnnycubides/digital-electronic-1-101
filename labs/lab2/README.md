@@ -1,3 +1,4 @@
+<!-- LTeX: language=es -->
 # Mi primer diseño
 
 <!--En esta actividad abordará el diseño de una solución de una situación problema,-->
@@ -19,7 +20,7 @@ desarrollar el diseño.
 
 El flujo de diseño propuesto incluirá las siguientes etapas:
 
-* Dominio comportamental (especificación y algoritmo): Se plantea inicialmente
+* **Dominio comportamental (especificación y algoritmo)**: Se plantea inicialmente
 el comportamiento del sistema, definiendo cómo debe operar según las
 especificaciones. Esto incluye describir de manera abstracta las entradas,
 salidas y relaciones lógicas mediante diagramas de flujo, tablas de verdad o
@@ -52,6 +53,9 @@ Además, se observará que una misma solución puede abordarse desde diferentes
 dominios físicos o tecnologías, lo que refuerza la importancia de comprender
 cómo los distintos enfoques impactan en la implementación final y en la
 elección de herramientas o métodos adecuados.
+
+## Situación a enfrentar
+
 
 
 ## Referencias
