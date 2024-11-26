@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<truthTable>
+  <variables>
+    <variable name="I0.3"/>
+    <variable name="I0.2"/>
+    <variable name="I0.1"/>
+  </variables>
+  <results>
+    <result>
+      <name>Q0.3</name>
+      <values class="BoolTable">11100000</values>
+    </result>
+    <result>
+      <name>Q0.2</name>
+      <values class="BoolTable">00001111</values>
+    </result>
+    <result>
+      <name>Q0.1</name>
+      <values class="BoolTable">11100000</values>
+    </result>
+  </results>
+</truthTable>
