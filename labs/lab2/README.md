@@ -146,11 +146,12 @@ eres quien sabe. ¡Buena suerte!
 
 Imagen de la situación (TODO)
 
-Tenga presente la información que encuentra
+* Tenga presente la información que encuentra
 [aquí](./qelectrotech/contactos-conmutador-bateria-y-fuente.pdf) sobre el
 conmutador, contactos y reles, le será útil para su diseño.
-
-No olvide hacer uso del ejemplo de diseño que fue compartido en Discord.
+* En [este PDF](./notas_annotated.pdf) está la información relacionada a pasar del dominio físico al estructural de
+este ejemplo.
+* No olvide hacer uso del ejemplo de diseño que fue compartido en Discord.
 
 ## Desarrollo
 
