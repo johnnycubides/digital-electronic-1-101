@@ -197,10 +197,10 @@ Observación: Deje comentarios en sus simulaciones en el caso de requerir realiz
 siga el flujo de diseño para la configuración de la misma, recuerde los pines a seleccionar y las restricciones físicas.
 * Plantee un circuito que se conecte a la FPGA que emule el comportamiento de los diferentes sensores y actuadores del problema.
 
-7. Socialización del resultado:
+7. **Socialización del resultado**:
 
 * Cree un github donde comparta las experiencias de estos laboratorios, en específico, crear un directorio con el nombre o
-número del laboratorio (ejemplo lab2). Allí comparta un README con el procedimiento indicado en **Desarrollo** junto a las
+número del laboratorio, por ejemplo, lab2. Allí comparta un README con el procedimiento indicado en **Desarrollo** junto a las
 imágenes y archivos fuentes, haga uso de Markdown para agregar las imagenes al texto, enlaces, entre otros.
 * Cree un vídeo de máximo 5 minutos en Youtube, comparta el enlace en el README.md
 * Exponga frente a sus compañeros su experiencia de diseño.
