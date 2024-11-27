@@ -131,7 +131,7 @@ El sistema que diseñes debe ser, como mínimo, capaz de:
 2. Permitir detener el sistema y desenergizar la casa desde el tablero de
    mando.
 
-Se sugiere que tenga en cuenta estas posibilidades en su comportamiento:
+Se sugiere que tengas en cuenta estas posibilidades en su comportamiento:
 
 * Indicar cuando las baterías están descargadas.
 * Indicar si la casa está energizada.
