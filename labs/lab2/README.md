@@ -54,7 +54,7 @@ dominios físicos o tecnologías, lo que refuerza la importancia de comprender
 cómo los distintos enfoques impactan en la implementación final y en la
 elección de herramientas o métodos adecuados.
 
-## Situación a enfrentar
+## Situación a enfrentar (Enunciado en lenguaje informal)
 
 <!--Usted tiene un familiar que vive en el campo, tiene una finca y posibilidades de adaptar fuentes de energía para el consumo-->
 <!--energético de su casa. En el lugar cuenta con la red eléctrica del comercializador de la zona rural y una excelente radiación-->
@@ -108,37 +108,104 @@ casa, adquieres un sistema fotovoltaico, un banco de baterías e inversores para
 acondicionar la red eléctrica del hogar. Además, cuentas con los siguientes
 materiales:
 
-1. Un relé para conmutar entre la red del inversor y la red eléctrica del
+1. **Un relé o contactor** para conmutar entre la red del inversor y la red eléctrica del
    comercializador.
-2. Un relé para energizar o desenergizar la red interna de la casa en caso de
+2. **Un relé o contactor** para energizar o desenergizar la red interna de la casa en caso de
    requerir mantenimiento.
-3. Un sensor de carga de batería, que detecta cuando la batería está cargada o
+3. **Un sensor de carga de batería**, que detecta cuando la batería está cargada o
    descargada; incluye contactos normalmente abiertos y cerrados.
-4. Un sensor de luz, que detecta la radiación solar; incluye contactos
+4. **Un sensor de luz**, que detecta la radiación solar; incluye contactos
    normalmente abiertos y cerrados.
-5. Un sensor detector de red eléctrica, que indica si hay o no suministro en la
+5. **Un sensor detector de red eléctrica**, que indica si hay o no suministro en la
    red eléctrica; incluye contactos abiertos y cerrados.
-6. Un tablero de mando, donde puedes instalar diversos indicadores, como: paro
+6. **Un tablero de mando**, donde puedes instalar diversos indicadores, como: paro
    de emergencia, batería descargada, detector de red eléctrica, casa
 energizada, entre otros.
-7. Un botón de paro de emergencia o mantenimiento, que permite desenergizar la
+7. **Un botón de paro de emergencia o mantenimiento**, que permite desenergizar la
    casa para realizar intervenciones de forma segura.
 
 El sistema que diseñes debe ser, como mínimo, capaz de:
 
 1. Conmutar entre las fuentes de energía: el banco de baterías (inversor) y la
    red eléctrica.
-2. Indicar cuando las baterías están descargadas.
-3. Indicar si la casa está energizada.
-4. Indicar si la red eléctrica está disponible.
-5. Indicar si hay suficiente radiación solar.
-6. Permitir detener el sistema y desenergizar la casa desde el tablero de
+2. Permitir detener el sistema y desenergizar la casa desde el tablero de
    mando.
+
+Se sugiere que tenga en cuenta estas posibilidades en su comportamiento:
+
+* Indicar cuando las baterías están descargadas.
+* Indicar si la casa está energizada.
+* Indicar si la red eléctrica está disponible.
+* Indicar si hay suficiente radiación solar.
 
 Puedes combinar los elementos disponibles de la manera que consideres más
 adecuada para cumplir con los requisitos. Recuerda que, ante tu familia, tú
 eres quien sabe. ¡Buena suerte!
 
+### Ayudas
+
+Imagen de la situación (TODO)
+
+Tenga presente la información que encuentra
+[aquí](./qelectrotech/contactos-conmutador-bateria-y-fuente.pdf) sobre el
+conmutador, contactos y reles, le será útil para su diseño.
+
+No olvide hacer uso del ejemplo de diseño que fue compartido en Discord.
+
+## Desarrollo
+
+Teniendo presente el flujo de diseño y las etapas, deberás realizar los siguientes pasos:
+
+1. **Dominio comportamental (especificación y algoritmo)**:
+
+* Proponer un sistema representado en un diagrama de caja negra.
+* Plantear la tabla de verdad que describe el comportamiento.
+* Representar el algoritmo de la solución a través de un diagrama de flujo.
+
+Observaciones: Recuerde que **usted es libre de diseñar su sistema** teniendo presente su propia lógica, puede hacer indicaciones de aquellas cosas que puedan generar error o estados no deseados.
+
+2. **Dominio físico inicial (circuito eléctrico)**:
+
+* Diseñar un circuito eléctrico del sistema de control con sus contactos de entrada y actuadores de salida.
+* Describir el circuito a travésdel lenguaje ladder
+
+Observación: haga indicaciones de aquellas cosas que pudo haber asumido.
+
+3. **Simulación en lenguaje ladder**:
+
+* Haga uso del programa [plcsimulator: simulador de plc lenguaje ladder](https://app.plcsimulator.online/) y verifique
+que cumpla con los requerimientos del dominio comportamental.
+
+Observación: Deje comentarios en sus simulaciones en el caso de requerir realizar aclaraciones.
+
+4. **Dominio estructural (red de compuertas lógicas)**:
+
+* Convierta su diagrama de lenguaje ladder a la red de compuertas lógicas que lo representa
+* Haga la red de compuertas lógicas en el software de [Digital](https://github.com/hneemann/Digital)
+* comparta tanto los diagramas, tablas de verdad (verifique), simulaciones, mapas de karnaugh, representación del circuito con compuertas universales, LUT y suma de productos.
+
+
+5. **Descripción en lenguaje HDL (Hardware Description Language)**:
+
+* Desde Digital exporte a verilog y guarde en un archivo top.v
+* Identifique los puertos, el nombre del módulo creado y relaciónelo con el diagrama de caja negra del dominio comportamental.
+* Identifique los operadores que representan las compuertas lógicas.
+
+6. **Síntesis en FPGA (dominio físico final)**:
+
+* En este punto, sintetice el diseño que está descrito en HDL en el archivo top.v en una FPGA, dependiendo de la FPGA
+siga el flujo de diseño para la configuración de la misma, recuerde los pines a seleccionar y las restricciones físicas.
+* Plantee un circuito que se conecte a la FPGA que emule el comportamiento de los diferentes sensores y actuadores del problema.
+
+7. Socialización del resultado:
+
+* Cree un github donde comparta las experiencias de estos laboratorios, en específico, crear un directorio con el nombre o
+número del laboratorio (ejemplo lab2). Allí comparta un README con el procedimiento indicado en **Desarrollo** junto a las
+imágenes y archivos fuentes, haga uso de Markdown para agregar las imagenes al texto, enlaces, entre otros.
+* Cree un vídeo de máximo 5 minutos en Youtube, comparta el enlace en el README.md
+* Exponga frente a sus compañeros su experiencia de diseño.
+
 ## Referencias
 
 * [plcsimulator: simulador de plc lenguaje ladder](https://app.plcsimulator.online/)
+* [QElectroTech: Creador de diagramas industriales electricos complejos](https://qelectrotech.org/)
