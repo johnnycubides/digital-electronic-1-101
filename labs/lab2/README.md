@@ -96,7 +96,7 @@ está cansado de los constantes cortes de energía.
 
 Con base en esto, se te ocurre sugerirle que implemente un banco de baterías y
 un sistema fotovoltaico para garantizar el suministro de energía cuando haya
-fallos en la red eléctrica. A tu familiar le entusiasma la idea (¡lo embala,
+fallos en la red eléctrica. A tu familiar le entusiasma la idea (¡te embala,
 como se dice coloquialmente!) y no tarda en contárselo al resto de la familia,
 expresando que te has comprometido a diseñar y desarrollar dicho sistema. Ante
 esta situación, decides tomar el reto en serio, pensando que sería genial
