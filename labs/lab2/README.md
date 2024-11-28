@@ -144,8 +144,9 @@ eres quien sabe. ¡Buena suerte!
 
 ### Ayudas
 
-Imagen de la situación (TODO)
-
+* En esta [imagen](./qelectrotech/diagrama-lab2.pdf) puede observar el diagrama
+que representa la situación a enfrentar, recuerde que debe diseñar únicamente
+la red de control.
 * Tenga presente la información que encuentra
 [aquí](./qelectrotech/contactos-conmutador-bateria-y-fuente.pdf) sobre el
 conmutador, contactos y reles, le será útil para su diseño.
