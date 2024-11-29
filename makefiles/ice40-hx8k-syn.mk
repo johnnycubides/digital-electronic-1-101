@@ -18,6 +18,7 @@ help-syn:
 	@echo "\t\t\t\t   Para configurar desde la flash, se requiere poner un jumper en J7 y en J6 conectar dos jumper entre los pines 4-2 y 3-1"
 	@echo "\tmake config-sram\t-> Configurar fpga desde la CRAM"
 	@echo "\t\t\t\t   Para configurar desde la CRAM, se requiere desconectar el jumper en J7 y en J6 conectar dos jumper entre los pines 4-3 y 2-1"
+	@echo "\tmake clean\t\t-> Limipiar síntesis si ha modificado el diseño"
 
 syn: json asc bitstream
 

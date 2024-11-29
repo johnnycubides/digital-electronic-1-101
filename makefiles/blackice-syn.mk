@@ -16,6 +16,7 @@ help-syn:
 	@echo "\n## SINTESIS Y CONFIGURACIÓN ##"
 	@echo "\tmake syn\t-> Sintetizar diseño"
 	@echo "\tmake config\t-> Configurar fpga"
+	@echo "\tmake clean\t-> Limipiar síntesis si ha modificado el diseño"
 
 syn: json asc bitstream
 
