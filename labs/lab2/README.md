@@ -155,7 +155,7 @@ la red de control:
 conmutador, contactos y reles, le será útil para su diseño.
 * En [este PDF](./notas_annotated.pdf) está la información relacionada a pasar del dominio físico al estructural de
 este ejemplo.
-* No olvide hacer uso del [ejemplo](https://discord.com/channels/951439846864482354/1304624295237910610/1311123369604943893) de diseño que fue compartido en Discord.
+* No olvide hacer uso del [ejemplo](./example-design_annotated.pdf) de diseño que fue compartido en Discord.
 
 ## Desarrollo
 

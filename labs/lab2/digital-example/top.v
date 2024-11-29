@@ -4,16 +4,16 @@
  */
 
 module top (
-  input \I0.1 ,
-  input \I0.2 ,
-  input \I0.3 ,
-  output \Q0.1 ,
-  output \Q0.2 ,
-  output \Q0.3 
+  input I01,
+  input I02,
+  input I03,
+  output Q01,
+  output Q02,
+  output Q03
 );
-  wire \Q0.3_temp ;
-  assign \Q0.3_temp  = (~ \I0.3  & ~ (\I0.1  & \I0.2 ));
-  assign \Q0.1  = \Q0.3_temp ;
-  assign \Q0.2  = \I0.3 ;
-  assign \Q0.3  = \Q0.3_temp ;
+  wire Q03_temp;
+  assign Q03_temp = (~ I03 & ~ (I01 & I02));
+  assign Q01 = Q03_temp;
+  assign Q02 = I03;
+  assign Q03 = Q03_temp;
 endmodule
