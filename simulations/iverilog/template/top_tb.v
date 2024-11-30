@@ -1,4 +1,4 @@
-// filename: top_tb
+// filename: top_tb.v
 // brief: testbench de un blink para la placa de desarrollo Blackice
 // la cual tienen un reloj de hardware de 25 MHz (periodo 40 nS)
 
@@ -7,19 +7,17 @@
 // s, ms, us, ns, ps, fs.
 // Para el time_unit se hará uso de 10 nS, en vista del perido del clock. el
 // time_precision, se pone según interés
-`timescale 1s / 1s  // <time_unit>/<time_precision
+`timescale 1ns / 1ns  // <time_unit>/<time_precision
 
 // CONFIGURACIÓN DE LOS PARÁMETROS DEL RELOJ
 // Cada estado de reloj debe durar medio periodo, para este caso sería 20 nS,
 // como el time_unit es de 10 ns, entonces con 2 tiempos se puede representar
 // la duración de cada reloj.
 `ifndef TIME_UNIT
-`define TIME_UNIT 1
+`define TIME_UNIT 2
 `endif
-
-`include "./top.v"
+`include "./top
 module top_tb;
-
   // Determinar el tamaño de los wire como de los estímulos
   parameter integer INPUT_SIZE = 1;
   parameter integer OUTPUT_SIZE = 1;
@@ -29,9 +27,8 @@ module top_tb;
   initial begin
     inputs = 0;
     #(`TIME_UNIT * 1) inputs = 1;
-    #1 $finish();  // [stop(), $finish()]
+    #(`TIME_UNIT * 1) $finish();  // [stop(), $finish()]
   end
-
   // // Make a regular pulsing clock.
   // reg clk = 0;
   // always #(`TIME_UNIT) clk = !clk;
@@ -92,8 +89,8 @@ module top_tb;
 
   // DEVICE/DESIGN UNDER TEST
   top dut (
-      .a(inputs),
-      .y(probe)
+    .a(inputs),
+    .y(probe)
   );
 
   // MONITOR
