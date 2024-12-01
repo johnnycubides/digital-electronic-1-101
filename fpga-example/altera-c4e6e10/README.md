@@ -12,5 +12,9 @@ Los demás comandos los encuentra en el mismo vídeo.
 
 [![Configuración volátil y persistente de FPGA Cyclone IV](https://img.youtube.com/vi/QzFHMY5IMPI/0.jpg)](https://www.youtube.com/watch?v=QzFHMY5IMPI "Configuración volátil y persistente de FPGA Cyclone IV")
 
+## Referencias
+
+* [Land boards A-C4E6 Cyclone IV](http://land-boards.com/blwiki/index.php?title=A-C4E6_Cyclone_IV_FPGA_EP4CE6E22C8N_Development_Board)
+
 Johnny
 

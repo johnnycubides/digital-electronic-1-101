@@ -22,8 +22,9 @@ help-quartus:
 	@echo "\tmake config\t\t-> Configurar fpga"
 	@echo "\tmake config-flash\t-> Configurar flash memory"
 	@echo "\tmake erase-flash\t-> Borrar memoria flash (debe tener un archivo $B/$(top).jic)"
+	@echo "\tmake clean\t\t-> Limipiar síntesis si ha modificado el diseño"
 
-init: init-qsf syn-quartus
+init: init-quartus-prj syn
 
 config: config-cram
 
@@ -108,7 +109,13 @@ zip:
 	head -n -3 Makefile > $Z/Makefile
 	sed -n '4,$$p' $(MK_SYN) >> $Z/Makefile
 	sed -n '7,$$p' $(MK_SIM) >> $Z/Makefile
-	cp -var *.v *.md *.txt *.qsf *.qpf *.png .gitignore $Z
+	cp -var *.v *.md *.qsf *.qpf *.png .gitignore $Z
+ifneq ($(wildcard *.txt),) # Si existe un archivo .png
+	cp -var *.txt $Z
+endif
+ifneq ($(wildcard *.pdf),) # Si existe un archivo .png
+	cp -var *.pdf $Z
+endif
 ifneq ($(wildcard *.mem),) # Si existe un archivo .png
 	cp -var *.mem $Z
 endif
@@ -120,12 +127,20 @@ ifneq ($(wildcard *.gtkw),) # Si existe un archivo .txt
 endif
 	zip -r $Z.zip $Z
 
-init-qsf:
+init-quartus-prj:
 	@echo "build/\nsim/\ndb/\nincremental_db/\n*.log\n$Z/\n" > .gitignore
-	@echo "\n### ¡ATENCIÓN! ###"
-	@echo "\nMODIFIQUE EL ARCHIVO top.qsf CON LA SIGUIENTE INFORMACIÓN:"
-	@cat ./config.txt
-	@echo "## END\n"
+	@printf '%s\n' \
+		'##  CONFIGURACIÓN DE PROYECTO agregar en el archivo top.qsf ##' \
+		'' \
+		'set_global_assignment -name FAMILY "Cyclone IV E"' \
+		'set_global_assignment -name DEVICE EP4CE10E22C8' \
+		'set_global_assignment -name TOP_LEVEL_ENTITY top' \
+		'set_global_assignment -name PROJECT_OUTPUT_DIRECTORY build' \
+		'' \
+		'## ASIGNACIÓN DE PINES ##' \
+		'set_location_assignment PIN_86 -to a' \
+		'set_location_assignment PIN_74 -to y' \
+		> top.qsf
 
 RM=rm -rf
 clean-syn:
