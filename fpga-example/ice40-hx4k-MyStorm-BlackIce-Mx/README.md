@@ -26,7 +26,7 @@
 
 ## Referencias
 
-* [Datashet familias ice40](../resource-ice40/iCE40LPHXFamilyDataSheet.pdf)
+* [Datasheet familias ice40](../resource-ice40/iCE40LPHXFamilyDataSheet.pdf)
 * [Resumen familias ice40](../resource-ice40/HX640.PDF)
 * [Manejo de memorias RAM en las ice40](../resource-ice40/FPGA-TN-02002-1-7-Memory-Usage-Guide-for-iCE40-Devices.pdf)
 * [Github page de la BlackIceMx (core y shield)](https://lawrie.github.io/blackicemxbook/GettingStarted/GettingStarted.html)
@@ -34,5 +34,5 @@
 * [Archivos fuente del BlackIceMx Shield](https://github.com/folknology/BlackIceMx)
 * [Formato del archivo .pcf en ice40](https://github.com/YosysHQ/nextpnr/blob/master/docs/ice40.md)
 * [Ejemplos con ice40](https://github.com/nesl/ice40_examples)
-* [Sistem on chip para la blackice](https://github.com/lawrie/blacksoc/tree/master)
+* [System on chip para la blackice](https://github.com/lawrie/blacksoc/tree/master)
 * [Ejemplo de echo por uart](https://github.com/folknology/IceCore/tree/USB-CDC-issue-3/Examples/line-echo)
