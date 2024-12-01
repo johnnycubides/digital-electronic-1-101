@@ -22,8 +22,8 @@ set_global_assignment -name TOP_LEVEL_ENTITY top
 set_global_assignment -name PROJECT_OUTPUT_DIRECTORY build
 
 ## ASIGNACIÓN DE PINES ##
-set_location_assignment PIN_86 -to clk
-set_location_assignment PIN_74 -to led
+set_location_assignment PIN_86 -to a
+set_location_assignment PIN_74 -to y
 ```
 
 ## ¿Cómo ejecutar el ejemplo?
