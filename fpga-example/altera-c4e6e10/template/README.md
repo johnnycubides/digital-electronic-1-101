@@ -1,12 +1,8 @@
 # Template en FPGA Altera Cyclone IV
 
-Se trata del parpadeo del LED cada segundo (a 1 Hz), hay que
-tener presente la frecuencia del cristal oscilador de esta FPGA
-la cual está a 50 Mhz, por tanto se requiere un divisor de frecuencia.
+Este archivo contiene una base de archivos fuentes para iniciar un proyecto para la placa de desarrollo Blackice2.
 
 ## Diagrama RTL
-
-**RTL top**
 
 ![RTL top](./top.png)
 
@@ -74,5 +70,6 @@ make rtl
 
 ## Referencias
 
-* [Ejemplo de divisor de frecuencia](https://www.fpga4student.com/2017/08/verilog-code-for-clock-divider-on-fpga.html)
-* [Manejo en el timescale-verilog](https://www.chipverify.com/verilog/verilog-timescale)
+Saludos,
+
+Johnny
