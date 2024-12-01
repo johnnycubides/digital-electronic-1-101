@@ -28,7 +28,7 @@ set_location_assignment PIN_74 -to y
     * [¿Cómo instalar Quartus?](https://github.com/johnnycubides/digital-electronic-1-101/blob/main/installTools/quartus.md)
     * [Herramientas de simulación y síntesis con *Conda*](https://github.com/johnnycubides/digital-electronic-1-101/blob/main/installTools/conda-and-tools.md)
 
-2. Descargue el proyecto [blink.zip](./blink.zip) y descomprima en un directorio de trabajo.
+2. Descargue el proyecto [template.zip](./template.zip) y descomprima en un directorio de trabajo.
 
 3. Verifique el archivo de configuración denominado `top.qsf` con la configuración propuesta
 en la descripción mencionada arriba o aquella que encuentra en el archivo `./config.txt`.
