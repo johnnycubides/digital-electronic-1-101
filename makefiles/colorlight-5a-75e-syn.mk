@@ -14,6 +14,7 @@ MACROS_SYN := $(foreach macro,$(MACROS_SYN),"$(macro)")
 help-syn:
 	@echo "\n## SINTESIS Y CONFIGURACIÓN ##"
 	@echo "\tmake syn\t\t-> Sintetizar diseño"
+	@echo "\tmake clean\t\t-> Limipiar síntesis si ha modificado el diseño"
 	@echo "\tmake config\t\t-> Configurar fpga en CRAM"
 	@echo "\tmake config-flash\t-> Guardar el bistream en memoria flash"
 	@echo "\tmake config-help\t-> Ayuda sobre cómo configurar la Colorlight"
@@ -122,6 +123,9 @@ zip:
 	sed -n '5,$$p' $(MK_SYN) >> $Z/Makefile	# Empieza a escribir desde la línea 6
 	sed -n '7,$$p' $(MK_SIM) >> $Z/Makefile # Empieza a escribir desde la línea 7
 	cp -var *.v *.md *.lpf .gitignore $Z
+ifneq ($(wildcard *.pdf),) # Si existe un archivo .png
+	cp -var *.pdf $Z
+endif
 ifneq ($(wildcard *.mem),) # Si existe un archivo .mem
 	cp -var *.mem $Z
 endif
