@@ -23,4 +23,8 @@ obtendrá tres archivos.
 **Observaciones**:
 * Debe tener instalada las herramientas de digital en conda y la aplicación Digital.sh, esta información se encuentra en el repositorio https://github.com/johnnycubides/digital-electronic-1-101/
 
+## Vídeo
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/vbfOi5D_zVs/0.jpg)](https://www.youtube.com/watch?v=vbfOi5D_zVs "IMAGE ALT TEXT HERE")
+
 Johnny
