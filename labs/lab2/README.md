@@ -173,7 +173,7 @@ Observaciones: Recuerde que **usted es libre de diseñar su sistema** teniendo p
 2. **Dominio físico inicial (circuito eléctrico)**:
 
 * Diseñar un circuito eléctrico del sistema de control con sus contactos de entrada y actuadores de salida.
-* Describir el circuito a travésdel lenguaje ladder
+* Describir el circuito a través del lenguaje ladder
 
 Observación: haga indicaciones de aquellas cosas que pudo haber asumido.
 
@@ -199,16 +199,23 @@ Observación: Deje comentarios en sus simulaciones en el caso de requerir realiz
 
 6. **Síntesis en FPGA (dominio físico final)**:
 
-* En este punto, sintetice el diseño que está descrito en HDL en el archivo top.v en una FPGA, dependiendo de la FPGA
-siga el flujo de diseño para la configuración de la misma, recuerde los pines a seleccionar y las restricciones físicas.
-* Plantee un circuito que se conecte a la FPGA que emule el comportamiento de los diferentes sensores y actuadores del problema.
+* En este punto, sintetice el diseño que está descrito en HDL en el archivo
+top.v en una FPGA, dependiendo de la FPGA siga el flujo de diseño para la
+configuración de la misma, recuerde los pines a seleccionar y las restricciones
+físicas.
+* Plantee un circuito que se conecte a la FPGA que emule el comportamiento de
+los diferentes sensores y actuadores del problema.
 
 7. **Socialización del resultado**:
 
-* Cree un github donde comparta las experiencias de estos laboratorios, en específico, crear un directorio con el nombre o
-número del laboratorio, por ejemplo, lab2. Allí comparta un README con el procedimiento indicado en **Desarrollo** junto a las
-imágenes y archivos fuentes, haga uso de Markdown para agregar las imagenes al texto, enlaces, entre otros.
-* Cree un vídeo de máximo 5 minutos en Youtube, comparta el enlace en el README.md
+* Cree un repositorio git donde comparta las experiencias de estos
+laboratorios, en específico, crear un directorio con el nombre o número del
+laboratorio, por ejemplo, lab2. Allí comparta un README con el procedimiento
+indicado en **Desarrollo** junto a las imágenes y archivos fuentes (verilog,
+archivos .dig, Makefiles, archivos de restricciones físicas, etc), haga
+uso de Markdown para agregar las imágenes al texto, enlaces, entre otros.
+* Cree un vídeo de máximo 5 minutos en Youtube, comparta el enlace en el
+README.md
 * Exponga frente a sus compañeros su experiencia de diseño.
 
 ## Referencias
