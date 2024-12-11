@@ -1,0 +1,24 @@
+##  CONFIGURACIÓN DE PROYECTO agregar en el archivo top.qsf ##
+
+set_global_assignment -name FAMILY "Cyclone IV E"
+set_global_assignment -name DEVICE EP4CE10E22C8
+set_global_assignment -name TOP_LEVEL_ENTITY top
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY build
+
+## ASIGNACIÓN DE PINES ##
+set_location_assignment PIN_28 -to I01
+set_location_assignment PIN_31 -to I02
+set_location_assignment PIN_33 -to I03
+# Salidas
+set_location_assignment PIN_55 -to Q01 # bomba
+set_location_assignment PIN_53 -to Q02 # emergencia (rojo)
+set_location_assignment PIN_51 -to Q03 # encendido (verde)
+
+
+
+
+
+
+
+
+set_global_assignment -name LAST_QUARTUS_VERSION "23.1std.1 Lite Edition"

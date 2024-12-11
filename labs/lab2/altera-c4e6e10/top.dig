@@ -88,6 +88,95 @@
       </elementAttributes>
       <pos x="340" y="260"/>
     </visualElement>
+    <visualElement>
+      <elementName>Text</elementName>
+      <elementAttributes>
+        <entry>
+          <string>textFontSize</string>
+          <int>18</int>
+        </entry>
+        <entry>
+          <string>Description</string>
+          <string>Indicador de
+emergencia</string>
+        </entry>
+      </elementAttributes>
+      <pos x="740" y="200"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Text</elementName>
+      <elementAttributes>
+        <entry>
+          <string>textFontSize</string>
+          <int>18</int>
+        </entry>
+        <entry>
+          <string>Description</string>
+          <string>Motobomba</string>
+        </entry>
+      </elementAttributes>
+      <pos x="740" y="260"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Text</elementName>
+      <elementAttributes>
+        <entry>
+          <string>textFontSize</string>
+          <int>18</int>
+        </entry>
+        <entry>
+          <string>Description</string>
+          <string>Indicador de
+Motobomba</string>
+        </entry>
+      </elementAttributes>
+      <pos x="740" y="320"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Text</elementName>
+      <elementAttributes>
+        <entry>
+          <string>textFontSize</string>
+          <int>18</int>
+        </entry>
+        <entry>
+          <string>Description</string>
+          <string>Paro de
+emergencia</string>
+        </entry>
+      </elementAttributes>
+      <pos x="140" y="240"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Text</elementName>
+      <elementAttributes>
+        <entry>
+          <string>textFontSize</string>
+          <int>18</int>
+        </entry>
+        <entry>
+          <string>Description</string>
+          <string>Sensor nivel
+bajo</string>
+        </entry>
+      </elementAttributes>
+      <pos x="140" y="320"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Text</elementName>
+      <elementAttributes>
+        <entry>
+          <string>textFontSize</string>
+          <int>18</int>
+        </entry>
+        <entry>
+          <string>Description</string>
+          <string>Sensor nivel
+alto</string>
+        </entry>
+      </elementAttributes>
+      <pos x="140" y="380"/>
+    </visualElement>
   </visualElements>
   <wires>
     <wire>

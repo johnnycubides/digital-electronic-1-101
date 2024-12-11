@@ -204,7 +204,7 @@ top.v en una FPGA, dependiendo de la FPGA siga el flujo de diseño para la
 configuración de la misma, recuerde los pines a seleccionar y las restricciones
 físicas.
 * Plantee un circuito que se conecte a la FPGA que emule el comportamiento de
-los diferentes sensores y actuadores del problema.
+los diferentes sensores y actuadores del problema (pulsadores, relés, leds, transistores, etc).
 
 7. **Socialización del resultado**:
 
