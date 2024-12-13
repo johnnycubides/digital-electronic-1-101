@@ -224,5 +224,7 @@ README.md
 
 * [plcsimulator: simulador de plc lenguaje ladder](https://app.plcsimulator.online/)
 * [QElectroTech: Creador de diagramas industriales electricos complejos](https://qelectrotech.org/)
-* [¿Cómo se configura el ejemplo del laboratorio 2 en la FPGA BlackICE?](https://www.youtube.com/watch?v=2GnsQ3oH4YA)
-* [¿Cómo se configura el ejemplo del laboratorio 2 en la FPGA Cyclone IV?](https://youtu.be/vO_olVPR1BQ)
+* [Ejemplo de configura volatil y pesistente para la FPGA BlackICE (Blink)](https://www.youtube.com/watch?v=lVM3kEyNgYA)
+* [Ejemplo de configura volatil y pesistente para la FPGA Cyclone IV (Blink)](https://www.youtube.com/watch?v=QzFHMY5IMPI)
+* [¿Cómo se sintetiza el ejemplo del laboratorio 2 en la FPGA BlackICE?](https://www.youtube.com/watch?v=2GnsQ3oH4YA)
+* [¿Cómo se sintetiza el ejemplo del laboratorio 2 en la FPGA Cyclone IV?](https://youtu.be/vO_olVPR1BQ)
