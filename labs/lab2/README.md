@@ -206,7 +206,9 @@ físicas.
 * Plantee un circuito que se conecte a la FPGA que emule el comportamiento de
 los diferentes sensores y actuadores del problema (pulsadores, relés, leds, transistores, etc).
 
-7. **Socialización del resultado**:
+7. Conclusiones
+
+8. **Socialización del resultado**:
 
 * Cree un repositorio git donde comparta las experiencias de estos
 laboratorios, en específico, crear un directorio con el nombre o número del
