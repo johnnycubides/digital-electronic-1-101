@@ -206,7 +206,7 @@ físicas.
 * Plantee un circuito que se conecte a la FPGA que emule el comportamiento de
 los diferentes sensores y actuadores del problema (pulsadores, relés, leds, transistores, etc).
 
-7. Conclusiones
+7. **Conclusiones**
 
 8. **Socialización del resultado**:
 
