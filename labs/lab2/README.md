@@ -216,7 +216,7 @@ laboratorio, por ejemplo, lab2. Allí comparta un README con el procedimiento
 indicado en **Desarrollo** junto a las imágenes y archivos fuentes (verilog,
 archivos .dig, Makefiles, archivos de restricciones físicas, etc), haga
 uso de Markdown para agregar las imágenes al texto, enlaces, entre otros.
-* Cree un vídeo de máximo 5 minutos en Youtube, comparta el enlace en el
+* Cree un vídeo de máximo 5 minutos en **Youtube**, comparta el enlace en el
 README.md
 * Exponga frente a sus compañeros su experiencia de diseño.
 
