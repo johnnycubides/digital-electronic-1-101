@@ -1,21 +1,25 @@
+<!-- LTeX: language=es -->
+
 # Diseño de multimetro DC
+
+Representación contextual:
 
 ![Nivel contextual](./voltimetro.drawio.png) 
 
-## Desarrollo Top Down
+## Desarrollo Top-Down
 
 1. Dominio comportamental
 
 * Identifique los requerimientos funcionales y no funcionales del sistema a diseñar
-* Idetifique las entradas y salidas de información con su tipo (analógicas y digitales)
-* Realice el disgrama de flujo del comportamiento de su sistema a través de un diagrama de flujo o pseudo-código
+* Identifique las entradas y salidas de información con su tipo (analógicas y digitales)
+* Realice una representación del comportamiento de su sistema a través de un diagrama de flujo o pseudo-código
 * Puede hacer uso de otras herramientas (como tablas de verdad) para realizar las demás especificaciones del sistema
 
-2. Dominio comportamental
+2. Dominio estructural
 
 * Realice un diagrama de caja negra de los diferentes módulos que requiere su sistema
 * En el caso de que cada módulo contenga otros submódulos, identifique a través de diagramas de caja negra cómo están relacionados
-* Realice el diseño de cada módulo a trvés de compuertas lógicas, decodificadores, multiplexores, entre otros.
+* Realice el diseño de cada módulo a través de compuertas lógicas, decodificadores, multiplexores, entre otros.
 * Desarrolle simulaciones en Digital
 * Realice simulaciones en Iverilog
 
