@@ -10,10 +10,10 @@ clean: ## Borrar paquete
 pack: ## Empaquetar el directorio
 	tar -czvf $d.$e $d
 
-encrypt: pack
+encrypt: pack ## Encriptar
 	gpg --output $d.$e.gpg --symmetric $d.$e
 
-unpack: decrypt
+unpack: decrypt ## Desencriptar y desempaquetar
 	tar -xzf $d.$e
 
 decrypt:
