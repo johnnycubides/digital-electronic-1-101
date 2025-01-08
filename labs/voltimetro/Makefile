@@ -7,7 +7,7 @@ help: ## Prints help for targets with comments
 clean: ## Borrar paquete
 	rm $d.$e
 
-pack: ## Empaquetar el directorio
+pack:
 	tar -czvf $d.$e $d
 
 encrypt: pack ## Encriptar
