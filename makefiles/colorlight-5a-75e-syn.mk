@@ -75,7 +75,7 @@ config-flash:
 	$(PATH_OPEN_FPGA_LOADER) $(CONFIG_OPTIONS) -f $(BISTREAM) --unprotect-flash
 
 erase-flash:
-	$(PATH_OPEN_FPGA_LOADER) $(CONFIG_OPTIONS) --bulk-erase
+	$(PATH_OPEN_FPGA_LOADER) $(CONFIG_OPTIONS) --bulk-erase --unprotect-flash
 
 config-sram:
 	$(PATH_OPEN_FPGA_LOADER) $(CONFIG_OPTIONS) -m $(BISTREAM)
