@@ -7,7 +7,7 @@ DESIGN=top.v
 DIR_BUILD=build
 DEVSERIAL=/dev/ttyACM0
 # Z: Nombre para empaquetar proyecto
-Z=uart_tx
+Z=uart_tx_strcuture
 
 MK_SYN=../../../makefiles/ice40-hx8k-syn.mk
 MK_SIM=../../../makefiles/sim.mk

@@ -35,7 +35,3 @@ make rtl
 ```
 
 > Para obtener los comandos de ayuda escriba en la consola: `make help`
-
-```bash
-picocom /dev/ttyUSB1 -b 9600
-``` 

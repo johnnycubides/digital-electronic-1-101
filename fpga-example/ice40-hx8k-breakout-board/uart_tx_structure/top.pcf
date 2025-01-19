@@ -1,0 +1,6 @@
+set_io clk_hw J3 # 
+
+set_io tx_done A2 # D7
+set_io tx_pin B12
+
+set_io test_pin C16
