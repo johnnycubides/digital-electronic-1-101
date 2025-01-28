@@ -57,6 +57,8 @@ ConvertOneVerilogFile:
 	# yosys -p 'read_verilog $(DESIGN); prep -top $(TOP); hierarchy -check; proc; flatten; synth; write_verilog -noattr -noexpr $S/$(TOP).v'
 
 rtl-from-json: json-yosys
+	cp $S/$(top).json $S/$(top)_origin.json # Hacer una copia desde el archivo origen
+	sed -E 's/"\$$paramod\$$[^\\]+\\\\([^"]+)"/"\1"/g' $S/$(top)_origin.json > $S/$(top).json # Quitar parametros en el nombre del módulo para que sea legible.
 	netlistsvg $S/$(top).json -o $S/$(top).svg
 
 view-svg:
