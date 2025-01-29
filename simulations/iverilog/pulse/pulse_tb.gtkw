@@ -1,13 +1,13 @@
 [*]
 [*] GTKWave Analyzer v3.3.117 (w)1999-2023 BSI
-[*] Sun Jan 19 16:22:08 2025
+[*] Wed Jan 29 00:51:31 2025
 [*]
 [dumpfile] "/home/johnny/projects/digital-electronic-1-101/simulations/iverilog/pulse/sim/pulse_tb.vcd"
-[dumpfile_mtime] "Sun Jan 19 16:21:58 2025"
-[dumpfile_size] 1858
+[dumpfile_mtime] "Wed Jan 29 00:51:22 2025"
+[dumpfile_size] 1856
 [savefile] "/home/johnny/projects/digital-electronic-1-101/simulations/iverilog/pulse/pulse_tb.gtkw"
 [timestart] 0
-[size] 2256 1427
+[size] 1920 1123
 [pos] -1 -1
 *-5.058966 67 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [sst_width] 249
