@@ -6,8 +6,9 @@ DESIGN=top.v
 tb?=./top_tb.v
 DIR_BUILD=build
 DEVSERIAL=/dev/ttyACM0
-# MACROS_SYN?=
 MACROS_SIM=-DINIT=(2**25-10)
+MACROS_RTL?=
+MACROS_SYN?=
 # Z: Nombre para empaquetar proyecto
 Z=template
 

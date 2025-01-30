@@ -4,6 +4,7 @@ top=top
 #test bench del proyecto para la simulación
 tb?=$(top)_tb.v
 MACROS_SIM=
+MACROS_RTL=
 MACROS_SYN=
 MORE_SRC2SIM?=
 DESIGN=top.v
