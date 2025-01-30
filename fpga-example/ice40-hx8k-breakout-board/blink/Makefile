@@ -4,6 +4,8 @@ top=top
 #test bench del proyecto para la simulación
 tb?=$(top)_tb.v
 MACROS_SIM=-DINIT=\(2**24-10\)
+MACROS_RTL=
+MACROS_SYN=
 DESIGN=top.v
 DIR_BUILD=build
 DEVSERIAL=/dev/ttyACM0

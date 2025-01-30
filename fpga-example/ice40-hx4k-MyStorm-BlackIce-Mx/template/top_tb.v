@@ -29,19 +29,6 @@ module top_tb;
     #(`TIME_UNIT * 1) inputs = 1;
     #(`TIME_UNIT * 1) $finish();  // [stop(), $finish()]
   end
-  // // Make a regular pulsing clock.
-  // reg clk = 0;
-  // always #(`TIME_UNIT) clk = !clk;
-  //
-  // // CLOCK STIMULUS
-  // initial begin
-  //   #(`TIME_UNIT * 32) $finish();  // [stop(), $finish()]
-  // end
-
-  // initial
-  // begin
-  //   #2E9 $finish(); // [stop(), $finish()]
-  // end
 
   // // STIMULUS 1
   // reg a = 0, b = 0;
@@ -61,33 +48,44 @@ module top_tb;
   // reg [INPUT_SIZE-1:0] inputs;
   // // inputs[2] inputs[1] inputs[1]
   // integer i;
-  // initial
-  // begin
+  // initial begin
   //   // inputs = 0;
-  //   for (i=0; i<2**INPUT_SIZE; i=i+1) // 2 elevado a la INPUT_SIZE , en el ejemplo 2^3 = 8 combinaciones*/
-  //   begin */
+  //   for (
+  //       i = 0; i < 2 ** INPUT_SIZE; i = i + 1
+  //   )  // 2 elevado a la INPUT_SIZE , en el ejemplo 2^3 = 8 combinaciones
+  //       begin
   //     inputs = i;
-  // #(`TIME_UNIT * 1 );
+  //     #(`TIME_UNIT * 1);
   //   end
   // end
 
   // // STIMULUS ARGS
-  // initial
-  // begin
-  //   if(! $value$plusargs("inputs=%b", inputs)) begin
+  // initial begin
+  //   if (!$value$plusargs("inputs=%b", inputs)) begin
   //     $display("ERROR: please specify +inputs=<value> to start.");
   //     $finish;
   //   end
-
   //   wait (outs) $display("outs = %d", outs);
-  //   #1
-  //   $finish;
+  //   #1 $finish;
+  // end
+
+  // // CLOCK STIMULUS
+  // // Make a regular pulsing clock.
+  // reg clk = 0;
+  // always #(`TIME_UNIT) clk = !clk;
+  //
+  // initial begin
+  //   #(`TIME_UNIT * 32) $finish();  // [stop(), $finish()]
+  // end
+  //
+  // initial begin
+  //   #(`TIME_UNIT * 2E9) $finish();  // [stop(), $finish()]
   // end
 
   // RESULT FOR DEVICE/DESIGN UNDER TEST
   wire [OUTPUT_SIZE-1:0] probe;
 
-  // DEVICE/DESIGN UNDER TEST
+  // DEVICE/DESIGN/UNIT UNDER TEST
   top dut (
       .a(inputs),
       .y(probe)
