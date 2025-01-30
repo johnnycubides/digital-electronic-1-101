@@ -7,7 +7,7 @@
 1. Deberá tener las herramientas de desarrollo instaladas en su equipo.
     * Herramientas de simulación y síntesis con *Conda*
 
-2. Descargue el proyecto [blink-divfreq.zip](./blink-divfreq.zip) y descomprima en un directorio de trabajo.
+2. Descargue el proyecto [blink-freqdiv.zip](./blink-freqdiv.zip) y descomprima en un directorio de trabajo.
 
 3. Para simular y ver los resultados ejecute:
 ```bash
