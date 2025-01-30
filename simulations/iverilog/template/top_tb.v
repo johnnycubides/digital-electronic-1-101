@@ -16,7 +16,7 @@
 `ifndef TIME_UNIT
 `define TIME_UNIT 2
 `endif
-`include "./top
+`include "./top.v"
 module top_tb;
   // Determinar el tamaño de los wire como de los estímulos
   parameter integer INPUT_SIZE = 1;
@@ -89,8 +89,8 @@ module top_tb;
 
   // DEVICE/DESIGN UNDER TEST
   top dut (
-    .a(inputs),
-    .y(probe)
+      .a(inputs),
+      .y(probe)
   );
 
   // MONITOR

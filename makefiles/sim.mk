@@ -1,8 +1,8 @@
-# CONDA=~/miniconda3/bin/conda
 top?=
 # Módules .v que hacen parte del proyecto
 DESIGN?=
 MACROS_SIM?=
+MACROS_RTL?=
 top_NAME=$(basename $(notdir $(DESIGN)))
 tb?=$(top_NAME)_tb.v
 TBN=$(basename $(notdir $(tb)))
@@ -45,9 +45,10 @@ vpp-simulate:
 wave:
 	@gtkwave $S/$(TBN).vcd $(TBN).gtkw || (echo "No hay un forma de onda que mostrar en gtkwave, posiblemente no fue solicitada en la simulación")
 
-json-yosys:
+MACROS_RTL := $(foreach macro,$(MACROS_RTL),"$(macro)")
+json-yosys: ## Generar json para el rtl de netlistsvg
 	mkdir -p $S
-	yosys $(MACROS_SIM) -p 'prep -top $(top); hierarchy -check; proc; write_json $S/$(top).json' $(DESIGN)
+	yosys $(MACROS_RTL) -p 'prep -top $(top); hierarchy -check; proc; write_json $S/$(top).json' $(DESIGN)
 
 # Convertir el diseño en un solo archivo de verilog
 ConvertOneVerilogFile:
