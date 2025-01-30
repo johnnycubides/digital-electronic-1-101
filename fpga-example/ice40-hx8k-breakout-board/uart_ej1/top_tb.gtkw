@@ -1,0 +1,43 @@
+[*]
+[*] GTKWave Analyzer v3.3.117 (w)1999-2023 BSI
+[*] Thu Jan 30 09:56:15 2025
+[*]
+[dumpfile] "/home/johnny/projects/digital-electronic-1-101/fpga-example/ice40-hx8k-breakout-board/uart_ej1/sim/top_tb.vcd"
+[dumpfile_mtime] "Thu Jan 30 09:50:10 2025"
+[dumpfile_size] 3693307
+[savefile] "/home/johnny/projects/digital-electronic-1-101/fpga-example/ice40-hx8k-breakout-board/uart_ej1/top_tb.gtkw"
+[timestart] 187
+[size] 2256 1427
+[pos] -1 -1
+*-5.675131 201 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top_tb.
+[treeopen] top_tb.dut.
+[sst_width] 249
+[signals_width] 206
+[sst_expanded] 1
+[sst_vpaned_height] 434
+@28
+top_tb.clk
+@29
+top_tb.dut.uart.baud_clk
+@28
+top_tb.tx_pin
+top_tb.busyLed
+top_tb.dut.pulse
+@c00820
+top_tb.dut.word[7:0]
+@28
+(0)top_tb.dut.word[7:0]
+(1)top_tb.dut.word[7:0]
+(2)top_tb.dut.word[7:0]
+(3)top_tb.dut.word[7:0]
+(4)top_tb.dut.word[7:0]
+(5)top_tb.dut.word[7:0]
+(6)top_tb.dut.word[7:0]
+(7)top_tb.dut.word[7:0]
+@1401200
+-group_end
+@28
+top_tb.dut.word[7:0]
+[pattern_trace] 1
+[pattern_trace] 0

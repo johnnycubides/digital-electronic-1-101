@@ -1,0 +1,5 @@
+build/
+sim/
+*.log
+uart_ej1/
+
