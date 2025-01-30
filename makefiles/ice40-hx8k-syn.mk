@@ -53,6 +53,9 @@ zip:
 	sed -n '4,$$p' $(MK_SYN) >> $Z/Makefile
 	sed -n '7,$$p' $(MK_SIM) >> $Z/Makefile
 	cp -var *.v *.md *.pcf .gitignore $Z
+ifneq ($(wildcard *.pdf),) # Si existe un archivo .pdf
+	cp -var *.pdf $Z
+endif
 ifneq ($(wildcard *.mem),) # Si existe un archivo .mem
 	cp -var *.mem $Z
 endif

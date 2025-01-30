@@ -123,7 +123,7 @@ zip:
 	sed -n '5,$$p' $(MK_SYN) >> $Z/Makefile	# Empieza a escribir desde la línea 6
 	sed -n '7,$$p' $(MK_SIM) >> $Z/Makefile # Empieza a escribir desde la línea 7
 	cp -var *.v *.md *.lpf .gitignore $Z
-ifneq ($(wildcard *.pdf),) # Si existe un archivo .png
+ifneq ($(wildcard *.pdf),) # Si existe un archivo .pdf
 	cp -var *.pdf $Z
 endif
 ifneq ($(wildcard *.mem),) # Si existe un archivo .mem
