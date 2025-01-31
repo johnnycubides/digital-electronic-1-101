@@ -31,5 +31,5 @@ make rtl
 
 > Para obtener los comandos de ayuda escriba en la consola: `make help`
 
-[![Divisor de frecuencia en verilog](https://img.youtube.com/vi/vcO0aY5vYSI 0.jpg)](https://www.youtube.com/watch?v=vcO0aY5vYSI "Divisor de frecuencia en verilog")
+[![Divisor de frecuencia en verilog](https://img.youtube.com/vi/vcO0aY5vYSI/0.jpg)](https://www.youtube.com/watch?v=vcO0aY5vYSI "Divisor de frecuencia en verilog")
 
