@@ -1,4 +1,4 @@
-# Ejemplo de Blink en FPGA Blackice
+# Ejemplo de Blink en FPGA ICE40
 
 ![Imagen RTL](./top.png)
 

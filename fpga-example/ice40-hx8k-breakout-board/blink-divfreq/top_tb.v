@@ -19,7 +19,7 @@
 `include "./top.v"
 module top_tb;
   // Determinar el tamaño de los wire como de los estímulos
-  /* parameter INPUT_SIZE = 3; */
+  // parameter INPUT_SIZE = 3;
   parameter integer OUTPUT_SIZE = 1;
 
 

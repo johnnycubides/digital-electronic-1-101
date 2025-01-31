@@ -1,4 +1,4 @@
-# Ejemplo de Blink en FPGA Blackice
+# Template para FPGA ICE
 
 ![Imagen RTK](./blink.png)
 
@@ -7,7 +7,7 @@
 1. Deberá tener las herramientas de desarrollo instaladas en su equipo.
     * Herramientas de simulación y síntesis con *Conda*
 
-2. Descargue el proyecto [blink.zip](./blink.zip) y descomprima en un directorio de trabajo.
+2. Descargue el proyecto [template.zip](./template.zip) y descomprima en un directorio de trabajo.
 
 3. Para simular y ver los resultados ejecute:
 ```bash
