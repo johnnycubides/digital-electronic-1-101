@@ -1,5 +1,5 @@
 build/
 sim/
 *.log
-template/
+i2c_master/
 
