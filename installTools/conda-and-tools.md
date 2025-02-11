@@ -10,10 +10,10 @@ lang: es
     * [2_1 Instalación de herramientas opensource desde Miniconda](#2_1-instalación-de-herramientas-opensource-desde-miniconda)
   * [3 Agregar reglas para permisos de hardware](#3-agregar-reglas-para-permisos-de-hardware)
   * [4 Instalación de herramientas importantes en el diseño](#4-instalación-de-herramientas-importantes-en-el-diseño)
-    * [4_1 Digital | Simulador de circuitos](#4_1-digital-|-simulador-de-circuitos)
+    * [4_1 Digital Simulador de circuitos](#4_1-digital-simulador-de-circuitos)
       * [Instalación de Digital](#instalación-de-digital)
-    * [4_2 Lite XL | Editor de texto liviano](#4_2-lite-xl-|-editor-de-texto-liviano)
-    * [4_3 Qucs_S | Simulador de circuitos analógicos y digitales](#4_3-qucs_s-|-simulador-de-circuitos-analógicos-y-digitales)
+    * [4_2 Lite XL Editor de texto liviano](#4_2-lite-xl-editor-de-texto-liviano)
+    * [4_3 Qucs_S Simulador de circuitos analógicos y digitales](#4_3-qucs_s-simulador-de-circuitos-analógicos-y-digitales)
   * [Referencias](#referencias)
 
 <!-- vim-markdown-toc -->
@@ -100,7 +100,7 @@ ella deberá ver el grupo *dialout* en pantalla.
 
 ## 4 Instalación de herramientas importantes en el diseño
 
-### 4_1 Digital | Simulador de circuitos
+### 4_1 Digital Simulador de circuitos
 
 Digital es una herramienta didáctica escrita en java e inspirada por [logisim](http://www.cburch.com/logisim/).
 Esta herramienta permite comprender cómo se construyen y se comportan los diferentes circuitos electrónicos digitales,
@@ -118,7 +118,7 @@ curl https://raw.githubusercontent.com/johnnycubides/swissknife/refs/heads/maste
 
 **Observación**: En algunas distribuciones va a requerirse la instalación de libfuse, la cual se puede instalar puedes ejecutar `sudo apt install libfuse2`
 
-### 4_2 Lite XL | Editor de texto liviano
+### 4_2 Lite XL Editor de texto liviano
 
 Se trata de un editor liviano y potente con capacidad de resalte de sintaxis, servidor LSP, terminal embebida, entre otras.
 Para realizar la instalación ejecute el siguiente comando en la terminal:
@@ -127,7 +127,7 @@ Para realizar la instalación ejecute el siguiente comando en la terminal:
 curl https://raw.githubusercontent.com/johnnycubides/swissknife/master/bash/installs/lite-xl/install-all.bash | bash -s all
 ```
 
-### 4_3 Qucs_S | Simulador de circuitos analógicos y digitales
+### 4_3 Qucs_S Simulador de circuitos analógicos y digitales
 
 Simulador de circuitos que hace uso de ngspice, puede realizar simulaciones
 digitales como analógicas. Para instalar, ejecute el siguiente comando:
