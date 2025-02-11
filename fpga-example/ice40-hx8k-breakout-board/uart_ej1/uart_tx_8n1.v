@@ -13,7 +13,7 @@ module uart_tx_8n1 (
   // Transmisor
   always @(posedge baud_tick or posedge rst) begin
     if (rst) begin
-      tx <= 1'b1;  // Línea inactiva
+      tx <= 1'b1;  // Línea inactiva IDLE
       tx_busy <= 0;
       tx_shift_reg <= 10'b1111111111;
       tx_bit_count <= 0;
