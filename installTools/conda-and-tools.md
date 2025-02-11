@@ -124,7 +124,7 @@ Se trata de un editor liviano y potente con capacidad de resalte de sintaxis, se
 Para realizar la instalación ejecute el siguiente comando en la terminal:
 
 ```
-curl https://raw.githubusercontent.com/johnnycubides/swissknife/master/bash/installs/lite-xl/install-all.bash | bash
+curl https://raw.githubusercontent.com/johnnycubides/swissknife/master/bash/installs/lite-xl/install-all.bash | bash -s all
 ```
 
 ### 4_3 Qucs_S | Simulador de circuitos analógicos y digitales
