@@ -8,6 +8,7 @@ LPF?=$(top).lpf
 JSON?=$(DIR_BUILD)/$(top).json
 PNR?=$(DIR_BUILD)/$(top).pnr
 BISTREAM?=$(DIR_BUILD)/$(top).bin
+LOG?=$(DIR_BUILD)/$(top).log
 # MACRO_SYN sirve para indicar definiciones de preprocesamiento en la sintesis
 MACROS_SYN := $(foreach macro,$(MACROS_SYN),"$(macro)")
 
@@ -31,7 +32,7 @@ $(JSON): $(OBJS)
 	yosys $(MACROS_SYN) -p "synth_ecp5 -top $(top) -json $(JSON)" $(OBJS)
 
 $(PNR): $(JSON)
-	nextpnr-ecp5 --25k --package CABGA256 --speed 6 --json $(JSON) --lpf $(LPF) --freq 65 --textcfg $(PNR)
+	nextpnr-ecp5 --25k --package CABGA256 --speed 6 --json $(JSON) --lpf $(LPF) --freq 65 --textcfg $(PNR) --log $(LOG)
 
 $(BISTREAM): $(PNR)
 	ecppack $(PNR) $(BISTREAM)

@@ -7,6 +7,7 @@ PCF?=$(top).pcf
 JSON?=$(DIR_BUILD)/$(top).json
 ASC?=$(DIR_BUILD)/$(top).asc
 BISTREAM?=$(DIR_BUILD)/$(top).bin
+LOG?=$(DIR_BUILD)/$(top).log
 
 # MACRO_SYN sirve para indicar definiciones de preprocesamiento en la sintesis
 MACRO_SYN?=
@@ -27,7 +28,7 @@ $(JSON): $(OBJS)
 	yosys $(MACRO_SYN) -p "synth_ice40 -top $(top) -json $(JSON)" $(OBJS)
 
 $(ASC): $(JSON)
-	nextpnr-ice40 --hx4k --package tq144 --json $(JSON) --pcf $(PCF) --asc $(ASC)
+	nextpnr-ice40 --hx4k --package tq144 --json $(JSON) --pcf $(PCF) --asc $(ASC) --log $(LOG)
 
 $(BISTREAM): $(ASC)
 	icepack $(ASC) $(BISTREAM)
