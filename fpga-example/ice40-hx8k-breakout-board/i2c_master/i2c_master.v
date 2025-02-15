@@ -130,7 +130,7 @@ module i2c_master #(
   // assign sda = sdaMode ? sda_out : 1'bz;  // Habilitar la salida del sda
   assign sda   = (sdaMode == 1'b1 && sda_reg == 1'b0) ? 1'b0 : 1'bz;
 
-  assign probe = scl;
+  assign probe = sda;
 
   reg  scl_new = 1;
   reg  enable = 0;
