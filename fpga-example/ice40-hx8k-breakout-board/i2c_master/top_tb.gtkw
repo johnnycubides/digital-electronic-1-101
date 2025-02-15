@@ -1,36 +1,43 @@
 [*]
 [*] GTKWave Analyzer v3.3.117 (w)1999-2023 BSI
-[*] Fri Feb  7 02:52:20 2025
+[*] Sat Feb 15 21:45:18 2025
 [*]
 [dumpfile] "/home/johnny/projects/digital-electronic-1-101/fpga-example/ice40-hx8k-breakout-board/i2c_master/sim/top_tb.vcd"
-[dumpfile_mtime] "Fri Feb  7 02:52:07 2025"
-[dumpfile_size] 4265
+[dumpfile_mtime] "Sat Feb 15 21:44:58 2025"
+[dumpfile_size] 17009
 [savefile] "/home/johnny/projects/digital-electronic-1-101/fpga-example/ice40-hx8k-breakout-board/i2c_master/top_tb.gtkw"
 [timestart] 0
-[size] 1920 1123
-[pos] -1 -1
-*-3.887383 22 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[size] 960 1131
+[pos] 1296 0
+*-6.887383 599 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top_tb.
 [treeopen] top_tb.dut.
-[sst_width] 249
-[signals_width] 254
+[treeopen] top_tb.dut.master.
+[sst_width] 211
+[signals_width] 248
 [sst_expanded] 1
-[sst_vpaned_height] 342
+[sst_vpaned_height] 450
 @28
-top_tb.dut.hwclk
 top_tb.dut.i2c_start
-top_tb.dut.scl_pin
-top_tb.dut.sda_pin
 top_tb.dut.i2c_busy
+top_tb.dut.sda_pin
+top_tb.dut.scl_pin
+top_tb.dut.master.sclGenerator
+top_tb.dut.master.state[2:0]
+top_tb.dut.master.shift_reg[7:0]
+top_tb.dut.master.enableState
+top_tb.dut.master.sclPosEdge
+top_tb.dut.master.data
+top_tb.dut.master.dataReceived
+top_tb.dut.master.rw
 @22
-top_tb.dut.i2c_data_in[7:0]
 top_tb.dut.i2c_data_out[7:0]
 top_tb.dut.control.data2send[7:0]
+top_tb.dut.i2c_data_in[7:0]
 top_tb.dut.control.i2c_slave_addr[6:0]
 top_tb.dut.master.addr[6:0]
 @28
-top_tb.dut.master.rw
-@29
-top_tb.dut.master.state[2:0]
+top_tb.dut.master.scl
+top_tb.dut.master.clk
 [pattern_trace] 1
 [pattern_trace] 0

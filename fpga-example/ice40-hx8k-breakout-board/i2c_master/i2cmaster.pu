@@ -1,0 +1,20 @@
+@startuml
+[*] --> IDLE
+IDLE --> START
+START --> ADDRESS
+ADDRESS --> ADDRESS: bit_counter > 0
+ADDRESS --> ACK: bit_counter = 0
+ACK --> READ : wr = 1
+ACK --> WRITE : wr = 0
+IDLE: SDA <= z
+IDLE: SCL <= z
+START: SDA <= 0
+START: bit_counter <= 7
+START: data2send <= {address, wr}
+
+note left of ADDRESS
+  if (bit_counter == 0):
+  SDA <= z
+  SCL <= z
+end note
+@enduml

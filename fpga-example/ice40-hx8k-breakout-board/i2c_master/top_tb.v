@@ -68,7 +68,7 @@ module top_tb;
   always #(`TIME_UNIT) clk = !clk;
 
   initial begin
-    #(`TIME_UNIT * 100) $finish();  // [stop(), $finish()]
+    #(`TIME_UNIT * 1000) $finish();  // [stop(), $finish()]
   end
 
   // initial begin
@@ -77,6 +77,9 @@ module top_tb;
 
   // RESULT FOR DEVICE/DESIGN UNDER TEST
   wire [OUTPUT_SIZE-1:0] probe;
+
+  pullup (probe[0]);  // sda
+  pullup (probe[1]);  // scl
 
   // DEVICE/DESIGN/UNIT UNDER TEST
   top dut (

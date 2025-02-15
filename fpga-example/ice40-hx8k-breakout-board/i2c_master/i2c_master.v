@@ -1,29 +1,34 @@
+`include "./divFreqEn.v"
 `include "./divFreq.v"
+`include "./posEdgeDetector.v"
+`include "./negEdgeDetector.v"
+
 module i2c_master #(
     parameter integer FREQ_IN  = 20e6,
     parameter integer FREQ_OUT = 100e3
 ) (
-    input  wire       clk,       // Reloj del sistema
-    input  wire       reset,     // Reset activo alto
-    input  wire       start,     // Señal para iniciar la comunicación
-    input  wire [6:0] addr,      // Dirección del esclavo (7 bits)
-    input  wire       rw,        // Bit de lectura/escritura (0: escritura, 1: lectura)
-    input  wire [7:0] data_in,   // Dato a enviar (en modo escritura)
-    output reg  [7:0] data_out,  // Dato recibido (en modo lectura)
-    output wire       scl,       // Señal de reloj I2C
-    inout  wire       sda,       // Señal de datos I2C (bidireccional)
-    output wire       test4,
-    output wire       test3,
-    output wire       test2,
-    output wire       test1,
-    output reg        busy = 0   // Indicador de ocupado (1: ocupado, 0: libre)
+    input  wire       clk,        // Reloj del sistema
+    input  wire       reset,      // Reset activo alto
+    input  wire       startTask,  // Señal para iniciar la comunicación
+    input  wire [6:0] addr,       // Dirección del esclavo (7 bits)
+    input  wire       rw,         // Bit de lectura/escritura (0: escritura, 1: lectura)
+    input  wire [7:0] data_in,    // Dato a enviar (en modo escritura)
+    output reg  [7:0] data_out,   // Dato recibido (en modo lectura)
+    inout  wire       scl,        // Señal de reloj I2C
+    inout  wire       sda,        // Señal de datos I2C (bidireccional)
+    output wire       probe,
+    output wire       D5,
+    output wire       D4,
+    output wire       D3,
+    output wire       D2,
+    output reg        busy        // Indicador de ocupado (1: ocupado, 0: libre)
 );
 
   // INFO: scl_out ok, reset en bajo, busy ok
-  assign test4 = scl_en;
-  assign test3 = state[2];
-  assign test2 = state[1];
-  assign test1 = state[0];
+  assign D5 = sclGenerator;
+  assign D4 = state[0];
+  assign D3 = state[1];
+  assign D2 = state[2];
 
   // Estados de la máquina de estados finitos (FSM)
   localparam reg [2:0] IDLE = 3'b000;  // Estado inactivo
@@ -35,130 +40,257 @@ module i2c_master #(
   localparam reg [2:0] ACKDATA = 3'b110;  // Esperar/enviar ACK después del dato
   localparam reg [2:0] STOP = 3'b111;  // Generar condición de STOP
 
-  // Declaración del registro de estado
-  reg [2:0] state = IDLE;
-  reg [7:0] shift_reg = 8'd0;  // Registro de desplazamiento para datos/dirección
-  reg [2:0] bit_cnt = 3'b0;  // Contador de bits enviados/recibidos
-  reg       sda_out = 1'd1;  // Valor de SDA (salida)
-  reg       sda_oe = 1'd0;  // Control de salida SDA (1: salida, 0: entrada)
-  reg       scl_en = 1'b0;  // Habilitación de SCL (1: generar SCL, 0: mantener SCL alto)
+  localparam reg ZMODE = 0;
+  localparam reg OUTPUTMODE = 1;
 
-  // Asignación de SDA (bidireccional)
-  assign sda = sda_oe ? sda_out : 1'bz;
+  localparam reg ACK = 0;
+  localparam reg NACK = 1;
+
+  // Declaración del registro de estado
+  reg [2:0] state;
+  reg [2:0] next_state;
+  reg [7:0] shift_reg;  // Registro de desplazamiento para datos/dirección
+  reg [2:0] bit_cnt;  // Contador de bits enviados/recibidos
+  reg       sda_reg;  // Valor de SDA (salida)
+  reg       sdaMode;  // Control de salida SDA (1: salida, 0: entrada)
+  reg       sclMode;  // Habilitación de SCL (1: generar SCL, 0: mantener SCL alto)
+
+  // Initial register states
+  initial begin
+    busy = 0;  // 0: Libre, 1: Ocupado
+    state = IDLE;
+    next_state = IDLE;
+    shift_reg = 8'd0;
+    bit_cnt = 3'd0;
+    sda_reg = 1'b0;
+    sdaMode = ZMODE;  // sda <- z
+    sclMode = ZMODE;  // scl <- z
+  end
 
   // Generación de SCL
+  wire sclGenerator, clk_out1;
 `ifdef DEBUG
-  // Este código se tendrá en cuenta exclusivamente
-  // para la simulación
-  reg [2:0] counter_scl = 3'd0;
-  wire scl_out;
-  assign scl_out = counter_scl[0];
-  always @(posedge clk) begin
-    counter_scl = counter_scl + 3'd1;
-  end
+  // localparam integer StartPulse = 0;
+  // localparam integer StartPulse = FreqInSim / FreqOutSim / 2;
+  localparam integer FreqInSim = 16;
+  localparam integer FreqOutSim = 1;
+  divFreq #(
+      .FREQ_IN (FreqInSim),
+      .FREQ_OUT(FreqOutSim)  // 100KHz, 400KHz
+  ) scl_gen (
+      .CLK_IN(clk),
+      .RST(reset),
+      .CLK_OUT(sclGenerator)
+  );
+  // divFreqEn #(
+  //     .FREQ_IN(FreqInSim),
+  //     .FREQ_OUT(FreqOutSim),  // 100KHz, 400KHz
+  //     .INIT(StartPulse)
+  // ) enable_state (
+  //     .CLK_IN(clk),
+  //     .RST(reset),
+  //     .ENABLE(enableState)
+  // );
 `else
-  wire scl_out;
+  // localparam integer StartPulse = FREQ_IN / FREQ_OUT / 2;
   divFreq #(
       .FREQ_IN (FREQ_IN),
       .FREQ_OUT(FREQ_OUT)  // 100KHz, 400KHz
   ) scl_gen (
-      .CLK_IN (clk),
-      .CLK_OUT(scl_out)
+      .CLK_IN(clk),
+      .RST(reset),
+      .CLK_OUT(sclGenerator)
   );
+  // divFreqEn #(
+  //     .FREQ_IN(FREQ_IN),
+  //     .FREQ_OUT(FREQ_OUT),  // 100KHz, 400KHz
+  //     .INIT(StartPulse)
+  // ) scl_pulse (
+  //     .CLK_IN(clk),
+  //     .RST(reset),
+  //     .ENABLE(enableState)
+  // );
 `endif
 
-  // Control para habilitar SCL
-  assign scl = scl_en ? scl_out : 1'b1;
+  // Control del SCL
+  // sclMode  sclGenerator  output
+  // 0        0             z
+  // 0        1             z
+  // 1        0             0
+  // 1        1             z
+  // producto de sumas
+  // output = ~sclMode | sclGenerator
+  assign scl   = (sclMode == 1'b1 && sclGenerator == 1'b0) ? 1'b0 : 1'bz;
+  // assign scl_out = sclGenerator ? 1'bz : 1'b0;  // Cambiar de 1 y 0 a z y 0
+  // assign scl = sclMode ? scl_out : 1'bz;  // Activar SCL
 
+  // Asignación de SDA (bidireccional)
+  // wire sda_out;
+  // assign sda_out = sda_reg ? 1'bz : 1'b0;  // Exponer el valor del registro como 0 o Z
+  // assign sda = sdaMode ? sda_out : 1'bz;  // Habilitar la salida del sda
+  assign sda   = (sdaMode == 1'b1 && sda_reg == 1'b0) ? 1'b0 : 1'bz;
+
+  assign probe = scl;
+
+  reg  scl_new = 1;
+  reg  enable = 0;
+
+  // // Transición de estados
+  // always @(posedge clk or posedge reset) begin
+  //   if (reset) begin
+  //     state <= IDLE;
+  //     sclMode <= ZMODE;
+  //     sdaMode <= ZMODE;
+  //     busy <= 0;
+  //     bit_cnt <= 0;
+  //     shift_reg <= 0;
+  //     data_out <= 0;
+  //   end else begin
+  //     state <= next_state;
+  //   end
+  // end
+
+  // Circuito detector de pulsos de bajada usado
+  // para realizar cambios en la máquina de estados
+  wire enableState;
+  negEdgeDetector sclNegEdgeDetector (
+      .clk(clk),
+      .rst(reset),
+      .signal(sclGenerator),
+      .detector(enableState)
+  );
+
+  // Circuito detector de pulsos de subida para el scl.
+  // Es usado principalmente para la lectura de datos en el bus
+  wire sclPosEdge;
+  posEdgeDetector sclPosEdgeDetector (
+      .clk(clk),
+      .rst(reset),
+      .signal(scl),
+      .detector(sclPosEdge)
+  );
+
+
+  reg data = 0;  // 1 -> ACK, 0 -> NACK
+  reg dataReceived = 0;
   // Máquina de estados principal
-  always @(posedge scl_out or posedge reset) begin
+  always @(posedge clk) begin
+
     if (reset) begin
       state <= IDLE;
-      sda_out <= 1;
-      sda_oe <= 0;
+      sclMode <= ZMODE;
+      sdaMode <= ZMODE;
       busy <= 0;
       bit_cnt <= 0;
       shift_reg <= 0;
       data_out <= 0;
-      scl_en <= 1'b0;  // Deshabilitar SCL
     end else begin
+      state <= next_state;
+      // Detector de datos de entrada
+      if (sclPosEdge && sdaMode == ZMODE) begin
+        dataReceived <= 1;
+        data <= sda;
+      end else if (enableState) begin
+        dataReceived <= 0;
+      end
+      // Máquina de estados
       case (state)
         IDLE: begin
-          if (start) begin
-            state  <= START;
-            busy   <= 1;
-            scl_en <= 1'b1;  // Habilitar SCL
+          if (startTask & enableState) begin
+            next_state <= START;
+            busy <= 1;
           end
         end
 
         START: begin
-          sda_out <= 0;  // Generar condición de START (SDA baja mientras SCL está alto)
-          sda_oe <= 1;
-          state <= ADDR;
-          shift_reg <= {addr, rw};  // Cargar dirección + bit R/W
-          bit_cnt <= 7;  // Contador de bits (8 bits: 7 de dirección + 1 de R/W)
-        end
-
-        ADDR: begin
-          sda_out <= shift_reg[bit_cnt];  // Enviar bit actual
-          if (bit_cnt == 0) begin
-            state <= ACKADDR;
-          end else begin
-            bit_cnt <= bit_cnt - 1;
+          if (enableState) begin
+            sda_reg <= 0;  // Generar condición de START (SDA baja mientras SCL está alto)
+            sdaMode <= OUTPUTMODE;
+            shift_reg <= {addr, rw};  // Cargar dirección + bit R/W
+            bit_cnt <= 7;  // Contador de bits (8 bits: 7 de dirección + 1 de R/W)
+            sclMode <= ZMODE;
+            next_state <= ADDR;
           end
         end
 
-        ACKADDR: begin
-          sda_oe <= 0;  // Liberar SDA para recibir ACK
-          if (sda == 0) begin  // Verificar ACK del esclavo
-            if (rw) begin
-              state <= READDATA;
+        ADDR: begin
+          if (enableState) begin
+            sda_reg <= shift_reg[bit_cnt];  // Enviar bit actual
+            sclMode <= OUTPUTMODE;
+            if (bit_cnt == 0) begin
+              sdaMode <= ZMODE;  // Modo in
+              next_state <= ACKADDR;
             end else begin
-              state <= WRITEDATA;
-              shift_reg <= data_in;  // Cargar dato a enviar
-              bit_cnt <= 7;
+              bit_cnt <= bit_cnt - 1;
             end
-          end else begin
-            state <= STOP;  // Si no hay ACK, terminar la comunicación
+          end
+        end
+
+        // TODO: requiere revisión
+        ACKADDR: begin
+          if (dataReceived) begin
+            if (data == NACK) begin  // Verificar ACK del esclavo
+              if (rw) begin
+                next_state <= READDATA;
+                sdaMode <= ZMODE;
+              end else begin
+                next_state <= WRITEDATA;
+                shift_reg <= data_in;  // Cargar dato a enviar
+                bit_cnt <= 7;
+                sdaMode <= OUTPUTMODE;
+              end
+            end else begin
+              next_state <= STOP;  // Si no hay ACK, terminar la comunicación
+            end
           end
         end
 
         WRITEDATA: begin
-          sda_out <= shift_reg[bit_cnt];  // Enviar bit actual
-          if (bit_cnt == 0) begin
-            state <= ACKDATA;
-          end else begin
-            bit_cnt <= bit_cnt - 1;
+          if (enableState) begin
+            sda_reg <= shift_reg[bit_cnt];  // Enviar bit actual
+            if (bit_cnt == 0) begin
+              next_state <= ACKDATA;
+              sdaMode <= ZMODE;
+            end else begin
+              bit_cnt <= bit_cnt - 1;
+            end
           end
         end
 
         READDATA: begin
-          shift_reg[bit_cnt] <= sda;  // Leer bit actual
-          if (bit_cnt == 0) begin
-            state <= ACKDATA;
-            data_out <= shift_reg;  // Almacenar dato recibido
-          end else begin
-            bit_cnt <= bit_cnt - 1;
+          if (dataReceived) begin
+            shift_reg[bit_cnt] <= data;  // Leer bit actual
+            if (bit_cnt == 0) begin
+              next_state <= ACKDATA;
+              data_out   <= shift_reg;  // Almacenar dato recibido
+            end else begin
+              bit_cnt <= bit_cnt - 1;
+            end
           end
         end
 
         ACKDATA: begin
-          if (rw) begin
-            sda_out <= 1;  // Enviar NACK después de la lectura
-          end else begin
-            sda_oe <= 0;  // Liberar SDA para recibir ACK
+          if (dataReceived) begin
+            if (rw) begin  // Si lectura
+              sda_reg <= NACK;  // Enviar NACK después de la lectura
+            end else begin
+              sdaMode <= ZMODE;  // Liberar SDA para recibir ACK
+            end
+            next_state <= STOP;
           end
-          state <= STOP;
         end
 
         STOP: begin
-          sda_out <= 1;  // Generar condición de STOP (SDA sube mientras SCL está alto)
-          busy <= 0;
-          scl_en <= 0;  // Deshabilitar SCL
-          state <= IDLE;
+          if (enableState) begin
+            sda_reg <= 1;  // Generar condición de STOP (SDA sube mientras SCL está alto)
+            busy <= 0;
+            sclMode <= ZMODE;  // Deshabilitar SCL
+            next_state <= IDLE;
+          end
         end
-        default: state <= IDLE;
+        default: next_state <= IDLE;
       endcase
+
     end
   end
 
