@@ -30,6 +30,16 @@ module i2c_master #(
   assign D3 = state[1];
   assign D2 = state[2];
 
+  // Parametros de macros "presíntesis"
+  // Valores posibles para SDA y SCL
+  localparam reg ZMODE = 0;
+  localparam reg OUTPUTMODE = 1;
+  // Valores posibles para respuesta de datos transmitidos
+  localparam reg ACK = 0;
+  localparam reg NACK = 1;
+  // Valores posibles para busy
+  localparam reg NO = 0;
+  localparam reg YES = 1;
   // Estados de la máquina de estados finitos (FSM)
   localparam reg [2:0] IDLE = 3'b000;  // Estado inactivo
   localparam reg [2:0] START = 3'b001;  // Generar condición de START
@@ -40,24 +50,18 @@ module i2c_master #(
   localparam reg [2:0] ACKDATA = 3'b110;  // Esperar/enviar ACK después del dato
   localparam reg [2:0] STOP = 3'b111;  // Generar condición de STOP
 
-  localparam reg ZMODE = 0;
-  localparam reg OUTPUTMODE = 1;
-
-  localparam reg ACK = 0;
-  localparam reg NACK = 1;
-
-  // Declaración del registro de estado
-  reg [2:0] state;
-  reg [2:0] next_state;
+  // Declaración de registros para el funcionamiento del I2c
+  reg [2:0] state;  // Declaración del registro de estado
+  reg [2:0] next_state;  // Próximo estado
   reg [7:0] shift_reg;  // Registro de desplazamiento para datos/dirección
   reg [2:0] bit_cnt;  // Contador de bits enviados/recibidos
   reg       sda_reg;  // Valor de SDA (salida)
   reg       sdaMode;  // Control de salida SDA (1: salida, 0: entrada)
-  reg       sclMode;  // Habilitación de SCL (1: generar SCL, 0: mantener SCL alto)
+  reg       sclMode;  // Habilitación de SCL (1: generar SCL, 0: mantener Z impedancia)
 
   // Initial register states
   initial begin
-    busy = 0;  // 0: Libre, 1: Ocupado
+    busy = NO;  // 0: Libre, 1: Ocupado
     state = IDLE;
     next_state = IDLE;
     shift_reg = 8'd0;
@@ -67,49 +71,30 @@ module i2c_master #(
     sclMode = ZMODE;  // scl <- z
   end
 
-  // Generación de SCL
-  wire sclGenerator, clk_out1;
+  // Circuito para el generador de señal SCL
+  wire sclGenerator;
 `ifdef DEBUG
-  // localparam integer StartPulse = 0;
-  // localparam integer StartPulse = FreqInSim / FreqOutSim / 2;
+  // Parametros del clock para simulaciones a través de testbench
   localparam integer FreqInSim = 16;
   localparam integer FreqOutSim = 1;
   divFreq #(
       .FREQ_IN (FreqInSim),
-      .FREQ_OUT(FreqOutSim)  // 100KHz, 400KHz
+      .FREQ_OUT(FreqOutSim)
   ) scl_gen (
       .CLK_IN(clk),
       .RST(reset),
       .CLK_OUT(sclGenerator)
   );
-  // divFreqEn #(
-  //     .FREQ_IN(FreqInSim),
-  //     .FREQ_OUT(FreqOutSim),  // 100KHz, 400KHz
-  //     .INIT(StartPulse)
-  // ) enable_state (
-  //     .CLK_IN(clk),
-  //     .RST(reset),
-  //     .ENABLE(enableState)
-  // );
 `else
-  // localparam integer StartPulse = FREQ_IN / FREQ_OUT / 2;
+  // Generador de clock con respecto al hardware clock
   divFreq #(
       .FREQ_IN (FREQ_IN),
-      .FREQ_OUT(FREQ_OUT)  // 100KHz, 400KHz
+      .FREQ_OUT(FREQ_OUT)  // Posibles valores de salida: 100KHz, 400KHz
   ) scl_gen (
       .CLK_IN(clk),
       .RST(reset),
       .CLK_OUT(sclGenerator)
   );
-  // divFreqEn #(
-  //     .FREQ_IN(FREQ_IN),
-  //     .FREQ_OUT(FREQ_OUT),  // 100KHz, 400KHz
-  //     .INIT(StartPulse)
-  // ) scl_pulse (
-  //     .CLK_IN(clk),
-  //     .RST(reset),
-  //     .ENABLE(enableState)
-  // );
 `endif
 
   // Control del SCL
@@ -120,20 +105,28 @@ module i2c_master #(
   // 1        1             z
   // producto de sumas
   // output = ~sclMode | sclGenerator
-  assign scl   = (sclMode == 1'b1 && sclGenerator == 1'b0) ? 1'b0 : 1'bz;
+  assign scl   = (~sclMode | sclGenerator) ? 1'bz : 1'b0;
+  // assign scl   = (sclMode == 1'b1 && sclGenerator == 1'b0) ? 1'b0 : 1'bz;
   // assign scl_out = sclGenerator ? 1'bz : 1'b0;  // Cambiar de 1 y 0 a z y 0
   // assign scl = sclMode ? scl_out : 1'bz;  // Activar SCL
 
   // Asignación de SDA (bidireccional)
-  // wire sda_out;
+  // sdaMode  sda_reg       output
+  // 0        0             z
+  // 0        1             z
+  // 1        0             0
+  // 1        1             z
+  // producto de sumas
+  // output = ~sdaMode | sda_reg
+  assign sda   = (~sdaMode | sda_reg) ? 1'bz : 1'b0;
+  // assign sda   = (sdaMode == 1'b1 && sda_reg == 1'b0) ? 1'b0 : 1'bz;
   // assign sda_out = sda_reg ? 1'bz : 1'b0;  // Exponer el valor del registro como 0 o Z
   // assign sda = sdaMode ? sda_out : 1'bz;  // Habilitar la salida del sda
-  assign sda   = (sdaMode == 1'b1 && sda_reg == 1'b0) ? 1'b0 : 1'bz;
 
   assign probe = sda;
 
-  reg  scl_new = 1;
-  reg  enable = 0;
+  // reg  scl_new = 1;
+  // reg  enable = 0;
 
   // // Transición de estados
   // always @(posedge clk or posedge reset) begin
@@ -176,39 +169,42 @@ module i2c_master #(
   // Máquina de estados principal
   always @(posedge clk) begin
 
+    // Reset de la FSM
     if (reset) begin
       state <= IDLE;
       sclMode <= ZMODE;
       sdaMode <= ZMODE;
-      busy <= 0;
+      busy <= NO;
       bit_cnt <= 0;
       shift_reg <= 0;
       data_out <= 0;
     end else begin
-      state <= next_state;
-      // Detector de datos de entrada
+      // Task 1, 2 y 3 simultaneas
+      // Task 1: Detector de datos de entrada recibidos
       if (sclPosEdge && sdaMode == ZMODE) begin
         dataReceived <= 1;
         data <= sda;
       end else if (enableState) begin
         dataReceived <= 0;
       end
-      // Máquina de estados
+      // Task 2: Actualizar a nuevo estado
+      state <= next_state;
+      // Task 3: Máquina de estados FSM
       case (state)
         IDLE: begin
           if (startTask & enableState) begin
             next_state <= START;
-            busy <= 1;
+            busy <= YES;
           end
         end
 
         START: begin
           if (enableState) begin
-            sda_reg <= 0;  // Generar condición de START (SDA baja mientras SCL está alto)
+            sclMode <= ZMODE;
             sdaMode <= OUTPUTMODE;
+            sda_reg <= 0;  // Generar condición de START (SDA baja mientras SCL está alto)
             shift_reg <= {addr, rw};  // Cargar dirección + bit R/W
             bit_cnt <= 7;  // Contador de bits (8 bits: 7 de dirección + 1 de R/W)
-            sclMode <= ZMODE;
             next_state <= ADDR;
           end
         end
@@ -283,7 +279,7 @@ module i2c_master #(
         STOP: begin
           if (enableState) begin
             sda_reg <= 1;  // Generar condición de STOP (SDA sube mientras SCL está alto)
-            busy <= 0;
+            busy <= NO;
             sclMode <= ZMODE;  // Deshabilitar SCL
             next_state <= IDLE;
           end
