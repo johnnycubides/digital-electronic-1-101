@@ -7,7 +7,8 @@ PCF?=$(top).pcf
 JSON?=$(DIR_BUILD)/$(top).json
 ASC?=$(DIR_BUILD)/$(top).asc
 BISTREAM?=$(DIR_BUILD)/$(top).bin
-LOG?=$(DIR_BUILD)/$(top).log
+LOG_YOSYS?=$(DIR_BUILD)/yosys-$(top).log
+LOG_NEXTPNR?=$(DIR_BUILD)/nextpnr-$(top).log
 # MACRO_SYN sirve para indicar definiciones de preprocesamiento en la sintesis
 MACROS_SYN?=
 MACROS_SYN := $(foreach macro,$(MACROS_SYN),"$(macro)")
@@ -27,10 +28,10 @@ OBJS+=$(DESIGN)
 
 $(JSON): $(OBJS)
 	mkdir -p $(DIR_BUILD)
-	yosys $(MACRO_SYN) -p "synth_ice40 -top $(top) -json $(JSON)" $(OBJS)
+	yosys $(MACRO_SYN) -p "synth_ice40 -top $(top) -json $(JSON)" $(OBJS) -l $(LOG_YOSYS)
 
 $(ASC): $(JSON)
-	nextpnr-ice40 --hx8k --package ct256 --json $(JSON) --pcf $(PCF) --asc $(ASC) --log $(LOG)
+	nextpnr-ice40 --hx8k --package ct256 --json $(JSON) --pcf $(PCF) --asc $(ASC) --log $(LOG_NEXTPNR)
 
 $(BISTREAM): $(ASC)
 	icepack $(ASC) $(BISTREAM)
