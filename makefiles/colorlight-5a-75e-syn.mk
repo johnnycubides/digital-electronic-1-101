@@ -3,25 +3,31 @@ DEVSERIAL?=/dev/ttyACM0
 DIR_BUILD?=build
 MACROS_SYN?=
 top_NAME=$(basename $(notdir $(DESIGN)))
+#################################################
+###--- Rules from colorlight-5a-75e-syn.mk ---###
+#################################################
 top?=$(top_NAME)
 LPF?=$(top).lpf
 JSON?=$(DIR_BUILD)/$(top).json
 PNR?=$(DIR_BUILD)/$(top).pnr
 BISTREAM?=$(DIR_BUILD)/$(top).bin
-LOG?=$(DIR_BUILD)/$(top).log
+LOG_YOSYS?=$(DIR_BUILD)/yosys-$(top).log
+LOG_NEXTPNR?=$(DIR_BUILD)/nextpnr-$(top).log
 # MACRO_SYN sirve para indicar definiciones de preprocesamiento en la sintesis
 MACROS_SYN := $(foreach macro,$(MACROS_SYN),"$(macro)")
 
 help-syn:
 	@echo "\n## SINTESIS Y CONFIGURACIÓN ##"
 	@echo "\tmake syn\t\t-> Sintetizar diseño"
-	@echo "\tmake clean\t\t-> Limipiar síntesis si ha modificado el diseño"
 	@echo "\tmake config\t\t-> Configurar fpga en CRAM"
 	@echo "\tmake config-flash\t-> Guardar el bistream en memoria flash"
 	@echo "\tmake config-help\t-> Ayuda sobre cómo configurar la Colorlight"
 	@echo "\tmake detect\t\t-> Detectar FPGA"
 	@echo "\tmake reset\t\t-> Reiniciar FPGA"
 	@echo "\tmake erase-flash\t-> Borrar la memoria flash de configuración"
+	@echo "\tmake log-syn\t\t-> Ver el log de la síntesis con Yosys. Comandos: /palabra -> buscar, n -> próxima palabra, q -> salir, h -> salir"
+	@echo "\tmake log-pnr\t\t-> Ver el log del place&route con nextpnr. Comandos: /palabra -> buscar, n -> próxima palabra, q -> salir, h -> salir"
+	@echo "\tmake clean\t\t-> Limipiar síntesis si ha modificado el diseño"
 
 syn: json pnr bitstream
 
@@ -29,10 +35,10 @@ OBJS+=$(DESIGN)
 
 $(JSON): $(OBJS)
 	mkdir -p $(DIR_BUILD)
-	yosys $(MACROS_SYN) -p "synth_ecp5 -top $(top) -json $(JSON)" $(OBJS)
+	yosys $(MACROS_SYN) -p "synth_ecp5 -top $(top) -json $(JSON)" $(OBJS) -l $(LOG_YOSYS)
 
 $(PNR): $(JSON)
-	nextpnr-ecp5 --25k --package CABGA256 --speed 6 --json $(JSON) --lpf $(LPF) --freq 65 --textcfg $(PNR) --log $(LOG)
+	nextpnr-ecp5 --25k --package CABGA256 --speed 6 --json $(JSON) --lpf $(LPF) --freq 65 --textcfg $(PNR) --log $(LOG_NEXTPNR)
 
 $(BISTREAM): $(PNR)
 	ecppack $(PNR) $(BISTREAM)
@@ -120,7 +126,6 @@ zip:
 	$(RM) $Z $Z.zip
 	mkdir -p $Z
 	head -n -3 Makefile > $Z/Makefile
-	# Copia el Makefile de syn desde la línea 5
 	sed -n '5,$$p' $(MK_SYN) >> $Z/Makefile	# Empieza a escribir desde la línea 6
 	sed -n '7,$$p' $(MK_SIM) >> $Z/Makefile # Empieza a escribir desde la línea 7
 	cp -var *.v *.md *.lpf .gitignore $Z

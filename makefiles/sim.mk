@@ -4,16 +4,21 @@ DESIGN?=
 MACROS_SIM?=
 MACROS_RTL?=
 top_NAME=$(basename $(notdir $(DESIGN)))
+###############################
+###--- Rules from syn.mk ---###
+###############################
 tb?=$(top_NAME)_tb.v
 TBN=$(basename $(notdir $(tb)))
 
 S=sim
+LOG_YOSYS_RTL?=$(S)/yosys-$(top).log
 
 help-sim:
 	@echo "\n## SIMULACIÓN Y RTL##"
 	@echo "\tmake rtl \t-> Crear el RTL desde el TOP"
 	@echo "\tmake sim \t-> Simular diseño"
 	@echo "\tmake wave \t-> Ver simulación en gtkwave"
+	@echo "\tmake log-rtl \t-> Ver el log del RTL. Comandos: /palabra -> buscar, n -> próxima palabra, q -> salir, h -> salir"
 	@echo "\nEjemplos de simulaciones con más argumentos:"
 	@echo "\tmake sim VVP_ARG=+inputs=5\t\t:Agregar un argumento a la simulación"
 	@echo "\tmake sim VVP_ARG=+a=5\ +b=6\t\t:Agregar varios argumentos a la simulación"
@@ -48,7 +53,10 @@ wave:
 MACROS_RTL := $(foreach macro,$(MACROS_RTL),"$(macro)")
 json-yosys: ## Generar json para el rtl de netlistsvg
 	mkdir -p $S
-	yosys $(MACROS_RTL) -p 'prep -top $(top); hierarchy -check; proc; write_json $S/$(top).json' $(DESIGN)
+	yosys $(MACROS_RTL) -p 'prep -top $(top); hierarchy -check; proc; write_json $S/$(top).json' $(DESIGN) -l $(LOG_YOSYS_RTL)
+
+log-rtl:
+	less $(LOG_YOSYS_RTL)
 
 # Convertir el diseño en un solo archivo de verilog
 ConvertOneVerilogFile:
@@ -84,7 +92,7 @@ zip-sim:
 	mkdir -p $Z
 	# Quitar las últimas dos líneas del Makefile y crear copia en el directorio $Z
 	head -n -2 Makefile > $Z/Makefile
-	# Agregar desde la línea 7 en adelante en el Makefile
+	# Agregar el contenido de sim.mk después de la línea 6
 	sed -n '6,$$p' $(MK_SIM) >> $Z/Makefile
 	cp -var *.v *.md .gitignore $Z
 ifneq ($(wildcard *.mem),) # Si existe un archivo .png

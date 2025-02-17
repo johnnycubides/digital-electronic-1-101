@@ -2,12 +2,16 @@ DESIGN?=
 DEVSERIAL?=/dev/ttyACM0
 DIR_BUILD?=build
 top_NAME=$(basename $(notdir $(DESIGN)))
+########################################
+###--- Rules from blackice-syn.mk ---###
+########################################
 top?=$(top_NAME)
 PCF?=$(top).pcf
 JSON?=$(DIR_BUILD)/$(top).json
 ASC?=$(DIR_BUILD)/$(top).asc
 BISTREAM?=$(DIR_BUILD)/$(top).bin
-LOG?=$(DIR_BUILD)/$(top).log
+LOG_YOSYS?=$(DIR_BUILD)/yosys-$(top).log
+LOG_NEXTPNR?=$(DIR_BUILD)/nextpnr-$(top).log
 
 # MACRO_SYN sirve para indicar definiciones de preprocesamiento en la sintesis
 MACRO_SYN?=
@@ -17,6 +21,8 @@ help-syn:
 	@echo "\n## SINTESIS Y CONFIGURACIÓN ##"
 	@echo "\tmake syn\t-> Sintetizar diseño"
 	@echo "\tmake config\t-> Configurar fpga"
+	@echo "\tmake log-syn\t\t-> Ver el log de la síntesis con Yosys. Comandos: /palabra -> buscar, n -> próxima palabra, q -> salir, h -> salir"
+	@echo "\tmake log-pnr\t\t-> Ver el log del place&route con nextpnr. Comandos: /palabra -> buscar, n -> próxima palabra, q -> salir, h -> salir"
 	@echo "\tmake clean\t-> Limipiar síntesis si ha modificado el diseño"
 
 syn: json asc bitstream
@@ -25,10 +31,10 @@ OBJS+=$(DESIGN)
 
 $(JSON): $(OBJS)
 	mkdir -p $(DIR_BUILD)
-	yosys $(MACRO_SYN) -p "synth_ice40 -top $(top) -json $(JSON)" $(OBJS)
+	yosys $(MACRO_SYN) -p "synth_ice40 -top $(top) -json $(JSON)" $(OBJS) -l $(LOG_YOSYS)
 
 $(ASC): $(JSON)
-	nextpnr-ice40 --hx4k --package tq144 --json $(JSON) --pcf $(PCF) --asc $(ASC) --log $(LOG)
+	nextpnr-ice40 --hx4k --package tq144 --json $(JSON) --pcf $(PCF) --asc $(ASC) --log $(LOG_NEXTPNR)
 
 $(BISTREAM): $(ASC)
 	icepack $(ASC) $(BISTREAM)
@@ -46,7 +52,7 @@ zip:
 	$(RM) $Z $Z.zip
 	mkdir -p $Z
 	head -n -3 Makefile > $Z/Makefile
-	# Copia el Makefile de syn desde la línea 4
+	# Copia el Makefile de syn después de la línea 4
 	sed -n '4,$$p' $(MK_SYN) >> $Z/Makefile
 	sed -n '7,$$p' $(MK_SIM) >> $Z/Makefile
 	cp -var *.v *.md *.pcf .gitignore $Z

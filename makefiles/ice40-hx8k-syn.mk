@@ -2,6 +2,9 @@ DESIGN?=
 DEVSERIAL?=/dev/ttyACM0
 DIR_BUILD?=build
 top_NAME=$(basename $(notdir $(DESIGN)))
+##########################################
+###--- Rules from ice40-hx8k-syn.mk ---###
+##########################################
 top?=$(top_NAME)
 PCF?=$(top).pcf
 JSON?=$(DIR_BUILD)/$(top).json
@@ -20,6 +23,8 @@ help-syn:
 	@echo "\t\t\t\t   Para configurar desde la flash, se requiere poner un jumper en J7 y en J6 conectar dos jumper entre los pines 4-2 y 3-1"
 	@echo "\tmake config-sram\t-> Configurar fpga desde la CRAM"
 	@echo "\t\t\t\t   Para configurar desde la CRAM, se requiere desconectar el jumper en J7 y en J6 conectar dos jumper entre los pines 4-3 y 2-1"
+	@echo "\tmake log-syn\t\t-> Ver el log de la síntesis con Yosys. Comandos: /palabra -> buscar, n -> próxima palabra, q -> salir, h -> salir"
+	@echo "\tmake log-pnr\t\t-> Ver el log del place&route con nextpnr. Comandos: /palabra -> buscar, n -> próxima palabra, q -> salir, h -> salir"
 	@echo "\tmake clean\t\t-> Limipiar síntesis si ha modificado el diseño"
 
 syn: json asc bitstream
@@ -30,8 +35,14 @@ $(JSON): $(OBJS)
 	mkdir -p $(DIR_BUILD)
 	yosys $(MACRO_SYN) -p "synth_ice40 -top $(top) -json $(JSON)" $(OBJS) -l $(LOG_YOSYS)
 
+log-syn:
+	less $(LOG_YOSYS)
+
 $(ASC): $(JSON)
 	nextpnr-ice40 --hx8k --package ct256 --json $(JSON) --pcf $(PCF) --asc $(ASC) --log $(LOG_NEXTPNR)
+
+log-pnr:
+	less $(LOG_NEXTPNR)
 
 $(BISTREAM): $(ASC)
 	icepack $(ASC) $(BISTREAM)
@@ -51,7 +62,7 @@ zip:
 	$(RM) $Z $Z.zip
 	mkdir -p $Z
 	head -n -3 Makefile > $Z/Makefile
-	# Copia el Makefile de syn desde la línea 4
+	# Copia el Makefile de *-syn.mk después de la línea 4
 	sed -n '4,$$p' $(MK_SYN) >> $Z/Makefile
 	sed -n '7,$$p' $(MK_SIM) >> $Z/Makefile
 	cp -var *.v *.md *.pcf .gitignore $Z
