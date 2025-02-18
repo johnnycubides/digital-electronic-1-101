@@ -222,7 +222,7 @@ module i2c_master #(
           end
         end
 
-        // TODO: requiere revisión
+        // TODO: En implementación debe ser cambiado NACK por ACK
         ACKADDR: begin
           if (dataReceived) begin
             if (data == NACK) begin  // Verificar ACK del esclavo

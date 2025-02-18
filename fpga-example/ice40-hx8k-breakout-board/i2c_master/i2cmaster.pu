@@ -1,17 +1,43 @@
 @startuml
-[*] --> IDLE
-IDLE --> START
-START --> ADDRESS
+
+'### Selectors
+'state ACK_choice <<choice>>
+
+'### States
+state IDLE
+state START
+state ADDRESS
+state ACKADDR
+state STOP
+
+'### Transitions
+IDLE --> START : newState
+START --> ADDRESS : newState
 ADDRESS --> ADDRESS: bit_counter > 0
-ADDRESS --> ACK: bit_counter = 0
-ACK --> READ : wr = 1
-ACK --> WRITE : wr = 0
+ADDRESS --> ACKADDR: bit_counter = 0
+ACKADDR --> READ : ACK & wr = 1
+ACKADDR --> WRITE : ACK & wr = 0
+ACKADDR --> STOP : NACK
+STOP --> IDLE : newState
+
+'### Values in states
 IDLE: SDA <= z
 IDLE: SCL <= z
-START: SDA <= 0
-START: bit_counter <= 7
-START: data2send <= {address, wr}
 
+START: SDA <= 0
+START: SCL <= Output
+START: bit_cnt <= 7
+START: data2send <= {address, wr}
+START: Busy <= Yes
+
+ADDRESS: SDA <= data2send[bit_cnt]
+ADDRESS: bit_cnt <= bit_cnt - 1
+
+STOP: SDA <= 1
+STOP: Busy <= No
+
+
+'### Notes in states
 note left of ADDRESS
   if (bit_counter == 0):
   SDA <= z
