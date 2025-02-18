@@ -8,17 +8,28 @@ state IDLE
 state START
 state ADDRESS
 state ACKADDR
+state ACKDATA
+state WRITE
+state ACKDATA
+state READ
+state ACKDATA
 state STOP
 
 '### Transitions
-IDLE --> START : newState
-START --> ADDRESS : newState
-ADDRESS --> ADDRESS: bit_counter > 0
-ADDRESS --> ACKADDR: bit_counter = 0
-ACKADDR --> READ : ACK & wr = 1
-ACKADDR --> WRITE : ACK & wr = 0
-ACKADDR --> STOP : NACK
-STOP --> IDLE : newState
+IDLE --> START: newState
+START --> ADDRESS: newState
+ADDRESS --> ADDRESS: bit_cnt > 0
+ADDRESS --> ACKADDR: bit_cnt = 0
+ACKADDR --> READ: ACK & wr = 1
+ACKADDR --> WRITE: ACK & wr = 0
+ACKADDR --> STOP: NACK
+WRITE --> WRITE: bit_cnt > 0
+WRITE --> ACKDATA: bit_cnt = 0
+ACKDATA --> STOP: rw = 0 & NACK
+READ --> READ: bit_cnt > 0
+READ --> ACKDATA: bit_cnt = 0
+ACKDATA --> STOP: newState
+STOP --> IDLE: newState
 
 '### Values in states
 IDLE: SDA <= z
@@ -27,11 +38,18 @@ IDLE: SCL <= z
 START: SDA <= 0
 START: SCL <= Output
 START: bit_cnt <= 7
-START: data2send <= {address, wr}
+START: shift_reg <= {address, wr}
 START: Busy <= Yes
 
-ADDRESS: SDA <= data2send[bit_cnt]
+ADDRESS: SDA <= shift_reg[bit_cnt]
 ADDRESS: bit_cnt <= bit_cnt - 1
+
+ACKDATA: bit_cnt <= 7
+
+WRITE: SDA <= shift_reg[bit_cnt]
+WRITE: bit_cnt <= bit_cnt - 1
+
+ACKDATA: bit_cnt <= 7
 
 STOP: SDA <= 1
 STOP: Busy <= No
