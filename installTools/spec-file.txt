@@ -1,8 +1,10 @@
 # This file may be used to create an environment using:
 # $ conda create --name <env> --file <this file>
 # platform: linux-64
+# created-by: conda 24.11.3
 @EXPLICIT
 https://conda.anaconda.org/johnnycubides/linux-64/openfpgaloader-0.11.0-0.tar.bz2
+https://conda.anaconda.org/johnnycubides/linux-64/verible-v0.0_3946_g851d3ff4-0.tar.bz2
 https://conda.anaconda.org/conda-forge/linux-64/_libgcc_mutex-0.1-conda_forge.tar.bz2
 https://repo.anaconda.com/pkgs/main/noarch/_sysroot_linux-64_curr_repodata_hack-3-haa98f57_10.tar.bz2
 https://repo.anaconda.com/pkgs/main/linux-64/ca-certificates-2024.12.31-h06a4308_0.conda
