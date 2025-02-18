@@ -1,0 +1,2 @@
+conda activate digital
+conda list --explicit >spec-file.txt
