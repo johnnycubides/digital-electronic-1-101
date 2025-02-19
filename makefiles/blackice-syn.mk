@@ -33,8 +33,14 @@ $(JSON): $(OBJS)
 	mkdir -p $(DIR_BUILD)
 	yosys $(MACRO_SYN) -p "synth_ice40 -top $(top) -json $(JSON)" $(OBJS) -l $(LOG_YOSYS)
 
+log-syn:
+	less $(LOG_YOSYS)
+
 $(ASC): $(JSON)
 	nextpnr-ice40 --hx4k --package tq144 --json $(JSON) --pcf $(PCF) --asc $(ASC) --log $(LOG_NEXTPNR)
+
+log-pnr:
+	less $(LOG_NEXTPNR)
 
 $(BISTREAM): $(ASC)
 	icepack $(ASC) $(BISTREAM)
