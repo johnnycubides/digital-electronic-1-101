@@ -34,6 +34,9 @@ module i2c_master #(
   // Valores posibles para SDA y SCL
   localparam reg ZMODE = 0;
   localparam reg OUTPUTMODE = 1;
+  // Valores posibles para el modo del I2c
+  localparam reg WRITEMODE = 0;
+  localparam reg READMODE = 1;
   // Valores posibles para respuesta de datos transmitidos
   localparam reg ACK = 0;
   localparam reg NACK = 1;
@@ -241,6 +244,7 @@ module i2c_master #(
           end
         end
 
+        // TODO: Implementar el byte_cnt para escribir más de un dato
         WRITEDATA: begin
           if (enableState) begin
             sda_reg <= shift_reg[bit_cnt];  // Enviar bit actual
@@ -257,6 +261,10 @@ module i2c_master #(
           if (dataReceived) begin
             shift_reg[bit_cnt] <= data;  // Leer bit actual
             if (bit_cnt == 0) begin
+              // TODO: Verificar si empieza en 1 o 0
+              // if (byte_cnt > 0) begin // Verificar cuantos byes faltan
+              //  byte_cnt <= byte_cnt - 1;
+              // end
               next_state <= ACKDATA;
               data_out   <= shift_reg;  // Almacenar dato recibido
             end else begin
@@ -265,15 +273,33 @@ module i2c_master #(
           end
         end
 
+        // INFO: Implementar un counter bytes para enviar rafaga
         ACKDATA: begin
-          if (dataReceived) begin
-            if (rw) begin  // Si lectura
-              sda_reg <= NACK;  // Enviar NACK después de la lectura
-            end else begin
-              sdaMode <= ZMODE;  // Liberar SDA para recibir ACK
+          if (rw) begin  // Si es lectura enviar ACK
+            if (enableState) begin  // Responder al nuevo estado
+              // if (byte_cnt == 0) begin
+              sda_reg <= NACK;  // Si es el último
+              next_state <= STOP;
+              // end else begin // Tener más bytes para leer
+              //  sda_reg <= ACK;
+              //  next_state <= READDATA;
+              //  sdaMode <= ZMODE;
+              // end
             end
-            next_state <= STOP;
+          end else begin  // Si es escritura recibir ACK
+            if (dataReceived) begin  // Si recibe un dato
+              sdaMode <= ZMODE;  // Última lectura
+              next_state <= STOP;
+            end
           end
+          // if (dataReceived) begin
+          //   if (rw) begin  // Si lectura
+          //     sda_reg <= NACK;  // Enviar NACK después de la lectura
+          //   end else begin
+          //     sdaMode <= ZMODE;  // Liberar SDA para recibir ACK
+          //   end
+          //   next_state <= STOP;
+          // end
         end
 
         STOP: begin
