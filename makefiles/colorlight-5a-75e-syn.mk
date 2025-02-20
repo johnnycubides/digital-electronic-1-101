@@ -37,8 +37,14 @@ $(JSON): $(OBJS)
 	mkdir -p $(DIR_BUILD)
 	yosys $(MACROS_SYN) -p "synth_ecp5 -top $(top) -json $(JSON)" $(OBJS) -l $(LOG_YOSYS)
 
+log-syn:
+	less $(LOG_YOSYS)
+
 $(PNR): $(JSON)
 	nextpnr-ecp5 --25k --package CABGA256 --speed 6 --json $(JSON) --lpf $(LPF) --freq 65 --textcfg $(PNR) --log $(LOG_NEXTPNR)
+
+log-pnr:
+	less $(LOG_NEXTPNR)
 
 $(BISTREAM): $(PNR)
 	ecppack $(PNR) $(BISTREAM)
