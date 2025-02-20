@@ -69,7 +69,7 @@ que fueron instaladas.
 
 ```bash
 (base) $ conda update conda # Actualizar conda
-(base) $ conda create -n digital python=3.7 # Configurar digital como variable de entorno y python3.7
+(base) $ conda create -n digital python=3.9 # Configurar digital como variable de entorno y python3.7
 (base) $ conda activate digital  # Activar la variable de entorno de conda denominada digital
 (digital) $ python --version # Debe presentarse la version 3.7 para poder continuar
 ```
@@ -80,20 +80,20 @@ que fueron instaladas.
 ```bash
 (digital) $ conda install conda-forge::libstdcxx-ng
 (digital) $ conda install conda-forge::libusb
-(digital) $ conda install conda-forge::libftdi 
+(digital) $ conda install conda-forge::libftdi
 (digital) $ conda install conda-forge::libhidapi
-(digital) $ conda install johnnycubides::openfpgaloader 
+(digital) $ conda install johnnycubides::openfpgaloader
 (digital) $ conda install -c litex-hub nextpnr-ice40
 (digital) $ conda install -c litex-hub nextpnr-ecp5
 (digital) $ conda install -c litex-hub iceprog
-(digital) $ conda install -c litex-hub yosys
+(digital) $ conda install litex-hub::yosys
 (digital) $ conda install -c litex-hub iverilog
-(digital) $ conda install -c symbiflow netlistsvg
+(digital) $ conda install johnnycubides::netlistsvg
 (digital) $ conda install -c conda-forge graphviz
 (digital) $ conda install -c conda-forge gtkwave 
 (digital) $ conda install conda-forge::verilator
 (digital) $ conda install gcc-riscv64-elf-newlib
-(digital) $ conda install conda-forge::verible
+(digital) $ conda install johnnycubides::verible
 ```
 
 > Para comprobar que se han instalado las herramientas requeridas podrá listar y ubicarlas con el comando `$ conda list`
