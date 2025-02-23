@@ -11,6 +11,10 @@ determinado.
 
 Tenga presente que el ancho del pulso debe ser mayor al periodo de la frecuencia de entrada.
 
+## Aplicaciones
+
+Puede ser el trigger para un sensor ultrasonido, el start para la lectura de un sensor DHT11.
+
 ## Caja Negra
 
 <details>
