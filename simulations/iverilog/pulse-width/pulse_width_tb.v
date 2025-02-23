@@ -14,29 +14,42 @@
 // como el time_unit es de 10 ns, entonces con 2 tiempos se puede representar
 // la duración de cada reloj.
 `ifndef TIME_UNIT
-`define TIME_UNIT 2
+`define TIME_UNIT 42
 `endif
-`include "./top.v"
-module top_tb;
+`include "./pulse_width.v"
+module pulse_width_tb;
   // Determinar el tamaño de los wire como de los estímulos
-  parameter integer INPUT_SIZE = 1;
-  parameter integer OUTPUT_SIZE = 1;
+  // parameter integer INPUT_SIZE = 1;
+  parameter integer OUTPUT_SIZE = 2;
 
-  // STIMULUS 1
-  reg [INPUT_SIZE-1:0] inputs;
-  initial begin
-    inputs = 0;
-    #(`TIME_UNIT * 1) inputs = 1;
-    #(`TIME_UNIT * 1) $finish();  // [stop(), $finish()]
-  end
-  // // Make a regular pulsing clock.
-  // reg clk = 0;
-  // always #(`TIME_UNIT) clk = !clk;
-  //
-  // // CLOCK STIMULUS
+  // // STIMULUS 1
+  // reg [INPUT_SIZE-1:0] inputs;
   // initial begin
-  //   #(`TIME_UNIT * 32) $finish();  // [stop(), $finish()]
+  //   inputs = 0;
+  //   #(`TIME_UNIT * 1) inputs = 1;
+  //   #(`TIME_UNIT * 1) $finish();  // [stop(), $finish()]
   // end
+
+  // Make a regular pulsing clock.
+  reg clk = 0;
+  always #(`TIME_UNIT) clk = !clk;
+
+  parameter integer FREQ_IN = 12e6;
+  parameter real WIDTH_PULSE = 10e-6;
+  localparam real COUNT = 2 * (FREQ_IN / (1 / WIDTH_PULSE));
+
+  // CLOCK STIMULUS
+  initial begin
+    #(`TIME_UNIT * (2 * COUNT * 1.05)) $finish();  // [stop(), $finish()]
+  end
+
+  reg start;
+  initial begin
+    start = 1;
+    #(`TIME_UNIT * 2) start = 0;
+    #(`TIME_UNIT * (COUNT * 1.01)) start = 1;
+    #(`TIME_UNIT * 2) start = 0;
+  end
 
   // initial
   // begin
@@ -88,16 +101,21 @@ module top_tb;
   wire [OUTPUT_SIZE-1:0] probe;
 
   // DEVICE/DESIGN UNDER TEST
-  top dut (
-      .a(inputs),
-      .y(probe)
+  pulse_width #(
+      .FREQ_IN(FREQ_IN),
+      .WIDTH_PULSE(WIDTH_PULSE)
+  ) dut (
+      .clk(clk),
+      .start(start),
+      .signal(probe[0]),
+      .busy(probe[1])
   );
 
   // MONITOR
-  initial $monitor("Time: %t, out = %d", $time, probe);
+  // initial $monitor("Time: %t, out = %d", $time, probe);
 
   // WAVES IN VCD TO OPEN IN GTKWAVE
   initial begin
-    $dumpvars(0, top_tb);
+    $dumpvars(0, pulse_width_tb);
   end
 endmodule
