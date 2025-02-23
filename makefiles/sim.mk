@@ -104,6 +104,9 @@ endif
 ifneq ($(wildcard *.png),) # Si existe un archivo .png
 	cp -var *.png $Z
 endif
+ifneq ($(wildcard *.svg),) # Si existe un archivo .png
+	cp -var *.svg $Z
+endif
 ifneq ($(wildcard *.txt),) # Si existe un archivo .txt
 	cp -var *.txt $Z
 endif

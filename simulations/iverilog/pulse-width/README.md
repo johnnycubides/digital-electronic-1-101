@@ -1,4 +1,58 @@
-# Esqueleto para realizar simulaciones con iverilog
+# Generador de único pulso
+
+
+Este circuito genera un pulso de un tamaño determinado como parámetro.
+Indicando el `FREQ_IN` en Hz y `WIDTH_PULSE` en Segundo en el proceso de presíntesis calcula el
+tamaño de los recursos para generar el tamaño del pulso.
+
+En el ejemplo, la frecuencia de entrada es de 12 Mhz y el ancho del pulso es de 10 uS.
+Cada vez que se genera un START, el sistema genera el pulso en *signal* con el ancho
+determinado.
+
+Tenga presente que el ancho del pulso debe ser mayor al periodo de la frecuencia de entrada.
+
+## Caja Negra
+
+<details>
+
+  @startuml pulse_width_bb
+  [pulse_width] <-left- clk
+  [pulse_width] <-left- start
+  [pulse_width] -right-> signal
+  [pulse_width] -right-> busy
+  @enduml
+</details>
+
+![pulse_width](pulse_width_bb.svg)
+
+<details>
+
+@startuml pulse_timing
+  clock "clk" as c0 with period 1
+  binary "Start" as ST
+  binary "Signal" as S0
+  binary "Busy" as B0
+
+  @1
+  ST is high
+
+  @2
+  ST is low
+
+  @2
+  S0 is high
+  B0 is high
+
+  @6
+  S0 is low
+  B0 is low
+
+@enduml
+</details>
+
+![timimg diagram](pulse_timing.svg) 
+
+![Generador de pulso](./pulse_width.png)
 
 ## Simulación a través de Makefile
 
@@ -11,30 +65,11 @@ make wave       -> Ver simulación en gtkwave
 make rtl        -> Crear RTL
 ```
 
-## Simulación manual
-
-1. Descargar el archivo [template.zip](./template.zip) que contiene el proyecto y descomprimir en el área de trabajo.
-
-2. Crear el ejecutable *top.vvp* con iverilog:
-
-```bash
-iverilog -o top.vvp top_tb.v
-```
-
-3. Iniciar la simulación generar resultados
-
-```bash
-vvp top.vvp
-```
-> Para finalizar simulación: `> finisih`
-
-* Podría también realizar la simulación creando un archivo
-`./file_list.txt` que contiene los módulos que intervienen en la simulación:
-
-```bash
-iverilog -o top.vvp -c file_list.txt
-vvp top.vvp
-```
 Regards,
 
 Johnny
+
+Generar svg:
+```bash
+plantuml -tsvg README.md
+```
