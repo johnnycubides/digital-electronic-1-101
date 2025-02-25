@@ -1,28 +1,28 @@
 [*]
 [*] GTKWave Analyzer v3.3.117 (w)1999-2023 BSI
-[*] Mon Feb 24 03:15:10 2025
+[*] Tue Feb 25 17:28:27 2025
 [*]
 [dumpfile] "/home/johnny/projects/digital-electronic-1-101/simulations/iverilog/chronometer/sim/chronometer_tb.vcd"
-[dumpfile_mtime] "Mon Feb 24 03:13:54 2025"
-[dumpfile_size] 1178994
+[dumpfile_mtime] "Tue Feb 25 17:27:00 2025"
+[dumpfile_size] 1179019
 [savefile] "/home/johnny/projects/digital-electronic-1-101/simulations/iverilog/chronometer/chronometer_tb.gtkw"
-[timestart] 37265
-[size] 2256 1427
+[timestart] 0
+[size] 1920 1123
 [pos] -1 -1
 *-10.163033 39942 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] chronometer_tb.
 [sst_width] 249
-[signals_width] 218
+[signals_width] 253
 [sst_expanded] 1
 [sst_vpaned_height] 434
 @28
 chronometer_tb.dut.clk
-chronometer_tb.dut.start
-chronometer_tb.dut.enable
-chronometer_tb.dut.pulse
-@25
-chronometer_tb.dut.unitCnt[8:0]
-@24
-chronometer_tb.dut.timer[8:0]
+chronometer_tb.dut.resetChronometer
+@29
+chronometer_tb.dut.enableTimmerCounter
+@28
+chronometer_tb.dut.pulseIndicatorUnit
+@22
+chronometer_tb.dut.recordTimer[8:0]
 [pattern_trace] 1
 [pattern_trace] 0
