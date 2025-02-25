@@ -102,7 +102,7 @@ module chronometer_tb;
   chronometer #(
       .FREQ_IN(12e6),
       .LIMIT_RECORD_TIMER(LIMIT_CNT),
-      .SELECT_UNITS(0)  // 0 -> mS, 1 -> uS, 2 -> nS
+      .SELECT_UNITS(0)  // 0 -> mS, 1 -> uS
   ) dut (
       .clk(clk),
       .resetChronometer(start),

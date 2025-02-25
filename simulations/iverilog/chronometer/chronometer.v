@@ -1,7 +1,7 @@
 module chronometer #(
     parameter integer FREQ_IN = 10000,
     parameter integer LIMIT_RECORD_TIMER = 1000,  // Counter limit
-    parameter integer SELECT_UNITS = 0,  // 0 -> mS, 1 -> uS, 2 -> nS
+    parameter integer SELECT_UNITS = 0,  // 0 -> mS, 1 -> uS
     parameter integer SIZE_RECORD_TIMER = $clog2(LIMIT_RECORD_TIMER) - 1
 ) (
     // Inputs and output ports
@@ -12,7 +12,8 @@ module chronometer #(
 );
 
   //### START PRESINTESIS ###
-  localparam integer FreqOfUnits = (SELECT_UNITS == 2) ? 1e9 : (SELECT_UNITS) ? 1e6 : 1e3;
+  // localparam integer FreqOfUnits = (SELECT_UNITS == 2) ? 1e9 : (SELECT_UNITS) ? 1e6 : 1e3;
+  localparam integer FreqOfUnits = (SELECT_UNITS) ? 1e6 : 1e3;
   localparam integer CounterForAnUnit = (FREQ_IN / FreqOfUnits);
   localparam integer SizeOfCounterForAnUnit = $clog2(CounterForAnUnit);
   localparam integer LimitCounterForAnUnit = CounterForAnUnit - 1;
