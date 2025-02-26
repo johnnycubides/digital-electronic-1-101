@@ -1,35 +1,37 @@
 [*]
 [*] GTKWave Analyzer v3.3.117 (w)1999-2023 BSI
-[*] Tue Feb 25 18:20:07 2025
+[*] Wed Feb 26 02:53:14 2025
 [*]
 [dumpfile] "/home/johnny/projects/digital-electronic-1-101/simulations/iverilog/chronometer/sim/chronometer_tb.vcd"
-[dumpfile_mtime] "Tue Feb 25 18:18:15 2025"
-[dumpfile_size] 1180707
+[dumpfile_mtime] "Wed Feb 26 02:49:35 2025"
+[dumpfile_size] 1179065
 [savefile] "/home/johnny/projects/digital-electronic-1-101/simulations/iverilog/chronometer/chronometer_tb.gtkw"
-[timestart] 3712
-[size] 1920 1123
-[pos] -1 -1
-*-10.163033 7854 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[timestart] 0
+[size] 2256 1427
+[pos] -51 -51
+*-10.163033 41622 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] chronometer_tb.
 [sst_width] 249
 [signals_width] 353
 [sst_expanded] 1
-[sst_vpaned_height] 434
+[sst_vpaned_height] 575
 @28
 chronometer_tb.dut.clk
 chronometer_tb.dut.resetChronometer
 chronometer_tb.dut.enableTimmerCounter
-chronometer_tb.dut.pulseIndicatorUnit
+@24
+chronometer_tb.dut.unitPartsCounter[3:0]
 @22
-chronometer_tb.dut.recordTimer[8:0]
+chronometer_tb.dut.recordTimer[9:0]
+@24
+chronometer_tb.dut.pulseIndicatorUnit
 @420
 chronometer_tb.dut.SIZE_RECORD_TIMER
-@25
-chronometer_tb.dut.unitPartsCounter[13:0]
-@420
 chronometer_tb.dut.SizeOfCounterForAnUnit
 chronometer_tb.dut.FreqOfUnits
+@421
 chronometer_tb.dut.CounterForAnUnit
+@420
 chronometer_tb.dut.FREQ_IN
 [pattern_trace] 1
 [pattern_trace] 0

@@ -2,7 +2,7 @@ module chronometer #(
     parameter integer FREQ_IN = 12000000,
     parameter integer LIMIT_RECORD_TIMER = 1000,  // Counter limit
     parameter integer SELECT_UNITS = 1,  // 0 -> mS, 1 -> uS
-    parameter integer SIZE_RECORD_TIMER = $clog2(LIMIT_RECORD_TIMER) - 1
+    parameter integer SIZE_RECORD_TIMER = $clog2(LIMIT_RECORD_TIMER)
 ) (
     // Inputs and output ports
     input clk,

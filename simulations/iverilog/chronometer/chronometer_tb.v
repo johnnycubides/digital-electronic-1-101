@@ -21,7 +21,7 @@ module chronometer_tb;
   parameter integer LIMIT_CNT = 1000;
   // Determinar el tamaño de los wire como de los estímulos
   // parameter integer INPUT_SIZE = 1;
-  parameter integer OUTPUT_SIZE = $clog2(LIMIT_CNT) - 1;
+  parameter integer OUTPUT_SIZE = $clog2(LIMIT_CNT);
 
   // STIMULUS 1
   // reg [INPUT_SIZE-1:0] inputs;
@@ -102,7 +102,7 @@ module chronometer_tb;
   chronometer #(
       .FREQ_IN(12e6),
       .LIMIT_RECORD_TIMER(LIMIT_CNT),
-      .SELECT_UNITS(0)  // 0 -> mS, 1 -> uS
+      .SELECT_UNITS(1)  // 0 -> mS, 1 -> uS
   ) dut (
       .clk(clk),
       .resetChronometer(start),
