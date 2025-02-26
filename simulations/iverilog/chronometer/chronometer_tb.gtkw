@@ -1,14 +1,14 @@
 [*]
 [*] GTKWave Analyzer v3.3.117 (w)1999-2023 BSI
-[*] Wed Feb 26 02:53:14 2025
+[*] Wed Feb 26 04:00:34 2025
 [*]
 [dumpfile] "/home/johnny/projects/digital-electronic-1-101/simulations/iverilog/chronometer/sim/chronometer_tb.vcd"
-[dumpfile_mtime] "Wed Feb 26 02:49:35 2025"
+[dumpfile_mtime] "Wed Feb 26 04:00:31 2025"
 [dumpfile_size] 1179065
 [savefile] "/home/johnny/projects/digital-electronic-1-101/simulations/iverilog/chronometer/chronometer_tb.gtkw"
 [timestart] 0
 [size] 2256 1427
-[pos] -51 -51
+[pos] -1 -1
 *-10.163033 41622 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] chronometer_tb.
 [sst_width] 249
