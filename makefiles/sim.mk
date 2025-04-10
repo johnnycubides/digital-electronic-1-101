@@ -5,7 +5,7 @@ MACROS_SIM?=
 MACROS_RTL?=
 top_NAME=$(basename $(notdir $(DESIGN)))
 ###############################
-###--- Rules from syn.mk ---###
+###--- Rules from sim.mk ---###
 ###############################
 tb?=$(top_NAME)_tb.v
 TBN=$(basename $(notdir $(tb)))
