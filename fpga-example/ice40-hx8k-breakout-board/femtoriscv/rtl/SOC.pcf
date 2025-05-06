@@ -1,0 +1,25 @@
+# CLK 12 MHZ
+set_io clk J3 # Señal de reloj del hardware 12 MHz
+
+# Led indicator
+set_io LEDS A2 # D7
+
+# Reset button
+set_io -pullup yes resetn R1 # Poner cable a 0 para resetear
+
+## UART
+set_io TXD B12 # TX
+set_io RXD B10 # RX
+
+## CLOCK 12 MHZ
+# set_io hclk J3 # hardware clock
+
+## LEDS
+# set_io led0 B5 # D9
+# set_io led1 B4 # D8
+# set_io led2 A2 # D7
+# set_io led3 A1 # D6
+# set_io led4 C5 # D5
+# set_io led5 C4 # D4
+# set_io led6 B3 # D3
+# set_io led7 C3 # D2

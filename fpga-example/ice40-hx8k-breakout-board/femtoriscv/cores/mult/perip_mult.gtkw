@@ -1,0 +1,59 @@
+[*]
+[*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
+[*] Thu Oct  5 14:59:31 2023
+[*]
+[dumpfile] "/home/carlos/Embedded/litex_work/femtorv/basic/rtl/cores/mult/perip_mult_TB.vcd"
+[dumpfile_mtime] "Thu Oct  5 14:55:51 2023"
+[dumpfile_size] 4343
+[savefile] "/home/carlos/Embedded/litex_work/femtorv/basic/rtl/cores/mult/perip_mult.gtkw"
+[timestart] 0
+[size] 1920 1011
+[pos] -75 -71
+*-17.768877 329000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] peripheral_mult_TB.
+[treeopen] peripheral_mult_TB.uut.
+[sst_width] 331
+[signals_width] 387
+[sst_expanded] 1
+[sst_vpaned_height] 457
+@28
+peripheral_mult_TB.uut.clk
+peripheral_mult_TB.uut.mult1.reset
+@22
+[color] 2
+peripheral_mult_TB.uut.d_in[15:0]
+[color] 2
+peripheral_mult_TB.uut.addr[4:0]
+@28
+[color] 2
+peripheral_mult_TB.uut.rd
+[color] 2
+peripheral_mult_TB.uut.wr
+[color] 2
+peripheral_mult_TB.uut.cs
+@22
+peripheral_mult_TB.uut.A[15:0]
+peripheral_mult_TB.uut.B[15:0]
+peripheral_mult_TB.uut.s[4:0]
+@28
+peripheral_mult_TB.uut.init
+peripheral_mult_TB.uut.done
+@22
+peripheral_mult_TB.uut.d_out[31:0]
+[color] 3
+peripheral_mult_TB.uut.mult1.A[15:0]
+[color] 3
+peripheral_mult_TB.uut.mult1.B[15:0]
+@28
+[color] 3
+peripheral_mult_TB.uut.mult1.state[2:0]
+@820
+peripheral_mult_TB.uut.mult1.state_name[320:1]
+@28
+[color] 3
+peripheral_mult_TB.uut.mult1.done
+@23
+[color] 3
+peripheral_mult_TB.uut.mult1.result[31:0]
+[pattern_trace] 1
+[pattern_trace] 0
