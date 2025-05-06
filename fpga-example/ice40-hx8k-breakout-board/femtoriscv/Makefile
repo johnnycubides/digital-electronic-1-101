@@ -19,9 +19,10 @@ DESIGN+= cores/mult/mult.v
 DESIGN+= cores/dpRAM/dpram.v
 DESIGN+= cores/dpRAM/perip_dpram.v
 DIR_BUILD=build
-DEVSERIAL=/dev/ttyACM0
+DEVSERIAL=/dev/ttyUSB1
 # Z: Nombre para empaquetar proyecto
-Z=rtl
+Z=femtoriscv
+more_src=cores init_dpram.ini firmware
 
 MK_SYN=../../../makefiles/ice40-hx8k-syn.mk
 MK_SIM=../../../makefiles/sim.mk

@@ -31,7 +31,7 @@ firmware.elf: $(OBJECTS)
 	
 firmware.hex: firmware.elf firmware.lst
 	../firmware_words_src/firmware_words firmware.elf -ram 16384 -max_addr 16384  -out firmware.hex
-	cp firmware.hex ../../../
+	cp firmware.hex ../../
 
 firmware.lst: firmware.elf
 	$(OBJDUMP) -h -S $< > $@

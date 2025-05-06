@@ -2,4 +2,4 @@ build/
 sim/
 *.log
 femtoriscv/
-
+*.o
