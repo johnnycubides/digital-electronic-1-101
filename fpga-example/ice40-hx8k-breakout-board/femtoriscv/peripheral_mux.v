@@ -1,15 +1,15 @@
 module peripheral_mux (
-    input  [ 6:0] cs,
+    input [6:0] cs,
     // input  [31:0] mem_addr,
     // input  [31:0] mem_wdata,
-    input  [31:0] dpram_dout,
-    input  [31:0] uart_dout,
-    input  [31:0] gpio_dout,
-    input  [31:0] mult_dout,
-    input  [31:0] div_dout,
-    input  [31:0] bin2bcd_dout,
-    input  [31:0] RAM_rdata,
-    output [31:0] mem_rdata
+    input [31:0] dpram_dout,
+    input [31:0] uart_dout,
+    input [31:0] gpio_dout,
+    input [31:0] mult_dout,
+    input [31:0] div_dout,
+    input [31:0] bin2bcd_dout,
+    input [31:0] RAM_rdata,
+    output reg [31:0] mem_rdata
 );
 
   // ============== MUX ========================  // se encarga de lecturas del RV32

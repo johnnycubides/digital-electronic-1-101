@@ -1,6 +1,6 @@
 module address_decoder (
-    input  [31:0] mem_addr,
-    output [ 6:0] cs
+    input [31:0] mem_addr,
+    output reg [6:0] cs
 );
   // ============== Chip_Select (Addres decoder) ========================
   // se hace con los 8 bits mas significativos de mem_addr

@@ -6,7 +6,7 @@ module SOC (
     output            TXD      // UART transmit
 );
   wire [31:0] mem_addr;
-  reg [31:0] mem_rdata;
+  wire [31:0] mem_rdata;
   wire mem_rstrb;
   wire [31:0] mem_wdata;
   wire [3:0] mem_wmask;
@@ -97,7 +97,7 @@ module SOC (
       .div_dout(div_dout),
       .bin2bcd_dout(bin2bcd_dout),
       .RAM_rdata(RAM_rdata),
-      .mem_rdata(mem_rdata),
+      .mem_rdata(mem_rdata)
   );
 
 

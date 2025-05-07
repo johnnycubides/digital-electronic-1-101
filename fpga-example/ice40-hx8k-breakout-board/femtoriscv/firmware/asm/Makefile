@@ -30,7 +30,8 @@ firmware.elf: $(OBJECTS)
 	chmod -x $@
 	
 firmware.hex: firmware.elf firmware.lst
-	../firmware_words_src/firmware_words firmware.elf -ram 16384 -max_addr 16384  -out firmware.hex
+	# ../firmware_words_src/firmware_words firmware.elf -ram 16384 -max_addr 16384  -out firmware.hex
+	../firmware_words_src/firmware_words firmware.elf -ram 6144 -max_addr 6144  -out firmware.hex
 	cp firmware.hex ../../
 
 firmware.lst: firmware.elf

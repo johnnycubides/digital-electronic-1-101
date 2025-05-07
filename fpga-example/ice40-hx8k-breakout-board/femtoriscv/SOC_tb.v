@@ -16,8 +16,8 @@
 `ifndef TIME_UNIT
 `define TIME_UNIT 40
 `endif
-`include "./SOC.v"
-module soc_tb;
+// `include "./SOC.v"
+module SOC_tb;
 
   // % octave
   // hclk = 12E6
@@ -29,7 +29,7 @@ module soc_tb;
   reg CLK;
   reg i;
   reg RESET;
-  wire [4:0] LEDS;
+  wire [0:0] LEDS;
   reg RXD = 1'b0;
   wire TXD;
 
@@ -80,11 +80,11 @@ module soc_tb;
   initial begin
 
     // $dumpfile("bench.vcd");
-    $dumpvars(-1, soc_tb);
-    for (idx = 0; idx < 32; idx = idx + 1) $dumpvars(0, soc_tb.uut.CPU.registerFile[idx]);
+    $dumpvars(-1, SOC_tb);
+    // for (idx = 0; idx < 32; idx = idx + 1) $dumpvars(0, soc_tb.uut.CPU.registerFile[idx]);
     //$dumpvars(0, bench.uut.CPU.registerFile[10],bench);
 
-    for (idx = 0; idx < 50; idx = idx + 1) $dumpvars(0, soc_tb.uut.dpram_p0.dpram0.ram[idx]);
+    // for (idx = 0; idx < 50; idx = idx + 1) $dumpvars(0, soc_tb.uut.dpram_p0.dpram0.ram[idx]);
     //$dumpvars(0, bench.uut.CPU.registerFile[10],bench);
 
     #0 RXD = 1;
