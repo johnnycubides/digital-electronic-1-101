@@ -40,7 +40,7 @@ iverilog-compile:
 ifneq ($(MORE_SRC2SIM), )
 	cp -var $(MORE_SRC2SIM) $S
 endif
-	iverilog $(MACROS_SIM) -o $S/$(TBN).vvp $(tb)
+	iverilog $(MACROS_SIM) -o $S/$(TBN).vvp -s $(TBN) $(TB_V) $(DESIGN)
 
 # VVP_ARG permite agregar argumentos en la simulación con vvp
 VVP_ARG=
