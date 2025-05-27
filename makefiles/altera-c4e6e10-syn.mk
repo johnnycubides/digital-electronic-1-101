@@ -2,6 +2,9 @@ DESIGN?=
 DEVSERIAL?=/dev/ttyUSB0
 DIR_BUILD?=build
 top_NAME=$(basename $(notdir $(DESIGN)))
+##############################################
+###--- Rules from altera-c4e6e10-syn.mk ---###
+##############################################
 top?=$(top_NAME)
 # Ruta donde está quartus instalado
 PATH_QUARTUS?=~/gitPackages/quartus/quartus/bin
