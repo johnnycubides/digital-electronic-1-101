@@ -1,0 +1,18 @@
+##  CONFIGURACIÓN DE PROYECTO agregar en el archivo top.qsf ##
+
+set_global_assignment -name FAMILY "Cyclone IV E"
+set_global_assignment -name DEVICE EP4CE10E22C8
+set_global_assignment -name TOP_LEVEL_ENTITY SOC
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY build
+
+## ASIGNACIÓN DE PINES ##
+# LEDs
+set_location_assignment PIN_72 -to LEDS
+# Reset button
+set_location_assignment PIN_86 -to R1
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to PIN_86
+# UART
+set_location_assignment PIN_114 -to TXD
+set_location_assignment PIN_113 -to RXD
+
+set_global_assignment -name LAST_QUARTUS_VERSION "23.1std.1 Lite Edition"

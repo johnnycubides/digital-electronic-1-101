@@ -1,0 +1,35 @@
+[*]
+[*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
+[*] Thu Oct  5 14:44:23 2023
+[*]
+[dumpfile] "/home/carlos/Embedded/litex_work/femtorv/basic/rtl/cores/mult/mult_TB.vcd"
+[dumpfile_mtime] "Thu Oct  5 14:41:40 2023"
+[dumpfile_size] 3231
+[savefile] "/home/carlos/Embedded/litex_work/femtorv/basic/rtl/cores/mult/mult.gtkw"
+[timestart] 385200
+[size] 1920 1011
+[pos] -75 -71
+*-16.000000 676500 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] mult_TB.
+[sst_width] 331
+[signals_width] 387
+[sst_expanded] 1
+[sst_vpaned_height] 457
+@28
+mult_TB.clk
+mult_TB.reset
+@22
+mult_TB.op_A[15:0]
+mult_TB.op_B[15:0]
+@28
+mult_TB.init
+@22
+mult_TB.result[31:0]
+@28
+mult_TB.uut.state[2:0]
+@821
+mult_TB.uut.state_name[320:1]
+@28
+mult_TB.done
+[pattern_trace] 1
+[pattern_trace] 0
