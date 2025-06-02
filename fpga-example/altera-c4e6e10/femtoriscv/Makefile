@@ -5,7 +5,7 @@ top=SOC
 tb=$(top)_tb.v
 MACROS_SIM=
 MACROS_RTL=
-MACROS_SYN=
+MACROS_SYN= BENCH SIM PASSTHROUGH_PLL BOARD_FREQ=27 CPU_FREQ=27
 DESIGN+= SOC.v
 DESIGN+= address_decoder.v
 DESIGN+= peripheral_mux.v
