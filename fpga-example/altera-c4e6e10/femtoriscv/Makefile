@@ -5,11 +5,14 @@ top=SOC
 tb=$(top)_tb.v
 MACROS_SIM=
 MACROS_RTL=
-MACROS_SYN= BENCH SIM PASSTHROUGH_PLL BOARD_FREQ=27 CPU_FREQ=27
+MACROS_SYN= BENCH SIM PASSTHROUGH_PLL BOARD_FREQ=50 CPU_FREQ=50
 DESIGN+= SOC.v
 DESIGN+= address_decoder.v
 DESIGN+= peripheral_mux.v
 DESIGN+= cores/cpu/femtorv32_quark.v
+DESIGN+= ./cores/dpram/dual_port_ram.v
+# DESIGN+= ./firmware.hex
+DESIGN+= ./cores/dpram/Memory.v
 DESIGN+= cores/uart/perip_uart.v
 DESIGN+= cores/uart/uart.v
 DESIGN+= cores/mult/perip_mult.v

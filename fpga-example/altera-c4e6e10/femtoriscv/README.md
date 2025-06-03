@@ -73,3 +73,11 @@ make rtl
 Saludos,
 
 Johnny
+
+https://www.intel.com/content/www/us/en/docs/programmable/683082/21-3/specifying-initial-memory-contents-at.html
+
+https://stackoverflow.com/questions/19751148/quartus-initializing-ram
+
+https://community.intel.com/t5/Intel-Quartus-Prime-Software/readmemb-Quartus-14-1-MIF-files/td-p/171147
+
+

@@ -15,7 +15,22 @@ CONF_DEV=EPCS16
 # Flash loader
 FLASH_LOADER=EP4CE10
 
+# Configs project
+QPF_FILE := $(top).qpf
+QSF_FILE := $(top).qsf
+VERILOG_LIST_FILE :=verilog_sources.tcl
+
+# Outputs dirs
 B=$(DIR_BUILD)
+LOG_DIR := logs
+REPORT_DIR := reports
+
+# Optimizacition options
+OPTIMIZATION_LEVEL := balanced
+FITTER_EFFORT := auto
+REMOVE_DUPLICATE_LOGIC := on
+OPTIMIZATION_TECHNIQUE := speed
+
 # MACROS_SYN sirve para indicar definiciones de preprocesamiento
 MACROS_SYN?=
 
@@ -32,19 +47,19 @@ init: init-quartus-prj syn
 config: config-cram
 
 # Scrip general de flujo de diseño
-CC=$(PATH_QUARTUS)/quartus_sh
+CC :=$(PATH_QUARTUS)/quartus_sh
 # Aplicación para configuración de FPGA
-PGM=$(PATH_QUARTUS)/quartus_pgm
+PGM :=$(PATH_QUARTUS)/quartus_pgm
 # Aplicación para convertir formatos
-CPF=$(PATH_QUARTUS)/quartus_cpf
+CPF :=$(PATH_QUARTUS)/quartus_cpf
 # Mapeo, síntesis lógica
-MAP=$(PATH_QUARTUS)/quartus_map
+MAP :=$(PATH_QUARTUS)/quartus_map
 # Place and route (fitter)
-FIT=$(PATH_QUARTUS)/quartus_fit
+FIT :=$(PATH_QUARTUS)/quartus_fit
 # Asociación de pines y optimización Assembler
-ASM=$(PATH_QUARTUS)/quartus_asm
+ASM :=$(PATH_QUARTUS)/quartus_asm
 # Generación de archivos de configuración
-STA=$(PATH_QUARTUS)/quartus_sta
+STA :=$(PATH_QUARTUS)/quartus_sta
 
 # Indice de dispositivos (FPGA) encontrados
 INDEX_DEV=1
@@ -54,11 +69,43 @@ MACROS_SYN_MAP := $(foreach macro,$(MACROS_SYN),--verilog_macro "$(macro)")
 
 ## INICIO DE COMANDOS ##
 
+# Generar archivo con la lista de archivos Verilog
+$(VERILOG_LIST_FILE): $(DESIGN)
+	@echo "Generando archivo de lista Verilog: $@"
+	@echo "# Archivo generado automáticamente - Lista de archivos Verilog" > $@
+	$(foreach file,$(DESIGN),echo "set_global_assignment -name VERILOG_FILE $(file)" >> $@;)
+
+# Reglas para pasos individuales
+
+init-dirs:
+	@mkdir -p $(BUILD_DIR) $(LOG_DIR) $(REPORT_DIR)
+
+map:
+	@echo "Ejecutando solo quartus_map..."
+	$(MAP) $(top) --source=$(QPF_FILE) --optimize=$(OPTIMIZATION_LEVEL) \
+		> $(LOG_DIR)/map.log 2>&1
+
+fit:
+	@echo "Ejecutando solo quartus_fit..."
+	$(FIT) $(top) --fitter_effort=$(FITTER_EFFORT) \
+		--remove_duplicat_logic=$(REMOVE_DUPLICATE_LOGIC) \
+		> $(LOG_DIR)/fit.log 2>&1
+
+asm:
+	@echo "Ejecutando solo quartus_asm..."
+	$(ASM) $(top) > $(LOG_DIR)/asm.log 2>&1
+
+sta:
+	@echo "Ejecutando solo quartus_sta..."
+	$(STA) $(top) --do_report_timing \
+		> $(LOG_DIR)/sta.log 2>&1
+
 # Flujo de compilación: 
 syn:
+	@echo "Iniciando síntesis completa..."
 	@echo "Flujo de síntesis $(MACROS_SYN)"
 ifeq ($(MACROS_SYN),)
-	$(CC) --flow compile $(top)
+	$(CC) --flow compile $(top).qpf
 else
 	$(MAP) $(top) $(MACROS_SYN_MAP)
 	$(FIT) $(top)

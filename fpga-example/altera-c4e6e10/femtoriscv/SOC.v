@@ -1,4 +1,5 @@
 module SOC (
+    output            tp,
     input             clk,     // system clock
     input             resetn,  // reset button
     output wire [0:0] LEDS,    // system LEDs
@@ -44,7 +45,7 @@ module SOC (
 
 
   peripheral_uart #(
-      .clk_freq(12000000),  // 27000000 for gowin
+      .clk_freq(50000000),  // 27000000 for gowin
       .baud    (9600)       // 57600 for gowin
   ) per_uart (
       .clk(clk),

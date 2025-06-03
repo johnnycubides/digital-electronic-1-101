@@ -1,0 +1,25 @@
+[*]
+[*] GTKWave Analyzer v3.3.117 (w)1999-2023 BSI
+[*] Wed Nov 22 01:59:56 2023
+[*]
+[dumpfile] "/home/johnny/projects/digital-electronic-1-101/fpga-example/ice40-hx8k-breakout-board/bram/ram_counter/sim/top.vcd"
+[dumpfile_mtime] "Wed Nov 22 01:57:58 2023"
+[dumpfile_size] 2154
+[savefile] "/home/johnny/projects/digital-electronic-1-101/fpga-example/ice40-hx8k-breakout-board/bram/ram_counter/top.gtkw"
+[timestart] 0
+[size] 2256 1427
+[pos] -1 -1
+*-17.663847 750000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] testbech.
+[sst_width] 249
+[signals_width] 275
+[sst_expanded] 1
+[sst_vpaned_height] 441
+@22
+testbech.leds[7:0]
+testbech.runner[7:0]
+testbech.ram0.address_A[7:0]
+@29
+testbech.ram0.data_out_A[7:0]
+[pattern_trace] 1
+[pattern_trace] 0
