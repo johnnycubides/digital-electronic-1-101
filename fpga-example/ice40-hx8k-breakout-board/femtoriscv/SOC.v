@@ -42,7 +42,6 @@ module SOC (
   wire [31:0] bin2bcd_dout;
   wire [31:0] dpram_dout;
 
-
   peripheral_uart #(
       .clk_freq(12000000),  // 27000000 for gowin
       .baud    (9600)       // 57600 for gowin
@@ -88,7 +87,7 @@ module SOC (
       .cs(cs)
   );
 
-  peripheral_mux peripheral_mux (
+  chip_select chip_select (
       .cs(cs),
       .dpram_dout(dpram_dout),
       .uart_dout(uart_dout),
@@ -99,7 +98,6 @@ module SOC (
       .RAM_rdata(RAM_rdata),
       .mem_rdata(mem_rdata)
   );
-
 
   //   // ============== Chip_Select (Addres decoder) ======================== 
   //   // se hace con los 8 bits mas significativos de mem_addr

@@ -1,4 +1,4 @@
-module peripheral_mux (
+module chip_select (
     input [6:0] cs,
     // input  [31:0] mem_addr,
     // input  [31:0] mem_wdata,
