@@ -8,7 +8,8 @@
 # a:
 # COMMONFLAGS += -flto
 # *************************************************
-OBJECTS =  bin_to_bcd.o mult.o div.o wait.o putchar.o getchar.o calculator.o #hello.o 
+# OBJECTS =  bin_to_bcd.o mult.o div.o wait.o putchar.o getchar.o calculator.o #hello.o 
+OBJECTS = wait.o putchar.o getchar.o example1.o
 #OBJECTS =  for.o 
 CROSS   = riscv64-unknown-elf
 CC      = $(CROSS)-gcc

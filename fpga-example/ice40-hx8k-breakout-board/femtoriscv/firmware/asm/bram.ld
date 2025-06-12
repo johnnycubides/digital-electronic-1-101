@@ -7,7 +7,7 @@ SECTIONS
     everything :
     {
 	. = ALIGN(4);
-	calculator.o (.text)
+	example1.o (.text)
         *(.*)
     } >BRAM
 }
