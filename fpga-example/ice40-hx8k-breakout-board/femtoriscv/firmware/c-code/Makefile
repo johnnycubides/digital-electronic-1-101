@@ -11,7 +11,7 @@ OBJDUMP = $(CROSS)-objdump
 SRC_DIR = libs
 SRCS    = $(wildcard $(SRC_DIR)/*.c)  # Encuentra todos los .c en libs/
 OBJS    = $(SRCS:.c=.o)              # Convierte libs/archivo.c → libs/archivo.o
-OBJECTS = example1.o $(OBJS)         # Todos los .o a enlazar
+OBJECTS = sendFromUart.o $(OBJS)         # Todos los .o a enlazar
 
 
 LIB_DIR = -L/home/$$USER/miniconda3/envs/digital/riscv64-elf/lib/rv32i/ilp32/ \
@@ -28,11 +28,11 @@ AFLAGS = -march=rv32i -mabi=ilp32
 # Banderas de compilación y enlazado (optimizadas para eliminar código muerto)
 CFLAGS  = $(INCLUDE) -fno-pic -march=rv32i -mabi=ilp32 \
           -fno-stack-protector -w -Wl,--no-relax \
-          -ffunction-sections -fdata-sections  # <- Clave para --gc-sections
+          -ffunction-sections -fdata-sections # <- Clave para --gc-sections
 
 # Banderas de enlazado (añadido --gc-sections)
 LDFLAGS = -m elf32lriscv -b elf32-littleriscv \
-          --no-relax --print-memory-usage -Tlinker.ld
+					--no-relax --print-memory-usage --gc-sections -Tlinker.ld
 
 LIBS    = -lm -lc -lgcc
 
@@ -58,6 +58,6 @@ firmware.lst: firmware.elf
 	$(AS) $(AFLAGS) -c $< -o $@
 
 clean:
-	rm -rf $(OBJECTS) *.elf *.bin .*~ *~ *.map *.d *.hex *.lst
+	rm -rf $(OBJECTS) *.elf *.bin .*~ *~ *.map *.d *.hex *.lst *.o
 
 .PHONY: all clean
