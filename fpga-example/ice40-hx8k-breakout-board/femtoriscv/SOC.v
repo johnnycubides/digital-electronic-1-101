@@ -59,16 +59,16 @@ module SOC (
       .ledout(LEDS[0])
   );
 
-  peripheral_mult mult1 (
-      .clk(clk),
-      .reset(!resetn),
-      .d_in(mem_wdata[15:0]),
-      .cs(cs[3]),
-      .addr(mem_addr[4:0]),
-      .rd(rd),
-      .wr(wr),
-      .d_out(mult_dout)
-  );
+  // peripheral_mult mult1 (
+  //     .clk(clk),
+  //     .reset(!resetn),
+  //     .d_in(mem_wdata[15:0]),
+  //     .cs(cs[3]),
+  //     .addr(mem_addr[4:0]),
+  //     .rd(rd),
+  //     .wr(wr),
+  //     .d_out(mult_dout)
+  // );
 
   // peripheral_dpram dpram_p0 (
   //     .clk(clk),
@@ -98,37 +98,6 @@ module SOC (
       .RAM_rdata(RAM_rdata),
       .mem_rdata(mem_rdata)
   );
-
-  //   // ============== Chip_Select (Addres decoder) ======================== 
-  //   // se hace con los 8 bits mas significativos de mem_addr
-  //   // Se asigna el rango de la memoria de programa 0x00000000 - 0x003FFFFF
-  //   // ====================================================================
-  //   reg [6:0] cs;  // CHIP-SELECT
-  //   always @* begin
-  //     case (mem_addr[31:16])  // direcciones - chip_select
-  //       16'h0040: cs = 7'b0100000;  //uart
-  //       16'h0041: cs = 7'b0010000;  //gpio
-  //       16'h0042: cs = 7'b0001000;  //mult
-  //       16'h0043: cs = 7'b0000100;  //div
-  //       16'h0044: cs = 7'b0000010;  //bin_to_bcd
-  //       16'h0045: cs = 7'b1000000;  //dpRAM
-  //       default:  cs = 7'b0000001;  //RAM            
-  //     endcase
-  //   end
-  //   // ============== MUX ========================  // se encarga de lecturas del RV32
-  //   always @* begin
-  //     case (cs)
-  //       7'b1000000: mem_rdata = dpram_dout;
-  //       7'b0100000: mem_rdata = uart_dout;
-  //       7'b0010000: mem_rdata = gpio_dout;
-  //       7'b0001000: mem_rdata = mult_dout;
-  //       7'b0000100: mem_rdata = div_dout;
-  //       7'b0000010: mem_rdata = bin2bcd_dout;
-  //       7'b0000001: mem_rdata = RAM_rdata;
-  //       default: mem_rdata = 32'h66666666;
-  //     endcase
-  //   end
-  //   // ============== MUX ========================  //
 
 `ifdef BENCH
   always @(posedge clk) begin

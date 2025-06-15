@@ -13,6 +13,7 @@ DESIGN+= SOC.v
 DESIGN+= address_decoder.v
 DESIGN+= chip_select.v
 DESIGN+= cores/cpu/femtorv32_quark.v
+DESIGN+= cores/memory/Memory.v
 DESIGN+= cores/uart/perip_uart.v
 DESIGN+= cores/uart/uart.v
 DESIGN+= cores/mult/perip_mult.v
