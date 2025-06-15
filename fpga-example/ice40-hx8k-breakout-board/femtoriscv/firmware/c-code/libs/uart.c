@@ -1,5 +1,5 @@
 #include "uart.h"
-#include "time.h"
+// #include "time.h"
 
 volatile uint32_t *const uart_dat = (uint32_t *)(IO_BASE + IO_UART_DAT);
 volatile uint32_t *const uart_cntl = (uint32_t *)(IO_BASE + IO_UART_CNTL);
@@ -59,6 +59,6 @@ int getstring(char *buf, int max_len, const char terminator) {
       break;
     }
   }
-  buf[i + 1] = c;
+  buf[i + 1] = '\0';
   return i;
 }
