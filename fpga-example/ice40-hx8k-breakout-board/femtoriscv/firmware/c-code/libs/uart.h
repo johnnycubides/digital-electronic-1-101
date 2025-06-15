@@ -13,4 +13,15 @@ extern volatile uint32_t *const uart_cntl;
 void putchar(char c);
 void putstring(const char *str);
 
+int getchar();
+
+/**
+ * Implementación estándar similar a fgets()
+ * @param buf Buffer de destino
+ * @param max_len Tamaño máximo (incluyendo \0)
+ * @param terminators Cadena con caracteres terminadores (0 si usar defaults)
+ * @return Número de caracteres leídos o -1 si no se leyó nada
+ */
+int getstring(char *buf, int max_len, const char terminators);
+
 #endif

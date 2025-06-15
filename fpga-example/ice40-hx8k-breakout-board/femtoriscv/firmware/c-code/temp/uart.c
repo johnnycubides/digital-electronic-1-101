@@ -100,7 +100,7 @@ int getstring_terminated(char *buf, int max_len, char terminator) {
  * @param terminators Cadena con caracteres terminadores (0 si usar defaults)
  * @return Número de caracteres leídos o -1 si no se leyó nada
  */
-int getstring(char *buf, int max_len, const char *terminators) {
+int getstring(char *buf, int max_len, const char terminators) {
   static const char default_terms[] = "\n\r\0";
   const char *terms = terminators ? terminators : default_terms;
   int i = 0;

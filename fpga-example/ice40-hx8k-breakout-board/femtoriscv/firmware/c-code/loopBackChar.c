@@ -12,13 +12,10 @@ volatile uint32_t *const gp = (uint32_t *)IO_BASE;
 char buffer[16] = "echo\n\r";
 
 int main() {
-  wait(20);
   putstring(buffer);
   wait(20);
   while (1) {
-    getstring(buffer, 15, '\r');
-    wait(10);
-    putstring(buffer);
+    putchar(getchar());
     wait(10);
   }
   return 0;
