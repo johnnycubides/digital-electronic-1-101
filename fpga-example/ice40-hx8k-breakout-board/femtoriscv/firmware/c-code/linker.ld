@@ -1,8 +1,8 @@
-ENTRY(main)
-/* Script de enlazado personalizado basado en el original */
+/* Punto de arranque o entrada*/
+ENTRY(main) /*Función main, originalmente es _start*/
 MEMORY
 {
-   BRAM (RWX) : ORIGIN = 0x0000, LENGTH = 0x4000  /* 16kB RAM */
+   BRAM (RWX) : ORIGIN = 0x0000, LENGTH = 0x4000  /* 16kbits RAM */
 }
 
 SECTIONS
