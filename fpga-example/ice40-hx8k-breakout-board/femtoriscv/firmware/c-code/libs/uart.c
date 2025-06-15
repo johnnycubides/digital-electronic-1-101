@@ -35,6 +35,7 @@ int getchar(void) {
   *uart_cntl = 0x02;
   // Leer el dato y devolverlo (máscara de 8 bits como en el ANDI 255)
   data = *uart_dat;
+  *uart_cntl = 0x00;
   return data & 0xFF;
 }
 
@@ -49,11 +50,7 @@ int getstring(char *buf, int max_len, const char terminator) {
   int i = 0;
   char c;
   for (i = 0; i <= (max_len - 1); i++) {
-    // putchar('r');
-    // wait(10);
     c = getchar();
-    putchar('\0');
-    // wait(10);
     buf[i] = c;
     if (c == terminator) {
       break;
