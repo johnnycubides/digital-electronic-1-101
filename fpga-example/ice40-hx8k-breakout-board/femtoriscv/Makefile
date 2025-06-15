@@ -26,10 +26,14 @@ DEVSERIAL=/dev/ttyUSB1
 Z=femtoriscv
 MORE_SRC2SIM=firmware.hex
 more_src=cores init_dpram.ini firmware
+c-build:
+	make -C ./firmware c-build
+c-clean:
+	make -C ./firmware c-clean
 asm-build:
 	make -C ./firmware asm-build
 asm-clean:
-	make -C ./firmware clean
+	make -C ./firmware asm-clean
 
 MK_SYN=../../../makefiles/ice40-hx8k-syn.mk
 MK_SIM=../../../makefiles/sim.mk
