@@ -9,6 +9,6 @@ asm-clean:
 	make -C asm/ clean
 
 c-build:
-	make -C c-code/
+	make -C c-code/ all
 c-clean:
 	make -C c-code/ clean

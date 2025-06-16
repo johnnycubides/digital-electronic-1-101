@@ -44,11 +44,11 @@ LDFLAGS = -m elf32lriscv -b elf32-littleriscv \
 
 LIBS    = -lm -lc -lgcc
 
-asm:
-	$(CC) $(CFLAGS) -S $f $(SRCS)
-
 # Reglas principales
 all: firmware.hex
+
+asm:
+	$(CC) $(CFLAGS) -S $f $(SRCS)
 
 firmware.elf: $(OBJECTS)
 	$(LD) $(LDFLAGS) -Map firmware.map $(OBJECTS) -o $@ $(LIB_DIR)
