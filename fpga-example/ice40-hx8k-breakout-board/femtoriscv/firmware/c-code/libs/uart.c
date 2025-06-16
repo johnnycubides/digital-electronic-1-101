@@ -4,7 +4,7 @@
 volatile uint32_t *const uart_dat = (uint32_t *)(IO_BASE + IO_UART_DAT);
 volatile uint32_t *const uart_cntl = (uint32_t *)(IO_BASE + IO_UART_CNTL);
 
-void putchar(char c) {
+void putChar(char c) {
   // Escribir el carácter en el registro de datos UART
   *uart_dat = (uint32_t)c;
   // Activar transmisión (equivalente al pulso de control)
@@ -18,13 +18,13 @@ void putchar(char c) {
 
 void putstring(const char *str) {
   while (*str != '\0') {
-    putchar(*str);
+    putChar(*str);
     str++;
   }
 }
 
-// Función equivalente a getchar en ensamblador
-int getchar(void) {
+// Función equivalente a getChar en ensamblador
+int getChar(void) {
   uint32_t status;
   uint32_t data;
   // Esperar hasta que haya datos disponibles (bit 8 del registro de control)
@@ -50,7 +50,7 @@ int getstring(char *buf, int max_len, const char terminator) {
   int i = 0;
   char c;
   for (i = 0; i <= (max_len - 1); i++) {
-    c = getchar();
+    c = getChar();
     buf[i] = c;
     if (c == terminator) {
       break;

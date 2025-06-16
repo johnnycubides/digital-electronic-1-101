@@ -10,10 +10,10 @@
 extern volatile uint32_t *const uart_dat;
 extern volatile uint32_t *const uart_cntl;
 
-void putchar(char c);
+void putChar(char c);
 void putstring(const char *str);
 
-int getchar();
+int getChar();
 
 /**
  * Implementación estándar similar a fgets()

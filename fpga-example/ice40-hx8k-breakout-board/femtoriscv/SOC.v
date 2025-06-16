@@ -59,16 +59,16 @@ module SOC (
       .ledout(LEDS[0])
   );
 
-  // peripheral_mult mult1 (
-  //     .clk(clk),
-  //     .reset(!resetn),
-  //     .d_in(mem_wdata[15:0]),
-  //     .cs(cs[3]),
-  //     .addr(mem_addr[4:0]),
-  //     .rd(rd),
-  //     .wr(wr),
-  //     .d_out(mult_dout)
-  // );
+  peripheral_mult mult1 (
+      .clk(clk),
+      .reset(!resetn),
+      .d_in(mem_wdata[15:0]),
+      .cs(cs[3]),
+      .addr(mem_addr[4:0]),
+      .rd(rd),
+      .wr(wr),
+      .d_out(mult_dout)
+  );
 
   // peripheral_dpram dpram_p0 (
   //     .clk(clk),

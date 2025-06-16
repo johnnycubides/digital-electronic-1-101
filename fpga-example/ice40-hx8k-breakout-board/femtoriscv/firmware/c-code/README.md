@@ -37,3 +37,7 @@ end
 calcular_memoria_verilog();
 ```
 ```
+
+```bash
+objdump -tC ./firmware.elf | grep 'unused'
+```

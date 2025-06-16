@@ -10,9 +10,9 @@ MACROS_SYN=
 TB_V = SOC_tb.v
 # DESIGN=top.v
 DESIGN+= SOC.v
+DESIGN+= cores/cpu/femtorv32_quark.v
 DESIGN+= address_decoder.v
 DESIGN+= chip_select.v
-DESIGN+= cores/cpu/femtorv32_quark.v
 DESIGN+= cores/memory/Memory.v
 DESIGN+= cores/uart/perip_uart.v
 DESIGN+= cores/uart/uart.v
@@ -22,6 +22,7 @@ DESIGN+= cores/dpRAM/dpram.v
 DESIGN+= cores/dpRAM/perip_dpram.v
 DIR_BUILD=build
 DEVSERIAL=/dev/ttyUSB1
+BAUD=9600
 # Z: Nombre para empaquetar proyecto
 Z=femtoriscv
 MORE_SRC2SIM=firmware.hex
@@ -34,6 +35,8 @@ asm-build:
 	make -C ./firmware asm-build
 asm-clean:
 	make -C ./firmware asm-clean
+t:
+	picocom $(DEVSERIAL) -b $(BAUD)
 
 MK_SYN=../../../makefiles/ice40-hx8k-syn.mk
 MK_SIM=../../../makefiles/sim.mk
