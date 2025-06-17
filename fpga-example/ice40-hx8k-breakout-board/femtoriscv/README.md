@@ -3,7 +3,10 @@
 <!-- :MarkdownPreview -->
 <!-- :GenTocMarked -->
 
-# SoC Femtoriscv32i
+# SoC FemtoRiscv32i
+
+![SoC FemtoR32i](./SOC.svg)
+
 
 SoC basado en un riscv de instrucciones base (32 bits instrucciones integer)
 
@@ -20,7 +23,9 @@ make c-clean c-build # Creación ejecutable de riscv32i
 make clean syn # Crear el bitstream para configurar la fpga
 make config # Configurar fpga
 ```
+## Conectar FPGA a esp32
 
+![fpga-esp32](./docs/soc-esp32.svg)
 
 ![Imagen RTK](./blink.png)
 

@@ -1,5 +1,4 @@
 #include "math.h"
-#include "time.h"
 
 // Punteros a los registros del multiplicador
 volatile uint32_t *const mult_op_a = (uint32_t *)(MULT_BASE + MULT_OP_A);

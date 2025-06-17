@@ -8,10 +8,10 @@ component FPGA {
 }
 
 component ESP32 {
-portin esp32_gnd
-portin esp32_tx
-portin esp32_rx
-portout esp32_usb
+  portin esp32_gnd
+  portin esp32_tx
+  portin esp32_rx
+  portout esp32_usb
 }
 
 component PC {
