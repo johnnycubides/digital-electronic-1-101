@@ -33,7 +33,8 @@ OBJS+=$(DESIGN)
 
 $(JSON): $(OBJS)
 	mkdir -p $(DIR_BUILD)
-	yosys $(MACRO_SYN) -p "synth_ice40 -top $(top) -json $(JSON)" $(OBJS) -l $(LOG_YOSYS)
+	yosys $(MACRO_SYN) -p 'verilog_defaults -push; verilog_defaults -add -defer; verilog_defaults -pop; attrmap -tocase keep -imap keep="true" keep=1 -imap keep="false" keep=0 -remove keep=0; synth_ice40 -top $(top) -json $(JSON)' $(OBJS) -l $(LOG_YOSYS)
+	# yosys $(MACRO_SYN) -p "synth_ice40 -top $(top) -json $(JSON)" $(OBJS) -l $(LOG_YOSYS)
 
 log-syn:
 	less $(LOG_YOSYS)

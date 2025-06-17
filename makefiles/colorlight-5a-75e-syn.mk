@@ -60,10 +60,10 @@ FT232RL_DSR=5
 FT232RL_DCD=6
 FT232RL_RI=7
 # JTAG pines relacionados con los pines del ft232rl
-TDO=$(FT232RL_CTS)
 TDI=$(FT232RL_TXD)
-TMS=$(FT232RL_RXD)
+TDO=$(FT232RL_CTS)
 TCK=$(FT232RL_DTR)
+TMS=$(FT232RL_RXD)
 # JTAG pines relacionados con los pines del ft232rl
 CABLE_PINES?=$(TDI):$(TDO):$(TCK):$(TMS)
 

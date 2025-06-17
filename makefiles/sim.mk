@@ -69,6 +69,8 @@ rtl-from-json: json-yosys
 	cp $S/$(top).json $S/$(top)_origin.json # Hacer una copia desde el archivo origen
 	sed -E 's/"\$$paramod\$$[^\\]+\\\\([^"]+)"/"\1"/g' $S/$(top)_origin.json > $S/$(top).json # Quitar parametros en el nombre del módulo para que sea legible.
 	netlistsvg $S/$(top).json -o $S/$(top).svg
+	## convert2SvgwithWhiteBackground
+	sed -i 's|<svg\([^>]*\)>|<svg\1>\n  <rect width="100%" height="100%" fill="white"/>|' $S/$(top).svg
 
 view-svg:
 	eog $S/$(top).svg
