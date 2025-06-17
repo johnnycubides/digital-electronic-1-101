@@ -1,4 +1,26 @@
-# Template para FPGA ICE
+<!-- LTeX: enabled=true language=es -->
+<!-- :set spell! -->
+<!-- :MarkdownPreview -->
+<!-- :GenTocMarked -->
+
+# SoC Femtoriscv32i
+
+SoC basado en un riscv de instrucciones base (32 bits instrucciones integer)
+
+Este proyecto está dividido en dos procesos:
+
+1. Creación de tareas de software en lenguaje **C** (`./firmware/c-code/`) o en **ASM** (`./firmware/asm/`).
+2. Sintesis de SoC desde el Makefile (`./Makefile`) de este directorio.
+
+## Cómo ejecutar el ejemplo
+
+```bash
+cd ./firmware/ && make firmware_words # Generar tradutor bin a palabras. Solo se ejecuta una ÚNICA VEZ
+make c-clean c-build # Creación ejecutable de riscv32i
+make clean syn # Crear el bitstream para configurar la fpga
+make config # Configurar fpga
+```
+
 
 ![Imagen RTK](./blink.png)
 

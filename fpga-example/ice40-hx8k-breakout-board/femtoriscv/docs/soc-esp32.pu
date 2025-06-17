@@ -1,0 +1,26 @@
+@startuml
+title FPGA-ESP32
+left to right direction
+component FPGA {
+  portout fpga_gnd
+  portout fpga_rx
+  portout fpga_tx
+}
+
+component ESP32 {
+portin esp32_gnd
+portin esp32_tx
+portin esp32_rx
+portout esp32_usb
+}
+
+component PC {
+portin pc_usb
+}
+
+fpga_gnd -- esp32_gnd: GND
+fpga_tx --> esp32_rx: Transmitter
+fpga_rx <-- esp32_tx: Receiver
+esp32_usb <--> pc_usb: USB
+
+@enduml
