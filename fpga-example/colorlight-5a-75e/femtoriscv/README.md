@@ -31,11 +31,11 @@ A grandes rasgos, el flujo de diseño consta de tres pasos:
 
 
 Para que el soc tenga una capacidad mayor de integración, en este ejemplo se
-integra un microcontrolador **ESP32** que puede servir para 3 proósitos específicos:
+integra un microcontrolador **ESP32** que puede servir para 3 propósitos específicos:
 
-- Ser un bridge entre la uart de la fpga y una comunicación serial, que permita la
+- Ser un bridge entre la UART de la FPGA y una comunicación serial, que permita la
 comunicación guida con otros sistemas como por ejemplo un PC.
-- Ser un bridge entre la uart y una comunicación no guiada (WiFi) o Bluetooth, de
+- Ser un bridge entre la UART y una comunicación no guiada (WiFi) o Bluetooth, de
 tal manera que el SoC puede ser parte de una solución en red y que pueda
 exponer servicios consumibles en red.
 - Si la FPGA no cuenta con un periférico ADC, se puede aprovechar el
@@ -53,7 +53,7 @@ configuración. Recuerde que debe tener instaladas las herramientas de diseño
 que encontrará en el
 [README.md](https://github.com/johnnycubides/digital-electronic-1-101/tree/main)
 de este repositorio. Si aún no ha realizado el proceso de configuración de un
-proyecto para esta FPGA, visti el siguiente enlace:
+proyecto para esta FPGA, visita el siguiente enlace:
 
 [Configuración volatíl y persistente para esta FPGA](https://github.com/johnnycubides/digital-electronic-1-101/tree/main/fpga-example/colorlight-5a-75e)
 
@@ -68,7 +68,7 @@ make clean syn # Crear el bitstream para configurar la fpga
 make config # Configurar fpga
 ```
 
-Si la terminal entrega resultados sin instrucciones podría continuar el siguiente paso.
+Si la terminal entrega resultados sin errores podría continuar el siguiente paso.
 
 ## Configurar el ESP32 como bridge UART
 
@@ -158,7 +158,7 @@ Hard resetting via RTS pin...
 </details>
 
 
-4. Abra una terminal e interactue con micropython el cual usa una sintaxis de Python3. Para ello ejecute los siguientes comandos:
+4. Abra una terminal e interactúe con Micropython el cual usa una sintaxis de Python3. Para ello, ejecute los siguientes comandos:
 
 ```bash
 # Verifique el archivo representativo del puerto serial del esp32, es probable que sea /dev/ttyUSB1
@@ -205,9 +205,9 @@ hello
 
 </details>
 
-Para salir de `picocom` ejecute la secuencia **CTRL+a** y luego **CTRL+x**.
+Para salir de `picocom`, ejecute la secuencia **CTRL+a** y luego **CTRL+x**.
 
-5. Cargue un script de micropython en el esp32 para realizar el puente entre la FPGA y el esp32.
+5. Cargue un script de Micropython en el esp32 para realizar el puente entre la FPGA y el esp32.
 Para tal finalidad, cree un archivo `main.py` y agregue el siguiente contenido:
 
 ```py
