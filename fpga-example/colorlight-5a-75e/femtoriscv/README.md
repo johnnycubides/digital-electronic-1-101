@@ -57,3 +57,83 @@ make rtl
 ```
 
 > Para obtener los comandos de ayuda escriba en la consola: `make help`
+
+## Micropython ESP32
+
+1. Instalar las dependencias de flashing del esp32. Para ello ejecute estos pasos:
+
+```bash
+sudo apt install picocom
+conda activate digital # Active la variable de entorno de digital
+pip install click esptool pyyaml adafruit-ampy
+```
+
+> **Observación**: en el caso de no ser compatible la variable de entorno
+**generando error**, podría crear una nueva variable de entorno con conda que
+soporte los paquetes a instalar, por ejemplo:
+```bash
+conda create --name esp32
+conda activate esp32
+pip install click esptool pyyaml adafruit-ampy
+```
+
+Tenga presente que para desactivar el entorno basta con `conda deactivate`.
+
+
+2. Desde la [página oficial de descargas de Micropython para el
+   ESP32](https://micropython.org/download/ESP32_GENERIC/) descargue la útima
+versión de micropython disponibles para el esp32, en este caso se trata de la
+versión
+[v1.25.0(2025-4-15).bin](https://micropython.org/resources/firmware/ESP32_GENERIC-20250415-v1.25.0.bin),
+para tal finalidad puede ejecutar el siguiente comando:
+
+```bash
+wget -O micropython-esp32.bin "https://micropython.org/resources/firmware/ESP32_GENERIC-20250415-v1.25.0.bin"
+```
+
+3. Instale micropython en el esp32. Para ello solo deje conectado el esp32 en
+   los puertos USB del PC así logrará que el instalador detecte automáticamente
+el bridge del esp32 para su flashing. Ejecute los siguientes comandos:
+
+```bash
+# Recuerde tener activa la variable de entorno donde tienen instalada las librerías de python
+esptool.py erase_flash
+esptool.py --baud 460800 write_flash 0x1000 micropython-esp32.bin
+
+Resultado:
+
+<details>
+```bash
+esptool.py v4.7.0
+Found 6 serial ports
+Serial port /dev/ttyUSB1
+Connecting......................................
+/dev/ttyUSB1 failed to connect: Failed to connect to Espressif device: No serial data received.
+For troubleshooting steps visit: https://docs.espressif.com/projects/esptool/en/latest/troubleshooting.html
+Serial port /dev/ttyUSB0
+Connecting....
+Detecting chip type... Unsupported detection protocol, switching and trying again...
+Connecting.....
+Detecting chip type... ESP32
+Chip is ESP32-D0WDQ6 (revision v1.0)
+Features: WiFi, BT, Dual Core, 240MHz, VRef calibration in efuse, Coding Scheme None
+Crystal is 40MHz
+MAC: a4:cf:12:74:fd:e4
+Uploading stub...
+Running stub...
+Stub running...
+Erasing flash (this may take a while)...
+Chip erase completed successfully in 7.6s
+Hard resetting via RTS pin...
+```
+</details>
+
+>  **Observación**: En el caso de que no haga flashing, oprima el botón de BOOT en el esp32:
+
+4. Abra una terminal e interactue con micropython el cual usa una sintaxis de Python3. Para ello ejecute los siguientes comandos:
+
+```bash
+# Verifique el archivo representativo del puerto serial del esp32, es probable que sea /dev/ttyUSB0
+picocom /dev/ttyUSB0 -b 115200 # Dependiendo del archivo representativo el tty puede cambiar
+
+```

@@ -2,26 +2,37 @@
 title FPGA-ESP32
 left to right direction
 skinparam componentStyle rectangle
-component FPGA #ddd {
+component FPGA #cyan {
   portout fpga_gnd
-  portout fpga_rx
-  portout fpga_tx
+  portout fpga_pin_D4
+  portout fpga_pin_C4
+  portin fpga_jtag
 }
 
 component ESP32 #ddd{
   portin esp32_gnd
   portin esp32_tx
   portin esp32_rx
-  portout esp32_usb
+  portout esp32_ttyUSB1
 }
 
 component PC #ddd {
-portin pc_usb
+  portin pc_usb0
+  portin pc_usb1
+}
+
+component BRIDGE_FTDI #ddd {
+  portout bridge_ttyUSB0
+  portout bridge_jtag
+  portout bridge_gnd
 }
 
 fpga_gnd -- esp32_gnd: GND
-fpga_tx --> esp32_rx: Transmitter
-fpga_rx <-- esp32_tx: Receiver
-esp32_usb <--> pc_usb: USB
+fpga_pin_C4 --> esp32_rx: Transmitter
+fpga_pin_D4 <-- esp32_tx: Receiver
+esp32_ttyUSB1 <--> pc_usb0: USB
+bridge_ttyUSB0 <--> pc_usb1: USB
+bridge_jtag <--> fpga_jtag: JTAG
+bridge_gnd -- fpga_gnd: GND
 
 @enduml
