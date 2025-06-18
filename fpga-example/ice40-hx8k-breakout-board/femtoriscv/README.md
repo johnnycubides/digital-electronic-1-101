@@ -10,7 +10,7 @@
 
 SoC basado en un riscv de instrucciones base (32 bits instrucciones integer)
 
-Este proyecto está dividido en dos procesos:
+Este proyecto está dividido en dosrk procesos:
 
 1. Creación de tareas de software en lenguaje **C** (`./firmware/c-code/`) o en **ASM** (`./firmware/asm/`).
 2. Sintesis de SoC desde el Makefile (`./Makefile`) de este directorio.

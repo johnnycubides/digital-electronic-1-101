@@ -1,20 +1,21 @@
 @startuml
 title FPGA-ESP32
 left to right direction
-component FPGA {
+skinparam componentStyle rectangle
+component FPGA #ddd {
   portout fpga_gnd
   portout fpga_rx
   portout fpga_tx
 }
 
-component ESP32 {
+component ESP32 #ddd{
   portin esp32_gnd
   portin esp32_tx
   portin esp32_rx
   portout esp32_usb
 }
 
-component PC {
+component PC #ddd {
 portin pc_usb
 }
 

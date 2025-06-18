@@ -1,5 +1,5 @@
 # Configuración básica
-FPGA_RAM_KB = 13104
+FPGA_RAM_BYTES = 13104
 # CROSS   = riscv32-unknown-elf
 CROSS   = riscv64-unknown-elf
 CC      = $(CROSS)-gcc
@@ -55,7 +55,7 @@ firmware.elf: $(OBJECTS)
 	chmod -x $@
 
 firmware.hex: firmware.elf firmware.lst
-	../firmware_words_src/firmware_words firmware.elf -ram $(FPGA_RAM_KB) -max_addr $(FPGA_RAM_KB) -out firmware.hex
+	../firmware_words_src/firmware_words firmware.elf -ram $(FPGA_RAM_BYTES) -max_addr $(FPGA_RAM_BYTES) -out firmware.hex
 	cp firmware.hex ../../
 
 firmware.lst: firmware.elf
