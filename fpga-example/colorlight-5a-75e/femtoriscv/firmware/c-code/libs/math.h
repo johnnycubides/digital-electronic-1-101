@@ -1,6 +1,5 @@
 #ifndef MATH_H
 #define MATH_H
-#include "time.h"
 #include <stdint.h>
 
 // Direcciones base y offsets del multiplicador hardware

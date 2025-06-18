@@ -25,7 +25,6 @@ uint32_t mult_hw(uint32_t a, uint32_t b) {
         "nop"); // Instrucción no operación para evitar optimización
     // Busy-wait - en un sistema real podrías añadir un timeout aquí
   }
-  // *mult_init = 0;
 
   return *mult_result;
 }
