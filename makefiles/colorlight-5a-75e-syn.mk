@@ -10,7 +10,7 @@ top?=$(top_NAME)
 LPF?=$(top).lpf
 JSON?=$(DIR_BUILD)/$(top).json
 PNR?=$(DIR_BUILD)/$(top).pnr
-BISTREAM?=$(DIR_BUILD)/$(top).bin
+BISTREAM?=$(DIR_BUILD)/$(top).bit
 LOG_YOSYS?=$(DIR_BUILD)/yosys-$(top).log
 LOG_NEXTPNR?=$(DIR_BUILD)/nextpnr-$(top).log
 # MACRO_SYN sirve para indicar definiciones de preprocesamiento en la sintesis
