@@ -7,15 +7,59 @@
 
 ![SoC FemtoR32i](./SOC.svg)
 
+A continuación se presenta el diseño y configuración de un SoC basado en el FemtoRiscv32i (RV32I), como se muestra en la imagen superior.  
+Este diseño es el resultado de diversas experiencias en la enseñanza del diseño de sistemas digitales, orientadas por el profesor Carlos Camargo de la Universidad Nacional de Colombia, las cuales he documentado y adaptado con fines pedagógicos.
 
-SoC basado en un riscv de instrucciones base (32 bits instrucciones integer)
+Este SoC incorpora un procesador RV32I con el conjunto de instrucciones base, una memoria RAM para la carga de instrucciones y la ejecución del programa, un decodificador de direcciones (*address decoder*) y un *chip select* para gestionar el flujo de información entre los distintos periféricos.  
+En este ejemplo, los periféricos implementados son:  
+- Una UART para la comunicación entre el CPU y el exterior,  
+- y un periférico de multiplicación por hardware, que sirve como punto de partida para el diseño de otros periféricos específicos según la aplicación.
 
-Este proyecto está dividido en dosrk procesos:
+El flujo de diseño, tanto de hardware como de software, es completamente *opensource*/*openhardware*, haciendo uso de herramientas como **Yosys**, **Nextpnr**, **Netlistsvg**, el compilador **GCC**, entre otras.
 
-1. Creación de tareas de software en lenguaje **C** (`./firmware/c-code/`) o en **ASM** (`./firmware/asm/`).
-2. Sintesis de SoC desde el Makefile (`./Makefile`) de este directorio.
+A grandes rasgos, el flujo de diseño consta de tres pasos:
 
-## Cómo ejecutar el ejemplo
+1. Compilación de las tareas de software para el RV32I en lenguaje **C** (`./firmware/c-code/`) o en **ASM** (`./firmware/asm/`), utilizando el *toolchain* de GCC para RISC-V.
+2. Síntesis del SoC desde el `Makefile` (`./Makefile`) ubicado en este directorio, empleando herramientas como **Yosys** y **Nextpnr**.
+3. Configuración del diseño en la FPGA.
+
+> **A tener en cuenta**: Para poder replicar este ejemplo, por favor descarga el archivo [femtoriscv.zip](./femtoriscv.zip).
+
+## Implementación SoC en FPGA y ESP32 como interfaz
+
+![fpga-ftdi-esp32](./docs/colorlight-ftdi232rl-esp32.jpg)
+
+
+Para que el soc tenga una capacidad mayor de integración, en este ejemplo se
+integra un microcontrolador **ESP32** que puede servir para 3 proósitos específicos:
+
+- Ser un bridge entre la uart de la fpga y una comunicación serial, que permita la
+comunicación guida con otros sistemas como por ejemplo un PC.
+- Ser un bridge entre la uart y una comunicación no guiada (WiFi) o Bluetooth, de
+tal manera que el SoC puede ser parte de una solución en red y que pueda
+exponer servicios consumibles en red.
+- Si la FPGA no cuenta con un periférico ADC, se puede aprovechar el
+periférico ADC del ESP32 y devolver los datos de conversión al SoC para los
+propósitos de procesamiento.
+
+### Síntesis y configuración del SoC en la FPGA
+
+![Conexión fpga-bridge](./docs/soc-esp32_fpga_bridge.svg)
+
+En esta parte del proceso se debe realizar la conexión entre los dispositivos
+que se observan en la imagen de arriba de color verde. Observe que deberá
+cablear el FT232RL con el puerto JTAG de la FPGA responsable de la
+configuración. Recuerde que debe tener instaladas las herramientas de diseño
+que encontrará en el
+[README.md](https://github.com/johnnycubides/digital-electronic-1-101/tree/main)
+de este repositorio. Si aún no ha realizado el proceso de configuración de un
+proyecto para esta FPGA, visti el siguiente enlace:
+
+[Configuración volatíl y persistente para esta FPGA](https://github.com/johnnycubides/digital-electronic-1-101/tree/main/fpga-example/colorlight-5a-75e)
+
+
+Seguido, deberá ejecutar los siguientes comandos para realizar el proceso de
+implementación del SoC en la FPGA:
 
 ```bash
 cd ./firmware/ && make firmware_words # Generar tradutor bin a palabras. Solo se ejecuta una ÚNICA VEZ
@@ -23,13 +67,23 @@ make c-clean c-build # Creación ejecutable de riscv32i
 make clean syn # Crear el bitstream para configurar la fpga
 make config # Configurar fpga
 ```
-## Conectar FPGA a esp32
 
-![fpga-esp32](./docs/soc-esp32.svg)
+Si la terminal entrega resultados sin instrucciones podría continuar el siguiente paso.
 
 ## Configurar el ESP32 como bridge UART
 
-1. Instalar las dependencias de flashing del esp32. Para ello ejecute estos pasos:
+![fpga-esp32](./docs/soc-esp32_picocom.svg)
+
+Manteniendo el circuito anteriormente implementado, se requiere ahora cablear el esp32 a la FPGA.
+Para este propósito, deberá prestar especial atención al diagrama de arriba 
+donde se señalan los elementos a cablear con color azul. Observe además que cada puerto
+de cada componente tiene señalado el número de pin a usar para ello vísite la información
+relacionada al pinout tanto de la FPGA como del esp32 a usar.
+
+Seguido podrá realizar el proceso de flashing del esp32 como de la ejecución del programa
+de ejemplo corriendo en el SoC.
+
+1. Instalar las dependencias de flashing del esp32. Para ello, ejecute estos pasos:
 
 ```bash
 sudo apt install picocom
@@ -41,6 +95,7 @@ pip install click esptool pyyaml adafruit-ampy
 **generando error**, podría crear una nueva variable de entorno con conda que
 soporte los paquetes a instalar, por ejemplo:
 ```bash
+# Ejecutar estos pasos solo si los pasos anteriores del punto 1. fallaron
 conda create --name esp32
 conda activate esp32
 pip install click esptool pyyaml adafruit-ampy
@@ -77,11 +132,11 @@ Resultado:
 ```bash
 esptool.py v4.7.0
 Found 6 serial ports
-Serial port /dev/ttyUSB1
+Serial port /dev/ttyUSB0
 Connecting......................................
 /dev/ttyUSB1 failed to connect: Failed to connect to Espressif device: No serial data received.
 For troubleshooting steps visit: https://docs.espressif.com/projects/esptool/en/latest/troubleshooting.html
-Serial port /dev/ttyUSB0
+Serial port /dev/ttyUSB1
 Connecting....
 Detecting chip type... Unsupported detection protocol, switching and trying again...
 Connecting.....
@@ -106,7 +161,7 @@ Hard resetting via RTS pin...
 4. Abra una terminal e interactue con micropython el cual usa una sintaxis de Python3. Para ello ejecute los siguientes comandos:
 
 ```bash
-# Verifique el archivo representativo del puerto serial del esp32, es probable que sea /dev/ttyUSB0
+# Verifique el archivo representativo del puerto serial del esp32, es probable que sea /dev/ttyUSB1
 picocom /dev/ttyUSB1 -b 115200 # Dependiendo del archivo representativo el tty puede cambiar
 ```
 
@@ -118,7 +173,7 @@ Resultado:
 picocom /dev/ttyUSB1 -b 115200
 picocom v3.1
 
-port is        : /dev/ttyUSB0
+port is        : /dev/ttyUSB1
 flowcontrol    : none
 baudrate is    : 115200
 parity is      : none
@@ -146,7 +201,7 @@ Terminal ready
 >>> print("hello")
 hello
 >>> 
-  ```
+```
 
 </details>
 
@@ -189,3 +244,31 @@ A continuación suba el script `main.py` al esp32. Para ello ejecuta el siguient
 ```bash
 ampy -p /dev/ttyUSB1 -b 115200 put main.py
 ```
+
+5. Inicie el script y arranque el programa en la FPGA. Para tal finalidad abra la terminal de picocom asociada al esp32, por ejemplo:
+
+```bash
+picocom /dev/ttyUSB1 -b 115200 # Dependiendo del archivo representativo el tty puede cambiar
+```
+
+Ahora para verificar el funcionamiento en el prompt de micropython ejecute la instrución `start()` y luego Oprima el botón de **RESET** de la FPGA, el cual está indicado en el acrhivo `./colorlight-5a-75e-v8.2.drawio.pdf`.
+
+```py
+>>> start() # Oprima reset en la FPGA
+# Mostrará las diferentes operaciones de multiplicación
+2x3=6
+2x4=8
+2x5=10
+2x6=12
+2x7=14
+2x8=16
+2x9=18
+3x2=0
+3x3=9
+3x4=12
+3x5=15
+```
+
+2025-06-18
+
+Johnny Cubides
