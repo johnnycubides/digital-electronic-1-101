@@ -1,0 +1,24 @@
+# CLK 25 MHZ
+set_io clk 60 # Señal de reloj del hardware 25 MHz
+
+# Led indicator
+set_io LEDS 56 # RED LED
+
+# Reset button
+set_io -pullup yes resetn 52 # GREEN LED | SW1
+
+## UART
+set_io TXD 135 # TX
+set_io RXD 134 # RX
+
+
+# Opciones de configuración para port--pin
+# set_io [-nowarn] [-pullup yes|no] [-pullup_resistor 3P3K|6P8K|10K|100K] port pin
+
+# set_io clk 60 # Señal de reloj del hardware 25 MHz
+
+# COMENTARIOS
+# set_io port 56 # RED LED
+# set_io port 55 # YELLOW LED
+# set_io port 52 # GREEN LED | SW1
+# set_io port 49 # BLUE LED | SW2
