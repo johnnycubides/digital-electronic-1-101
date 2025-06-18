@@ -56,3 +56,5 @@ Depuración
 ```bash
 objdump -tC ./firmware.elf | grep 'unused'
 ```
+
+https://www.latticesemi.com/Products/FPGAandCPLD/ECP5
