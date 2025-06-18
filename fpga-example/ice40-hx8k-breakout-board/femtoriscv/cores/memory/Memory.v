@@ -8,7 +8,7 @@ module Memory (
 );
 
   // Modificar .equ IO_HW_CONFIG_RAM, 8192  (2048 palabras de 32 bits = 2048 * 4 bytes) en libfemtorv/include/HardwareConfig_bits.inc
-  reg [31:0] MEM[0:3275];
+  reg [31:0] MEM[0:3071];
 
   initial begin
     $readmemh("./firmware.hex", MEM);

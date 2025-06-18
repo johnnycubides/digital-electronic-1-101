@@ -1,5 +1,5 @@
 # Configuración básica
-FPGA_RAM_BYTES = 13104
+FPGA_RAM_BYTES = 12288
 # CROSS   = riscv32-unknown-elf
 CROSS   = riscv64-unknown-elf
 CC      = $(CROSS)-gcc
