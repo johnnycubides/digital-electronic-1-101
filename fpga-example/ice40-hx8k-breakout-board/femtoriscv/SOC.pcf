@@ -1,3 +1,6 @@
+# Opciones de configuración para port--pin
+# set_io [-nowarn] [-pullup yes|no] port pin
+
 # CLK 12 MHZ
 set_io clk J3 # Señal de reloj del hardware 12 MHz
 
