@@ -27,38 +27,7 @@ make config # Configurar fpga
 
 ![fpga-esp32](./docs/soc-esp32.svg)
 
-![Imagen RTK](./blink.png)
-
-## ¿Cómo ejecutar el ejemplo?
-
-1. Deberá tener las herramientas de desarrollo instaladas en su equipo.
-    * Herramientas de simulación y síntesis con *Conda*
-
-2. Descargue el proyecto [template.zip](./template.zip) y descomprima en un directorio de trabajo.
-
-3. Para simular y ver los resultados ejecute:
-```bash
-make sim
-```
-
-4. Para sintetizar el proyecto ejecute el siguiente comando:
-```bash
-make syn
-```
-
-5. Para configurar la FPGA (con la FPGA conectada al programador) ejecute:
-```bash
-make config
-```
-
-6. Si quiere obtener el RTL del proyecto y verlo en una imagen SVG ejecute el siguiente comando:
-```bash
-make rtl
-```
-
-> Para obtener los comandos de ayuda escriba en la consola: `make help`
-
-## Micropython ESP32
+## Configurar el ESP32 como bridge UART
 
 1. Instalar las dependencias de flashing del esp32. Para ello ejecute estos pasos:
 
@@ -99,10 +68,12 @@ el bridge del esp32 para su flashing. Ejecute los siguientes comandos:
 # Recuerde tener activa la variable de entorno donde tienen instalada las librerías de python
 esptool.py erase_flash
 esptool.py --baud 460800 write_flash 0x1000 micropython-esp32.bin
+```
 
 Resultado:
 
 <details>
+
 ```bash
 esptool.py v4.7.0
 Found 6 serial ports
@@ -126,14 +97,95 @@ Erasing flash (this may take a while)...
 Chip erase completed successfully in 7.6s
 Hard resetting via RTS pin...
 ```
-</details>
 
 >  **Observación**: En el caso de que no haga flashing, oprima el botón de BOOT en el esp32:
+
+</details>
+
 
 4. Abra una terminal e interactue con micropython el cual usa una sintaxis de Python3. Para ello ejecute los siguientes comandos:
 
 ```bash
 # Verifique el archivo representativo del puerto serial del esp32, es probable que sea /dev/ttyUSB0
-picocom /dev/ttyUSB0 -b 115200 # Dependiendo del archivo representativo el tty puede cambiar
+picocom /dev/ttyUSB1 -b 115200 # Dependiendo del archivo representativo el tty puede cambiar
+```
 
+Resultado:
+
+<details>
+
+  ```py
+picocom /dev/ttyUSB1 -b 115200
+picocom v3.1
+
+port is        : /dev/ttyUSB0
+flowcontrol    : none
+baudrate is    : 115200
+parity is      : none
+databits are   : 8
+stopbits are   : 1
+escape is      : C-a
+local echo is  : no
+noinit is      : no
+noreset is     : no
+hangup is      : no
+nolock is      : no
+send_cmd is    : sz -vv
+receive_cmd is : rz -vv -E
+imap is        : 
+omap is        : 
+emap is        : crcrlf,delbs,
+logfile is     : none
+initstring     : none
+exit_after is  : not set
+exit is        : no
+
+Type [C-a] [C-h] to see available commands
+Terminal ready
+
+>>> print("hello")
+hello
+>>> 
+  ```
+
+</details>
+
+Para salir de `picocom` ejecute la secuencia **CTRL+a** y luego **CTRL+x**.
+
+5. Cargue un script de micropython en el esp32 para realizar el puente entre la FPGA y el esp32.
+Para tal finalidad, cree un archivo `main.py` y agregue el siguiente contenido:
+
+```py
+from machine import UART
+from time import sleep
+
+uart_fpga = None
+uart_usb = None
+
+def init():
+    global uart_usb
+    global uart_fpga
+    # UART0: ahora libre
+    uart_usb = UART(1, baudrate=115200, tx=1, rx=3)
+    # UART2: FPGA
+    uart_fpga = UART(2, baudrate=57600, tx=17, rx=16)
+
+def bridge_uart():
+    while True:
+        if uart_fpga.any():
+            uart_usb.write(uart_fpga.read())
+        if uart_usb.any():
+            uart_fpga.write(uart_usb.read())
+        sleep(0.001)
+
+def start():
+    init()
+    bridge_uart()
+
+```
+
+A continuación suba el script `main.py` al esp32. Para ello ejecuta el siguiente comando:
+
+```bash
+ampy -p /dev/ttyUSB1 -b 115200 put main.py
 ```
