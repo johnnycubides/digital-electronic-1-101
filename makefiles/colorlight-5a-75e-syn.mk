@@ -153,6 +153,9 @@ endif
 ifneq ($(wildcard *.gtkw),) # Si existe un archivo .gtkw
 	cp -var *.gtkw $Z
 endif
+ifdef MORE_SRC
+	cp -var $(MORE_SRC) $Z
+endif
 	zip -r $Z.zip $Z
 
 init:

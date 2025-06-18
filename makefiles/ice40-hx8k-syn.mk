@@ -88,6 +88,9 @@ endif
 ifdef more_src # Si existe un archivo .gtkw
 	cp -var $(more_src) $Z
 endif
+ifdef MORE_SRC
+	cp -var $(MORE_SRC) $Z
+endif
 	zip -r $Z.zip $Z
 
 init:
