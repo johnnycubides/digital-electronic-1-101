@@ -21,8 +21,8 @@ DESIGN+= cores/mult/mult.v
 DESIGN+= cores/dpRAM/dpram.v
 DESIGN+= cores/dpRAM/perip_dpram.v
 DIR_BUILD=build
-DEVSERIAL=/dev/ttyUSB0
-BAUD=115200
+PORT=/dev/ttyUSB1
+BAUD=57600
 # Z: Nombre para empaquetar proyecto
 Z=femtoriscv
 MORE_SRC2SIM=firmware.hex
@@ -36,7 +36,7 @@ asm-build:
 asm-clean:
 	make -C ./firmware asm-clean
 t:
-	picocom $(DEVSERIAL) -b $(BAUD)
+	picocom $(PORT) -b $(BAUD)
 
 MK_SYN=../../../makefiles/colorlight-5a-75e-syn.mk
 MK_SIM=../../../makefiles/sim.mk

@@ -44,7 +44,7 @@ module SOC (
 
   peripheral_uart #(
       .clk_freq(25000000),  // 27000000 for gowin
-      .baud    (115200)     // 57600 for gowin
+      .baud    (57600)      // 57600 for gowin
   ) per_uart (
       .clk(clk),
       .rst(!resetn),

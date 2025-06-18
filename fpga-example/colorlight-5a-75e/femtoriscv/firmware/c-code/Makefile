@@ -11,14 +11,15 @@ OBJDUMP = $(CROSS)-objdump
 # Archivos objeto principales + los de libs/
 SRC_DIR = libs
 SRCS += ./libs/uart.c
+SRCS += ./libs/utilities.c
 SRCS += ./libs/math.c
 SRCS += ./libs/time.c
 # SRCS    = $(wildcard $(SRC_DIR)/*.c)  # Encuentra todos los .c en libs/
 OBJS    = $(SRCS:.c=.o)              # Convierte libs/archivo.c → libs/archivo.o
-# OBJECTS = loopBackChar.o $(OBJS)         # Todos los .o a enlazar
-# OBJECTS = loopBackString.o $(OBJS)         # Todos los .o a enlazar
-# OBJECTS = multiplier.o $(OBJS)         # Todos los .o a enlazar
-OBJECTS = sendMsg2Uart.o $(OBJS)         # Todos los .o a enlazar
+# OBJECTS = crt0.o loopBackChar.o $(OBJS)         # Todos los .o a enlazar
+# OBJECTS = crt0.o loopBackString.o $(OBJS)         # Todos los .o a enlazar
+# OBJECTS = crt0.o multiplier.o $(OBJS)         # Todos los .o a enlazar
+OBJECTS = crt0.o sendMsg2Uart.o $(OBJS)         # Todos los .o a enlazar
 
 LIB_DIR = -L/home/$$USER/miniconda3/envs/digital/riscv64-elf/lib/rv32i/ilp32/ \
           -L/home/$$USER/miniconda3/envs/digital/lib/gcc/riscv64-elf/10.1.0/rv32iac/ilp32/
@@ -34,13 +35,12 @@ AFLAGS = -march=rv32i -mabi=ilp32
 # Banderas de compilación y enlazado (optimizadas para eliminar código muerto)
 CFLAGS  = $(INCLUDE) -fno-pic -march=rv32i -mabi=ilp32 \
           -fno-stack-protector -w -Wl,--no-relax \
-          -ffunction-sections -fdata-sections # <- Clave para --gc-sections
+          -ffunction-sections -fdata-sections
 
 # Banderas de enlazado (añadido --gc-sections)
 LDFLAGS = -m elf32lriscv -b elf32-littleriscv \
 					--no-relax --print-memory-usage \
 					-Tlinker.ld
-# --gc-sections \
 
 LIBS    = -lm -lc -lgcc
 
