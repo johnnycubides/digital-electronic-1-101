@@ -9,7 +9,7 @@ top?=$(top_NAME)
 PCF?=$(top).pcf
 JSON?=$(DIR_BUILD)/$(top).json
 ASC?=$(DIR_BUILD)/$(top).asc
-BISTREAM?=$(DIR_BUILD)/$(top).bin
+BISTREAM?=$(DIR_BUILD)/$(top).bit
 LOG_YOSYS?=$(DIR_BUILD)/yosys-$(top).log
 LOG_NEXTPNR?=$(DIR_BUILD)/nextpnr-$(top).log
 # MACRO_SYN sirve para indicar definiciones de preprocesamiento en la sintesis
