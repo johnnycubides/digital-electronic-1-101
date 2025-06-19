@@ -5,7 +5,7 @@
 
 # SoC FemtoRiscv32i
 
-![SoC FemtoR32i](./SOC.svg)
+![SoC FemtoR32i](./dpcs/SOC.svg)
 
 A continuación se presenta el diseño y configuración de un SoC basado en el FemtoRiscv32i (RV32I), como se muestra en la imagen superior.  
 Este diseño es el resultado de diversas experiencias en la enseñanza del diseño de sistemas digitales, orientadas por el profesor Carlos Camargo de la Universidad Nacional de Colombia, las cuales he documentado y adaptado con fines pedagógicos.
@@ -251,7 +251,7 @@ ampy -p /dev/ttyUSB1 -b 115200 put main.py
 picocom /dev/ttyUSB1 -b 115200 # Dependiendo del archivo representativo el tty puede cambiar
 ```
 
-Ahora para verificar el funcionamiento en el prompt de micropython ejecute la instrución `start()` y luego Oprima el botón de **RESET** de la FPGA, el cual está indicado en el acrhivo `./colorlight-5a-75e-v8.2.drawio.pdf`.
+Ahora para verificar el funcionamiento en el prompt de micropython ejecute la instrución `start()` y luego Oprima el botón de **RESET** de la FPGA, el cual está indicado en el acrhivo `./docs/colorlight-5a-75e-v8.2.drawio.pdf`.
 
 ```py
 >>> start() # Oprima reset en la FPGA
