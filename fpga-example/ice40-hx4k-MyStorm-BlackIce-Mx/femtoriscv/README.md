@@ -19,7 +19,7 @@ El flujo de diseño, tanto de hardware como de software, es completamente *opens
 
 A grandes rasgos, el flujo de diseño consta de tres pasos:
 
-1. Compilación de las tareas de software para el RV32I en lenguaje **C** (`./firmware/c-code/`) o en **ASM** (`./firmware/asm/`), utilizando el *toolchain* de GCC para RISC-V.
+1. Compilación de las tareas de software para el RV32I en lenguaje **C** ([./firmware/c-code/](./firmware/c-code/)) o en **ASM** ([./firmware/asm/](./firmware/asm/)), utilizando el *toolchain* de GCC para RISC-V.
 2. Síntesis del SoC desde el `Makefile` (`./Makefile`) ubicado en este directorio, empleando herramientas como **Yosys** y **Nextpnr**.
 3. Configuración del diseño en la FPGA.
 
