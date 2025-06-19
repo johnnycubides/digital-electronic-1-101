@@ -1,0 +1,44 @@
+@startuml
+title FPGA-ESP32 CONNECTION
+left to right direction
+skinparam componentStyle rectangle
+
+package "BlackICE" {
+  [FPGA\nICE40HX4K]
+  [BRIDGE\nSTM32F]
+}
+
+component FPGA\nICE40HX4K #cyan {
+  portout fpga_gnd
+  portout fpga_pin_134
+  portout fpga_pin_135
+  portin fpga_jtag
+}
+
+component BRIDGE\nSTM32F #ddd {
+  portout bridge_USB
+  portout bridge_jtag_bitbang
+  portout bridge_gnd
+}
+
+component ESP32 #cyan{
+  portin esp32_gnd
+  portin esp32_tx_pin_17
+  portin esp32_rx_pin_16
+  portout esp32_USB
+}
+
+component PC #ddd {
+  portin pc_ttyUSB0
+  portin pc_ttyUSB1
+}
+
+fpga_gnd -- esp32_gnd #blue : GND
+fpga_pin_135 --> esp32_rx_pin_16 #blue : UART Transmitter
+fpga_pin_134 <-- esp32_tx_pin_17 #blue : UART Receiver
+esp32_USB <--> pc_ttyUSB1 #blue : USB Picocom
+bridge_USB <--> pc_ttyUSB0 : USB OpenFPGALoader JTAG
+bridge_jtag_bitbang <--> fpga_jtag : JTAG
+bridge_gnd -- fpga_gnd : GND
+
+@enduml

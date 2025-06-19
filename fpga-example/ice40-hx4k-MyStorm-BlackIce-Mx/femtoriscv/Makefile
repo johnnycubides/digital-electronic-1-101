@@ -26,7 +26,7 @@ BAUD=57600
 # Z: Nombre para empaquetar proyecto
 Z=femtoriscv
 MORE_SRC2SIM=firmware.hex
-more_src=cores init_dpram.ini firmware docs
+MORE_SRC=cores init_dpram.ini firmware docs
 c-build:
 	make -C ./firmware c-build
 c-clean:

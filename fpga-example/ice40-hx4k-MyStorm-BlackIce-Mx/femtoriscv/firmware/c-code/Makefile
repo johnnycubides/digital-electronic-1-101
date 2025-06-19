@@ -35,9 +35,9 @@ AFLAGS = -march=rv32i -mabi=ilp32
 # Banderas de compilación y enlazado (optimizadas para eliminar código muerto)
 CFLAGS  = $(INCLUDE) -fno-pic -march=rv32i -mabi=ilp32 \
           -fno-stack-protector -w -Wl,--no-relax \
-          -ffunction-sections -fdata-sections # <- Clave para --gc-sections
+          -ffunction-sections -fdata-sections
 
-# Banderas de enlazado (añadido --gc-sections)
+# Banderas de enlazado
 LDFLAGS = -m elf32lriscv -b elf32-littleriscv \
 					--no-relax --print-memory-usage \
 					-Tlinker.ld
