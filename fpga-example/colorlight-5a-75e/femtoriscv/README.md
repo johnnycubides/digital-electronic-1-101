@@ -62,6 +62,7 @@ Seguido, deberá ejecutar los siguientes comandos para realizar el proceso de
 implementación del SoC en la FPGA:
 
 ```bash
+sudo apt install picocom g++
 cd ./firmware/ && make firmware_words && cd .. # Generar tradutor bin a palabras. Solo se ejecuta una ÚNICA VEZ
 make c-clean c-build # Creación ejecutable de riscv32i
 make clean syn # Crear el bitstream para configurar la fpga
@@ -86,7 +87,6 @@ de ejemplo corriendo en el SoC.
 1. Instalar las dependencias de flashing del esp32. Para ello, ejecute estos pasos:
 
 ```bash
-sudo apt install picocom
 conda activate digital # Active la variable de entorno de digital
 pip install click esptool pyyaml adafruit-ampy
 ```

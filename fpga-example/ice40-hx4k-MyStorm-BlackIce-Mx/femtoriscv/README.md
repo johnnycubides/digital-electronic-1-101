@@ -60,6 +60,7 @@ Seguido, deberá ejecutar los siguientes comandos para realizar el proceso de
 implementación del SoC en la FPGA:
 
 ```bash
+sudo apt install picocom g++
 cd ./firmware/ && make firmware_words && cd .. # Generar tradutor bin a palabras. Solo se ejecuta una ÚNICA VEZ
 make c-clean c-build # Creación ejecutable de riscv32i
 make clean syn # Crear el bitstream para configurar la fpga
