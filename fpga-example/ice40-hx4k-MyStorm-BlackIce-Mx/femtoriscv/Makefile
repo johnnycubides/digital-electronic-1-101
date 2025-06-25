@@ -21,7 +21,8 @@ DESIGN+= cores/mult/mult.v
 DESIGN+= cores/dpRAM/dpram.v
 DESIGN+= cores/dpRAM/perip_dpram.v
 DIR_BUILD=build
-PORT=/dev/ttyUSB1
+PORT=/dev/ttyUSB0
+DEVSERIAL=/dev/ttyACM0
 BAUD=57600
 # Z: Nombre para empaquetar proyecto
 Z=femtoriscv
