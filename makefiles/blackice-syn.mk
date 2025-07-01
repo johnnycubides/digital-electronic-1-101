@@ -49,6 +49,8 @@ config:
 	stty -F $(DEVSERIAL) raw
 	cat $(BISTREAM) > $(DEVSERIAL)
 
+config-sram: config
+
 json:$(JSON)
 asc:$(ASC)
 bitstream:$(BISTREAM)

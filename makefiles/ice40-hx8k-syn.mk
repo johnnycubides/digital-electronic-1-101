@@ -16,16 +16,24 @@ LOG_NEXTPNR?=$(DIR_BUILD)/nextpnr-$(top).log
 MACROS_SYN?=
 MACROS_SYN := $(foreach macro,$(MACROS_SYN),"$(macro)")
 
+.ONESHELL:
+SHELL=/bin/bash
+# Enviroment conda to activate
+ENV=digital
+CONDA_ACTIVATE = source $$($$CONDA_EXE info --base)/etc/profile.d/conda.sh ; conda activate; conda activate $(ENV)
+RUN = $(CONDA_ACTIVATE) &&
+RUN =# Activate if don't use CONDA
+
 help-syn:
-	@echo "\n## SINTESIS Y CONFIGURACIÓN ##"
-	@echo "\tmake syn\t\t-> Sintetizar diseño"
-	@echo "\tmake config\t\t-> Configurar fpga from Flash SPI"
-	@echo "\t\t\t\t   Para configurar desde la flash, se requiere poner un jumper en J7 y en J6 conectar dos jumper entre los pines 4-2 y 3-1"
-	@echo "\tmake config-sram\t-> Configurar fpga desde la CRAM"
-	@echo "\t\t\t\t   Para configurar desde la CRAM, se requiere desconectar el jumper en J7 y en J6 conectar dos jumper entre los pines 4-3 y 2-1"
-	@echo "\tmake log-syn\t\t-> Ver el log de la síntesis con Yosys. Comandos: /palabra -> buscar, n -> próxima palabra, q -> salir, h -> salir"
-	@echo "\tmake log-pnr\t\t-> Ver el log del place&route con nextpnr. Comandos: /palabra -> buscar, n -> próxima palabra, q -> salir, h -> salir"
-	@echo "\tmake clean\t\t-> Limipiar síntesis si ha modificado el diseño"
+	@printf "\n## SINTESIS Y CONFIGURACIÓN ##\n"
+	@printf "\tmake syn\t\t-> Sintetizar diseño\n"
+	@printf "\tmake config\t\t-> Configurar fpga from Flash SPI\n"
+	@printf "\t\t\t\t   Para configurar desde la flash, se requiere poner un jumper en J7 y en J6 conectar dos jumper entre los pines 4-2 y 3-1\n"
+	@printf "\tmake config-sram\t-> Configurar fpga desde la CRAM\n"
+	@printf "\t\t\t\t   Para configurar desde la CRAM, se requiere desconectar el jumper en J7 y en J6 conectar dos jumper entre los pines 4-3 y 2-1\n"
+	@printf "\tmake log-syn\t\t-> Ver el log de la síntesis con Yosys. Comandos: /palabra -> buscar, n -> próxima palabra, q -> salir, h -> salir\n"
+	@printf "\tmake log-pnr\t\t-> Ver el log del place&route con nextpnr. Comandos: /palabra -> buscar, n -> próxima palabra, q -> salir, h -> salir\n"
+	@printf "\tmake clean\t\t-> Limipiar síntesis si ha modificado el diseño\n"
 
 syn: json asc bitstream
 
@@ -33,26 +41,26 @@ OBJS+=$(DESIGN)
 
 $(JSON): $(OBJS)
 	mkdir -p $(DIR_BUILD)
-	yosys $(MACRO_SYN) -p 'verilog_defaults -push; verilog_defaults -add -defer; verilog_defaults -pop; attrmap -tocase keep -imap keep="true" keep=1 -imap keep="false" keep=0 -remove keep=0; synth_ice40 -top $(top) -json $(JSON)' $(OBJS) -l $(LOG_YOSYS)
+	$(RUN) yosys $(MACRO_SYN) -p 'verilog_defaults -push; verilog_defaults -add -defer; verilog_defaults -pop; attrmap -tocase keep -imap keep="true" keep=1 -imap keep="false" keep=0 -remove keep=0; synth_ice40 -top $(top) -json $(JSON)' $(OBJS) -l $(LOG_YOSYS)
 	# yosys $(MACRO_SYN) -p "synth_ice40 -top $(top) -json $(JSON)" $(OBJS) -l $(LOG_YOSYS)
 
 log-syn:
 	less $(LOG_YOSYS)
 
 $(ASC): $(JSON)
-	nextpnr-ice40 --hx8k --package ct256 --json $(JSON) --pcf $(PCF) --asc $(ASC) --log $(LOG_NEXTPNR)
+	$(RUN) nextpnr-ice40 --hx8k --package ct256 --json $(JSON) --pcf $(PCF) --asc $(ASC) --log $(LOG_NEXTPNR)
 
 log-pnr:
 	less $(LOG_NEXTPNR)
 
 $(BISTREAM): $(ASC)
-	icepack $(ASC) $(BISTREAM)
+	$(RUN) icepack $(ASC) $(BISTREAM)
 
 config:
-	iceprog $(BISTREAM)
+	$(RUN) iceprog $(BISTREAM)
 
 config-sram:
-	iceprog -S $(BISTREAM)
+	$(RUN) iceprog -S $(BISTREAM)
 
 json:$(JSON)
 asc:$(ASC)
@@ -84,9 +92,6 @@ ifneq ($(wildcard *.txt),) # Si existe un archivo .txt
 endif
 ifneq ($(wildcard *.gtkw),) # Si existe un archivo .gtkw
 	cp -var *.gtkw $Z
-endif
-ifdef more_src # Si existe un archivo .gtkw
-	cp -var $(more_src) $Z
 endif
 ifdef MORE_SRC
 	cp -var $(MORE_SRC) $Z
