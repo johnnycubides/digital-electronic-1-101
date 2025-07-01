@@ -11,9 +11,9 @@ OBJDUMP = $(CROSS)-objdump
 # Archivos objeto principales + los de libs/
 SRC_DIR = libs
 SRCS += ./libs/uart.c
+SRCS += ./libs/utilities.c
 SRCS += ./libs/math.c
 SRCS += ./libs/time.c
-SRCS += ./libs/utilities.c
 # SRCS    = $(wildcard $(SRC_DIR)/*.c)  # Encuentra todos los .c en libs/
 OBJS    = $(SRCS:.c=.o)              # Convierte libs/archivo.c → libs/archivo.o
 # OBJECTS = crt0.o loopBackChar.o $(OBJS)         # Todos los .o a enlazar
@@ -35,15 +35,22 @@ AFLAGS = -march=rv32i -mabi=ilp32
 # Banderas de compilación y enlazado (optimizadas para eliminar código muerto)
 CFLAGS  = $(INCLUDE) -fno-pic -march=rv32i -mabi=ilp32 \
           -fno-stack-protector -w -Wl,--no-relax \
-          -ffunction-sections -fdata-sections # <- Clave para --gc-sections
+          -ffunction-sections -fdata-sections
 
-# Banderas de enlazado (añadido --gc-sections)
+# Banderas de enlazado
 LDFLAGS = -m elf32lriscv -b elf32-littleriscv \
 					--no-relax --print-memory-usage \
 					-Tlinker.ld
-# --gc-sections \
 
 LIBS    = -lm -lc -lgcc
+
+.ONESHELL:
+SHELL=/bin/bash
+# Enviroment conda to activate
+ENV=digital
+CONDA_ACTIVATE = source $$($$CONDA_EXE info --base)/etc/profile.d/conda.sh ; conda activate; conda activate $(ENV)
+RUN = $(CONDA_ACTIVATE) &&
+RUN =# Activate if don't use CONDA
 
 # Reglas principales
 all: firmware.hex

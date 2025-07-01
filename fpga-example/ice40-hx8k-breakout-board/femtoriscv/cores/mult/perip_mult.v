@@ -1,80 +1,102 @@
-module peripheral_mult(clk , reset , d_in , cs , addr , rd , wr, d_out );
-  
-  input clk;
-  input reset;
-  input [15:0] d_in;
-  input cs;
-  input [4:0]  addr; // 4 LSB from j1_io_addr
-  input rd;
-  input wr;
-  output reg [31:0]d_out;
+module peripheral_mult (
+    input clk,
+    input reset,
+    input [15:0] d_in,
+    input cs,
+    input [4:0] addr,
+    input rd,
+    input wr,
+    output [31:0] d_out
+);
 
-//------------------------------------ regs and wires-------------------------------
-reg [4:0] s; 	//selector mux_4  and write registers
-reg [15:0] A;//---mult_32 input registers
-reg [15:0] B;
-reg init;
-wire [31:0] result;	//mult_32 output Regs
-wire done;
-//------------------------------------ regs and wires-------------------------------
-always @(*) begin//------address_decoder------------------------------
-if (cs) begin
-  case (addr)
-    5'h04: s =  5'b00001; // A 
-    5'h08: s =  5'b00010; // B
-    5'h0C: s =  5'b00100; // init
-    5'h10: s =  5'b01000; // result
-    5'h14: s =  5'b10000; // done
-    default: s = 5'b00000;
-  endcase
-end
-else 
-  s = 5'b00000;
-end//------------------address_decoder--------------------------------
+  wire [4:0] s;
+  wire [31:0] result;
+  wire done;
 
+  reg [15:0] A, B;
+  reg init;
 
+  // 1. Decoder
+  peripheral_mult_addr_decoder decoder (
+      .cs  (cs),
+      .addr(addr),
+      .sel (s)
+  );
 
+  // 2. Register block
+  peripheral_mult_register_block regs (
+      .clk(clk),
+      .reset(reset),
+      .wr(wr),
+      .sel(s),
+      .d_in(d_in),
+      .result(result),
+      .done(done),
+      .A(A),
+      .B(B),
+      .init(init),
+      .d_out(d_out)
+  );
 
-always @(posedge clk) begin//-------------------- escritura de registros 
+  // 3. Multiplier module
+  mult mult (
+      .reset(reset),
+      .clk(clk),
+      .init(init),
+      .done(done),
+      .op_A(A),
+      .op_B(B),
+      .result(result)
+  );
 
-  if(reset) begin
-    init = 0;
-    A    = 0;
-    B    = 0;
+endmodule
+
+module peripheral_mult_register_block (
+    input             clk,
+    input             reset,
+    input             wr,
+    input      [ 4:0] sel,
+    input      [15:0] d_in,
+    input      [31:0] result,
+    input             done,
+    output reg [15:0] A,
+    output reg [15:0] B,
+    output reg        init,
+    output reg [31:0] d_out
+);
+
+  always @(posedge clk) begin
+    if (sel[0] && wr) A <= d_in;
+    if (sel[1] && wr) B <= d_in;
+    if (sel[2] && wr) init <= d_in[0];  // sólo bit 0 usado
   end
-  else begin
-    if (cs && wr) begin
-		   A    = s[0] ? d_in    : A;	//Write Registers
-		   B    = s[1] ? d_in    : B;	//Write Registers
-		   init = s[2] ? d_in[0] : init;
-    end
-  end
 
-end//------------------------------------------- escritura de registros
-
-
-always @(posedge clk) begin//-----------------------mux_4 :  multiplexa salidas del periferico
-  if(reset)
-    d_out = 0;
-  else if (cs && rd) begin
-    case (s[4:0])
-      5'b01000: d_out    =  result;
-      5'b10000: d_out    = {31'b0, done};
+  always @(posedge clk) begin
+    case (sel)
+      5'b01000: d_out <= result;
+      5'b10000: d_out <= {31'b0, done};
+      default:  d_out <= 32'b0;
     endcase
   end
-end//-----------------------------------------------mux_4
+endmodule
 
-
-
-
-mult mult1 ( 
-	.reset(reset), 
-	.clk(clk), 
-	.init(init), 
-	.done(done),
-	.result(result), 
-	.op_A(A), 
-	.op_B(B)
- );
-
+module peripheral_mult_addr_decoder (
+    input            cs,
+    input      [4:0] addr,
+    output reg [4:0] sel
+);
+  always @(*) begin
+    if (cs) begin
+      case (addr)
+        5'h04:   sel = 5'b00001;  // A
+        5'h08:   sel = 5'b00010;  // B
+        5'h0C:   sel = 5'b00100;  // init
+        5'h10:   sel = 5'b01000;  // result
+        5'h14:   sel = 5'b10000;  // done
+        default: sel = 5'b00000;
+      endcase
+    end else begin
+      sel = 5'b00000;
+    end
+  end
 endmodule
