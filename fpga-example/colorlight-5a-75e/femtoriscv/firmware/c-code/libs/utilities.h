@@ -44,4 +44,15 @@ int atoi_simple_signed(const char *str);
  */
 void itoa_simple_signed(int value, char *str);
 
+/**
+ * Concatenates two strings (lightweight version of strcat).
+ *
+ * @param dest Pointer to the destination string (must have enough space).
+ * @param src Pointer to the source string (will be appended to dest).
+ * @return Returns a pointer to the destination string (dest).
+ *
+ * @warning Does not perform bounds checking. Ensure dest has sufficient memory.
+ */
+char *mi_strcat(char *dest, const char *src);
+
 #endif
