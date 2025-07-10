@@ -10,10 +10,11 @@
 // Punteros a los registros de hardware
 volatile uint32_t *const gp = (uint32_t *)IO_BASE;
 
+char osc_msg[32]; // mensaje a enviar hasta de 32 bytes
+char midi[4];     // Nota midi de 3 bits en formato humano
+
 int main() {
-  const char topic[] = "osc /dev1/teclado ";
-  char osc_msg[32];
-  char midi[3];
+  const char topic[] = "osc /dev1/piano ";
   // Inicialización del stack pointer (simulado)
   // En realidad en C esto lo hace el startup code
   while (1) { // Equivalente al main_loop
@@ -24,8 +25,10 @@ int main() {
       mi_strcat(osc_msg, topic);   // Agregar el topic al mensaje
       mi_strcat(osc_msg, "i ");    // Agregar el formato del valor a enviar
       mi_strcat(osc_msg, midi);    // "/dev/teclado i midi"
-      putstring(osc_msg);
-      wait(20); // Valor arbitrario para el wait (en ASM se usaba a0)
+      mi_strcat(osc_msg,
+                "\r\n");  // Mensaje a enviar: "value_topic i value_midi\r\n"
+      putstring(osc_msg); // Enviar el mensaje por uart
+      wait(20);           // Esperar x ciclos de reloj
     }
   }
   return 0; // Nunca se alcanzará

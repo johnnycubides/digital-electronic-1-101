@@ -42,46 +42,17 @@ exponer servicios consumibles en red.
 periférico ADC del ESP32 y devolver los datos de conversión al SoC para los
 propósitos de procesamiento.
 
-### Síntesis y configuración del SoC en la FPGA
-
-![Conexión fpga-bridge](./docs/soc-esp32_fpga_bridge.svg)
-
-En esta parte del proceso se debe realizar la conexión entre los dispositivos
-que se observan en la imagen de arriba de color verde. Observe que deberá
-cablear el FT232RL con el puerto JTAG de la FPGA responsable de la
-configuración. Recuerde que debe tener instaladas las herramientas de diseño
-que encontrará en el
-[README.md](https://github.com/johnnycubides/digital-electronic-1-101/tree/main)
-de este repositorio. Si aún no ha realizado el proceso de configuración de un
-proyecto para esta FPGA, visita el siguiente enlace:
-
-[Configuración volatíl y persistente para esta FPGA](https://github.com/johnnycubides/digital-electronic-1-101/tree/main/fpga-example/colorlight-5a-75e)
-
-
-Seguido, deberá ejecutar los siguientes comandos para realizar el proceso de
-implementación del SoC en la FPGA:
-
-```bash
-sudo apt install picocom g++
-cd ./firmware/ && make firmware_words && cd .. # Generar tradutor bin a palabras. Solo se ejecuta una ÚNICA VEZ
-make c-clean c-build # Creación ejecutable de riscv32i
-make clean syn # Crear el bitstream para configurar la fpga
-make config # Configurar fpga
-```
-
-Si la terminal entrega resultados sin errores podría continuar el siguiente paso.
-
-## Configurar el ESP32 como bridge UART
+### Configurar el ESP32 como bridge UART
 
 ![fpga-esp32](./docs/soc-esp32_picocom.svg)
 
-Manteniendo el circuito anteriormente implementado, se requiere ahora cablear el esp32 a la FPGA.
-Para este propósito, deberá prestar especial atención al diagrama de arriba 
-donde se señalan los elementos a cablear con color azul. Observe además que cada puerto
-de cada componente tiene señalado el número de pin a usar para ello vísite la información
+Se requiere ahora cablear el esp32 a la FPGA. Para este propósito, deberá
+prestar especial atención al diagrama de arriba donde se señalan los elementos
+a cablear con color azul. Observe además que cada puerto de cada componente
+tiene señalado el número de pin a usar para ello vísite la información
 relacionada al pinout tanto de la FPGA como del esp32 a usar.
 
-Seguido podrá realizar el proceso de flashing del esp32 como de la ejecución del programa
+Seguido, podrá realizar el proceso de flashing del esp32 como de la ejecución del programa
 de ejemplo corriendo en el SoC.
 
 1. Instalar las dependencias de flashing del esp32. Para ello, ejecute estos pasos:
@@ -92,17 +63,19 @@ pip install click esptool pyyaml adafruit-ampy
 ```
 
 > **Observación**: en el caso de no ser compatible la variable de entorno
-**generando error**, podría crear una nueva variable de entorno con conda que
-soporte los paquetes a instalar, por ejemplo:
+> **generando error**, podría crear una nueva variable de entorno con conda que
+> soporte los paquetes a instalar, por ejemplo: (Ver Details)
+
+<details>
+
 ```bash
 # Ejecutar estos pasos solo si los pasos anteriores del punto 1. fallaron
 conda create --name esp32
 conda activate esp32
 pip install click esptool pyyaml adafruit-ampy
 ```
-
-Tenga presente que para desactivar el entorno basta con `conda deactivate`.
-
+> Tenga presente que para desactivar el entorno basta con `conda deactivate`.
+</details>
 
 2. Desde la [página oficial de descargas de Micropython para el
    ESP32](https://micropython.org/download/ESP32_GENERIC/) descargue la útima
@@ -245,13 +218,51 @@ A continuación suba el script `main.py` al esp32. Para ello ejecuta el siguient
 ampy -p /dev/ttyUSB1 -b 115200 put main.py
 ```
 
-5. Inicie el script y arranque el programa en la FPGA. Para tal finalidad abra la terminal de picocom asociada al esp32, por ejemplo:
+### Síntesis y configuración del SoC en la FPGA
+
+![Conexión fpga-bridge](./docs/soc-esp32_fpga_bridge.svg)
+
+En esta parte del proceso se debe realizar la conexión entre los dispositivos
+que se observan en la imagen de arriba de color verde. Observe que deberá
+cablear el FT232RL con el puerto JTAG de la FPGA responsable de la
+configuración. Recuerde que debe tener instaladas las herramientas de diseño
+que encontrará en el
+[README.md](https://github.com/johnnycubides/digital-electronic-1-101/tree/main)
+de este repositorio. Si aún no ha realizado el proceso de configuración de un
+proyecto para esta FPGA, visita el siguiente enlace:
+
+[Configuración volatíl y persistente para esta FPGA](https://github.com/johnnycubides/digital-electronic-1-101/tree/main/fpga-example/colorlight-5a-75e)
+
+
+Seguido, deberá ejecutar los siguientes comandos para realizar el proceso de
+implementación del SoC en la FPGA:
+
+```bash
+sudo apt install picocom g++
+cd ./firmware/ && make firmware_words && cd .. # Generar tradutor bin a palabras. Solo se ejecuta una ÚNICA VEZ
+make c-clean c-build # Creación ejecutable de riscv32i
+make clean syn # Crear el bitstream para configurar la fpga
+make config # Configurar fpga
+```
+
+Si la terminal entrega resultados sin errores podría continuar el siguiente paso.
+
+
+### Prueba de funcionamiento
+
+Inicie el script y arranque el programa en la FPGA. Para tal finalidad abra otra terminal y en ella
+ejecute el comando picocom para ver el prompt de python asociado al esp32, por ejemplo:
 
 ```bash
 picocom /dev/ttyUSB1 -b 115200 # Dependiendo del archivo representativo el tty puede cambiar
 ```
 
-Ahora para verificar el funcionamiento en el prompt de micropython ejecute la instrución `start()` y luego Oprima el botón de **RESET** de la FPGA, el cual está indicado en el acrhivo `./docs/colorlight-5a-75e-v8.2.drawio.pdf`.
+Ahora para verificar el funcionamiento, en el prompt de micropython, ejecute la
+instrución `start()` y luego, en la tarjeta de la FPGA, oprima el botón de
+**RESET** (sino sabe cual es, deberá revisar el archivo de restricciones
+físicas, archivo SOC.lpf), además, el objeto que representa el reset, lo puede
+encontrar en el archivo `./docs/colorlight-5a-75e-v8.2.drawio.pdf`. Después de
+pulsar el reset, verá en la terminal un resultado similar al siguiente:
 
 ```py
 >>> start() # Oprima reset en la FPGA

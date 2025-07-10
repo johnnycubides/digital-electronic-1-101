@@ -64,64 +64,6 @@ module peripheral_uart #(
       .tx_busy (tx_busy)
   );
 
-
-  // //------------------------------------ regs and wires-------------------------------
-  // reg  [1:0] s;  //selector mux_4  and demux_4
-  // reg  [7:0] d_in_uart = 0;  // data in uart
-  // reg  [7:0] uart_ctrl = 0;  // data in uart
-  // wire [7:0] rx_data;  // data received
-  // wire       tx_busy;  // uart transmitting
-  // wire       rx_error;  // reception error
-  // wire       rx_avail;  // data received
-  // //------------------------------------ regs and wires-------------------------------
-  //
-  // //----address_decoder (one selection bit for register) ------------------
-  // always @(*) begin
-  //   case (addr)
-  //     5'h08: begin
-  //       s = (cs) ? 2'b01 : 2'b00;
-  //     end  //{24'b0, rx_data}
-  //     5'h10: begin
-  //       s = (cs) ? 2'b10 : 2'b00;
-  //     end  //{22'b0, tx_busy, rx_avail, rx_error, 7'b0}
-  //     default: begin
-  //       s = 2'b00;
-  //     end
-  //   endcase
-  // end
-  //
-  // //Input Registers
-  // always @(posedge clk) begin
-  //   d_in_uart = (s[0] & wr) ? d_in[7:0] : d_in_uart; // data in uart
-  //   uart_ctrl = (s[1] & wr) ? d_in[7:0] : uart_ctrl; // data controller 5'b0, LED, tx_wr, rx_ack
-  //   ledout    = uart_ctrl[2]; // write ledout register
-  // end
-  //
-  // //Output registers
-  // always @(posedge clk) begin
-  //   case (s)
-  //     2'b01:   d_out = {24'b0, rx_data};
-  //     2'b10:   d_out = {22'b0, tx_busy, rx_avail, rx_error, 7'b0};
-  //     default: d_out = 0;
-  //   endcase
-  // end
-  //
-  // uart #(
-  //     .freq_hz(clk_freq),
-  //     .baud   (baud)
-  // ) uart0 (
-  //     .reset   (rst),
-  //     .clk     (clk),
-  //     .uart_rxd(uart_rx),
-  //     .uart_txd(uart_tx),
-  //     .rx_data (rx_data),
-  //     .rx_avail(rx_avail),
-  //     .rx_error(rx_error),
-  //     .rx_ack  (uart_ctrl[1]),
-  //     .tx_data (d_in_uart),
-  //     .tx_wr   (uart_ctrl[0]),
-  //     .tx_busy (tx_busy)
-  // );
 endmodule
 
 
@@ -132,8 +74,8 @@ module peripheral_uart_addr_decoder (
 );
   always @(*) begin
     case (addr)
-      5'h08:   sel = cs ? 2'b01 : 2'b00;
-      5'h10:   sel = cs ? 2'b10 : 2'b00;
+      5'h08:   sel = cs ? 2'b01 : 2'b00;  // IO_UART_DAT {24'b0, rx_data}
+      5'h10:   sel = cs ? 2'b10 : 2'b00;  // IO_UART_CNTL {22'b0, tx_busy, rx_avail, rx_error, 7'b0}
       default: sel = 2'b00;
     endcase
   end
@@ -143,25 +85,28 @@ module peripheral_uart_register_control (
     input             clk,
     input             rst,
     input             wr,
-    input      [ 1:0] sel,
+    input      [ 1:0] sel,        // Selector mux_4 and dmux_4
     input      [31:0] d_in,
-    input      [ 7:0] rx_data,
-    input             tx_busy,
-    input             rx_error,
-    input             rx_avail,
-    output reg [ 7:0] uart_ctrl,
-    output reg [ 7:0] d_in_uart,
+    input      [ 7:0] rx_data,    // data received
+    input             tx_busy,    // uart transmitting
+    input             rx_error,   // reception error
+    input             rx_avail,   // data received
+    output reg [ 7:0] uart_ctrl,  // data in uart
+    output reg [ 7:0] d_in_uart,  // data in uart
     output reg [31:0] d_out,
     output reg        ledout
 );
+
+  // Input registers
   always @(posedge clk) begin
-    if (sel[0] && wr) d_in_uart <= d_in[7:0];
+    if (sel[0] && wr) d_in_uart <= d_in[7:0];  // data in uart
 
-    if (sel[1] && wr) uart_ctrl <= d_in[7:0];
+    if (sel[1] && wr) uart_ctrl <= d_in[7:0];  // data controller 5'b0, LED, tx_wr, rx_ack
 
-    ledout <= uart_ctrl[2];
+    ledout <= uart_ctrl[2];  // Write ledout register
   end
 
+  // Output registers
   always @(posedge clk) begin
     case (sel)
       2'b01:   d_out <= {24'b0, rx_data};
