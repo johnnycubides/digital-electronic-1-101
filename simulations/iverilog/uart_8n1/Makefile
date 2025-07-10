@@ -12,7 +12,7 @@ DESIGN?=top.v
 # MACROS_SIM sirve para indicar definiciones de preprocesamiento
 MACROS_SIM?=-DDEBUG
 # Z: Nombre para empaquetar proyecto en este caso template
-Z=template
+Z=uart_8n1
 
 MK_SIM=../../../makefiles/sim.mk
 include $(MK_SIM)

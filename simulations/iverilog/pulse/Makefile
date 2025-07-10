@@ -12,7 +12,7 @@ DESIGN?=$(top).v
 # MACROS_SIM sirve para indicar definiciones de preprocesamiento
 # MACROS_SIM?=
 # Z: Nombre para empaquetar proyecto en este caso template
-Z=template
+Z=pulse
 
 MK_SIM=../../../makefiles/sim.mk
 include $(MK_SIM)
