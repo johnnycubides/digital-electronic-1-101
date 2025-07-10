@@ -16,7 +16,7 @@
 `ifndef TIME_UNIT
 `define TIME_UNIT 42
 `endif
-`include "./chronometer.v"
+// `include "./chronometer.v"
 module chronometer_tb;
   parameter integer LIMIT_CNT = 1000;
   // Determinar el tamaño de los wire como de los estímulos

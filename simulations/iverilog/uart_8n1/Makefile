@@ -10,7 +10,7 @@ DESIGN?=top.v
 # Agregar aquí otros archivos que se requieran para la simulación
 # MORE_SRC2SIM=./file.mem
 # MACROS_SIM sirve para indicar definiciones de preprocesamiento
-# MACROS_SIM?=-DDEBUG
+MACROS_SIM?=-DDEBUG
 # Z: Nombre para empaquetar proyecto en este caso template
 Z=template
 

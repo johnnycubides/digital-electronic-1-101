@@ -1,4 +1,4 @@
-`include "./counter.v"
+// `include "./counter.v"
 module counter_tb;
 
   // STIMULUS

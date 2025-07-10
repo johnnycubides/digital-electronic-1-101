@@ -16,7 +16,7 @@
 `ifndef TIME_UNIT
 `define TIME_UNIT 2
 `endif
-`include "./top.v"
+// `include "./top.v"
 
 module top_tb;
   // Determinar el tamaño de los wire como de los estímulos

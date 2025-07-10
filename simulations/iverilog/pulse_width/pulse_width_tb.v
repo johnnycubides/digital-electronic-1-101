@@ -16,7 +16,7 @@
 `ifndef TIME_UNIT
 `define TIME_UNIT 42
 `endif
-`include "./pulse_width.v"
+// `include "./pulse_width.v"
 module pulse_width_tb;
   // Determinar el tamaño de los wire como de los estímulos
   // parameter integer INPUT_SIZE = 1;

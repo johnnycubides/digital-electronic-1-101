@@ -1,4 +1,4 @@
-`include "./fulladder.v"
+// `include "./fulladder.v"
 module fulladder_tb;
 
   // STIMULUS

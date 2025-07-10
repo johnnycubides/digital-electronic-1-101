@@ -1,4 +1,4 @@
-`include "./halfadder.v"
+// `include "./halfadder.v"
 module fulladder (
     // Inputs and output ports; 3 in, 2 out
     input  in_b,
