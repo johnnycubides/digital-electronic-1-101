@@ -18,12 +18,12 @@ MACRO_SYN?=
 MACROS_SYN := $(foreach macro,$(MACROS_SYN),"$(macro)")
 
 help-syn:
-	@echo "\n## SINTESIS Y CONFIGURACIÓN ##"
-	@echo "\tmake syn\t-> Sintetizar diseño"
-	@echo "\tmake config\t-> Configurar fpga"
-	@echo "\tmake log-syn\t\t-> Ver el log de la síntesis con Yosys. Comandos: /palabra -> buscar, n -> próxima palabra, q -> salir, h -> salir"
-	@echo "\tmake log-pnr\t\t-> Ver el log del place&route con nextpnr. Comandos: /palabra -> buscar, n -> próxima palabra, q -> salir, h -> salir"
-	@echo "\tmake clean\t-> Limipiar síntesis si ha modificado el diseño"
+	@printf "\n## SINTESIS Y CONFIGURACIÓN ##"
+	@printf "\tmake syn\t-> Sintetizar diseño"
+	@printf "\tmake config\t-> Configurar fpga"
+	@printf "\tmake log-syn\t\t-> Ver el log de la síntesis con Yosys. Comandos: /palabra -> buscar, n -> próxima palabra, q -> salir, h -> salir"
+	@printf "\tmake log-pnr\t\t-> Ver el log del place&route con nextpnr. Comandos: /palabra -> buscar, n -> próxima palabra, q -> salir, h -> salir"
+	@printf "\tmake clean\t-> Limipiar síntesis si ha modificado el diseño"
 
 syn: json asc bitstream
 

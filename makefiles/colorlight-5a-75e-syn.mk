@@ -17,17 +17,17 @@ LOG_NEXTPNR?=$(DIR_BUILD)/nextpnr-$(top).log
 MACROS_SYN := $(foreach macro,$(MACROS_SYN),"$(macro)")
 
 help-syn:
-	@echo "\n## SINTESIS Y CONFIGURACIÓN ##"
-	@echo "\tmake syn\t\t-> Sintetizar diseño"
-	@echo "\tmake config\t\t-> Configurar fpga en CRAM"
-	@echo "\tmake config-flash\t-> Guardar el bistream en memoria flash"
-	@echo "\tmake config-help\t-> Ayuda sobre cómo configurar la Colorlight"
-	@echo "\tmake detect\t\t-> Detectar FPGA"
-	@echo "\tmake reset\t\t-> Reiniciar FPGA"
-	@echo "\tmake erase-flash\t-> Borrar la memoria flash de configuración"
-	@echo "\tmake log-syn\t\t-> Ver el log de la síntesis con Yosys. Comandos: /palabra -> buscar, n -> próxima palabra, q -> salir, h -> salir"
-	@echo "\tmake log-pnr\t\t-> Ver el log del place&route con nextpnr. Comandos: /palabra -> buscar, n -> próxima palabra, q -> salir, h -> salir"
-	@echo "\tmake clean\t\t-> Limipiar síntesis si ha modificado el diseño"
+	@printf "\n## SINTESIS Y CONFIGURACIÓN ##\n"
+	@printf "\tmake syn\t\t-> Sintetizar diseño\n"
+	@printf "\tmake config\t\t-> Configurar fpga en CRAM\n"
+	@printf "\tmake config-flash\t-> Guardar el bistream en memoria flash\n"
+	@printf "\tmake config-help\t-> Ayuda sobre cómo configurar la Colorlight\n"
+	@printf "\tmake detect\t\t-> Detectar FPGA\n"
+	@printf "\tmake reset\t\t-> Reiniciar FPGA\n"
+	@printf "\tmake erase-flash\t-> Borrar la memoria flash de configuración\n"
+	@printf "\tmake log-syn\t\t-> Ver el log de la síntesis con Yosys. Comandos: /palabra -> buscar, n -> próxima palabra, q -> salir, h -> salir\n"
+	@printf "\tmake log-pnr\t\t-> Ver el log del place&route con nextpnr. Comandos: /palabra -> buscar, n -> próxima palabra, q -> salir, h -> salir\n"
+	@printf "\tmake clean\t\t-> Limipiar síntesis si ha modificado el diseño\n"
 
 syn: json pnr bitstream
 
@@ -96,7 +96,7 @@ config-sram:
 config: config-sram
 
 config-help:
-	@echo "## INFORMACIÓN DE CONFIGURACIÓN PARA COLORLIGHT ##\n\n\
+	@printf "## INFORMACIÓN DE CONFIGURACIÓN PARA COLORLIGHT ##\n\n\
 	1. ENERGIZAR LA PLACA DE DESARROLLO COLORLIGHT: Para configurar la Colorlight se requiere un bridge como también una fuente de alimentación. \
 	En este ejemplo, se supondrá el uso del FT232RL, el cual es un adaptador USB a UART que sirve para emular un bridge JTAG. \
 	Primero deberá garantizar la alimentación del ECP5; la Colorlight tiene dos entradas de alimentación, una de 3.3v en el conector J33 y otra de 5v en J18. \
