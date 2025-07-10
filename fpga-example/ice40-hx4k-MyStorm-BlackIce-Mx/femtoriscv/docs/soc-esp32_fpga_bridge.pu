@@ -9,8 +9,8 @@ package "BlackICE" {
 }
 component FPGA\nICE40HX4K #lime {
   portout fpga_gnd
-  portout fpga_pin_134
-  portout fpga_pin_135
+  portout fpga_rx_pin_134
+  portout fpga_tx_pin_135
   portin fpga_jtag
 }
 
@@ -33,8 +33,8 @@ component PC #ddd {
 }
 
 fpga_gnd -- esp32_gnd: GND
-fpga_pin_135 --> esp32_rx_pin_16: UART Transmitter
-fpga_pin_134 <-- esp32_tx_pin_17: UART Receiver
+fpga_tx_pin_135 --> esp32_rx_pin_16: UART Transmitter
+fpga_rx_pin_134 <-- esp32_tx_pin_17: UART Receiver
 esp32_USB <--> pc_ttyUSB1: USB Picocom
 bridge_USB <--> pc_ttyUSB0 #green : USB OpenFPGALoader JTAG
 bridge_jtag_bitbang <--> fpga_jtag #green : JTAG

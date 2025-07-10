@@ -58,6 +58,7 @@ de ejemplo corriendo en el SoC.
 1. Instalar las dependencias de flashing del esp32. Para ello, ejecute estos pasos:
 
 ```bash
+sudo apt install picocom g++
 conda activate digital # Active la variable de entorno de digital
 pip install click esptool pyyaml adafruit-ampy
 ```
@@ -181,7 +182,7 @@ hello
 Para salir de `picocom`, ejecute la secuencia **CTRL+a** y luego **CTRL+x**.
 
 5. Cargue un script de Micropython en el esp32 para realizar el puente entre la FPGA y el esp32.
-Para tal finalidad, cree un archivo `main.py` y agregue el siguiente contenido:
+Para tal finalidad, cree un archivo `main.py` (también lo puede encontrar en [./docs/main.py](./docs/main.py)) y agregue el siguiente contenido:
 
 ```py
 from machine import UART
@@ -238,7 +239,6 @@ Seguido, deberá ejecutar los siguientes comandos para realizar el proceso de
 implementación del SoC en la FPGA:
 
 ```bash
-sudo apt install picocom g++
 cd ./firmware/ && make firmware_words && cd .. # Generar tradutor bin a palabras. Solo se ejecuta una ÚNICA VEZ
 make c-clean c-build # Creación ejecutable de riscv32i
 make clean syn # Crear el bitstream para configurar la fpga
@@ -261,8 +261,10 @@ Ahora para verificar el funcionamiento, en el prompt de micropython, ejecute la
 instrución `start()` y luego, en la tarjeta de la FPGA, oprima el botón de
 **RESET** (sino sabe cual es, deberá revisar el archivo de restricciones
 físicas, archivo SOC.lpf), además, el objeto que representa el reset, lo puede
-encontrar en el archivo `./docs/colorlight-5a-75e-v8.2.drawio.pdf`. Después de
-pulsar el reset, verá en la terminal un resultado similar al siguiente:
+encontrar en el archivo
+[./docs/colorlight-5a-75e-v8.2.drawio.pdf](./docs/colorlight-5a-75e-v8.2.drawio.pdf).
+Después de pulsar el reset, verá en la terminal un resultado similar al
+siguiente:
 
 ```py
 >>> start() # Oprima reset en la FPGA

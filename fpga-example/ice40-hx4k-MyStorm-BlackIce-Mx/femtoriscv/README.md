@@ -42,41 +42,14 @@ exponer servicios consumibles en red.
 periférico ADC del ESP32 y devolver los datos de conversión al SoC para los
 propósitos de procesamiento.
 
-### Síntesis y configuración del SoC en la FPGA
-
-![Conexión fpga-bridge](./docs/soc-esp32_fpga_bridge.svg)
-
-Como puede apreciar en la imagen de arriba, los componentes responsables 
-de la configuración del SoC en la FPGA (en color verde) se encuentran conectados.
-Para el proceso de configuración requiere tener instaladas las herramientas de diseño
-que encontrará en el
-[README.md](https://github.com/johnnycubides/digital-electronic-1-101/tree/main)
-de este repositorio. Si aún no ha realizado el proceso de configuración de un
-proyecto para esta FPGA, visita el siguiente enlace:
-
-[Configuración volatíl y persistente para esta FPGA](https://github.com/johnnycubides/digital-electronic-1-101/tree/main/fpga-example/ice40-hx4k-MyStorm-BlackIce-Mx)
-
-Seguido, deberá ejecutar los siguientes comandos para realizar el proceso de
-implementación del SoC en la FPGA:
-
-```bash
-sudo apt install picocom g++
-cd ./firmware/ && make firmware_words && cd .. # Generar tradutor bin a palabras. Solo se ejecuta una ÚNICA VEZ
-make c-clean c-build # Creación ejecutable de riscv32i
-make clean syn # Crear el bitstream para configurar la fpga
-make config # Configurar fpga
-```
-
-Si la terminal entrega resultados sin errores podría continuar el siguiente paso.
-
 ## Configurar el ESP32 como bridge UART
 
 ![fpga-esp32](./docs/soc-esp32_picocom.svg)
 
-Manteniendo el circuito anteriormente implementado, se requiere ahora cablear el esp32 a la FPGA.
-Para este propósito, deberá prestar especial atención al diagrama de arriba 
-donde se señalan los elementos a cablear con color azul. Observe además que cada puerto
-de cada componente tiene señalado el número de pin a usar para ello vísite la información
+Se requiere ahora cablear el esp32 a la FPGA. Para este propósito, deberá
+prestar especial atención al diagrama de arriba donde se señalan los elementos
+a cablear con color azul. Observe además que cada puerto de cada componente
+tiene señalado el número de pin a usar para ello vísite la información
 relacionada al pinout tanto de la FPGA como del esp32 a usar.
 
 Seguido podrá realizar el proceso de flashing del esp32 como de la ejecución del programa
@@ -85,23 +58,25 @@ de ejemplo corriendo en el SoC.
 1. Instalar las dependencias de flashing del esp32. Para ello, ejecute estos pasos:
 
 ```bash
-sudo apt install picocom
+sudo apt install picocom g++
 conda activate digital # Active la variable de entorno de digital
 pip install click esptool pyyaml adafruit-ampy
 ```
 
 > **Observación**: en el caso de no ser compatible la variable de entorno
-**generando error**, podría crear una nueva variable de entorno con conda que
-soporte los paquetes a instalar, por ejemplo:
+> **generando error**, podría crear una nueva variable de entorno con conda que
+> soporte los paquetes a instalar, por ejemplo: (Ver Details)
+
+<details>
+
 ```bash
 # Ejecutar estos pasos solo si los pasos anteriores del punto 1. fallaron
 conda create --name esp32
 conda activate esp32
 pip install click esptool pyyaml adafruit-ampy
 ```
-
-Tenga presente que para desactivar el entorno basta con `conda deactivate`.
-
+> Tenga presente que para desactivar el entorno basta con `conda deactivate`.
+</details>
 
 2. Desde la [página oficial de descargas de Micropython para el
    ESP32](https://micropython.org/download/ESP32_GENERIC/) descargue la útima
@@ -160,8 +135,8 @@ Hard resetting via RTS pin...
 4. Abra una terminal e interactúe con Micropython el cual usa una sintaxis de Python3. Para ello, ejecute los siguientes comandos:
 
 ```bash
-# Verifique el archivo representativo del puerto serial del esp32, es probable que sea /dev/ttyUSB1
-picocom /dev/ttyUSB1 -b 115200 # Dependiendo del archivo representativo el tty puede cambiar
+# Verifique el archivo representativo del puerto serial del esp32, es probable que sea /dev/ttyUSB0
+picocom /dev/ttyUSB0 -b 115200 # Dependiendo del archivo representativo el tty puede cambiar
 ```
 
 Resultado:
@@ -169,10 +144,10 @@ Resultado:
 <details>
 
   ```py
-picocom /dev/ttyUSB1 -b 115200
+picocom /dev/ttyUSB0 -b 115200
 picocom v3.1
 
-port is        : /dev/ttyUSB1
+port is        : /dev/ttyUSB0
 flowcontrol    : none
 baudrate is    : 115200
 parity is      : none
@@ -207,7 +182,7 @@ hello
 Para salir de `picocom`, ejecute la secuencia **CTRL+a** y luego **CTRL+x**.
 
 5. Cargue un script de Micropython en el esp32 para realizar el puente entre la FPGA y el esp32.
-Para tal finalidad, cree un archivo `main.py` y agregue el siguiente contenido:
+Para tal finalidad, cree un archivo `main.py` (también lo puede encontrar en [./docs/main.py](./docs/main.py)) y agregue el siguiente contenido:
 
 ```py
 from machine import UART
@@ -241,18 +216,50 @@ def start():
 A continuación suba el script `main.py` al esp32. Para ello ejecuta el siguiente comando:
 
 ```bash
-ampy -p /dev/ttyUSB1 -b 115200 put main.py
+ampy -p /dev/ttyUSB0 -b 115200 put main.py
 ```
 
-5. Inicie el script y arranque el programa en la FPGA. Para tal finalidad abra la terminal de picocom asociada al esp32, por ejemplo:
+### Síntesis y configuración del SoC en la FPGA
+
+![Conexión fpga-bridge](./docs/soc-esp32_fpga_bridge.svg)
+
+Como puede apreciar en la imagen de arriba, los componentes responsables de la
+configuración del SoC en la FPGA (en color verde) se encuentran conectados.
+Para el proceso de configuración requiere tener instaladas las herramientas de
+diseño que encontrará en el
+[README.md](https://github.com/johnnycubides/digital-electronic-1-101/tree/main)
+de este repositorio. Si aún no ha realizado el proceso de configuración de un
+proyecto para esta FPGA, visita el siguiente enlace:
+
+[Configuración volatíl y persistente para esta FPGA](https://github.com/johnnycubides/digital-electronic-1-101/tree/main/fpga-example/ice40-hx4k-MyStorm-BlackIce-Mx)
+
+Seguido, deberá ejecutar los siguientes comandos para realizar el proceso de
+implementación del SoC en la FPGA:
 
 ```bash
-picocom /dev/ttyUSB1 -b 115200 # Dependiendo del archivo representativo el tty puede cambiar
+cd ./firmware/ && make firmware_words && cd .. # Generar tradutor bin a palabras. Solo se ejecuta una ÚNICA VEZ
+make c-clean c-build # Creación ejecutable de riscv32i
+make clean syn # Crear el bitstream para configurar la fpga
+make config # Configurar fpga
 ```
 
-Ahora para verificar el funcionamiento en el prompt de micropython ejecute la
-instrución `start()` y luego Oprima el botón de **RESET** de la FPGA, el cual
-está indicado con la etiqueta como "S1" en el acrhivo [./docs/blackice-mx-pinout.png](./docs/blackice-mx-pinout.png).
+Si la terminal entrega resultados sin errores podría continuar el siguiente paso.
+
+
+### Prueba de funcionamiento
+
+Inicie el script y arranque el programa en la FPGA. Para tal finalidad abra la terminal de picocom asociada al esp32, por ejemplo:
+
+```bash
+picocom /dev/ttyUSB0 -b 115200 # Dependiendo del archivo representativo el tty puede cambiar
+```
+
+Ahora para verificar el funcionamiento, en el prompt de micropython, ejecute la
+instrución `start()` y luego, en la tarjeta de la FPGA, oprima el botón de
+**RESET** (sino sabe cual es, deberá revisar el archivo de restricciones
+físicas, archivo SOC.pcf), además, el objeto que representa el reset, lo puede
+encontrar en el archivo [./docs/blackice-mx-pinout.png](./docs/blackice-mx-pinout.png). Después de
+pulsar el reset, verá en la terminal un resultado similar al siguiente:
 
 ```py
 >>> start() # Oprima reset en la FPGA
