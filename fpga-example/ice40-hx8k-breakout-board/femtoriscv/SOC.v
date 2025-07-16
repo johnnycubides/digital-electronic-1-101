@@ -73,7 +73,7 @@ module SOC (
       .rst(!resetn),
       .d_in(mem_wdata),
       .cs(cs_uart),
-      .addr(mem_addr[4:0]),
+      .addr(mem_addr),
       .rd(rd),
       .wr(wr),
       .d_out(uart_dout),
@@ -85,9 +85,9 @@ module SOC (
   peripheral_mult mult1 (
       .clk(clk),
       .reset(!resetn),
-      .d_in(mem_wdata[15:0]),
+      .d_in(mem_wdata),
       .cs(cs_mult),
-      .addr(mem_addr[4:0]),
+      .addr(mem_addr),
       .rd(rd),
       .wr(wr),
       .d_out(mult_dout)
