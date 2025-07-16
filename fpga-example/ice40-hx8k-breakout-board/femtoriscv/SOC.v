@@ -102,7 +102,7 @@ module SOC (
   );
 
   //######################################
-  //### DESCRIPCIÓN DE PERIFERICO UART ###
+  //### DESCRIPCIÓN DE PERIFERICO DPRAM ###
   //######################################
   // wire [31:0] dpram_dout;
   //
