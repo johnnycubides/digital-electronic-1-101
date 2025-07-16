@@ -10,7 +10,6 @@ MACROS_SYN=
 # DESIGN=top.v
 DESIGN+= SOC.v
 DESIGN+= cores/cpu/femtorv32_quark.v
-DESIGN+= address_decoder.v
 DESIGN+= chip_select.v
 DESIGN+= cores/memory/Memory.v
 DESIGN+= cores/uart/perip_uart.v
