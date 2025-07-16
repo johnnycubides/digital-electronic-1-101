@@ -100,3 +100,20 @@ void itoa_simple_signed(int value, char *str) {
 
   *ptr = '\0';
 }
+
+// Ejemplo de uso
+// char buffer[20] = "Hola";
+// mi_strcat(buffer, ", mundo!");  // buffer = "Hola, mundo!"
+char *mi_strcat(char *dest, const char *src) {
+  char *ptr = dest;
+
+  // Move to the end of dest (find the null terminator)
+  while (*ptr)
+    ptr++;
+
+  // Copy src to dest, including the null terminator
+  while ((*ptr++ = *src++))
+    ;
+
+  return dest;
+}
