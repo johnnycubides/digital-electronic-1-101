@@ -6,7 +6,7 @@ module peripheral_uart #(
     input rst,
     input [31:0] d_in,
     input cs,
-    input [4:0] addr,
+    input [31:0] addr,
     input rd,
     input wr,
     output [31:0] d_out,
@@ -23,7 +23,7 @@ module peripheral_uart #(
   // 1. Address Decoder
   peripheral_uart_addr_decoder decoder (
       .cs  (cs),
-      .addr(addr),
+      .addr(addr[4:0]),
       .sel (s)
   );
 

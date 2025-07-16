@@ -7,11 +7,9 @@ tb?=$(top)_tb.v
 MACROS_SIM=-DINIT=(2**24-10) -DBENCH -DSIM -DPASSTHROUGH_PLL -DBOARD_FREQ=27 -DCPU_FREQ=27
 MACROS_RTL=
 MACROS_SYN=
-TB_V = SOC_tb.v
 # DESIGN=top.v
 DESIGN+= SOC.v
 DESIGN+= cores/cpu/femtorv32_quark.v
-DESIGN+= address_decoder.v
 DESIGN+= chip_select.v
 DESIGN+= cores/memory/Memory.v
 DESIGN+= cores/uart/perip_uart.v
