@@ -5,12 +5,15 @@ module SOC (
     input             RXD,     // UART receive
     output            TXD      // UART transmit
 );
+
+  //##########################
+  //### DESCRIPCIÓN DE CPU ###
+  //##########################
   wire [31:0] mem_addr;
   wire [31:0] mem_rdata;
   wire mem_rstrb;
   wire [31:0] mem_wdata;
   wire [3:0] mem_wmask;
-
   FemtoRV32 CPU (
       .clk(clk),
       .reset(resetn),
@@ -23,6 +26,9 @@ module SOC (
       .mem_wbusy(1'b0)
   );
 
+  //#################################
+  //### DESCRIPCIÓN DE CHIPSELECT ###
+  //#################################
   wire [6:0] cs;
   wire cs_uart = cs[0];  // cs_chip0
   wire cs_chip1 = cs[1];  // cs_chip1
@@ -31,7 +37,6 @@ module SOC (
   wire cs_chip4 = cs[4];  // cs_chip4
   wire cs_chip5 = cs[5];  // cs_chip5
   wire cs_ram = cs[6];  // cs_chip6
-
   chip_select chip_select (
       .mem_addr(mem_addr),
       .chip0_dout(uart_dout),  // 0x00400000
@@ -45,10 +50,12 @@ module SOC (
       .mem_rdata(mem_rdata)
   );
 
+  //##########################
+  //### DESCRIPCIÓN DE RAM ###
+  //##########################
   wire [31:0] RAM_rdata;
   wire wr = |mem_wmask;
   wire rd = mem_rstrb;
-
   Memory RAM (
       .clk(clk),
       .mem_addr(mem_addr),
@@ -58,16 +65,13 @@ module SOC (
       .mem_wmask({4{cs_ram}} & mem_wmask)
   );
 
+  //######################################
+  //### DESCRIPCIÓN DE PERIFERICO UART ###
+  //######################################
   wire [31:0] uart_dout;
-  wire [31:0] gpio_dout;
-  wire [31:0] mult_dout;
-  wire [31:0] div_dout;
-  wire [31:0] bin2bcd_dout;
-  wire [31:0] dpram_dout;
-
   peripheral_uart #(
-      .clk_freq(12000000),  // 27000000 for gowin
-      .baud    (9600)       // 57600 for gowin
+      .clk_freq(12000000),
+      .baud    (9600)
   ) per_uart (
       .clk(clk),
       .rst(!resetn),
@@ -82,6 +86,10 @@ module SOC (
       .ledout(LEDS[0])
   );
 
+  //######################################
+  //### DESCRIPCIÓN DE PERIFERICO MULT ###
+  //######################################
+  wire [31:0] mult_dout;
   peripheral_mult mult1 (
       .clk(clk),
       .reset(!resetn),
@@ -93,6 +101,11 @@ module SOC (
       .d_out(mult_dout)
   );
 
+  //######################################
+  //### DESCRIPCIÓN DE PERIFERICO UART ###
+  //######################################
+  // wire [31:0] dpram_dout;
+  //
   // peripheral_dpram dpram_p0 (
   //     .clk(clk),
   //     .reset(!resetn),
