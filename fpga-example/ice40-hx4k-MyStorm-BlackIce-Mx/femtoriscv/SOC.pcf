@@ -8,7 +8,7 @@ set_io LEDS 56 # RED LED
 set_io -pullup yes resetn 52 # GREEN LED | SW1
 
 ## UART
-set_io TXD 104 # TX
+set_io TXD 135 # TX
 set_io RXD 134 # RX
 
 
