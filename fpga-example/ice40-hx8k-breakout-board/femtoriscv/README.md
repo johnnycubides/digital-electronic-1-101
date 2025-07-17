@@ -5,7 +5,7 @@
 
 # SoC FemtoRiscv32i
 
-![SoC FemtoR32i](./SOC.svg)
+![SoC FemtoR32i](./docs/SOC.svg)
 
 
 SoC basado en un riscv de instrucciones base (32 bits instrucciones integer)
