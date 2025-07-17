@@ -5,7 +5,7 @@
 
 # SoC FemtoRiscv32i
 
-![SoC FemtoR32i](./docs/SOC.svg)
+![SoC FemtoR32i](./SOC.svg)
 
 A continuación se presenta el diseño y configuración de un SoC basado en el FemtoRiscv32i (RV32I), como se muestra en la imagen superior.  
 Este diseño es el resultado de diversas experiencias en la enseñanza del diseño de sistemas digitales, orientadas por el profesor Carlos Camargo de la Universidad Nacional de Colombia, las cuales he documentado y adaptado con fines pedagógicos.
