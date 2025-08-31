@@ -20,7 +20,7 @@ complejos.
 ## Objetivos
 
 * Identificar las características de un dispositivo fabricado en diferentes tecnologías.
-* Conocer diferentes técnicas de acondicionamientos de selañes digitales.
+* Conocer diferentes técnicas de acondicionamientos de señales digitales.
 
 ## 1. Comparación entre tecnologías CMOS vs TTL
 
