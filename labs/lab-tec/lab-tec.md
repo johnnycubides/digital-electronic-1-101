@@ -84,7 +84,7 @@ y dará las instrucciones específicas sobre el cómo deberá ser realizado.
   4. Realice un diagrama donde indique el flujo de diseño de estos circuitos junto
   a las especificaciones de selección de valores y componentes, junto a recomendaciones.
 
-* Sensores táctiles digitales (Touch):
+* **Sensores táctiles digitales (Touch)**:
   1. Estudio las diferentes técnicas de los sensores táctiles y sus aplicaciones.
   2. Diseñe un circuito táctil que tiene la siguiente arquitectura:
   Una entrada táctil, una compuerta lógica y una salida de leds.
