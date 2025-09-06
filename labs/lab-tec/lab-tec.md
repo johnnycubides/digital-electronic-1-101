@@ -141,4 +141,5 @@ sustentada.
 * [Qucs, instalación y ejemplos de uso](https://github.com/johnnycubides/qucs-tutorial-examples)
 * [Modelos spices del 74LS04 y CD4069](./spice/)
 * [Importar modelos en LTSpice](./spice/LTSpice.md)
+* [Ejemplo de simulación de compuerta 74ls04 en ngspice](https://www.youtube.com/watch?v=wGt53XM_DiA)
 * [Vídeo sobre niveles de tensión y corriente para algunas tecnologías de electrónica digital](https://www.youtube.com/watch?v=wCQ2D2S836I)
