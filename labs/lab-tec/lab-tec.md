@@ -90,11 +90,19 @@ y dará las instrucciones específicas sobre el cómo deberá ser realizado.
   Una entrada táctil, una compuerta lógica y una salida de leds.
   3. Explique las ventajas y desventajas de estos sensores junto a sus aplicaciones.
 
-* **Buffer y tristate**:
+<!-- * **Buffer y tristate**:
   1. Estudie sobre los circuitos tristate
   2. Implemente un circuito tristate con el CI CD40109B y obtenga la tabla de verdad según las 
   características de este CI.
   3. Implemente un cambiador de nivel con el CI CD40109B que permita cambiar el nivel de 5 V a 3.3V
+  4. Realice un diagrama que explique el funcionamiento del circuito implementado junto a sus criterios
+  de implementación. -->
+
+* **Buffer-tristate y level shiftter**:
+  1. Estudie sobre los circuitos tristate
+  2. Implemente un circuito tristate con el CI 74HC125 y obtenga la tabla de verdad según las 
+  características de este CI.
+  3. Implemente un cambiador de nivel con transistores discretos que permita cambiar el nivel de 5 V a 3.3V
   4. Realice un diagrama que explique el funcionamiento del circuito implementado junto a sus criterios
   de implementación.
 
