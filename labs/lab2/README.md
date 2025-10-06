@@ -210,12 +210,15 @@ los diferentes sensores y actuadores del problema (pulsadores, relés, leds, tra
 
 8. **Socialización del resultado**:
 
-* Cree un repositorio git donde comparta las experiencias de estos
-laboratorios, en específico, crear un directorio con el nombre o número del
-laboratorio, por ejemplo, lab2. Allí comparta un README con el procedimiento
-indicado en **Desarrollo** junto a las imágenes y archivos fuentes (verilog,
-archivos .dig, Makefiles, archivos de restricciones físicas, etc), haga
-uso de Markdown para agregar las imágenes al texto, enlaces, entre otros.
+<!-- * Cree un repositorio git donde comparta las experiencias de estos -->
+<!-- laboratorios, en específico, crear un directorio con el nombre o número del -->
+<!-- laboratorio, por ejemplo, lab2. Allí comparta un README con el procedimiento -->
+<!-- indicado en **Desarrollo** junto a las imágenes y archivos fuentes (verilog, -->
+<!-- archivos .dig, Makefiles, archivos de restricciones físicas, etc), haga -->
+<!-- uso de Markdown para agregar las imágenes al texto, enlaces, entre otros. -->
+
+* Crear una presentación con el flujo de diseñó creado por ustedes para este
+ejercicio.
 * Cree un vídeo de máximo 5 minutos en **Youtube**, comparta el enlace en el
 README.md
 * Exponga frente a sus compañeros su experiencia de diseño.
@@ -225,6 +228,7 @@ README.md
 * [plcsimulator: simulador de plc lenguaje ladder](https://app.plcsimulator.online/)
 * [QElectroTech: Creador de diagramas industriales electricos complejos](https://qelectrotech.org/)
 * [Ejemplo de configura volatil y pesistente para la FPGA BlackICE (Blink)](https://www.youtube.com/watch?v=lVM3kEyNgYA)
+* [Ejemplo de configura volatil y pesistente para la FPGA ColorLight (Blink)](https://youtu.be/4sJpcMFYmwM)
 * [Ejemplo de configura volatil y pesistente para la FPGA Cyclone IV (Blink)](https://www.youtube.com/watch?v=QzFHMY5IMPI)
 * [¿Cómo se sintetiza el ejemplo del laboratorio 2 en la FPGA BlackICE?](https://www.youtube.com/watch?v=2GnsQ3oH4YA)
 * [¿Cómo se sintetiza el ejemplo del laboratorio 2 en la FPGA Cyclone IV?](https://youtu.be/vO_olVPR1BQ)
