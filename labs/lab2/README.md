@@ -188,7 +188,7 @@ Observación: Deje comentarios en sus simulaciones en el caso de requerir realiz
 
 * Convierta su diagrama de lenguaje ladder a la red de compuertas lógicas que lo representa
 * Haga la red de compuertas lógicas en el software de [Digital](https://github.com/hneemann/Digital)
-* comparta tanto los diagramas, tablas de verdad (verifique), simulaciones, mapas de karnaugh, representación del circuito con compuertas universales, LUT y suma de productos.
+* Compare los diagramas, tablas de verdad (verifique), simulaciones, mapas de karnaugh, representación del circuito con compuertas universales, LUT y suma de productos.
 
 
 5. **Descripción en lenguaje HDL (Hardware Description Language)**:
@@ -219,8 +219,10 @@ los diferentes sensores y actuadores del problema (pulsadores, relés, leds, tra
 
 * Crear una presentación con el flujo de diseñó creado por ustedes para este
 ejercicio.
-* Cree un vídeo de máximo 5 minutos en **Youtube**, comparta el enlace en el
-README.md
+* Cree un vídeo de máximo 5 minutos en **Youtube**, comparta el enlace en la
+presentación.
+<!-- * Cree un vídeo de máximo 5 minutos en **Youtube**, comparta el enlace en el -->
+<!-- README.md -->
 * Exponga frente a sus compañeros su experiencia de diseño.
 
 ## Referencias
