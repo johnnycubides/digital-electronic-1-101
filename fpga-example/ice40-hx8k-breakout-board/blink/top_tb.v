@@ -1,5 +1,5 @@
 `timescale 10ns / 10ns  // <time_unit>/<time_precision
-`include "./top.v"
+// `include "./top.v"
 module top_tb;
 
   // Determinar el tamaño de los wire como de los estímulos

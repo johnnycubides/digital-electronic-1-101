@@ -1,13 +1,13 @@
 help: help-sim help-syn
 clean: clean-syn clean-sim
 top=top
+DESIGN=top.v
 #test bench del proyecto para la simulación
 tb?=$(top)_tb.v
 MACROS_SIM=
 MACROS_RTL=
 MACROS_SYN=
 MORE_SRC2SIM?=
-DESIGN=top.v
 DIR_BUILD=build
 DEVSERIAL=/dev/ttyACM0
 # Z: Nombre para empaquetar proyecto

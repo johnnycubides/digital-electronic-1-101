@@ -1,8 +1,8 @@
 help: help-sim help-syn
 clean: clean-syn clean-sim
 # top=top
-#test bench del proyecto para la simulación
 DESIGN=./top.v
+#test bench del proyecto para la simulación
 tb?=top_tb.v
 DIR_BUILD=build
 DEVSERIAL=/dev/ttyACM0

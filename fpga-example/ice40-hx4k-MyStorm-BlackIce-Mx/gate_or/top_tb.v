@@ -1,4 +1,4 @@
-`include "./top.v"
+// `include "./top.v"
 module top_tb;
 
   // Determinar el tamaño de los buses de comunicación como de los estímulos
