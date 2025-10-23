@@ -4,6 +4,8 @@
 * Sensor Ultrasonido
 * Puente H con PWM
 * Generador de tonos
+* Clock de segundos con 7 segmentos x2
+* Stepper
 
 ## Referencias
 
