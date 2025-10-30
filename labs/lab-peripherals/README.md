@@ -11,10 +11,10 @@ Como equipo de trabajo realice una implementación de un controlador para alguno
 
 Realice el siguiente flujo de desarrollo:
 
-- Definir comportamiento
-- Definir estructura
-- Describir diseño (Verilog HDL)
-- Ver RTL
+- Definir comportamiento (Diagrama de flujo y/o tablas de verdad, etc)
+- Definir estructura (Diagramas de bloques, redes de compuertas, etc)
+- Describir diseño en HCL (Verilog)
+- Presentar RTL
 - Simular en iverilog / gtkwave
 - Sintetizar y configurar en FPGA
 - Presentar en PDF y video youtube
