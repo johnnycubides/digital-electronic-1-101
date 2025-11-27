@@ -16,7 +16,7 @@ Seleccione el dispositivo de interés y discuta con el profesor el alcance del c
 Con respecto al flujo de desarrollo, deben presentarse los siguientes pasos:
 
 1. **Definir el comportamiento:**  
-   Utilice un diagrama de flujo y/o tablas de verdad que permitan posteriormente evaluar la funcionalidad de la tarea de hardware a implementar.
+   Utilice un diagrama de flujo y tablas de verdad que permitan posteriormente evaluar la funcionalidad de la tarea de hardware a implementar.
 
 2. **Definir la estructura:**  
    Proponga una estructura (diagramas de bloques, redes de compuertas, etc.) que responda al planteamiento comportamental definido.
