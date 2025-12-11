@@ -1,6 +1,6 @@
-`include "./clk10hz.v"
-`include "./counter8bits.v"
-`include "./dual_port_ram.v"
+// `include "./clk10hz.v"
+// `include "./counter8bits.v"
+// `include "./dual_port_ram.v"
 
 module top (
     input clk,
