@@ -1,7 +1,7 @@
-`include "divFreq.v"
-`include "pulse.v"
-`include "ascii_a_z.v"
-`include "./uart_8n1.v"
+// `include "divFreq.v"
+// `include "pulse.v"
+// `include "ascii_a_z.v"
+// `include "./uart_8n1.v"
 
 module top #(
     parameter integer HARDWARE_FREQ = 12e6,  // Hardware clock frequency 12 MHz

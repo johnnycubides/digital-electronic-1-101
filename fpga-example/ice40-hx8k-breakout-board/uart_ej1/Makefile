@@ -8,6 +8,10 @@ MACROS_RTL=
 MACROS_SYN=
 MORE_SRC2SIM?=
 DESIGN=top.v
+DESIGN+=divFreq.v
+DESIGN+=pulse.v
+DESIGN+=ascii_a_z.v
+DESIGN+=uart_8n1.v
 DIR_BUILD=build
 DEVSERIAL=/dev/ttyACM0
 # Z: Nombre para empaquetar proyecto

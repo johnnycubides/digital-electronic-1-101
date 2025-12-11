@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.117 (w)1999-2023 BSI
-[*] Thu Jan 30 09:56:15 2025
+[*] Thu Dec 11 13:37:41 2025
 [*]
 [dumpfile] "/home/johnny/projects/digital-electronic-1-101/fpga-example/ice40-hx8k-breakout-board/uart_ej1/sim/top_tb.vcd"
-[dumpfile_mtime] "Thu Jan 30 09:50:10 2025"
+[dumpfile_mtime] "Thu Dec 11 13:37:24 2025"
 [dumpfile_size] 3693307
 [savefile] "/home/johnny/projects/digital-electronic-1-101/fpga-example/ice40-hx8k-breakout-board/uart_ej1/top_tb.gtkw"
-[timestart] 187
-[size] 2256 1427
+[timestart] 0
+[size] 2256 1430
 [pos] -1 -1
-*-5.675131 201 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-6.675131 201 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top_tb.
 [treeopen] top_tb.dut.
 [sst_width] 249
