@@ -1,4 +1,4 @@
-`include "./blink.v"
+// `include "./blink.v"
 
 module top (
     // 12MHz clock input

@@ -7,6 +7,7 @@ MACROS_SIM=-DINIT=(2**24-10)
 MACROS_RTL=
 MACROS_SYN=
 DESIGN=top.v
+DESIGN+=blink.v
 DIR_BUILD=build
 DEVSERIAL=/dev/ttyACM0
 # Z: Nombre para empaquetar proyecto
