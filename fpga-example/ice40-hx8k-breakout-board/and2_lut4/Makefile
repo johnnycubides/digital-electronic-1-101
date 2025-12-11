@@ -4,6 +4,7 @@ top=top
 #test bench del proyecto para la simulación
 tb?=$(top)_tb.v
 DESIGN=top.v
+DESIGN+=and2_lut4.v
 DIR_BUILD=build
 DEVSERIAL=/dev/ttyACM0
 # Z: Nombre para empaquetar proyecto

@@ -1,4 +1,4 @@
-`include "./and2_lut4.v"
+// `include "./and2_lut4.v"
 module top (
     input  a,
     input  b,
