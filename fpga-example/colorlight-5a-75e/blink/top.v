@@ -13,7 +13,7 @@
 *                                                                             *
 ******************************************************************************/
 
-`include "./blink.v"
+// `include "./blink.v"
 module top (
     // 25MHz clock input
     input  clk,
