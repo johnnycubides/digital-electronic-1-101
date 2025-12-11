@@ -7,6 +7,7 @@ MACROS_SIM=-DSIM
 MACROS_RTL=
 MACROS_SYN=
 DESIGN=top.v
+DESIGN+=freqDiv.v
 DIR_BUILD=build
 DEVSERIAL=/dev/ttyACM0
 # Z: Nombre para empaquetar proyecto

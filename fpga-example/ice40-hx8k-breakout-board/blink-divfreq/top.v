@@ -1,4 +1,4 @@
-`include "./freqDiv.v"
+// `include "./freqDiv.v"
 
 module top (
     // 12MHz clock input
