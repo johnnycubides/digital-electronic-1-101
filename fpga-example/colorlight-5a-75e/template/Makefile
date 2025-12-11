@@ -1,6 +1,7 @@
 help: help-sim help-syn
 clean: clean-syn clean-sim
 # Diseño
+top=top
 DESIGN=top.v
 # test bench del proyecto para la simulación
 tb?=./top_tb.v
