@@ -1,6 +1,6 @@
 help: help-sim help-syn
 clean: clean-syn clean-sim
-# TOP=dual_port_ram
+top=dual_port_ram
 #test bench del proyecto para la simulación
 tb?=./dual_port_ram_tb.v
 MORE_SRC2SIM=./file.mem

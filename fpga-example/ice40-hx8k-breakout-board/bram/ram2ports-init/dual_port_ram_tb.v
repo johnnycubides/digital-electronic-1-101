@@ -1,4 +1,4 @@
-`include "./dual_port_ram.v"
+// `include "./dual_port_ram.v"
 
 module dual_port_ram_tb;
 
