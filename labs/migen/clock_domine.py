@@ -3,9 +3,14 @@
 # Vim commands:
 # :LspStart pyrefly
 
-import sys
-from migen import Signal, Module, ClockDomain
+
+# from migen import Signal, Module, ClockDomain
+import migen
+from migen import *
 from migen.build.generic_platform import verilog
+
+# from migen import run_simulation
+import sys
 
 
 class Top(Module):
@@ -35,6 +40,15 @@ def generate(filename="top.v"):
     print(design)
 
 
+def dut_tb(dut):
+    pass
+
+
+def simulation(filename="top.vcd"):
+    dut = Top()
+    run_simulation(dut, dut_tb(dut), vcd_name=filename)
+
+
 if len(sys.argv) > 1:
     if sys.argv[1] == "--generate" or sys.argv[1] == "-g":
         if len(sys.argv) > 2:
@@ -42,4 +56,10 @@ if len(sys.argv) > 1:
         else:
             generate()
     if sys.argv[1] == "--help" or sys.argv[1] == "-h":
-        print(f"{sys.argv[0]} -g filename.top")
+        print(f"{sys.argv[0]} -g filename.v")
+        print(f"{sys.argv[0]} -s filename.vcd")
+    if sys.argv[1] == "--sim" or sys.argv[1] == "-s":
+        if len(sys.argv) > 2:
+            generate(filename=sys.argv[2])
+        else:
+            simulation()
