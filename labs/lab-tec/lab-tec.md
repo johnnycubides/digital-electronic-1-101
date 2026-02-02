@@ -138,11 +138,16 @@ y dará las instrucciones específicas sobre el cómo deberá ser realizado.
 
 ### Entregable
 
-Se requiere la entrega de un informe donde responda cada uno de los apartados
-teniendo en cuenta simulaciones, especificaciones técnicas de las compuertas
-utilizadas en esta práctica, mediciones obtenidas en el laboratorio de manera
-sustentada.
+<!-- Se requiere la entrega de un informe donde responda cada uno de los apartados -->
+<!-- teniendo en cuenta simulaciones, especificaciones técnicas de las compuertas -->
+<!-- utilizadas en esta práctica, mediciones obtenidas en el laboratorio de manera -->
+<!-- sustentada. -->
 
+1. Los resultados del punto 1 serán entregados en cuaderno y sustentado de manera oral
+2. Para los resultados del punto dos, se realizará una presentación en el laboratorio
+
+Tenga presente que no se recibirán presentaciones en otros formatos, o en otros horarios,
+fuera de las indicaciones dadas por el profesor.
 
 ## Referencias
 
