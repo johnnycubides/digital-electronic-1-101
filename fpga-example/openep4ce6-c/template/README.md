@@ -12,7 +12,7 @@ make syn # Sintetizar diseño
 make config # Configurar el ejemplo en la FPGA
 ```
 
-Para más comandos, puede ejecutar `make helo` en la terminal.
+Para más comandos, puede ejecutar `make help` en la terminal.
 
 Regards,
 
