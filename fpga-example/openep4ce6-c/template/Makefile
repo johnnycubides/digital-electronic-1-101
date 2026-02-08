@@ -8,6 +8,7 @@ MACROS_RTL=
 MACROS_SYN=
 # Módules .v que hacen parte del proyecto
 DESIGN+=./top.v
+DIR_BUILD=build
 DEVSERIAL=
 # Ruta donde está quartus instalado
 PATH_QUARTUS=~/gitPackages/quartus/quartus/bin
