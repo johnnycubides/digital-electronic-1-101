@@ -22,7 +22,7 @@ RUN = $(CONDA_ACTIVATE) &&
 RUN =# Activate if don't use CONDA
 
 help-sim:
-	@printf "\n## SIMULACIÓN Y RTL##"
+	@printf "\n## SIMULACIÓN Y RTL ##\n"
 	@printf "\tmake rtl \t-> Crear el RTL desde el TOP\n"
 	@printf "\tmake sim \t-> Simular diseño\n"
 	@printf "\tmake wave \t-> Ver simulación en gtkwave\n"
