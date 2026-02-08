@@ -6,8 +6,8 @@ tb=$(top)_tb.v
 MACROS_SIM=
 MACROS_RTL=
 MACROS_SYN=
-DESIGN=./top.v
-DIR_BUILD=build
+# Módules .v que hacen parte del proyecto
+DESIGN+=./top.v
 DEVSERIAL=
 # Ruta donde está quartus instalado
 PATH_QUARTUS=~/gitPackages/quartus/quartus/bin
