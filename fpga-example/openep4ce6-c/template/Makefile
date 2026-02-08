@@ -10,7 +10,7 @@ DESIGN=./top.v
 DIR_BUILD=build
 DEVSERIAL=
 # Ruta donde está quartus instalado
-PATH_QUARTUS=~/gitPackages/quartus1/quartus/bin
+PATH_QUARTUS=~/gitPackages/quartus/quartus/bin
 # Cable programador
 # CABLE=USB-Blaster
 # Z: Nombre para empaquetar proyecto
