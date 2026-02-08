@@ -1,4 +1,4 @@
-module testbech;
+module top_tb;
 
   // STIMULUS
   /* reg a = 0, b = 0; */
@@ -14,10 +14,8 @@ module testbech;
   reg [2:0] inputs;
   /* inputs[0] inputs[1] inputs[2] */
   integer i;
-  initial
-  begin
-    for (i=0; i<8; i=i+1)
-    begin
+  initial begin
+    for (i = 0; i < 8; i = i + 1) begin
       inputs = i;
       #1;
     end
@@ -37,8 +35,11 @@ module testbech;
   /* ); */
 
   top dut (
-    .b(inputs[2]), .a(inputs[1]), .cin(inputs[0]),
-    .cout(outs[1]), .s(outs[0])
+      .b(inputs[2]),
+      .a(inputs[1]),
+      .cin(inputs[0]),
+      .cout(outs[1]),
+      .s(outs[0])
   );
 
   /* // MONITOR */
@@ -47,10 +48,9 @@ module testbech;
   /*     $time, a, b, value); */
 
   // WAVES IN VCD TO OPEN IN GTKWAVE
-  initial
-  begin
-    $dumpfile("top.vcd");
-    $dumpvars(0, testbech);
+  initial begin
+    // $dumpfile("top.vcd");
+    $dumpvars(0, top_tb);
   end
 
 
