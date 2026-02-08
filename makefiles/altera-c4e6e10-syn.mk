@@ -35,12 +35,14 @@ OPTIMIZATION_TECHNIQUE := speed
 MACROS_SYN?=
 
 help-quartus:
-	@echo "\n## SINTESIS Y CONFIGURACIÓN ##"
-	@echo "\tmake syn\t\t-> Sintetizar diseño"
-	@echo "\tmake config\t\t-> Configurar fpga"
-	@echo "\tmake config-flash\t-> Configurar flash memory"
-	@echo "\tmake erase-flash\t-> Borrar memoria flash (debe tener un archivo $B/$(top).jic)"
-	@echo "\tmake clean\t\t-> Limipiar síntesis si ha modificado el diseño"
+	@printf "\n## SINTESIS Y CONFIGURACIÓN ##\n"
+	@printf "\tmake syn\t\t-> Sintetizar diseño\n"
+	@printf "\tmake log-syn\t\t-> Resumen de resultados del proceso de sínstesis\n"
+	@printf "\tmake config\t\t-> Configurar fpga\n"
+	@printf "\tmake config-flash\t-> Configurar flash memory\n"
+	@printf "\tmake erase-flash\t-> Borrar memoria flash (debe tener un archivo $B/$(top).jic)\n"
+	@printf "\tmake clean\t\t-> Limipiar síntesis si ha modificado el diseño\n"
+	@printf "\tmake fpga-detect\t-> Detectar fpga\n"
 
 init: init-quartus-prj syn
 
@@ -114,7 +116,7 @@ else
 endif
 	@cat $B/$(top).fit.summary
 
-syn-report:
+log-syn:
 	cat $B/top.sta.rpt
 
 # Configurar cram
@@ -124,7 +126,7 @@ config-cram:
 
 # Configurar memoria flash
 # Para conocer las diferentes opciones ./quartus_pgm --help=o
-config-flash:
+config-flash: convert-sof2jic
 	@echo "Iniciar configuración de memoria flash tarjeta de desarrollo"
 	$(PGM) -m JTAG -o "pvbi;$B/$(top).jic@$(INDEX_DEV)"
 
@@ -135,6 +137,7 @@ erase-flash:
 # Convertir archivo sof a jic
 # Opciones relacionadas al converter ./quartus_cpf --help=jic
 convert-sof2jic:
+	@echo "Creación de archivo .jic desde archivo .sof para procesos de flashing"
 	$(CPF) -c -d $(CONF_DEV) -s $(FLASH_LOADER) -m ASx1 $B/$(top).sof $B/$(top).jic
 
 # Listar un cable programador
