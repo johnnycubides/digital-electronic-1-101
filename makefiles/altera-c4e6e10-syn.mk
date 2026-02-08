@@ -38,7 +38,7 @@ help-quartus:
 	@printf "\n## SINTESIS Y CONFIGURACIÓN ##\n"
 	@printf "\tmake syn\t\t-> Sintetizar diseño\n"
 	@printf "\tmake log-syn\t\t-> Resumen de resultados del proceso de sínstesis\n"
-	@printf "\tmake config\t\t-> Configurar fpga\n"
+	@printf "\tmake config\t\t-> Configurar fpga desde cram\n"
 	@printf "\tmake config-flash\t-> Configurar flash memory\n"
 	@printf "\tmake erase-flash\t-> Borrar memoria flash (debe tener un archivo $B/$(top).jic)\n"
 	@printf "\tmake clean\t\t-> Limipiar síntesis si ha modificado el diseño\n"

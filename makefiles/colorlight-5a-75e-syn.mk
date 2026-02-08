@@ -19,7 +19,7 @@ MACROS_SYN := $(foreach macro,$(MACROS_SYN),"$(macro)")
 help-syn:
 	@printf "\n## SINTESIS Y CONFIGURACIÓN ##\n"
 	@printf "\tmake syn\t\t-> Sintetizar diseño\n"
-	@printf "\tmake config\t\t-> Configurar fpga en CRAM\n"
+	@printf "\tmake config\t\t-> Configurar fpga en SRAM\n"
 	@printf "\tmake config-flash\t-> Guardar el bistream en memoria flash\n"
 	@printf "\tmake config-help\t-> Ayuda sobre cómo configurar la Colorlight\n"
 	@printf "\tmake detect\t\t-> Detectar FPGA\n"

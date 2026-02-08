@@ -56,7 +56,9 @@ log-pnr:
 $(BISTREAM): $(ASC)
 	$(RUN) icepack $(ASC) $(BISTREAM)
 
-config:
+config: config-sram
+
+config-flash:
 	$(RUN) iceprog $(BISTREAM)
 
 config-sram:
