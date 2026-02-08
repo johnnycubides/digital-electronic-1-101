@@ -9,4 +9,4 @@ set_global_assignment -name PROJECT_OUTPUT_DIRECTORY build
 set_location_assignment PIN_86 -to a
 set_location_assignment PIN_74 -to y
 
-set_global_assignment -name LAST_QUARTUS_VERSION "23.1std.1 Lite Edition"
+set_global_assignment -name LAST_QUARTUS_VERSION "25.1std.0 Lite Edition"
