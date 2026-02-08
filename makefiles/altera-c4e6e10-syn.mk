@@ -184,7 +184,7 @@ endif
 	zip -r $Z.zip $Z
 
 init-quartus-prj:
-	@echo "build/\nsim/\ndb/\nincremental_db/\n*.log\n$Z/\n" > .gitignore
+	@printf 'build/\nsim/\ndb/\nincremental_db/\n*.log\n$Z/\n' > .gitignore
 	@printf '%s\n' \
 		'##  CONFIGURACIÓN DE PROYECTO agregar en el archivo top.qsf ##' \
 		'' \
