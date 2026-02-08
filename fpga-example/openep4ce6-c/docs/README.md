@@ -24,7 +24,7 @@ and quickly.
 
 ## What's on the CoreEP4CE6
 
-[Core](./CoreEP4CE6-intro.png)
+![Core](./CoreEP4CE6-intro.jpg)
 
 1. EP4CE6E22C8N:the ALTERA Cyclone IV FPGA device which features:
   * Operating Frequency: 50MHz
@@ -52,7 +52,7 @@ and quickly.
 
 ## What's on the mother board
 
-[mother-board](./DVK601-intro.png)
+![mother-board](./DVK601-intro.jpg)
 
 1. FPGA CPLD core board connector: for easily connecting core boards which integrate an FPGA CPLD chip onboard
 2. 8I/Os_1 interface, for connecting accessory boards/modules
