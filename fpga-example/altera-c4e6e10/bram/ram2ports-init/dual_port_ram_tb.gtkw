@@ -1,0 +1,23 @@
+[*]
+[*] GTKWave Analyzer v3.3.117 (w)1999-2023 BSI
+[*] Sun Feb  8 20:58:18 2026
+[*]
+[dumpfile] "/home/johnny/projects/digital-electronic-1-101/fpga-example/altera-c4e6e10/bram/ram2ports-init/sim/dual_port_ram_tb.vcd"
+[dumpfile_mtime] "Sun Feb  8 20:58:06 2026"
+[dumpfile_size] 1230
+[savefile] "/home/johnny/projects/digital-electronic-1-101/fpga-example/altera-c4e6e10/bram/ram2ports-init/dual_port_ram_tb.gtkw"
+[timestart] 0
+[size] 1918 1150
+[pos] -1 -1
+*-42.949574 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 207
+[signals_width] 150
+[sst_expanded] 1
+[sst_vpaned_height] 342
+@28
+dual_port_ram_tb.clock
+@22
+dual_port_ram_tb.address_A[7:0]
+dual_port_ram_tb.data_out_A[7:0]
+[pattern_trace] 1
+[pattern_trace] 0

@@ -1,0 +1,7 @@
+build/
+sim/
+*.log
+prj/
+
+
+ram2ports-init/
