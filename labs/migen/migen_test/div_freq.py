@@ -12,7 +12,7 @@ class ClockDivider(Module):
         # Implicit self.cd_sys -> sys_clk and sys_rst
         # Others domains
         # Salida: señal de reloj dividida por 2
-        self.clk_out = div = Signal()
+        self.div = div = Signal()
         self.clk_out = clk_out = Signal()
         self.sync += div.eq(~div)
         self.comb += [clk_out.eq(~div)]

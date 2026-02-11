@@ -10,9 +10,12 @@ from migen.build.generic_platform import verilog
 # Make module
 class Top(Module):
     def __init__(self):
+        ## Interfaces
         self.a = a = Signal()
         self.b = b = Signal()
         self.c = c = Signal()
+
+        ## Functional description
         self.comb += c.eq(a & b)
 
 
