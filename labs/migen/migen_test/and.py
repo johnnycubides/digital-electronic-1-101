@@ -5,6 +5,7 @@
 
 from migen import Signal, Module
 from migen.build.generic_platform import verilog
+from migen.fhdl.structure import DummyReg
 
 
 # Make module
@@ -14,6 +15,8 @@ class Top(Module):
         self.a = a = Signal()
         self.b = b = Signal()
         self.c = c = Signal()
+
+        ## Internal definitions
 
         ## Functional description
         self.comb += c.eq(a & b)
@@ -27,5 +30,6 @@ ios = {top.a, top.b, top.c}
 # Make verilog module
 design = verilog.convert(fi=top, ios=ios)
 # Export verilog to file
+DummyReg.disable = True
 design.write("top.v")
 print(design)
