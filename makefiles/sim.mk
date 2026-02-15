@@ -75,7 +75,16 @@ ConvertOneVerilogFile:
 
 rtl-from-json: json-yosys
 	cp $S/$(top).json $S/$(top)_origin.json # Hacer una copia desde el archivo origen
-	sed -E 's/"\$$paramod\$$[^\\]+\\\\([^"]+)"/"\1"/g' $S/$(top)_origin.json > $S/$(top).json # Quitar parametros en el nombre del módulo para que sea legible.
+	# sed -E 's/"\$$paramod\$$[^\\]+\\\\([^"]+)"/"\1"/g' $S/$(top)_origin.json > $S/$(top).json # Quitar parametros en el nombre del módulo para que sea legible.
+	# "\$paramod        # literal $paramod
+	# (\$[^\\]+)?       # hash opcional ($abcdef...)
+	# \\\\              # separador \
+	# ([^\\"]+)         # nombre del módulo (lo que queremos)
+	# .*"               # ignora el resto (parámetros, etc.)
+	# sed -E 's/"\$$paramod(\$$[^\\]+)?\\\\([^\\"]+).*/"\2"/g' $S/$(top)_origin.json > $S/$(top).json # Quitar parametros en el nombre del módulo para que sea legible.
+	sed -E \
+  -e 's/"\$$paramod(\$$[^\\]+)?\\\\([^\\"]+)[^"]*": \{/"\2": {/g' \
+  -e 's/"type": "\$$paramod(\$$[^\\]+)?\\\\([^\\"]+)[^"]*"/"type": "\2"/g' $S/$(top)_origin.json > $S/$(top).json # Quitar parametros en el nombre del módulo para que sea legible.
 	$(RUN) netlistsvg $S/$(top).json -o $S/$(top).svg
 	## convert2SvgwithWhiteBackground
 	sed -i 's|<svg\([^>]*\)>|<svg\1>\n  <rect width="100%" height="100%" fill="white"/>|' $S/$(top).svg
