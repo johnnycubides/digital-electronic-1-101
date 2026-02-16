@@ -1,0 +1,29 @@
+[*]
+[*] GTKWave Analyzer v3.3.117 (w)1999-2023 BSI
+[*] Mon Feb 16 01:20:51 2026
+[*]
+[dumpfile] "/home/johnny/projects/digital-electronic-1-101/simulations/iverilog/multiplicador/sim/multiplier_tb.vcd"
+[dumpfile_mtime] "Mon Feb 16 01:20:15 2026"
+[dumpfile_size] 2130
+[savefile] "/home/johnny/projects/digital-electronic-1-101/simulations/iverilog/multiplicador/multiplier_tb.gtkw"
+[timestart] 0
+[size] 2051 1317
+[pos] -1 -1
+*-4.929203 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] multiplier_tb.
+[sst_width] 207
+[signals_width] 195
+[sst_expanded] 1
+[sst_vpaned_height] 401
+@28
+multiplier_tb.multiplier1.clk
+@24
+multiplier_tb.multiplier1.product[15:0]
+@22
+multiplier_tb.multiplier1.counter[7:0]
+multiplier_tb.multiplier1.tmp_product[15:0]
+multiplier_tb.multiplier1.multiplier[7:0]
+@23
+multiplier_tb.multiplier1.multiplicand[7:0]
+[pattern_trace] 1
+[pattern_trace] 0

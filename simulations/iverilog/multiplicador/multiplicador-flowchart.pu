@@ -1,0 +1,14 @@
+@startuml
+start
+: multiplicando <= load_from_input1
+multiplicador <= load_from_input2
+producto <= 0
+count <= 0;
+
+while(count < multiplicador) is (1)
+  : product <= producto + multiplicando
+  count <= count +1;
+endwhile (0)
+  : resultado <= producto;
+stop
+@enduml
