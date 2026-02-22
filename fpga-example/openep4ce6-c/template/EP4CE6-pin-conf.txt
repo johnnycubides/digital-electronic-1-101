@@ -1,4 +1,5 @@
 # ##############################################  Core  ##############################################
+# Operating frequency of Master clock (CLK pin 23) => 50 MHz
 set_location_assignment PIN_23 -to CLK
 
 set_location_assignment PIN_125 -to RESET

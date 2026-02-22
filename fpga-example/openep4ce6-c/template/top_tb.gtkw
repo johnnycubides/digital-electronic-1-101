@@ -1,0 +1,23 @@
+[*]
+[*] GTKWave Analyzer v3.3.117 (w)1999-2023 BSI
+[*] Sun Feb 22 22:52:01 2026
+[*]
+[dumpfile] "/home/johnny/projects/digital-electronic-1-101/fpga-example/openep4ce6-c/template/sim/top_tb.vcd"
+[dumpfile_mtime] "Sun Feb 22 22:51:13 2026"
+[dumpfile_size] 882
+[savefile] "/home/johnny/projects/digital-electronic-1-101/fpga-example/openep4ce6-c/template/top_tb.gtkw"
+[timestart] 0
+[size] 1920 1029
+[pos] -1 -1
+*-3.293359 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top_tb.
+[sst_width] 207
+[signals_width] 188
+[sst_expanded] 1
+[sst_vpaned_height] 300
+@28
+top_tb.dut.clk
+@25
+top_tb.dut.counter[26:0]
+[pattern_trace] 1
+[pattern_trace] 0
