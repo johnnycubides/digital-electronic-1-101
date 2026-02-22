@@ -7,10 +7,11 @@ modificar su contenido en función de sus necesidades.
 
 Para usar este template, descargue el [template.zip](./template.zip).
 
-Este template contiene un ejemplo completo para la tarjeta de desarrollo *openP4C6-C* la
-cual está basada en una FPGA de altera Cyclone IV. El ejemplo diseñado, consiste de un contador ascendente
-binario donde los últimos 4 bits son conectados a 4 LEDs de la tarjeta core, permitiendo así
-la visualización del conteo.
+Este template contiene un ejemplo completo para la tarjeta de desarrollo
+*openP4C6-C* la cual está basada en una FPGA de altera Cyclone IV. El ejemplo
+diseñado, consiste de un contador ascendente binario donde los últimos 4 bits
+son conectados a 4 LEDs de la tarjeta core, permitiendo así la visualización
+del conteo.
 
 Para reproducir este ejemplo siga estos pasos:
 
@@ -40,16 +41,13 @@ en el software, considere el caso donde los puertos USB de su computador no
 entregan la suficiente energía al Blaster, en ese caso puede ser necesario usar
 un hub USB con alimentación externa o de conexión tipo USB C.
 
-
-Realizada las conexiones
-electricas puede ejecutar la siguiente secuencia de comandos en la terminal:
-
-5. Ejecutar el ejemplo:
+5. Ya está listo para ejecutar el ejemplo:
 * Descomprima el contenido de [template.zip](./template.zip) en un directorio
 de su elección y haga uso del editor **Lite-XL** para cargar este directorio
 generado llamado `template/`. Explore su contenido.
-* Con la combinación de teclas **ALT + t** abra una terminal dentro del editor, si esto no sucede, la instalación de los complementos
-de lite-xl no fue completada y deberá reinstalar el editor.
+* Con la combinación de teclas **ALT + t** abra una terminal dentro del editor,
+si esto no sucede, la instalación de los complementos de lite-xl no fue
+completada y deberá reinstalar el editor.
 * Dentro de esta terminal ejecute los siguientes comandos:
 
 ```bash
@@ -60,11 +58,12 @@ make config # Configurar el ejemplo en la FPGA
 ```
 
 * Los anteriores comandos pueden ser ejecutados desde el editor a través de la
-barra de herramientas, donde encuentra los íconos de Synthesis y Config. En ese
+**barra de herramientas**, donde encuentra los **íconos de Synthesis y Config**. En ese
 menú también encuentra otros íconos para realizar procesos de simulación,
 representación de diagramas RTL, compilación de firmware.
 
-Con lo anterior debería ver los LEDs de la tarjeta Core representando el contador binario.
+Con lo anterior debería ver los LEDs de la tarjeta Core representando el
+contador binario.
 
 * Para más comandos, puede ejecutar `make help` en la terminal.
 
@@ -109,9 +108,10 @@ de simulación que permite observar el comportamiento del circuito comparando
 datos de entrada y de salida que han sido estimulados por un archivo testbetch
 `top_tb.v`.
 * [top_tb.v](./top_tb.v): Este archivo escrito en lenguaje Verilog corresponde
-al testbetch del diseño. En este testbetch se aprovecha el lenguaje verilog
-para describir los estímulos y loas probe, sin embargo, este archivo no es
-sintetizable, es decir, no puede ser implementado como un circuito en una FPGA.
+al testbetch del diseño que deberá editar según la simulación a realizar. En
+este testbetch se aprovecha el lenguaje verilog para describir los estímulos y
+loas probe, sin embargo, este archivo no es sintetizable, es decir, no puede
+ser implementado como un circuito en una FPGA.
 * [top.v](./top.v): Archivo Verilog HDL que contiene la descripción del
 circuito digital para el flujo de diseño, se recomienda no cambiar el nombre
 del archivo. Para agregar más archivos .v al diseño, basta con ubicarlos en
