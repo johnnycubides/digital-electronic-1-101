@@ -1,12 +1,14 @@
 # Instalación de Quartus en Linux
 
-En el siguiente vídeo encontrará un ejemplo de instalación de Quartus para GNU/Linux donde solo se hace uso
-del justamente las dependencias para la Cyclone IV, lo anterior permite que el tamaño de la instalación
-sea menor a la instalación standar.
+En el siguiente vídeo encontrará un ejemplo de instalación de Quartus para
+GNU/Linux donde solo se hace uso del justamente las dependencias para la
+Cyclone IV, lo anterior permite que el tamaño de la instalación sea menor a la
+instalación standar.
 
-> Atención: En el vídeo se realiza la instalación de Quartus en su versión 23.1.1. Para realizar
-> La instalación de Quartus en su versión actual **25.1.0** basta con seguir los pasos del vídeo
-> Pero seleccionando la versión deseada, es decir, el procesos de instalación es el mismo.
+> Atención: En el vídeo se realiza la instalación de Quartus en su versión
+> 23.1.1. Para realizar La instalación de Quartus en su versión actual
+> **25.1.0** basta con seguir los pasos del vídeo pero seleccionando la versión
+> deseada, es decir, el procesos de instalación es el mismo.
 
 Video de instalación:
 
