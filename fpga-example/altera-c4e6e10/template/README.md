@@ -68,10 +68,10 @@ contador binario.
 
 ```bash
 template/
-├── EP4CE6-pin-conf.txt
 ├── docs
 │   ├── A-C4E6-SCH.pdf
-│   └── altera-cyclone-iv.png
+│   ├── altera-cyclone-iv.png
+│   └── EP4CE6-pin-conf.txt
 ├── Makefile
 ├── README.md
 ├── top.qpf
@@ -81,7 +81,7 @@ template/
 └── top.v
 ```
 
-* [EP4CE6-pin-conf.txt](./EP4CE6-pin-conf.txt): Archivo de texto con las
+* [docs/EP4CE6-pin-conf.txt](./docs/EP4CE6-pin-conf.txt): Archivo de texto con las
 definiciones de los pines usado en el `top.qsf` responsable de las
 restricciones físicas, conecta el diseño lógico descrito en Verilog HDL con los
 GPIO de la FPGA.
