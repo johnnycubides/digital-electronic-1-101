@@ -20,7 +20,7 @@ Para reproducir este ejemplo siga estos pasos:
 información sobre instalación de un sistema Linux por internet, se puede apoyar
 de las diferentes [experiencias de instalación de sus compañeros de
 laboratorio](https://github.com/johnnycubides/digital-electronic-1-101/blob/main/installTools/how-install-linux.md).
-2. Instalación de herramientas de simulación, sintesis y configuración con
+2. Instalación de herramientas de simulación, síntesis y configuración con
    herramientas opensource: [En este enlace encontrará la receta de instalación
 de diferentes
 herramientas](https://github.com/johnnycubides/digital-electronic-1-101/blob/main/installTools/conda-and-tools.md)
@@ -109,8 +109,8 @@ datos de entrada y de salida que han sido estimulados por un archivo testbetch
 `top_tb.v`.
 * [top_tb.v](./top_tb.v): Este archivo escrito en lenguaje Verilog corresponde
 al testbetch del diseño que deberá editar según la simulación a realizar. En
-este testbetch se aprovecha el lenguaje verilog para describir los estímulos y
-loas probe, sin embargo, este archivo no es sintetizable, es decir, no puede
+este testbetch se aprovecha el lenguaje Verilog para describir los estímulos y
+los probes, sin embargo, este archivo no es sintetizable, es decir, no puede
 ser implementado como un circuito en una FPGA.
 * [top.v](./top.v): Archivo Verilog HDL que contiene la descripción del
 circuito digital para el flujo de diseño, se recomienda no cambiar el nombre
@@ -126,7 +126,14 @@ DESIGN+=./file2.v
 
 ## Referencias
 
-* [Documentación sobre esta tarjeta de desarrollo](https://github.com/johnnycubides/digital-electronic-1-101/tree/main/fpga-example/openep4ce6-c/docs)
+* [Documentación sobre esta tarjeta de
+desarrollo](https://github.com/johnnycubides/digital-electronic-1-101/tree/main/fpga-example/openep4ce6-c/docs)
+* Configuración volátil y persistente de FPGA Cyclone IV. Aunque la tarjeta de
+desarrollo del vídeo sea diferente a la openep4ce6-c contienen la misma FPGA
+Cyclone IV, por tanto las instrucciones del vídeo deben servir para la
+openep4ce6-c:
+
+[![Configuración volátil y persistente de FPGA Cyclone IV](https://img.youtube.com/vi/QzFHMY5IMPI/0.jpg)](https://www.youtube.com/watch?v=QzFHMY5IMPI "Configuración volátil y persistente de FPGA Cyclone IV")
 
 Regards,
 

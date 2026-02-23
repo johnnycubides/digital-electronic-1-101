@@ -15,6 +15,8 @@ PATH_QUARTUS=~/gitPackages/quartus/quartus/bin
 # CABLE=USB-Blaster
 # Z: Nombre para empaquetar proyecto
 Z=template
+MORE_SRC2SIM=
+MORE_SRC=docs
 
 MK_SYN=../../../makefiles/altera-c4e6e10-syn.mk
 MK_SIM=../../../makefiles/sim.mk
