@@ -157,6 +157,7 @@ conmutador, contactos y reles, le será útil para su diseño.
 * En [este PDF](./notas_annotated.pdf) está la información relacionada a pasar del dominio físico al estructural de
 este ejemplo.
 * No olvide hacer uso del [ejemplo](./example-design_annotated.pdf) de diseño que fue compartido en Discord.
+* En referencias encontrará vídeos sobre cómo se sintetiza el ejemplo en varias FPGAs.
 
 ## Desarrollo
 
