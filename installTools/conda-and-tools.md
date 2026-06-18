@@ -44,7 +44,7 @@ Para las distribuciones basadas en debian, puede ejecutar el siguiente comando:
 
 ```bash
 sudo apt update
-sudo apt install eog picocom imagemagick curl wget default-jdk git pulseview sigrok-firmware-fx2lafw ngspice gcc -y
+sudo apt install eog picocom imagemagick curl wget default-jdk git pulseview sigrok-firmware-fx2lafw ngspice gcc build-essential -y
 ```
 
 En el caso de otras distribuciones deberá consultar cómo puede hacerlo.
