@@ -26,8 +26,9 @@ LITE_XL_INSTALLER_URL=https://raw.githubusercontent.com/johnnycubides/swissknife
 LITE_XL_INSTALLER_FILE=lite-xl-install-all.bash
 LITE_XL_PATH=$TOOLS_PATH/lite-xl/lite-xl
 
-NETLISTSVG_VERSION=1.0.2
-NETLISTSVG_PATH=$TOOLS_PATH/netlistsvg-$NETLISTSVG_VERSION
+NETLIST2SVG_PACKAGE=@johnnycubides/netlist2svg
+NETLIST2SVG_VERSION=1.2.1
+NETLIST2SVG_PATH=$TOOLS_PATH/netlist2svg-$NETLIST2SVG_VERSION
 
 QUCS_S_VERSION=26.1.1
 QUCS_S_FILE=Qucs-S-$QUCS_S_VERSION-linux-x86_64.AppImage
@@ -322,24 +323,24 @@ lite_xl() {
   LITE_XL_PACKAGES_PATH="$TOOLS_PATH" bash "$INSTALLER" all
 }
 
-netlistsvg() {
+netlist2svg() {
   local TEMP_PATH
 
-  echo "Installing Netlistsvg $NETLISTSVG_VERSION"
+  echo "Installing Netlist2SVG $NETLIST2SVG_VERSION"
 
-  if [[ -x "$NETLISTSVG_PATH/node_modules/.bin/netlistsvg" ]]; then
-    echo "Already installed: $NETLISTSVG_PATH"
+  if [[ -x "$NETLIST2SVG_PATH/node_modules/.bin/netlist2svg" ]]; then
+    echo "Already installed: $NETLIST2SVG_PATH"
     return 0
   fi
 
-  if [[ -e "$NETLISTSVG_PATH" ]]; then
-    echo "Incomplete installation: $NETLISTSVG_PATH" >&2
+  if [[ -e "$NETLIST2SVG_PATH" ]]; then
+    echo "Incomplete installation: $NETLIST2SVG_PATH" >&2
     echo "Remove that directory and run the command again." >&2
     return 1
   fi
 
   mkdir -p "$TOOLS_PATH" "$CACHE_PATH" || return 1
-  TEMP_PATH=$(mktemp -d "$TOOLS_PATH/.netlistsvg.XXXXXX") || return 1
+  TEMP_PATH=$(mktemp -d "$TOOLS_PATH/.netlist2svg.XXXXXX") || return 1
 
   if ! npm install \
     --prefix "$TEMP_PATH" \
@@ -347,24 +348,24 @@ netlistsvg() {
     --no-fund \
     --no-package-lock \
     --omit=dev \
-    "netlistsvg@$NETLISTSVG_VERSION"
+    "$NETLIST2SVG_PACKAGE@$NETLIST2SVG_VERSION"
   then
     rm -rf "$TEMP_PATH"
     return 1
   fi
 
-  if [[ ! -x "$TEMP_PATH/node_modules/.bin/netlistsvg" ]]; then
-    echo "Netlistsvg executable was not found after installation" >&2
+  if [[ ! -x "$TEMP_PATH/node_modules/.bin/netlist2svg" ]]; then
+    echo "Netlist2SVG executable was not found after installation" >&2
     rm -rf "$TEMP_PATH"
     return 1
   fi
 
-  mv "$TEMP_PATH" "$NETLISTSVG_PATH" || {
+  mv "$TEMP_PATH" "$NETLIST2SVG_PATH" || {
     rm -rf "$TEMP_PATH"
     return 1
   }
 
-  echo "Installed: $NETLISTSVG_PATH"
+  echo "Installed: $NETLIST2SVG_PATH"
 }
 
 qucs_s() {
@@ -597,7 +598,7 @@ launcher() {
 install() {
   oss_cad_suite || return 1
   verible || return 1
-  netlistsvg || return 1
+  netlist2svg || return 1
   digital || return 1
   qucs_s || return 1
   lite_xl || return 1
@@ -627,8 +628,8 @@ activate() {
     return 1
   fi
 
-  if [[ ! -x "$NETLISTSVG_PATH/node_modules/.bin/netlistsvg" ]]; then
-    echo "Netlistsvg is not installed. Run ./digital-logic-design.sh install first." >&2
+  if [[ ! -x "$NETLIST2SVG_PATH/node_modules/.bin/netlist2svg" ]]; then
+    echo "Netlist2SVG is not installed. Run ./digital-logic-design.sh install first." >&2
     return 1
   fi
 
@@ -647,19 +648,26 @@ activate() {
   OSS_CAD_SUITE_ROOT=$OSS_CAD_SUITE_PATH
   VERIBLE_ROOT=$VERIBLE_PATH
   DIGITAL_ROOT=$DIGITAL_PATH
-  NETLISTSVG_ROOT=$NETLISTSVG_PATH
+  NETLIST2SVG_ROOT=$NETLIST2SVG_PATH
   QUCS_S_ROOT=$QUCS_S_PATH
   LITEX_ROOT=$LITEX_PATH
   LITEX_VENV=$LITEX_VENV_PATH
   LITEX_PYTHON=$LITEX_VENV_PATH/bin/python3
 
   export OSS_CAD_SUITE_ROOT VERIBLE_ROOT DIGITAL_ROOT
-  export NETLISTSVG_ROOT QUCS_S_ROOT LITEX_ROOT LITEX_VENV LITEX_PYTHON
-  export PATH="$LITEX_VENV/bin:$QUCS_S_ROOT:$DIGITAL_ROOT:$NETLISTSVG_ROOT/node_modules/.bin:$VERIBLE_ROOT/bin:$PATH"
+  export NETLIST2SVG_ROOT QUCS_S_ROOT
+  export LITEX_ROOT LITEX_VENV LITEX_PYTHON
+
+  PATH="$VERIBLE_ROOT/bin:$PATH"
+  PATH="$NETLIST2SVG_ROOT/node_modules/.bin:$PATH"
+  PATH="$DIGITAL_ROOT:$PATH"
+  PATH="$QUCS_S_ROOT:$PATH"
+  PATH="$LITEX_VENV/bin:$PATH"
+  export PATH
 
   echo "Activated OSS CAD Suite $OSS_CAD_SUITE_VERSION"
   echo "Activated Verible $VERIBLE_VERSION"
-  echo "Activated Netlistsvg $NETLISTSVG_VERSION"
+  echo "Activated Netlist2SVG $NETLIST2SVG_VERSION"
   echo "Activated Digital $DIGITAL_VERSION"
   echo "Activated Qucs-S $QUCS_S_VERSION"
   echo "Activated LiteX $LITEX_VERSION"
@@ -680,7 +688,8 @@ deactivate_tools() {
 
   deactivate
   unset OSS_CAD_SUITE_ROOT VERIBLE_ROOT DIGITAL_ROOT
-  unset NETLISTSVG_ROOT QUCS_S_ROOT LITEX_ROOT LITEX_VENV LITEX_PYTHON
+  unset NETLIST2SVG_ROOT QUCS_S_ROOT
+  unset LITEX_ROOT LITEX_VENV LITEX_PYTHON
   hash -r 2>/dev/null
   echo "Digital logic tools deactivated."
 }
@@ -695,7 +704,7 @@ help() {
   echo "  dependencies   Install Debian packages"
   echo "  oss_cad_suite  Install OSS CAD Suite, including GTKWave and Surfer"
   echo "  verible        Install Verible"
-  echo "  netlistsvg     Install Netlistsvg"
+  echo "  netlist2svg    Install Netlist2SVG"
   echo "  digital        Install Digital"
   echo "  qucs_s         Install Qucs-S"
   echo "  lite_xl        Install Lite XL and its configuration"
@@ -729,8 +738,8 @@ case "${1:-help}" in
   verible)
     verible
     ;;
-  netlistsvg)
-    netlistsvg
+  netlist2svg)
+    netlist2svg
     ;;
   digital)
     digital
@@ -777,7 +786,7 @@ if [[ "${BASH_SOURCE[0]}" != "$0" ]]; then
     dependencies \
     oss_cad_suite \
     verible \
-    netlistsvg \
+    netlist2svg \
     digital \
     qucs_s \
     lite_xl \
