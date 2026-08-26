@@ -3,18 +3,18 @@ top?=
 DESIGN?=
 MACROS_SIM?=
 MACROS_RTL?=
-top_NAME=$(basename $(notdir $(DESIGN)))
+
 ###############################
 ###--- Rules from sim.mk ---###
 ###############################
 .ONESHELL:
 SHELL=/bin/bash
-# RUN: entorno donde se encuentran las herramientas
+# RUN: Entorno donde se encuentran las herramientas
 RUN = source digital-logic-design activate &&
 
-###############################################################
-### LISTA DE COMANDO DE AYUDA PARA REALIZAR SIMULACIONES ---###
-###############################################################
+############################################################
+### LISTA DE COMANDO DE AYUDA PARA REALIZAR SIMULACIONES ###
+############################################################
 help-sim:
 	@printf "\n## SIMULACIÓN Y RTL ##\n"
 	@printf "\tmake rtl \t-> Crear el RTL desde el TOP\n"
@@ -47,10 +47,10 @@ RM=rm -rf
 #################################
 ### VARIABLES AUTORELLENABLES ###
 #################################
-# tb: archgivo verilog que contiene el testbench
-tb?=$(top_NAME)_tb.v
+# tb: Archivo verilog que contiene el testbench
+tb?=$(top)_tb.v
 # TB_MODULE_NAME: Nombre del módulo contenido en el archivo testbench a simular
-TB_MODULE_NAME=$(basename $(notdir $(tb)))
+TB_MODULE_NAME?=$(basename $(notdir $(tb)))
 # LOG_YOSYS_RTL: archivo donde se almacena el log de las ejecuciones de yosys
 LOG_YOSYS_RTL?=$(S)/yosys-$(top).log
 
@@ -119,14 +119,28 @@ json-yosys: ## Generar json para el rtl de netlistsvg
 	mkdir -p $S
 	$(RUN) yosys $(MACROS_RTL) -p 'prep -top $(top); hierarchy -check; proc; write_json $S/$(top).json' $(DESIGN) -l $(LOG_YOSYS_RTL)
 
+################################################
+### REGISTRO DE RESULTADOS AL GENERAR EL RTL ###
+################################################
+# Sirve para identificar los sucesos en el proceso de síntesis, traquear
+# errores en el código, etc.
 log-rtl:
 	less $(LOG_YOSYS_RTL)
 
-# Convertir el diseño en un solo archivo de verilog
+#######################################################################
+### GENERAR UN ÚNICO ARCHIVO VERILOG DE UN PROYECTO VERILOG MODULAR ###
+#######################################################################
+# Convertir el diseño en un solo archivo de verilog, esto es útil si se desea
+# simular en Digital con iverilog como una caja negra
 ConvertOneVerilogFile:
 	mkdir -p $S
 	$(RUN) yosys $(MACROS_SIM) -p 'prep -top $(top); hierarchy -check; proc; opt -full; write_verilog -noattr -nodec $S/$(top).v' $(DESIGN)
 
+###############################################
+### GENERAR IMAGEN SVG DEL RTL DESDE YOSYS  ###
+###############################################
+# Yosys realiza un proceso de sintesis, seguido, netlistsvg construye una
+# imagen de la estructura representada en un árbol (json)
 rtl-from-json: json-yosys
 	# Las siguientes intrucciones son temporales mientras se resuelve en netlistsvg o netlist2svg
 	# START patch
@@ -142,9 +156,15 @@ rtl-from-json: json-yosys
 	# El siguiente comando pone un frame blanco al svg para su facil visulalización
 	sed -i 's|<svg\([^>]*\)>|<svg\1>\n  <rect width="100%" height="100%" fill="white"/>|' $S/$(top).svg
 
+################################################
+### VISUALIZAR EL SVG QUE REPRESENTA EL RTL  ###
+################################################
 view-svg:
 	@$(RTL_VIEWER) $S/$(top).svg
 
+####################################################
+### POBLAR NUEVOS PROYECTOS DESDE ESTE MAKEFILE  ###
+####################################################
 init-sim:	
 	@printf "sim/\n$Z/\n" > .gitignore
 	touch README.md
