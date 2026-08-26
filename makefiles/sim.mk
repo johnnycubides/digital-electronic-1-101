@@ -7,20 +7,14 @@ top_NAME=$(basename $(notdir $(DESIGN)))
 ###############################
 ###--- Rules from sim.mk ---###
 ###############################
-tb?=$(top_NAME)_tb.v
-TBN=$(basename $(notdir $(tb)))
-
-S=sim
-LOG_YOSYS_RTL?=$(S)/yosys-$(top).log
-
 .ONESHELL:
 SHELL=/bin/bash
-# Enviroment conda to activate
-ENV=digital
-CONDA_ACTIVATE = source $$($$CONDA_EXE info --base)/etc/profile.d/conda.sh ; conda activate; conda activate $(ENV)
-RUN = $(CONDA_ACTIVATE) &&
-RUN =# Activate if don't use CONDA
+# RUN: entorno donde se encuentran las herramientas
+RUN = source digital-logic-design activate &&
 
+###############################################################
+### LISTA DE COMANDO DE AYUDA PARA REALIZAR SIMULACIONES ---###
+###############################################################
 help-sim:
 	@printf "\n## SIMULACIÓN Y RTL ##\n"
 	@printf "\tmake rtl \t-> Crear el RTL desde el TOP\n"
@@ -36,10 +30,58 @@ help-sim:
 	@printf "\tmake rtl rtl2png top=modulo1\t\t:Además de convertir, obtiene el RTL de otros modulos (submodulos)\n"
 	@printf "\tmake ConvertOneVerilogFile\t\t:Crear un único verilog del diseño\n"
 
-rtl: rtl-from-json view-svg
+#####################################
+### CONFIGURACIÓN DE HERRAMIENTAS ###
+#####################################
+# WAVE_VIEWER es el visor de formas de onda, opciones: gtkwave, surfer
+WAVE_VIEWER?=gtkwave
+# RTL_GENERATOR: Herramienta para generación de imagen RTL en svg, opciones: netlistsvg, netlist2svg
+RTL_GENERATOR?=netlistsvg
+# RTL_VIEWER Visor de RTL, opciones: open eog
+RTL_VIEWER?=open
+# S representa el directorio donde estarán los archivos de simulación
+S?=sim
+# RM está declarado como comando para remover archivos sin confirmación y de manera recursiva
+RM=rm -rf
 
+#################################
+### VARIABLES AUTORELLENABLES ###
+#################################
+# tb: archgivo verilog que contiene el testbench
+tb?=$(top_NAME)_tb.v
+# TB_MODULE_NAME: Nombre del módulo contenido en el archivo testbench a simular
+TB_MODULE_NAME=$(basename $(notdir $(tb)))
+# LOG_YOSYS_RTL: archivo donde se almacena el log de las ejecuciones de yosys
+LOG_YOSYS_RTL?=$(S)/yosys-$(top).log
+
+#############################
+### PROCESO DE SIMULACIÓN ###
+#############################
+# La regla sim ejecuta el flujo de simulación donde: 
+# 1. clean-sim: limpia objetos de simulaciones anteriores.
+# 2. iverilog-compile: construye el script de simulación desde iverilog a
+#    través de la descripción del testbench
+# 3. vpp-simulate: Ejecuta la simulación y genera archivos de resultados
+# 4. wave: en el caso de generar archivos de forma de onda los visualiza con el
+#    visor especificado
 sim: clean-sim iverilog-compile vpp-simulate wave
 
+###########################################
+### PROCESO DE GENERACIÓN DE IMAGEN RTL ###
+###########################################
+# La regla rtl ejecuta el flujo de genración de imagen rtl donde:
+# 1. rtl-from-json: Yosys genera una síntesis de la red en formato json desde
+#    los archivos verilog de la descripción de hardware
+# 2. view-svg: desde el archivo json genera una imagen que representa la
+#    estructura del circuito digital
+rtl: rtl-from-json view-svg
+
+##########################################
+### GENERACIÓN DE SCRIPT DE SIMULACIÓN ###
+##########################################
+#  MACROS_SIM: Todos los macros declarados aquí afectarán el código verilog en
+#  el preproceso, esto permite activar partes de código según lo que se desee
+#  observar en una simulación
 MACROS_SIM := $(foreach macro,$(MACROS_SIM),"$(macro)")
 # MORE_SRC2SIM permite agregar más archivos fuentes para la simulación
 MORE_SRC2SIM?=
@@ -48,16 +90,30 @@ iverilog-compile:
 ifneq ($(MORE_SRC2SIM), )
 	cp -var $(MORE_SRC2SIM) $S
 endif
-	iverilog $(MACROS_SIM) -o $S/$(TBN).vvp -s $(TBN) $(tb) $(DESIGN)
+	$(RUN) iverilog $(MACROS_SIM) -o $S/$(TB_MODULE_NAME).vvp -s $(TB_MODULE_NAME) $(tb) $(DESIGN)
 
+###############################
+### EJECUCIÓN DE SIMULACIÓN ###
+###############################
 # VVP_ARG permite agregar argumentos en la simulación con vvp
-VVP_ARG=
+VVP_ARG?=
 vpp-simulate:
-	cd $S && vvp $(TBN).vvp -vcd $(VVP_ARG) -dumpfile=$(TBN).vcd
+	cd $S && $(RUN) vvp $(TB_MODULE_NAME).vvp -vcd $(VVP_ARG) -dumpfile=$(TB_MODULE_NAME).vcd
 
+#######################################
+### VISUALIZACIÓN DE FORMAS DE ONDA ###
+#######################################
 wave:
-	@gtkwave $S/$(TBN).vcd $(TBN).gtkw || (echo "No hay un forma de onda que mostrar en gtkwave, posiblemente no fue solicitada en la simulación")
+ifeq ($(WAVE_VIEWER), gtkwave) # Si el visor es gtkwave entonces:
+	$(RUN) $(WAVE_VIEWER) $S/$(TB_MODULE_NAME).vcd $(TB_MODULE_NAME).gtkw || (echo "No hay un forma de onda que mostrar en gtkwave, posiblemente no fue solicitada en la simulación")
+endif
 
+################################
+### SÍMTESIS ESTRUCTURAL RTL ###
+################################
+#  MACROS_RTL: Todos los macros declarados aquí afectarán el código verilog en
+#  el preproceso, esto permite activar partes de código según lo que se desee
+#  observar en en la sítesis en la generación del RTL
 MACROS_RTL := $(foreach macro,$(MACROS_RTL),"$(macro)")
 json-yosys: ## Generar json para el rtl de netlistsvg
 	mkdir -p $S
@@ -70,41 +126,35 @@ log-rtl:
 ConvertOneVerilogFile:
 	mkdir -p $S
 	$(RUN) yosys $(MACROS_SIM) -p 'prep -top $(top); hierarchy -check; proc; opt -full; write_verilog -noattr -nodec $S/$(top).v' $(DESIGN)
-	# yosys -p 'read_verilog $(DESIGN); prep -top $(TOP); hierarchy -check; proc; opt -full; write_verilog -noattr -noexpr -nodec $S/$(TOP).v'
-	# yosys -p 'read_verilog $(DESIGN); prep -top $(TOP); hierarchy -check; proc; flatten; synth; write_verilog -noattr -noexpr $S/$(TOP).v'
 
 rtl-from-json: json-yosys
-	cp $S/$(top).json $S/$(top)_origin.json # Hacer una copia desde el archivo origen
-	# sed -E 's/"\$$paramod\$$[^\\]+\\\\([^"]+)"/"\1"/g' $S/$(top)_origin.json > $S/$(top).json # Quitar parametros en el nombre del módulo para que sea legible.
-	# "\$paramod        # literal $paramod
-	# (\$[^\\]+)?       # hash opcional ($abcdef...)
-	# \\\\              # separador \
-	# ([^\\"]+)         # nombre del módulo (lo que queremos)
-	# .*"               # ignora el resto (parámetros, etc.)
-	# sed -E 's/"\$$paramod(\$$[^\\]+)?\\\\([^\\"]+).*/"\2"/g' $S/$(top)_origin.json > $S/$(top).json # Quitar parametros en el nombre del módulo para que sea legible.
+	# Las siguientes intrucciones son temporales mientras se resuelve en netlistsvg o netlist2svg
+	# START patch
+	# Se hace una copia desde el archivo json de origen.
+	cp $S/$(top).json $S/$(top)_origin.json
+	# Quitar parametros en el nombre del módulo para que sea legible.
 	sed -E \
   -e 's/"\$$paramod(\$$[^\\]+)?\\\\([^\\"]+)[^"]*": \{/"\2": {/g' \
-  -e 's/"type": "\$$paramod(\$$[^\\]+)?\\\\([^\\"]+)[^"]*"/"type": "\2"/g' $S/$(top)_origin.json > $S/$(top).json # Quitar parametros en el nombre del módulo para que sea legible.
-	$(RUN) netlistsvg $S/$(top).json -o $S/$(top).svg
-	## convert2SvgwithWhiteBackground
+  -e 's/"type": "\$$paramod(\$$[^\\]+)?\\\\([^\\"]+)[^"]*"/"type": "\2"/g' $S/$(top)_origin.json > $S/$(top).json 
+	# END patch
+	# Geneeración de imagen RTL
+	$(RUN) $(RTL_GENERATOR) $S/$(top).json -o $S/$(top).svg
+	# El siguiente comando pone un frame blanco al svg para su facil visulalización
 	sed -i 's|<svg\([^>]*\)>|<svg\1>\n  <rect width="100%" height="100%" fill="white"/>|' $S/$(top).svg
 
 view-svg:
-	eog $S/$(top).svg
-
-rtl-xdot:
-	$(RUN) yosys $(MACROS_SIM) -p $(RTL_COMMAND)
-
-rtl2png:
-	convert -density 200 -resize 1200 $S/$(top).svg $(top).png
-	# convert -resize 1200 -quality 100 $S/$(TOP).svg $(TOP).png
+	@$(RTL_VIEWER) $S/$(top).svg
 
 init-sim:	
 	@printf "sim/\n$Z/\n" > .gitignore
-	touch README.md $(top).png
+	touch README.md
 
-RM=rm -rf
-# EMPAQUETAR SIMULACIÓN EN .ZIP
+#############################
+### EMPAQUETAR SIMULACIÓN ###
+#############################
+# Se usa para generar un comprimido .zip cuando quiere compartir instrucciones
+# para realizar simulaciones con esta receta. 
+# Z representa el directorio donde se empaquetará las fuentes de la simulación.
 Z?=prj
 zip-sim:
 	$(RM) $Z $Z.zip
@@ -137,11 +187,10 @@ ifneq ($(wildcard *.dig),) # Si existe un archivo .dig
 endif
 	zip -r $Z.zip $Z
 
+#######################################
+### LIMPIAR OBJETOS DE SIMULACIONES ###
+#######################################
+# Se usa cuando quiere iniciar simulaciones borrando objetos antiguos
 clean-sim:
-	rm -rf $S $Z $Z.zip
-
-## YOSYS ARGUMENTS
-RTL_COMMAND?='read_verilog $(DESIGN);\
-						 hierarchy -check;\
-						 show $(top)'
+	$(RM) $S $Z $Z.zip
 
