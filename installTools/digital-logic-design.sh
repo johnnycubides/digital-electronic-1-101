@@ -2,7 +2,7 @@
 
 TOOLS_PATH="${DIGITAL_LOGIC_INSTALL_ROOT:-$HOME/gitPackages/digital-logic-design-tools}"
 CACHE_PATH="${DIGITAL_LOGIC_CACHE_DIR:-${XDG_CACHE_HOME:-$HOME/.cache}/digital-logic-design}"
-LAUNCHER_PATH="${DIGITAL_LOGIC_LAUNCHER_PATH:-$HOME/.local/bin/digital-logic-design.sh}"
+LAUNCHER_PATH="${DIGITAL_LOGIC_LAUNCHER_PATH:-$HOME/.local/bin/digital-logic-design}"
 
 OSS_CAD_SUITE_VERSION=2026-07-24
 OSS_CAD_SUITE_FILE=oss-cad-suite-linux-x64-20260724.tgz
@@ -609,37 +609,37 @@ install() {
 activate() {
   if [[ "${BASH_SOURCE[0]}" == "$0" ]]; then
     echo "Source the script to activate the tools:" >&2
-    echo "  source ./digital-logic-design.sh activate" >&2
+    echo "  source digital-logic-design activate" >&2
     return 1
   fi
 
   if [[ ! -f "$OSS_CAD_SUITE_PATH/environment" ]]; then
-    echo "OSS CAD Suite is not installed. Run ./digital-logic-design.sh install first." >&2
+    echo "OSS CAD Suite is not installed. Run digital-logic-design install first." >&2
     return 1
   fi
 
   if [[ ! -f "$VERIBLE_PATH/bin/verible-verilog-lint" ]]; then
-    echo "Verible is not installed. Run ./digital-logic-design.sh install first." >&2
+    echo "Verible is not installed. Run digital-logic-design install first." >&2
     return 1
   fi
 
   if [[ ! -f "$DIGITAL_PATH/Digital.jar" ]]; then
-    echo "Digital is not installed. Run ./digital-logic-design.sh install first." >&2
+    echo "Digital is not installed. Run digital-logic-design install first." >&2
     return 1
   fi
 
   if [[ ! -x "$NETLIST2SVG_PATH/node_modules/.bin/netlist2svg" ]]; then
-    echo "Netlist2SVG is not installed. Run ./digital-logic-design.sh install first." >&2
+    echo "Netlist2SVG is not installed. Run digital-logic-design install first." >&2
     return 1
   fi
 
   if [[ ! -x "$QUCS_S_PATH/qucs-s" ]]; then
-    echo "Qucs-S is not installed. Run ./digital-logic-design.sh install first." >&2
+    echo "Qucs-S is not installed. Run digital-logic-design install first." >&2
     return 1
   fi
 
   if [[ ! -x "$LITEX_VENV_PATH/bin/litex_sim" ]]; then
-    echo "LiteX is not installed. Run ./digital-logic-design.sh litex standard first." >&2
+    echo "LiteX is not installed. Run digital-logic-design litex standard first." >&2
     return 1
   fi
 
@@ -671,13 +671,13 @@ activate() {
   echo "Activated Digital $DIGITAL_VERSION"
   echo "Activated Qucs-S $QUCS_S_VERSION"
   echo "Activated LiteX $LITEX_VERSION"
-  echo "Run 'source ./digital-logic-design.sh deactivate' to restore the previous environment."
+  echo "Run 'source digital-logic-design deactivate' to restore the previous environment."
 }
 
 deactivate_tools() {
   if [[ "${BASH_SOURCE[0]}" == "$0" ]]; then
     echo "Source the script to deactivate the tools:" >&2
-    echo "  source ./digital-logic-design.sh deactivate" >&2
+    echo "  source digital-logic-design deactivate" >&2
     return 1
   fi
 
@@ -709,23 +709,23 @@ help() {
   echo "  qucs_s         Install Qucs-S"
   echo "  lite_xl        Install Lite XL and its configuration"
   echo "  litex          Install LiteX: standard (default) or full"
-  echo "  launcher       Link this script into ~/.local/bin"
+  echo "  launcher       Link this script as ~/.local/bin/digital-logic-design"
   echo "  install        Install all tools"
   echo "  activate       Activate all tools in the current terminal"
   echo "  deactivate     Deactivate all tools in the current terminal"
   echo "  all            Install and activate all tools"
   echo
   echo "Examples:"
-  echo "  ./digital-logic-design.sh digital"
-  echo "  ./digital-logic-design.sh qucs_s"
-  echo "  ./digital-logic-design.sh lite_xl"
-  echo "  ./digital-logic-design.sh litex standard"
-  echo "  ./digital-logic-design.sh litex full"
-  echo "  ./digital-logic-design.sh launcher"
-  echo "  ./digital-logic-design.sh install"
-  echo "  source ./digital-logic-design.sh activate"
-  echo "  source ./digital-logic-design.sh deactivate"
-  echo "  source ./digital-logic-design.sh all"
+  echo "  digital-logic-design digital"
+  echo "  digital-logic-design qucs_s"
+  echo "  digital-logic-design lite_xl"
+  echo "  digital-logic-design litex standard"
+  echo "  digital-logic-design litex full"
+  echo "  digital-logic-design launcher"
+  echo "  digital-logic-design install"
+  echo "  source digital-logic-design activate"
+  echo "  source digital-logic-design deactivate"
+  echo "  source digital-logic-design all"
 }
 
 case "${1:-help}" in

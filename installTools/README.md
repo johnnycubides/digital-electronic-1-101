@@ -11,7 +11,7 @@ Herramientas instaladas:
 - OSS CAD Suite 2026-07-24, con Yosys, Icarus Verilog, GTKWave, Surfer,
   nextpnr, IceStorm, openFPGALoader y Verilator;
 - Verible v0.0-4084-gf3e4d98b;
-- Netlistsvg v1.0.2, para generar diagramas SVG desde netlists de Yosys;
+- Netlist2SVG v1.2.1, para generar diagramas SVG desde netlists de Yosys;
 - Digital v0.31, simulador de lógica de Helmut Neemann;
 - Qucs-S v26.1.1, simulador de circuitos con ngspice;
 - Lite XL v2.1.8, editor configurado para Verilog y SystemVerilog;
@@ -89,8 +89,9 @@ sudo apt install \
   wget
 ```
 
-Netlistsvg requiere Node.js y npm. `./digital-logic-design.sh dependencies` conserva una
-instalación existente de Node.js, por ejemplo una administrada mediante nvm.
+Netlist2SVG requiere Node.js y npm.
+`./digital-logic-design.sh dependencies` conserva una instalación existente de
+Node.js, por ejemplo una administrada mediante nvm.
 Si `node` no está disponible, instala `nodejs` y `npm` desde APT. Si encuentra
 `node` pero no encuentra `npm`, se detiene para evitar mezclar instalaciones y
 muestra cómo corregirlo.
@@ -106,19 +107,19 @@ Desde este directorio:
 
 La primera ejecución instala los paquetes APT, descarga los releases y extrae
 las herramientas. Los artefactos descargados directamente se verifican con
-SHA256. Netlistsvg se instala desde npm con una versión fija. Las ejecuciones
-siguientes reutilizan las instalaciones existentes.
+SHA256. Netlist2SVG se instala desde npm con una versión fija. Las
+ejecuciones siguientes reutilizan las instalaciones existentes.
 
 También se puede instalar una sola herramienta:
 
 ```bash
-./digital-logic-design.sh oss_cad_suite
-./digital-logic-design.sh verible
-./digital-logic-design.sh netlistsvg
-./digital-logic-design.sh digital
-./digital-logic-design.sh qucs_s
-./digital-logic-design.sh lite_xl
-./digital-logic-design.sh litex standard
+digital-logic-design oss_cad_suite
+digital-logic-design verible
+digital-logic-design netlist2svg
+digital-logic-design digital
+digital-logic-design qucs_s
+digital-logic-design lite_xl
+digital-logic-design litex standard
 ```
 
 ## Acceso desde cualquier directorio
@@ -126,7 +127,7 @@ También se puede instalar una sola herramienta:
 El instalador crea un enlace simbólico portable dentro de `~/.local/bin`:
 
 ```text
-~/.local/bin/digital-logic-design.sh
+~/.local/bin/digital-logic-design
 ```
 
 También se puede crear o comprobar explícitamente con:
@@ -139,24 +140,28 @@ Si `~/.local/bin` está en `PATH`, los comandos de instalación quedan
 disponibles desde cualquier directorio:
 
 ```bash
-digital-logic-design.sh help
-digital-logic-design.sh litex standard
-digital-logic-design.sh oss_cad_suite
+digital-logic-design help
+digital-logic-design litex standard
+digital-logic-design oss_cad_suite
 ```
 
 La activación también puede localizar el script mediante `PATH`:
 
 ```bash
-source digital-logic-design.sh activate
-source digital-logic-design.sh deactivate
+source digital-logic-design activate
+source digital-logic-design deactivate
 ```
+
+El nombre anterior `digital-logic-design.sh` puede conservarse como alias para
+compatibilidad, pero la documentación y las nuevas instalaciones usan
+`digital-logic-design` como comando principal.
 
 LiteX se instala de forma predeterminada con la configuración `standard`, que
 incluye Migen, LiteX, LiteX Boards y los cores de uso común. Para instalar el
 conjunto completo de cores y CPU compatibles:
 
 ```bash
-./digital-logic-design.sh litex full
+digital-logic-design litex full
 ```
 
 La instalación usa la release fija 2026.04 y un entorno virtual privado dentro
@@ -168,7 +173,7 @@ extensión `all`, usa `standard` de forma predeterminada. Se puede seleccionar
 
 ```bash
 export LITEX_CONFIG=full
-source ./digital-logic-design.sh all
+source digital-logic-design all
 ```
 
 Durante la instalación de Lite XL, el editor se abre para crear su
@@ -180,13 +185,13 @@ La activación debe hacerse con `source` para modificar el entorno de la
 terminal actual:
 
 ```bash
-source ./digital-logic-design.sh activate
+source digital-logic-design activate
 ```
 
 Para instalar y activar con un solo comando:
 
 ```bash
-source ./digital-logic-design.sh all
+source digital-logic-design all
 ```
 
 ## Comprobar
@@ -204,7 +209,7 @@ command -v surver
 command -v verible-verilog-lint
 command -v verible-verilog-format
 command -v verible-verilog-ls
-command -v netlistsvg
+command -v netlist2svg
 command -v digital
 command -v qucs-s
 command -v qucs
@@ -222,6 +227,27 @@ java -version
 python3 --version
 python3 -c 'import litex, migen, litedram, liteeth'
 ```
+
+## Netlist2SVG
+
+Netlist2SVG recibe un netlist JSON generado por Yosys:
+
+```bash
+yosys -p 'prep -top top; write_json netlist.json' design.v
+netlist2svg netlist.json -o netlist.svg
+```
+
+Para expandir un nivel de jerarquía con cualquier diseño, usa la configuración
+general incluida en este directorio:
+
+```bash
+netlist2svg netlist.json \
+  --config netlist2svg-hierarchy-level-1.json \
+  -o netlist-hierarchy-level-1.svg
+```
+
+La selección automática del módulo superior permanece activa. No es necesario
+editar la configuración para indicar el nombre del módulo principal.
 
 Para abrir Digital:
 
@@ -276,7 +302,7 @@ su comportamiento específico.
 
 ## Analizador lógico
 
-El comando `./digital-logic-design.sh dependencies` instala PulseView y el firmware
+El comando `digital-logic-design dependencies` instala PulseView y el firmware
 `sigrok-firmware-fx2lafw` para analizadores basados en Cypress FX2, incluidos
 los clones de 8 y 16 canales. El paquete libsigrok de Debian instala también
 las reglas udev necesarias.
@@ -288,13 +314,13 @@ conectado, se debe desconectar y volver a conectar antes de probar.
 ## Desactivar
 
 ```bash
-source ./digital-logic-design.sh deactivate
+source digital-logic-design deactivate
 ```
 
 El comando restaura el `PATH` existente antes de la activación, incluyendo las
-rutas agregadas para Verible, Netlistsvg, Digital, Qucs-S y LiteX. El comando
-`deactivate` proporcionado por OSS CAD Suite también permanece disponible
-mientras el entorno está activo.
+rutas agregadas para Verible, Netlist2SVG, Digital, Qucs-S y LiteX.
+El comando `deactivate` proporcionado por OSS CAD Suite también permanece
+disponible mientras el entorno está activo.
 
 ## Ubicaciones
 
@@ -304,7 +330,7 @@ Instalaciones predeterminadas:
 ~/gitPackages/digital-logic-design-tools/
 ├── oss-cad-suite-2026-07-24/
 ├── verible-v0.0-4084-gf3e4d98b/
-├── netlistsvg-1.0.2/
+├── netlist2svg-1.2.1/
 ├── digital-v0.31/
 ├── qucs-s-26.1.1/
 ├── lite-xl/
@@ -343,7 +369,7 @@ Se pueden cambiar las ubicaciones antes de activar:
 ```bash
 export DIGITAL_LOGIC_INSTALL_ROOT="$HOME/tools"
 export DIGITAL_LOGIC_CACHE_DIR="$HOME/Downloads/digital-logic-design"
-source ./digital-logic-design.sh all
+source digital-logic-design all
 ```
 
 ## Actualizar una herramienta
@@ -354,7 +380,7 @@ Las versiones, URLs, SHA256 aplicables y rutas están declaradas al comienzo de
 Para actualizar:
 
 1. cambia las variables de la herramienta al comienzo de `digital-logic-design.sh`;
-2. ejecuta la función correspondiente, por ejemplo `./digital-logic-design.sh digital`;
+2. ejecuta la función correspondiente, por ejemplo `digital-logic-design digital`;
 3. comprueba los proyectos con la nueva versión;
 4. conserva la versión anterior hasta terminar la validación.
 
@@ -363,14 +389,15 @@ No reemplaces archivos individuales dentro de una instalación ya extraída.
 Para ver todos los comandos disponibles:
 
 ```bash
-./digital-logic-design.sh help
+digital-logic-design help
 ```
 
 Fuentes oficiales:
 
 - <https://github.com/YosysHQ/oss-cad-suite-build/releases>
 - <https://github.com/chipsalliance/verible/releases>
-- <https://github.com/nturley/netlistsvg>
+- <https://github.com/johnnycubides/netlist2svg>
+- <https://www.npmjs.com/package/@johnnycubides/netlist2svg>
 - <https://github.com/hneemann/Digital/releases/tag/v0.31>
 - <https://github.com/ra3xdh/qucs_s/releases/tag/26.1.1>
 - <https://github.com/lite-xl/lite-xl/releases/tag/v2.1.8>
