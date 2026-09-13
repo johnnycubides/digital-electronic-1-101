@@ -25,7 +25,7 @@ CABLE_PINES=5:4:7:6
 # Z: Nombre para empaquetar proyecto
 Z=femtoriscv-basic
 MORE_SRC2SIM=firmware.hex
-MORE_SRC=cores init_dpram.ini firmware docs
+MORE_SRC_TO_ZIP=cores init_dpram.ini firmware docs
 c-build:
 	make -C ./firmware c-build
 c-clean:
