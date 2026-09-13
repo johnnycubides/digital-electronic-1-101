@@ -1,16 +1,23 @@
+#######################################################
+###--- VARIABLES A SER CONFIGURADAS POR PROYECTO ---###
+#######################################################
+# top: nombre del módulo top del diseño
 top?=
-# Módules .v que hacen parte del proyecto
-DESIGN?=
+# DESIGN: Archivos verilog (.v) del diseño, deberá agregar todos los requeridos
+DESIGN+=
+# MACROS_SIM: Reglas condicionales en el proceso de presimulación
 MACROS_SIM?=
+# MACROS_RTL: Reglas condicionales en el proceso ed pre sintesis del RTL
 MACROS_RTL?=
+# Z: Nombre base del archivo .zip en el que se empaquetará el projecto
+Z?=
+# En la regla zip poner empezar a escribir desde la línea 15
 
-###############################
-###--- Rules from sim.mk ---###
-###############################
+#####################################
+###--- START Rules from sim.mk ---###
+#####################################
 .ONESHELL:
 SHELL=/bin/bash
-# RUN: Entorno donde se encuentran las herramientas
-RUN = source digital-logic-design activate &&
 
 ############################################################
 ### LISTA DE COMANDO DE AYUDA PARA REALIZAR SIMULACIONES ###
@@ -33,6 +40,8 @@ help-sim:
 #####################################
 ### CONFIGURACIÓN DE HERRAMIENTAS ###
 #####################################
+# RUN: Entorno donde se encuentran las herramientas
+RUN = source digital-logic-design activate &&
 # WAVE_VIEWER es el visor de formas de onda, opciones: gtkwave, surfer
 WAVE_VIEWER?=gtkwave
 # RTL_GENERATOR: Herramienta para generación de imagen RTL en svg, opciones: netlistsvg, netlist2svg
@@ -109,7 +118,7 @@ ifeq ($(WAVE_VIEWER), gtkwave) # Si el visor es gtkwave entonces:
 endif
 
 ################################
-### SÍMTESIS ESTRUCTURAL RTL ###
+### SÍNTESIS ESTRUCTURAL RTL ###
 ################################
 #  MACROS_RTL: Todos los macros declarados aquí afectarán el código verilog en
 #  el preproceso, esto permite activar partes de código según lo que se desee
@@ -181,25 +190,25 @@ zip-sim:
 	mkdir -p $Z
 	# Quitar las últimas dos líneas del Makefile y crear copia en el directorio $Z
 	head -n -2 Makefile > $Z/Makefile
-	# Agregar el contenido de sim.mk después de la línea 6
-	sed -n '6,$$p' $(MK_SIM) >> $Z/Makefile
+	# Agregar el contenido de sim.mk después de la línea 15
+	sed -n '15,$$p' $(MK_SIM) >> $Z/Makefile
 	cp -var *.v *.md .gitignore $Z
-ifneq ($(wildcard *.mem),) # Si existe un archivo .png
+ifneq ($(wildcard *.mem),) # Si existe un archivo .mem
 	cp -var *.mem $Z
 endif
-ifneq ($(wildcard *.hex),) # Si existe un archivo .png
+ifneq ($(wildcard *.hex),) # Si existe un archivo .hex
 	cp -var *.hex $Z
 endif
 ifneq ($(wildcard *.png),) # Si existe un archivo .png
 	cp -var *.png $Z
 endif
-ifneq ($(wildcard *.svg),) # Si existe un archivo .png
+ifneq ($(wildcard *.svg),) # Si existe un archivo .svg
 	cp -var *.svg $Z
 endif
 ifneq ($(wildcard *.txt),) # Si existe un archivo .txt
 	cp -var *.txt $Z
 endif
-ifneq ($(wildcard *.gtkw),) # Si existe un archivo .txt
+ifneq ($(wildcard *.gtkw),) # Si existe un archivo .gtkw
 	cp -var *.gtkw $Z
 endif
 ifneq ($(wildcard *.dig),) # Si existe un archivo .dig
@@ -210,7 +219,7 @@ endif
 #######################################
 ### LIMPIAR OBJETOS DE SIMULACIONES ###
 #######################################
-# Se usa cuando quiere iniciar simulaciones borrando objetos antiguos
+# clean-sim: Se usa cuando quiere iniciar simulaciones borrando objetos antiguos
 clean-sim:
 	$(RM) $S $Z $Z.zip
 
