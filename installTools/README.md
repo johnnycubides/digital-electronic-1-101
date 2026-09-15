@@ -1,12 +1,125 @@
 # Digital Logic Design
 
-Instala y activa las herramientas externas utilizadas para diseño de lógica
-digital. El script mantiene las aplicaciones bajo
-`~/gitPackages/digital-logic-design-tools`. La activación del toolchain no
-modifica permanentemente el entorno. La instalación de Lite XL agrega su
-enlace ejecutable, configuración de usuario y entrada de escritorio.
+Este proyecto reúne en un solo script la instalación y activación de las
+herramientas externas utilizadas para diseño de lógica digital. Las
+aplicaciones se mantienen aisladas bajo
+`~/gitPackages/digital-logic-design-tools` y la activación del toolchain no
+modifica permanentemente el entorno.
 
-Herramientas instaladas:
+## Activar y desactivar
+
+Después de instalar las herramientas, activa el entorno en cada terminal donde
+quieras usarlo:
+
+```bash
+source digital-logic-design activate
+```
+
+Cuando termines, restaura el entorno anterior de esa terminal:
+
+```bash
+deactivate
+```
+
+Solo la activación debe ejecutarse con `source`. Así el script puede modificar
+el `PATH` de la terminal actual y definir allí la función `deactivate`. Cuando
+termines, ejecuta esa función directamente, sin `source` y sin anteponer
+`digital-logic-design`.
+
+Si la activación se ejecutara como un programa normal, los cambios ocurrirían
+en otro proceso y desaparecerían inmediatamente al terminar.
+
+La activación agrega temporalmente al `PATH` las rutas de OSS CAD Suite,
+Verible, Netlist2SVG, Digital, Qucs-S y LiteX. La desactivación restaura el
+`PATH` que existía antes de activar el entorno. Cada terminal mantiene su propio
+estado, por lo que activar o desactivar una terminal no cambia las demás.
+
+## Instalación
+
+No es necesario clonar un repositorio. Se puede usar únicamente el script:
+
+1. Descargar `digital-logic-design.sh` desde la ubicación donde se publique y
+   conservar ese nombre de archivo.
+
+2. Desde el directorio donde se guardó, darle permiso de ejecución:
+
+   ```bash
+   chmod +x digital-logic-design.sh
+   ```
+
+3. Instalar primero las dependencias del sistema y después las herramientas:
+
+   ```bash
+   ./digital-logic-design.sh debian-dependencias
+   ./digital-logic-design.sh install
+   ```
+
+4. Si `launcher` informa que `~/.local/bin` no está en `PATH`, el script agrega
+   automáticamente la exportación a `~/.profile` o, si ese archivo no existe,
+   a `~/.bashrc`. El mensaje indica qué archivo modificó. Para aplicar el cambio
+   se puede abrir una terminal nueva o cargar el archivo indicado, por ejemplo:
+
+   ```bash
+   source ~/.profile
+   ```
+
+5. Comprobar que el comando instalado funciona:
+
+   ```bash
+   digital-logic-design help
+   ```
+
+Cuando `install` termina correctamente, el archivo descargado ya no es
+necesario. `launcher` instala una copia independiente en `~/.local/bin`, por lo
+que se puede borrar el original:
+
+```bash
+rm ./digital-logic-design.sh
+```
+
+`debian-dependencias` contiene la instalación mediante APT para Debian y sus
+derivados. La lista de paquetes se mantiene solamente dentro de
+`digital-logic-design.sh`. En Arch Linux u otra distribución se puede revisar
+esa función y crear el comando homólogo con el administrador de paquetes y los
+nombres correspondientes de esa distribución.
+
+Netlist2SVG requiere Node.js y npm. La función `debian-dependencias` conserva
+una instalación existente de Node.js, por ejemplo una administrada mediante
+nvm. Si `node` no está disponible, instala `nodejs` y `npm` desde APT. Si
+encuentra `node` pero no encuentra `npm`, se detiene para evitar mezclar
+instalaciones y muestra cómo corregirlo.
+
+El comando `install` descarga e instala todas las herramientas y al final
+ejecuta `launcher`. Este crea el comando:
+
+```text
+~/.local/bin/digital-logic-design
+```
+
+El launcher comprueba si `~/.local/bin` está disponible en `PATH`. Si no lo
+está, la copia queda instalada y el script muestra cómo agregar el directorio
+al entorno. Después de corregir `PATH`, abre una terminal nueva antes de usar
+el comando `digital-logic-design`.
+
+La primera instalación descarga los releases y extrae las herramientas. Los
+artefactos descargados directamente se verifican con SHA256. Netlist2SVG se
+instala desde npm con una versión fija. Las ejecuciones siguientes reutilizan
+las instalaciones existentes.
+
+También se puede instalar una sola herramienta después de instalar las
+dependencias:
+
+```bash
+digital-logic-design oss_cad_suite
+digital-logic-design verible
+digital-logic-design netlist2svg
+digital-logic-design digital
+digital-logic-design qucs_s
+digital-logic-design lite_xl
+digital-logic-design litex standard
+```
+
+## Herramientas incluidas
 
 - OSS CAD Suite 2026-07-24, con Yosys, Icarus Verilog, GTKWave, Surfer,
   nextpnr, IceStorm, openFPGALoader y Verilator;
@@ -58,73 +171,10 @@ No se instala ni se requiere Conda. Las herramientas que antes estaban en el
 entorno Conda se obtienen desde OSS CAD Suite, APT, npm o sus releases
 oficiales.
 
-El comando `dependencies` instala además Picocom, PulseView, el firmware sigrok
-para analizadores FX2, ngspice y el compilador bare-metal
-`riscv64-unknown-elf-gcc`. Node.js y npm se instalan por APT solamente cuando
-el comando `node` no existe.
-
-## Requisitos
-
-En Debian:
-
-```bash
-sudo apt update
-sudo apt install \
-  build-essential \
-  coreutils \
-  curl \
-  default-jre \
-  desktop-file-utils \
-  gcc \
-  gcc-riscv64-unknown-elf \
-  git \
-  ngspice \
-  picocom \
-  pulseview \
-  python3-venv \
-  shared-mime-info \
-  sigrok-firmware-fx2lafw \
-  tar \
-  unzip \
-  wget
-```
-
-Netlist2SVG requiere Node.js y npm.
-`./digital-logic-design.sh dependencies` conserva una instalación existente de
-Node.js, por ejemplo una administrada mediante nvm.
-Si `node` no está disponible, instala `nodejs` y `npm` desde APT. Si encuentra
-`node` pero no encuentra `npm`, se detiene para evitar mezclar instalaciones y
-muestra cómo corregirlo.
-
-## Instalar
-
-Desde este directorio:
-
-```bash
-./digital-logic-design.sh dependencies
-./digital-logic-design.sh install
-```
-
-La primera ejecución instala los paquetes APT, descarga los releases y extrae
-las herramientas. Los artefactos descargados directamente se verifican con
-SHA256. Netlist2SVG se instala desde npm con una versión fija. Las
-ejecuciones siguientes reutilizan las instalaciones existentes.
-
-También se puede instalar una sola herramienta:
-
-```bash
-digital-logic-design oss_cad_suite
-digital-logic-design verible
-digital-logic-design netlist2svg
-digital-logic-design digital
-digital-logic-design qucs_s
-digital-logic-design lite_xl
-digital-logic-design litex standard
-```
-
 ## Acceso desde cualquier directorio
 
-El instalador crea un enlace simbólico portable dentro de `~/.local/bin`:
+El comando `install` ejecuta `launcher` al final e instala una copia ejecutable
+e independiente dentro de `~/.local/bin`:
 
 ```text
 ~/.local/bin/digital-logic-design
@@ -136,8 +186,61 @@ También se puede crear o comprobar explícitamente con:
 ./digital-logic-design.sh launcher
 ```
 
-Si `~/.local/bin` está en `PATH`, los comandos de instalación quedan
-disponibles desde cualquier directorio:
+Después de instalar o comprobar la copia, `launcher` verifica que su directorio
+esté en `PATH`. El flujo es el siguiente:
+
+1. `launcher` instala la copia aunque `~/.local/bin` todavía no esté en
+   `PATH`.
+2. El script revisa el `PATH` de la terminal actual. `PATH` es la lista de
+   directorios donde el shell busca comandos.
+3. Si encuentra `~/.local/bin`, confirma que el launcher está disponible y no
+   se necesita hacer nada más.
+4. Si no lo encuentra, busca `~/.profile`. Cuando existe, agrega allí esta
+   exportación:
+
+```bash
+export PATH="$HOME/.local/bin:$PATH"
+```
+
+5. Si `~/.profile` no existe, busca `~/.bashrc` y agrega allí la misma
+   exportación.
+6. El script no agrega una línea duplicada cuando la exportación exacta ya
+   existe.
+7. Finalmente muestra el archivo usado, por ejemplo:
+
+```text
+Added PATH export to: /home/usuario/.profile
+Open a new terminal or run: source /home/usuario/.profile
+```
+
+Si no existe ninguno de los dos archivos, el script no crea uno sin conocer la
+configuración del shell. En ese caso indica que el directorio debe agregarse
+manualmente.
+
+El archivo de configuración afecta terminales futuras, no puede modificar la
+terminal que ya estaba abierta. Abre una terminal nueva o ejecuta el comando
+`source` que muestra el launcher. Después verifica el resultado:
+
+```bash
+command -v digital-logic-design
+```
+
+El resultado esperado es una ruta similar a:
+
+```text
+/home/usuario/.local/bin/digital-logic-design
+```
+
+Como alternativa, se puede instalar la copia en otro directorio de usuario
+que ya esté en `PATH`:
+
+```bash
+DIGITAL_LOGIC_LAUNCHER_PATH="$HOME/bin/digital-logic-design" \
+  ./digital-logic-design.sh launcher
+```
+
+Una vez disponible el directorio del launcher en `PATH`, los comandos quedan
+accesibles desde cualquier ubicación:
 
 ```bash
 digital-logic-design help
@@ -149,8 +252,13 @@ La activación también puede localizar el script mediante `PATH`:
 
 ```bash
 source digital-logic-design activate
-source digital-logic-design deactivate
+deactivate
 ```
+
+Esta configuración permanente de `PATH` solo permite encontrar el comando
+`digital-logic-design`. Después, `activate` agrega temporalmente las rutas de
+las herramientas a la terminal actual y `deactivate` las retira. Son dos pasos
+distintos.
 
 El nombre anterior `digital-logic-design.sh` puede conservarse como alias para
 compatibilidad, pero la documentación y las nuevas instalaciones usan
@@ -178,21 +286,6 @@ source digital-logic-design all
 
 Durante la instalación de Lite XL, el editor se abre para crear su
 configuración. Se debe cerrar para que continúe la instalación de plugins.
-
-## Activar
-
-La activación debe hacerse con `source` para modificar el entorno de la
-terminal actual:
-
-```bash
-source digital-logic-design activate
-```
-
-Para instalar y activar con un solo comando:
-
-```bash
-source digital-logic-design all
-```
 
 ## Comprobar
 
@@ -302,25 +395,14 @@ su comportamiento específico.
 
 ## Analizador lógico
 
-El comando `digital-logic-design dependencies` instala PulseView y el firmware
-`sigrok-firmware-fx2lafw` para analizadores basados en Cypress FX2, incluidos
-los clones de 8 y 16 canales. El paquete libsigrok de Debian instala también
-las reglas udev necesarias.
+El comando `digital-logic-design debian-dependencias` instala PulseView y el
+firmware `sigrok-firmware-fx2lafw` para analizadores basados en Cypress FX2,
+incluidos los clones de 8 y 16 canales. El paquete libsigrok de Debian instala
+también las reglas udev necesarias.
 
 Después de conectar el analizador, se puede comprobar su detección desde
 PulseView. Si se instalaron o actualizaron reglas con el dispositivo ya
 conectado, se debe desconectar y volver a conectar antes de probar.
-
-## Desactivar
-
-```bash
-source digital-logic-design deactivate
-```
-
-El comando restaura el `PATH` existente antes de la activación, incluyendo las
-rutas agregadas para Verible, Netlist2SVG, Digital, Qucs-S y LiteX.
-El comando `deactivate` proporcionado por OSS CAD Suite también permanece
-disponible mientras el entorno está activo.
 
 ## Ubicaciones
 

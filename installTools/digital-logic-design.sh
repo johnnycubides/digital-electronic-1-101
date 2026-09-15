@@ -1,4 +1,5 @@
 #!/bin/bash
+# digital-logic-design installer
 
 TOOLS_PATH="${DIGITAL_LOGIC_INSTALL_ROOT:-$HOME/gitPackages/digital-logic-design-tools}"
 CACHE_PATH="${DIGITAL_LOGIC_CACHE_DIR:-${XDG_CACHE_HOME:-$HOME/.cache}/digital-logic-design}"
@@ -50,7 +51,7 @@ LITEX_SETUPTOOLS_VERSION=80.9.0
 LITEX_WHEEL_VERSION=0.45.1
 LITEX_MESON_VERSION=1.12.0
 
-dependencies() {
+debian-dependencias() {
   sudo apt update
   sudo apt install \
     build-essential \
@@ -565,34 +566,88 @@ litex() {
   echo "Installed: $LITEX_PATH ($CONFIG)"
 }
 
+configure_launcher_path() {
+  local EXPORT_LINE
+  local PATH_CONFIG_FILE
+  local PATH_DIRECTORY
+
+  PATH_DIRECTORY=$1
+
+  if [[ -f "$HOME/.profile" ]]; then
+    PATH_CONFIG_FILE="$HOME/.profile"
+  elif [[ -f "$HOME/.bashrc" ]]; then
+    PATH_CONFIG_FILE="$HOME/.bashrc"
+  else
+    echo "Launcher installed, but neither ~/.profile nor ~/.bashrc exists." >&2
+    echo "Add this directory to PATH manually: $PATH_DIRECTORY" >&2
+    return 0
+  fi
+
+  if [[ "$PATH_DIRECTORY" == "$HOME/"* ]]; then
+    EXPORT_LINE="export PATH=\"\$HOME/${PATH_DIRECTORY#"$HOME/"}:\$PATH\""
+  else
+    EXPORT_LINE="export PATH=\"$PATH_DIRECTORY:\$PATH\""
+  fi
+
+  if grep -Fxq "$EXPORT_LINE" "$PATH_CONFIG_FILE"; then
+    echo "PATH export already exists in: $PATH_CONFIG_FILE"
+  else
+    printf '\n%s\n' "$EXPORT_LINE" >> "$PATH_CONFIG_FILE" || return 1
+    echo "Added PATH export to: $PATH_CONFIG_FILE"
+  fi
+
+  echo "Open a new terminal or run: source $PATH_CONFIG_FILE"
+}
+
 launcher() {
   local SCRIPT_PATH
   local CURRENT_TARGET
+  local LAUNCHER_DIRECTORY
+  local INSTALL_MESSAGE
 
   SCRIPT_PATH=$(readlink -f "${BASH_SOURCE[0]}") || return 1
+  LAUNCHER_DIRECTORY=$(dirname "$LAUNCHER_PATH") || return 1
 
   if [[ -L "$LAUNCHER_PATH" ]]; then
     CURRENT_TARGET=$(readlink -f "$LAUNCHER_PATH") || return 1
 
     if [[ "$CURRENT_TARGET" == "$SCRIPT_PATH" ]]; then
-      echo "Already linked: $LAUNCHER_PATH"
-      return 0
+      rm "$LAUNCHER_PATH" || return 1
+      INSTALL_MESSAGE="Installed independent launcher: $LAUNCHER_PATH"
+    else
+      echo "The launcher points to another file: $LAUNCHER_PATH" >&2
+      echo "Remove it and run the command again if you want to replace it." >&2
+      return 1
     fi
+  elif [[ -e "$LAUNCHER_PATH" ]]; then
+    CURRENT_TARGET=$(readlink -f "$LAUNCHER_PATH") || return 1
 
-    echo "The launcher points to another file: $LAUNCHER_PATH" >&2
-    echo "Remove it and run the command again if you want to replace it." >&2
-    return 1
+    if [[ "$CURRENT_TARGET" == "$SCRIPT_PATH" ]]; then
+      echo "Already installed: $LAUNCHER_PATH"
+    elif sed -n '2p' "$LAUNCHER_PATH" | grep -Fxq '# digital-logic-design installer'; then
+      INSTALL_MESSAGE="Updated independent launcher: $LAUNCHER_PATH"
+    else
+      echo "A different regular file already exists: $LAUNCHER_PATH" >&2
+      echo "Move or remove it and run the command again." >&2
+      return 1
+    fi
+  else
+    mkdir -p "$LAUNCHER_DIRECTORY" || return 1
+    INSTALL_MESSAGE="Installed independent launcher: $LAUNCHER_PATH"
   fi
 
-  if [[ -e "$LAUNCHER_PATH" ]]; then
-    echo "A regular file already exists: $LAUNCHER_PATH" >&2
-    echo "Move or remove it and run the command again." >&2
-    return 1
+  if [[ -n "$INSTALL_MESSAGE" ]]; then
+    command install -m 0755 "$SCRIPT_PATH" "$LAUNCHER_PATH" || return 1
+    echo "$INSTALL_MESSAGE"
   fi
 
-  mkdir -p "$(dirname "$LAUNCHER_PATH")" || return 1
-  ln -s "$SCRIPT_PATH" "$LAUNCHER_PATH" || return 1
-  echo "Linked: $LAUNCHER_PATH -> $SCRIPT_PATH"
+  if [[ ":$PATH:" == *":$LAUNCHER_DIRECTORY:"* ]]; then
+    echo "Launcher directory is available in PATH: $LAUNCHER_DIRECTORY"
+    return 0
+  fi
+
+  echo "Launcher directory is not available in the current PATH: $LAUNCHER_DIRECTORY"
+  configure_launcher_path "$LAUNCHER_DIRECTORY"
 }
 
 install() {
@@ -671,13 +726,14 @@ activate() {
   echo "Activated Digital $DIGITAL_VERSION"
   echo "Activated Qucs-S $QUCS_S_VERSION"
   echo "Activated LiteX $LITEX_VERSION"
-  echo "Run 'source digital-logic-design deactivate' to restore the previous environment."
+  echo "Run 'deactivate' to restore the previous environment."
 }
 
 deactivate_tools() {
   if [[ "${BASH_SOURCE[0]}" == "$0" ]]; then
-    echo "Source the script to deactivate the tools:" >&2
-    echo "  source digital-logic-design deactivate" >&2
+    echo "Deactivation runs in the current terminal." >&2
+    echo "After activation, run:" >&2
+    echo "  deactivate" >&2
     return 1
   fi
 
@@ -701,7 +757,7 @@ all() {
 
 help() {
   echo "Arguments:"
-  echo "  dependencies   Install Debian packages"
+  echo "  debian-dependencias  Install Debian system packages"
   echo "  oss_cad_suite  Install OSS CAD Suite, including GTKWave and Surfer"
   echo "  verible        Install Verible"
   echo "  netlist2svg    Install Netlist2SVG"
@@ -709,13 +765,14 @@ help() {
   echo "  qucs_s         Install Qucs-S"
   echo "  lite_xl        Install Lite XL and its configuration"
   echo "  litex          Install LiteX: standard (default) or full"
-  echo "  launcher       Link this script as ~/.local/bin/digital-logic-design"
+  echo "  launcher       Install this script as ~/.local/bin/digital-logic-design"
   echo "  install        Install all tools"
   echo "  activate       Activate all tools in the current terminal"
-  echo "  deactivate     Deactivate all tools in the current terminal"
   echo "  all            Install and activate all tools"
   echo
   echo "Examples:"
+  echo "  ./digital-logic-design.sh debian-dependencias"
+  echo "  ./digital-logic-design.sh install"
   echo "  digital-logic-design digital"
   echo "  digital-logic-design qucs_s"
   echo "  digital-logic-design lite_xl"
@@ -724,13 +781,13 @@ help() {
   echo "  digital-logic-design launcher"
   echo "  digital-logic-design install"
   echo "  source digital-logic-design activate"
-  echo "  source digital-logic-design deactivate"
+  echo "  deactivate"
   echo "  source digital-logic-design all"
 }
 
 case "${1:-help}" in
-  dependencies)
-    dependencies
+  debian-dependencias)
+    debian-dependencias
     ;;
   oss_cad_suite)
     oss_cad_suite
@@ -783,7 +840,7 @@ STATUS=$?
 
 if [[ "${BASH_SOURCE[0]}" != "$0" ]]; then
   unset -f \
-    dependencies \
+    debian-dependencias \
     oss_cad_suite \
     verible \
     netlist2svg \
@@ -791,6 +848,7 @@ if [[ "${BASH_SOURCE[0]}" != "$0" ]]; then
     qucs_s \
     lite_xl \
     litex \
+    configure_launcher_path \
     launcher \
     install \
     activate \
