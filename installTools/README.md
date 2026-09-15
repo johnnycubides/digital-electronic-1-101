@@ -38,7 +38,7 @@ estado, por lo que activar o desactivar una terminal no cambia las demás.
 
 No es necesario clonar un repositorio. Se puede usar únicamente el script:
 
-1. Descargar `digital-logic-design.sh` desde la ubicación donde se publique y
+1. Descargar [digital-logic-design.sh](./digital-logic-design.sh) desde la ubicación donde se publique y
    conservar ese nombre de archivo.
 
 2. Desde el directorio donde se guardó, darle permiso de ejecución:
