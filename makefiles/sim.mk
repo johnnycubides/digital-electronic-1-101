@@ -45,7 +45,7 @@ RUN = source digital-logic-design activate &&
 # WAVE_VIEWER es el visor de formas de onda, opciones: gtkwave, surfer
 WAVE_VIEWER?=gtkwave
 # RTL_GENERATOR: Herramienta para generación de imagen RTL en svg, opciones: netlistsvg, netlist2svg
-RTL_GENERATOR?=netlistsvg
+RTL_GENERATOR?=netlist2svg
 # RTL_VIEWER Visor de RTL, opciones: open eog
 RTL_VIEWER?=open
 # S representa el directorio donde estarán los archivos de simulación
