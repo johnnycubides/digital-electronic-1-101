@@ -56,6 +56,14 @@ RM=rm -rf
 #################################
 ### VARIABLES AUTORELLENABLES ###
 #################################
+# top: Si no se declara el top del diseño, se asignará como el nombre del primer archivo que está en DESIGN.
+ifeq ($(top),)
+	override top=$(firstword $(basename $(notdir $(DESIGN))))
+endif
+# top se normaliza y fue llamado como archivo verilog y debe ser filtrado
+ifneq ($(filter $(notdir $(top)),$(notdir $(DESIGN))),)
+  override top := $(basename $(notdir $(top)))
+endif
 # tb: Archivo verilog que contiene el testbench
 tb?=$(top)_tb.v
 # TB_MODULE_NAME: Nombre del módulo contenido en el archivo testbench a simular
