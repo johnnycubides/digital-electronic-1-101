@@ -62,6 +62,7 @@ debian-dependencias() {
     gcc \
     gcc-riscv64-unknown-elf \
     git \
+    libopengl0 \
     ngspice \
     picocom \
     pulseview \
@@ -110,8 +111,7 @@ oss_cad_suite() {
 
   if [[ -f "$ARCHIVE" ]] &&
     ! printf '%s  %s\n' "$OSS_CAD_SUITE_SHA256" "$ARCHIVE" |
-      sha256sum --check --status
-  then
+    sha256sum --check --status; then
     echo "Removing invalid cached archive: $ARCHIVE"
     rm -f "$ARCHIVE"
   fi
@@ -129,8 +129,7 @@ oss_cad_suite() {
   fi
 
   if ! printf '%s  %s\n' "$OSS_CAD_SUITE_SHA256" "$ARCHIVE" |
-    sha256sum --check --status
-  then
+    sha256sum --check --status; then
     echo "Checksum verification failed: $ARCHIVE" >&2
     rm -f "$ARCHIVE"
     return 1
@@ -179,8 +178,7 @@ verible() {
 
   if [[ -f "$ARCHIVE" ]] &&
     ! printf '%s  %s\n' "$VERIBLE_SHA256" "$ARCHIVE" |
-      sha256sum --check --status
-  then
+    sha256sum --check --status; then
     echo "Removing invalid cached archive: $ARCHIVE"
     rm -f "$ARCHIVE"
   fi
@@ -198,8 +196,7 @@ verible() {
   fi
 
   if ! printf '%s  %s\n' "$VERIBLE_SHA256" "$ARCHIVE" |
-    sha256sum --check --status
-  then
+    sha256sum --check --status; then
     echo "Checksum verification failed: $ARCHIVE" >&2
     rm -f "$ARCHIVE"
     return 1
@@ -212,9 +209,8 @@ verible() {
     return 1
   fi
 
-  if [[ ! -f \
-    "$TEMP_PATH/verible-$VERIBLE_VERSION/bin/verible-verilog-lint" \
-  ]]; then
+  if [[ ! -f "$TEMP_PATH/verible-$VERIBLE_VERSION/bin/verible-verilog-lint" ]] \
+    ; then
     echo "Unexpected archive structure: $ARCHIVE" >&2
     rm -rf "$TEMP_PATH"
     return 1
@@ -251,8 +247,7 @@ digital() {
 
   if [[ -f "$ARCHIVE" ]] &&
     ! printf '%s  %s\n' "$DIGITAL_SHA256" "$ARCHIVE" |
-      sha256sum --check --status
-  then
+    sha256sum --check --status; then
     echo "Removing invalid cached archive: $ARCHIVE"
     rm -f "$ARCHIVE"
   fi
@@ -270,8 +265,7 @@ digital() {
   fi
 
   if ! printf '%s  %s\n' "$DIGITAL_SHA256" "$ARCHIVE" |
-    sha256sum --check --status
-  then
+    sha256sum --check --status; then
     echo "Checksum verification failed: $ARCHIVE" >&2
     rm -f "$ARCHIVE"
     return 1
@@ -349,8 +343,7 @@ netlist2svg() {
     --no-fund \
     --no-package-lock \
     --omit=dev \
-    "$NETLIST2SVG_PACKAGE@$NETLIST2SVG_VERSION"
-  then
+    "$NETLIST2SVG_PACKAGE@$NETLIST2SVG_VERSION"; then
     rm -rf "$TEMP_PATH"
     return 1
   fi
@@ -390,8 +383,7 @@ qucs_s() {
 
   if [[ -f "$ARCHIVE" ]] &&
     ! printf '%s  %s\n' "$QUCS_S_SHA256" "$ARCHIVE" |
-      sha256sum --check --status
-  then
+    sha256sum --check --status; then
     echo "Removing invalid cached archive: $ARCHIVE"
     rm -f "$ARCHIVE"
   fi
@@ -409,8 +401,7 @@ qucs_s() {
   fi
 
   if ! printf '%s  %s\n' "$QUCS_S_SHA256" "$ARCHIVE" |
-    sha256sum --check --status
-  then
+    sha256sum --check --status; then
     echo "Checksum verification failed: $ARCHIVE" >&2
     rm -f "$ARCHIVE"
     return 1
@@ -471,8 +462,7 @@ litex() {
     [[ "$CONFIG" == standard && -f "$LITEX_PATH/.installed-standard" ]] ||
       [[ -f "$LITEX_PATH/.installed-full" ]]
   } && [[ -x "$LITEX_VENV_PATH/bin/litex_sim" ]] &&
-    [[ -x "$LITEX_VENV_PATH/bin/meson" ]]
-  then
+    [[ -x "$LITEX_VENV_PATH/bin/meson" ]]; then
     echo "Already installed: $LITEX_PATH ($CONFIG)"
     return 0
   fi
@@ -481,8 +471,7 @@ litex() {
 
   if [[ -f "$SETUP_ARCHIVE" ]] &&
     ! printf '%s  %s\n' "$LITEX_SETUP_SHA256" "$SETUP_ARCHIVE" |
-      sha256sum --check --status
-  then
+    sha256sum --check --status; then
     echo "Removing invalid cached file: $SETUP_ARCHIVE"
     rm -f "$SETUP_ARCHIVE"
   fi
@@ -500,16 +489,14 @@ litex() {
   fi
 
   if ! printf '%s  %s\n' "$LITEX_SETUP_SHA256" "$SETUP_ARCHIVE" |
-    sha256sum --check --status
-  then
+    sha256sum --check --status; then
     echo "Checksum verification failed: $SETUP_ARCHIVE" >&2
     return 1
   fi
 
   if [[ -f "$REPOS_ARCHIVE" ]] &&
     ! printf '%s  %s\n' "$LITEX_REPOS_SHA256" "$REPOS_ARCHIVE" |
-      sha256sum --check --status
-  then
+    sha256sum --check --status; then
     echo "Removing invalid cached file: $REPOS_ARCHIVE"
     rm -f "$REPOS_ARCHIVE"
   fi
@@ -527,8 +514,7 @@ litex() {
   fi
 
   if ! printf '%s  %s\n' "$LITEX_REPOS_SHA256" "$REPOS_ARCHIVE" |
-    sha256sum --check --status
-  then
+    sha256sum --check --status; then
     echo "Checksum verification failed: $REPOS_ARCHIVE" >&2
     return 1
   fi
@@ -592,7 +578,7 @@ configure_launcher_path() {
   if grep -Fxq "$EXPORT_LINE" "$PATH_CONFIG_FILE"; then
     echo "PATH export already exists in: $PATH_CONFIG_FILE"
   else
-    printf '\n%s\n' "$EXPORT_LINE" >> "$PATH_CONFIG_FILE" || return 1
+    printf '\n%s\n' "$EXPORT_LINE" >>"$PATH_CONFIG_FILE" || return 1
     echo "Added PATH export to: $PATH_CONFIG_FILE"
   fi
 
@@ -786,54 +772,54 @@ help() {
 }
 
 case "${1:-help}" in
-  debian-dependencias)
-    debian-dependencias
-    ;;
-  oss_cad_suite)
-    oss_cad_suite
-    ;;
-  verible)
-    verible
-    ;;
-  netlist2svg)
-    netlist2svg
-    ;;
-  digital)
-    digital
-    ;;
-  qucs_s)
-    qucs_s
-    ;;
-  lite_xl)
-    lite_xl
-    ;;
-  litex)
-    litex "${2:-$LITEX_DEFAULT_CONFIG}"
-    ;;
-  launcher)
-    launcher
-    ;;
-  install)
-    install
-    ;;
-  activate)
-    activate
-    ;;
-  deactivate)
-    deactivate_tools
-    ;;
-  all)
-    all
-    ;;
-  help)
-    help
-    ;;
-  *)
-    echo "Unknown argument: $1" >&2
-    echo
-    help
-    false
-    ;;
+debian-dependencias)
+  debian-dependencias
+  ;;
+oss_cad_suite)
+  oss_cad_suite
+  ;;
+verible)
+  verible
+  ;;
+netlist2svg)
+  netlist2svg
+  ;;
+digital)
+  digital
+  ;;
+qucs_s)
+  qucs_s
+  ;;
+lite_xl)
+  lite_xl
+  ;;
+litex)
+  litex "${2:-$LITEX_DEFAULT_CONFIG}"
+  ;;
+launcher)
+  launcher
+  ;;
+install)
+  install
+  ;;
+activate)
+  activate
+  ;;
+deactivate)
+  deactivate_tools
+  ;;
+all)
+  all
+  ;;
+help)
+  help
+  ;;
+*)
+  echo "Unknown argument: $1" >&2
+  echo
+  help
+  false
+  ;;
 esac
 
 STATUS=$?
