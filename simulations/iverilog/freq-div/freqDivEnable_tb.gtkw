@@ -1,0 +1,24 @@
+[*]
+[*] GTKWave Analyzer v3.4.0 (w)1999-2022 BSI
+[*] Mon Sep 21 00:36:26 2026
+[*]
+[dumpfile] "/home/johnny/projects/unal/digital-electronic-1-101/simulations/iverilog/freq-div/sim/freqDivEnable_tb.vcd"
+[dumpfile_mtime] "Mon Sep 21 00:35:13 2026"
+[dumpfile_size] 1517
+[savefile] "/home/johnny/projects/unal/digital-electronic-1-101/simulations/iverilog/freq-div/freqDivEnable_tb.gtkw"
+[timestart] 0
+[size] 1920 1033
+[pos] -27 -24
+*-3.080481 47 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] freqDivEnable_tb.
+[sst_width] 297
+[signals_width] 134
+[sst_expanded] 1
+[sst_vpaned_height] 310
+@28
+freqDivEnable_tb.clk_sonda
+freqDivEnable_tb.probe_enable
+@25
+freqDivEnable_tb.dut.counter[23:0]
+[pattern_trace] 1
+[pattern_trace] 0

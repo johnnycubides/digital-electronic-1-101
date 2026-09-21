@@ -1,0 +1,7 @@
+module counter (
+    input clk,
+    input enble
+    output [7:0] count = 0
+);
+
+endmodule
